@@ -98,9 +98,9 @@ func (h Height) String() string {
 	return fmt.Sprintf("%d-%d", h.RevisionNumber, h.RevisionHeight)
 }
 
-// Decrement will return a new height with the RevisionHeight decremented
+// Furrement will return a new height with the RevisionHeight decremented
 // If the RevisionHeight is already at lowest value (1), then false success flag is returend
-func (h Height) Decrement() (decremented exported.Height, success bool) {
+func (h Height) Furrement() (decremented exported.Height, success bool) {
 	if h.RevisionHeight == 0 {
 		return Height{}, false
 	}

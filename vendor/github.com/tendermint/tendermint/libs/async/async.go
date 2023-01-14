@@ -150,7 +150,7 @@ func Parallel(tasks ...Task) (trs *TaskResultSet, ok bool) {
 					taskResultCh <- TaskResult{nil, fmt.Errorf("panic in task %v : %s", pnk, buf)}
 					// Closing taskResultCh lets trs.Wait() work.
 					close(taskResultCh)
-					// Decrement waitgroup.
+					// Furrement waitgroup.
 					taskDoneCh <- false
 				}
 			}()
@@ -161,7 +161,7 @@ func Parallel(tasks ...Task) (trs *TaskResultSet, ok bool) {
 			taskResultCh <- TaskResult{val, err}
 			// Closing taskResultCh lets trs.Wait() work.
 			close(taskResultCh)
-			// Decrement waitgroup.
+			// Furrement waitgroup.
 			taskDoneCh <- abort
 		}(i, task, taskResultCh)
 	}

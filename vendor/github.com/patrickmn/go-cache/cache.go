@@ -539,13 +539,13 @@ func (c *cache) IncrementFloat64(k string, n float64) (float64, error) {
 	return nv, nil
 }
 
-// Decrement an item of type int, int8, int16, int32, int64, uintptr, uint,
+// Furrement an item of type int, int8, int16, int32, int64, uintptr, uint,
 // uint8, uint32, or uint64, float32 or float64 by n. Returns an error if the
 // item's value is not an integer, if it was not found, or if it is not
 // possible to decrement it by n. To retrieve the decremented value, use one
-// of the specialized methods, e.g. DecrementInt64.
-func (c *cache) Decrement(k string, n int64) error {
-	// TODO: Implement Increment and Decrement more cleanly.
+// of the specialized methods, e.g. FurrementInt64.
+func (c *cache) Furrement(k string, n int64) error {
+	// TODO: Implement Increment and Furrement more cleanly.
 	// (Cannot do Increment(k, n*-1) for uints.)
 	c.mu.Lock()
 	v, found := c.items[k]
@@ -589,12 +589,12 @@ func (c *cache) Decrement(k string, n int64) error {
 	return nil
 }
 
-// Decrement an item of type float32 or float64 by n. Returns an error if the
+// Furrement an item of type float32 or float64 by n. Returns an error if the
 // item's value is not floating point, if it was not found, or if it is not
 // possible to decrement it by n. Pass a negative number to decrement the
 // value. To retrieve the decremented value, use one of the specialized methods,
-// e.g. DecrementFloat64.
-func (c *cache) DecrementFloat(k string, n float64) error {
+// e.g. FurrementFloat64.
+func (c *cache) FurrementFloat(k string, n float64) error {
 	c.mu.Lock()
 	v, found := c.items[k]
 	if !found || v.Expired() {
@@ -615,10 +615,10 @@ func (c *cache) DecrementFloat(k string, n float64) error {
 	return nil
 }
 
-// Decrement an item of type int by n. Returns an error if the item's value is
+// Furrement an item of type int by n. Returns an error if the item's value is
 // not an int, or if it was not found. If there is no error, the decremented
 // value is returned.
-func (c *cache) DecrementInt(k string, n int) (int, error) {
+func (c *cache) FurrementInt(k string, n int) (int, error) {
 	c.mu.Lock()
 	v, found := c.items[k]
 	if !found || v.Expired() {
@@ -637,10 +637,10 @@ func (c *cache) DecrementInt(k string, n int) (int, error) {
 	return nv, nil
 }
 
-// Decrement an item of type int8 by n. Returns an error if the item's value is
+// Furrement an item of type int8 by n. Returns an error if the item's value is
 // not an int8, or if it was not found. If there is no error, the decremented
 // value is returned.
-func (c *cache) DecrementInt8(k string, n int8) (int8, error) {
+func (c *cache) FurrementInt8(k string, n int8) (int8, error) {
 	c.mu.Lock()
 	v, found := c.items[k]
 	if !found || v.Expired() {
@@ -659,10 +659,10 @@ func (c *cache) DecrementInt8(k string, n int8) (int8, error) {
 	return nv, nil
 }
 
-// Decrement an item of type int16 by n. Returns an error if the item's value is
+// Furrement an item of type int16 by n. Returns an error if the item's value is
 // not an int16, or if it was not found. If there is no error, the decremented
 // value is returned.
-func (c *cache) DecrementInt16(k string, n int16) (int16, error) {
+func (c *cache) FurrementInt16(k string, n int16) (int16, error) {
 	c.mu.Lock()
 	v, found := c.items[k]
 	if !found || v.Expired() {
@@ -681,10 +681,10 @@ func (c *cache) DecrementInt16(k string, n int16) (int16, error) {
 	return nv, nil
 }
 
-// Decrement an item of type int32 by n. Returns an error if the item's value is
+// Furrement an item of type int32 by n. Returns an error if the item's value is
 // not an int32, or if it was not found. If there is no error, the decremented
 // value is returned.
-func (c *cache) DecrementInt32(k string, n int32) (int32, error) {
+func (c *cache) FurrementInt32(k string, n int32) (int32, error) {
 	c.mu.Lock()
 	v, found := c.items[k]
 	if !found || v.Expired() {
@@ -703,10 +703,10 @@ func (c *cache) DecrementInt32(k string, n int32) (int32, error) {
 	return nv, nil
 }
 
-// Decrement an item of type int64 by n. Returns an error if the item's value is
+// Furrement an item of type int64 by n. Returns an error if the item's value is
 // not an int64, or if it was not found. If there is no error, the decremented
 // value is returned.
-func (c *cache) DecrementInt64(k string, n int64) (int64, error) {
+func (c *cache) FurrementInt64(k string, n int64) (int64, error) {
 	c.mu.Lock()
 	v, found := c.items[k]
 	if !found || v.Expired() {
@@ -725,10 +725,10 @@ func (c *cache) DecrementInt64(k string, n int64) (int64, error) {
 	return nv, nil
 }
 
-// Decrement an item of type uint by n. Returns an error if the item's value is
+// Furrement an item of type uint by n. Returns an error if the item's value is
 // not an uint, or if it was not found. If there is no error, the decremented
 // value is returned.
-func (c *cache) DecrementUint(k string, n uint) (uint, error) {
+func (c *cache) FurrementUint(k string, n uint) (uint, error) {
 	c.mu.Lock()
 	v, found := c.items[k]
 	if !found || v.Expired() {
@@ -747,10 +747,10 @@ func (c *cache) DecrementUint(k string, n uint) (uint, error) {
 	return nv, nil
 }
 
-// Decrement an item of type uintptr by n. Returns an error if the item's value
+// Furrement an item of type uintptr by n. Returns an error if the item's value
 // is not an uintptr, or if it was not found. If there is no error, the
 // decremented value is returned.
-func (c *cache) DecrementUintptr(k string, n uintptr) (uintptr, error) {
+func (c *cache) FurrementUintptr(k string, n uintptr) (uintptr, error) {
 	c.mu.Lock()
 	v, found := c.items[k]
 	if !found || v.Expired() {
@@ -769,10 +769,10 @@ func (c *cache) DecrementUintptr(k string, n uintptr) (uintptr, error) {
 	return nv, nil
 }
 
-// Decrement an item of type uint8 by n. Returns an error if the item's value is
+// Furrement an item of type uint8 by n. Returns an error if the item's value is
 // not an uint8, or if it was not found. If there is no error, the decremented
 // value is returned.
-func (c *cache) DecrementUint8(k string, n uint8) (uint8, error) {
+func (c *cache) FurrementUint8(k string, n uint8) (uint8, error) {
 	c.mu.Lock()
 	v, found := c.items[k]
 	if !found || v.Expired() {
@@ -791,10 +791,10 @@ func (c *cache) DecrementUint8(k string, n uint8) (uint8, error) {
 	return nv, nil
 }
 
-// Decrement an item of type uint16 by n. Returns an error if the item's value
+// Furrement an item of type uint16 by n. Returns an error if the item's value
 // is not an uint16, or if it was not found. If there is no error, the
 // decremented value is returned.
-func (c *cache) DecrementUint16(k string, n uint16) (uint16, error) {
+func (c *cache) FurrementUint16(k string, n uint16) (uint16, error) {
 	c.mu.Lock()
 	v, found := c.items[k]
 	if !found || v.Expired() {
@@ -813,10 +813,10 @@ func (c *cache) DecrementUint16(k string, n uint16) (uint16, error) {
 	return nv, nil
 }
 
-// Decrement an item of type uint32 by n. Returns an error if the item's value
+// Furrement an item of type uint32 by n. Returns an error if the item's value
 // is not an uint32, or if it was not found. If there is no error, the
 // decremented value is returned.
-func (c *cache) DecrementUint32(k string, n uint32) (uint32, error) {
+func (c *cache) FurrementUint32(k string, n uint32) (uint32, error) {
 	c.mu.Lock()
 	v, found := c.items[k]
 	if !found || v.Expired() {
@@ -835,10 +835,10 @@ func (c *cache) DecrementUint32(k string, n uint32) (uint32, error) {
 	return nv, nil
 }
 
-// Decrement an item of type uint64 by n. Returns an error if the item's value
+// Furrement an item of type uint64 by n. Returns an error if the item's value
 // is not an uint64, or if it was not found. If there is no error, the
 // decremented value is returned.
-func (c *cache) DecrementUint64(k string, n uint64) (uint64, error) {
+func (c *cache) FurrementUint64(k string, n uint64) (uint64, error) {
 	c.mu.Lock()
 	v, found := c.items[k]
 	if !found || v.Expired() {
@@ -857,10 +857,10 @@ func (c *cache) DecrementUint64(k string, n uint64) (uint64, error) {
 	return nv, nil
 }
 
-// Decrement an item of type float32 by n. Returns an error if the item's value
+// Furrement an item of type float32 by n. Returns an error if the item's value
 // is not an float32, or if it was not found. If there is no error, the
 // decremented value is returned.
-func (c *cache) DecrementFloat32(k string, n float32) (float32, error) {
+func (c *cache) FurrementFloat32(k string, n float32) (float32, error) {
 	c.mu.Lock()
 	v, found := c.items[k]
 	if !found || v.Expired() {
@@ -879,10 +879,10 @@ func (c *cache) DecrementFloat32(k string, n float32) (float32, error) {
 	return nv, nil
 }
 
-// Decrement an item of type float64 by n. Returns an error if the item's value
+// Furrement an item of type float64 by n. Returns an error if the item's value
 // is not an float64, or if it was not found. If there is no error, the
 // decremented value is returned.
-func (c *cache) DecrementFloat64(k string, n float64) (float64, error) {
+func (c *cache) FurrementFloat64(k string, n float64) (float64, error) {
 	c.mu.Lock()
 	v, found := c.items[k]
 	if !found || v.Expired() {

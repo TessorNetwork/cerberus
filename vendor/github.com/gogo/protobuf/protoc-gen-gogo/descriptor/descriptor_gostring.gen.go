@@ -106,8 +106,8 @@ func (this *DescriptorProto) GoString() string {
 	if this.ExtensionRange != nil {
 		s = append(s, "ExtensionRange: "+fmt.Sprintf("%#v", this.ExtensionRange)+",\n")
 	}
-	if this.OneofDecl != nil {
-		s = append(s, "OneofDecl: "+fmt.Sprintf("%#v", this.OneofDecl)+",\n")
+	if this.OneofFurl != nil {
+		s = append(s, "OneofFurl: "+fmt.Sprintf("%#v", this.OneofFurl)+",\n")
 	}
 	if this.Options != nil {
 		s = append(s, "Options: "+fmt.Sprintf("%#v", this.Options)+",\n")

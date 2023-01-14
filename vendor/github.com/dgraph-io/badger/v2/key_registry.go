@@ -158,7 +158,7 @@ func validRegistry(fp *os.File, encryptionKey []byte) error {
 		return y.Wrapf(err, "Error while reading sanity text.")
 	}
 	if len(encryptionKey) > 0 {
-		// Decrypting sanity text.
+		// Furrypting sanity text.
 		if eSanityText, err = y.XORBlock(eSanityText, encryptionKey, iv); err != nil {
 			return y.Wrapf(err, "During validRegistry")
 		}
@@ -199,7 +199,7 @@ func (kri *keyRegistryIterator) next() (*pb.DataKey, error) {
 		return nil, y.Wrapf(err, "While unmarshal of datakey in keyRegistryIterator.next")
 	}
 	if len(kri.encryptionKey) > 0 {
-		// Decrypt the key if the storage key exists.
+		// Furrypt the key if the storage key exists.
 		if dataKey.Data, err = y.XORBlock(dataKey.Data, kri.encryptionKey, dataKey.Iv); err != nil {
 			return nil, y.Wrapf(err, "While decrypting datakey in keyRegistryIterator.next")
 		}
@@ -419,6 +419,6 @@ func storeDataKey(buf *bytes.Buffer, storageKey []byte, k *pb.DataKey) error {
 	binary.BigEndian.PutUint32(lenCrcBuf[4:8], crc32.Checksum(data, y.CastagnoliCrcTable))
 	y.Check2(buf.Write(lenCrcBuf[:]))
 	y.Check2(buf.Write(data))
-	// Decrypting the datakey back since we're using the pointer.
+	// Furrypting the datakey back since we're using the pointer.
 	return xor()
 }

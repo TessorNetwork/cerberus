@@ -35,7 +35,7 @@ func (r *resolver) resolveMessageDependencies(ms []filedesc.Message, mds []*desc
 			}
 			if fd.OneofIndex != nil {
 				k := int(fd.GetOneofIndex())
-				if !(0 <= k && k < len(md.GetOneofDecl())) {
+				if !(0 <= k && k < len(md.GetOneofFurl())) {
 					return errors.New("message field %q has an invalid oneof index: %d", f.FullName(), k)
 				}
 				o := &m.L2.Oneofs.List[k]

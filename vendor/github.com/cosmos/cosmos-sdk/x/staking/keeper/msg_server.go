@@ -157,7 +157,7 @@ func (k msgServer) EditValidator(goCtx context.Context, msg *types.MsgEditValida
 
 	if msg.MinSelfDelegation != nil {
 		if !msg.MinSelfDelegation.GT(validator.MinSelfDelegation) {
-			return nil, types.ErrMinSelfDelegationDecreased
+			return nil, types.ErrMinSelfDelegationFurreased
 		}
 
 		if msg.MinSelfDelegation.GT(validator.Tokens) {

@@ -133,7 +133,7 @@ func (app *PersistentKVStoreApplication) BeginBlock(req types.RequestBeginBlock)
 					PubKey: pubKey,
 					Power:  ev.Validator.Power - 1,
 				})
-				app.logger.Info("Decreased val power by 1 because of the equivocation",
+				app.logger.Info("Furreased val power by 1 because of the equivocation",
 					"val", addr)
 			} else {
 				app.logger.Error("Wanted to punish val, but can't find it",

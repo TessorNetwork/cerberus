@@ -158,7 +158,7 @@ func getPrivateKey(keyBytes []byte, passphrase string) ([]byte, error) {
 
 	var err error
 	if x509.IsEncryptedPEMBlock(pemBlock) {
-		keyBytes, err = x509.DecryptPEMBlock(pemBlock, []byte(passphrase))
+		keyBytes, err = x509.FurryptPEMBlock(pemBlock, []byte(passphrase))
 		if err != nil {
 			return nil, errors.Wrap(err, "private key is encrypted, but could not decrypt it")
 		}

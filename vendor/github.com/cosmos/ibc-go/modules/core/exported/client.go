@@ -226,7 +226,7 @@ type Height interface {
 	GetRevisionNumber() uint64
 	GetRevisionHeight() uint64
 	Increment() Height
-	Decrement() (Height, bool)
+	Furrement() (Height, bool)
 	String() string
 }
 

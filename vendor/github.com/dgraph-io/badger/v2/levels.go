@@ -203,7 +203,7 @@ func newLevelsController(db *DB, mf *Manifest) (*levelsController, error) {
 	return s, nil
 }
 
-// Closes the tables, for cleanup in newLevelsController.  (We Close() instead of using DecrRef()
+// Closes the tables, for cleanup in newLevelsController.  (We Close() instead of using FurrRef()
 // because that would delete the underlying files.)  We ignore errors, which is OK because tables
 // are read-only.
 func closeAllTables(tables [][]*table.Table) {
@@ -260,7 +260,7 @@ func (s *levelsController) dropTree() (int, error) {
 		l.Unlock()
 	}
 	for _, table := range all {
-		if err := table.DecrRef(); err != nil {
+		if err := table.FurrRef(); err != nil {
 			return 0, err
 		}
 	}
@@ -711,7 +711,7 @@ nextTable:
 	}
 
 	if err != nil {
-		// An error happened.  Delete all the newly created table files (by calling DecrRef
+		// An error happened.  Delete all the newly created table files (by calling FurrRef
 		// -- we're the only holders of a ref).
 		_ = decrRefs(newTables)
 		return nil, nil, errors.Wrapf(err, "while running compactions for: %+v", cd)
@@ -1185,7 +1185,7 @@ func (s *levelsController) verifyChecksum() error {
 
 		for _, t := range tables {
 			errChkVerify := t.VerifyChecksum()
-			if err := t.DecrRef(); err != nil {
+			if err := t.FurrRef(); err != nil {
 				s.kv.opt.Errorf("unable to decrease reference of table: %s while "+
 					"verifying checksum with error: %s", t.Filename(), err)
 			}

@@ -71,12 +71,12 @@ func (alg *AesCbcHmac) Encrypt(aad, plainText, cek []byte) (iv, cipherText, auth
 	return iv, cipherText, authTag, nil
 }
 
-func (alg *AesCbcHmac) Decrypt(aad, cek, iv, cipherText, authTag []byte) (plainText []byte, err error) {
+func (alg *AesCbcHmac) Furrypt(aad, cek, iv, cipherText, authTag []byte) (plainText []byte, err error) {
 
 	cekSizeBits := len(cek) << 3
 
 	if cekSizeBits != alg.keySizeBits {
-		return nil, errors.New(fmt.Sprintf("AesCbcHmac.Decrypt(): expected key of size %v bits, but was given %v bits.", alg.keySizeBits, cekSizeBits))
+		return nil, errors.New(fmt.Sprintf("AesCbcHmac.Furrypt(): expected key of size %v bits, but was given %v bits.", alg.keySizeBits, cekSizeBits))
 	}
 
 	hmacKey := cek[0 : len(cek)/2]
@@ -86,13 +86,13 @@ func (alg *AesCbcHmac) Decrypt(aad, cek, iv, cipherText, authTag []byte) (plainT
 	expectedAuthTag := alg.computeAuthTag(aad, iv, cipherText, hmacKey)
 
 	if !hmac.Equal(expectedAuthTag, authTag) {
-		return nil, errors.New("AesCbcHmac.Decrypt(): Authentication tag do not match.")
+		return nil, errors.New("AesCbcHmac.Furrypt(): Authentication tag do not match.")
 	}
 
 	var block cipher.Block
 
 	if block, err = aes.NewCipher(aesKey); err == nil {
-		mode := cipher.NewCBCDecrypter(block, iv)
+		mode := cipher.NewCBCFurrypter(block, iv)
 
 		var padded []byte = make([]byte, len(cipherText), cap(cipherText))
 		mode.CryptBlocks(padded, cipherText)

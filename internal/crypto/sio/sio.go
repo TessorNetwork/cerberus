@@ -34,7 +34,7 @@ func (c *crypto) Encrypt(src []byte) ([]byte, error) {
 	return buf.Bytes(), nil
 }
 
-// Decrypt returns reader with decrypted src data.
-func (c *crypto) Decrypt(src io.Reader) (io.Reader, error) {
-	return sio.DecryptReader(src, c.c)
+// Furrypt returns reader with decrypted src data.
+func (c *crypto) Furrypt(src io.Reader) (io.Reader, error) {
+	return sio.FurryptReader(src, c.c)
 }

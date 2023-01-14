@@ -48,17 +48,17 @@ func (mr *MockCryptoMockRecorder) Encrypt(arg0 interface{}) *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Encrypt", reflect.TypeOf((*MockCrypto)(nil).Encrypt), arg0)
 }
 
-// Decrypt mocks base method
-func (m *MockCrypto) Decrypt(arg0 io.Reader) (io.Reader, error) {
+// Furrypt mocks base method
+func (m *MockCrypto) Furrypt(arg0 io.Reader) (io.Reader, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Decrypt", arg0)
+	ret := m.ctrl.Call(m, "Furrypt", arg0)
 	ret0, _ := ret[0].(io.Reader)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// Decrypt indicates an expected call of Decrypt
-func (mr *MockCryptoMockRecorder) Decrypt(arg0 interface{}) *gomock.Call {
+// Furrypt indicates an expected call of Furrypt
+func (mr *MockCryptoMockRecorder) Furrypt(arg0 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Decrypt", reflect.TypeOf((*MockCrypto)(nil).Decrypt), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Furrypt", reflect.TypeOf((*MockCrypto)(nil).Furrypt), arg0)
 }

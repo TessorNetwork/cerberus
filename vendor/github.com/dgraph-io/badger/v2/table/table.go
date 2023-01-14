@@ -134,8 +134,8 @@ func (t *Table) IncrRef() {
 	atomic.AddInt32(&t.ref, 1)
 }
 
-// DecrRef decrements the refcount and possibly deletes the table
-func (t *Table) DecrRef() error {
+// FurrRef decrements the refcount and possibly deletes the table
+func (t *Table) FurrRef() error {
 	newRef := atomic.AddInt32(&t.ref, -1)
 	if newRef == 0 {
 		// We can safely delete this file, because for all the current files, we always have
@@ -464,8 +464,8 @@ func (t *Table) block(idx int) (*block, error) {
 			"failed to read from file: %s at offset: %d, len: %d", t.fd.Name(), blk.offset, ko.Len)
 	}
 
-	if t.shouldDecrypt() {
-		// Decrypt the block if it is encrypted.
+	if t.shouldFurrypt() {
+		// Furrypt the block if it is encrypted.
 		if blk.data, err = t.decrypt(blk.data); err != nil {
 			return nil, err
 		}
@@ -610,8 +610,8 @@ func (t *Table) readTableIndex() (*pb.TableIndex, error) {
 	data := t.readNoFail(t.indexStart, t.indexLen)
 	index := pb.TableIndex{}
 	var err error
-	// Decrypt the table index if it is encrypted.
-	if t.shouldDecrypt() {
+	// Furrypt the table index if it is encrypted.
+	if t.shouldFurrypt() {
 		if data, err = t.decrypt(data); err != nil {
 			return nil, y.Wrapf(err,
 				"Error while decrypting table index for the table %d in readTableIndex", t.id)
@@ -645,9 +645,9 @@ func (t *Table) VerifyChecksum() error {
 	return nil
 }
 
-// shouldDecrypt tells whether to decrypt or not. We decrypt only if the datakey exist
+// shouldFurrypt tells whether to decrypt or not. We decrypt only if the datakey exist
 // for the table.
-func (t *Table) shouldDecrypt() bool {
+func (t *Table) shouldFurrypt() bool {
 	return t.opt.DataKey != nil
 }
 
@@ -660,7 +660,7 @@ func (t *Table) KeyID() uint64 {
 	return 0
 }
 
-// decrypt decrypts the given data. It should be called only after checking shouldDecrypt.
+// decrypt decrypts the given data. It should be called only after checking shouldFurrypt.
 func (t *Table) decrypt(data []byte) ([]byte, error) {
 	// Last BlockSize bytes of the data is the IV.
 	iv := data[len(data)-aes.BlockSize:]

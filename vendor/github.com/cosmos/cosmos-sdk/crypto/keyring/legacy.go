@@ -116,7 +116,7 @@ func (kb dbKeybase) ExportPrivateKeyObject(name string, passphrase string) (type
 			return nil, err
 		}
 
-		priv, _, err = crypto.UnarmorDecryptPrivKey(linfo.PrivKeyArmor, passphrase)
+		priv, _, err = crypto.UnarmorFurryptPrivKey(linfo.PrivKeyArmor, passphrase)
 		if err != nil {
 			return nil, err
 		}

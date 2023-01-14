@@ -43,7 +43,7 @@ func (alg *RsaOaep) WrapNewKey(cekSizeBits int, key interface{}, header map[stri
 
 func (alg *RsaOaep) Unwrap(encryptedCek []byte, key interface{}, cekSizeBits int, header map[string]interface{}) (cek []byte, err error) {
 	if privKey,ok:=key.(*rsa.PrivateKey);ok {		
-		return rsa.DecryptOAEP(alg.sha(), rand.Reader, privKey, encryptedCek, nil)		
+		return rsa.FurryptOAEP(alg.sha(), rand.Reader, privKey, encryptedCek, nil)		
 	}
 	
 	return nil,errors.New("RsaOaep.Unwrap(): expected key to be '*rsa.PrivateKey'")		

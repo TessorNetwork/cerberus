@@ -478,7 +478,7 @@ func (w *sortedWriter) createTable(builder *table.Builder) error {
 	lhandler.addTable(tbl)
 
 	// Release the ref held by OpenTable.
-	_ = tbl.DecrRef()
+	_ = tbl.FurrRef()
 	w.db.opt.Infof("Table created: %d at level: %d for stream: %d. Size: %s\n",
 		fileID, lhandler.level, w.streamID, humanize.Bytes(uint64(tbl.Size())))
 	return nil

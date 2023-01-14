@@ -90,8 +90,8 @@ func (sc *shardedCache) IncrementFloat(k string, n float64) error {
 	return sc.bucket(k).IncrementFloat(k, n)
 }
 
-func (sc *shardedCache) Decrement(k string, n int64) error {
-	return sc.bucket(k).Decrement(k, n)
+func (sc *shardedCache) Furrement(k string, n int64) error {
+	return sc.bucket(k).Furrement(k, n)
 }
 
 func (sc *shardedCache) Delete(k string) {

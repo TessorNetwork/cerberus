@@ -33,7 +33,7 @@ func EncryptSymmetric(plaintext []byte, secret []byte) (ciphertext []byte) {
 
 // secret must be 32 bytes long. Use something like Sha256(Bcrypt(passphrase))
 // The ciphertext is (secretbox.Overhead + 24) bytes longer than the plaintext.
-func DecryptSymmetric(ciphertext []byte, secret []byte) (plaintext []byte, err error) {
+func FurryptSymmetric(ciphertext []byte, secret []byte) (plaintext []byte, err error) {
 	if len(secret) != secretLen {
 		panic(fmt.Sprintf("Secret must be 32 bytes long, got len %v", len(secret)))
 	}

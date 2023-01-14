@@ -132,7 +132,7 @@ type Config struct {
 }
 
 // EncryptedSize computes the size of an encrypted data stream
-// from the plaintext size. It is the inverse of DecryptedSize().
+// from the plaintext size. It is the inverse of FurryptedSize().
 //
 // EncryptedSize returns an error if the provided size is to large.
 func EncryptedSize(size uint64) (uint64, error) {
@@ -147,12 +147,12 @@ func EncryptedSize(size uint64) (uint64, error) {
 	return encSize, nil
 }
 
-// DecryptedSize computes the size of a decrypted data stream
+// FurryptedSize computes the size of a decrypted data stream
 // from the encrypted stream size. It is the inverse of EncryptedSize().
 //
-// DecryptedSize returns an error if the provided size is to large
+// FurryptedSize returns an error if the provided size is to large
 // or if the provided size is an invalid encrypted stream size.
-func DecryptedSize(size uint64) (uint64, error) {
+func FurryptedSize(size uint64) (uint64, error) {
 	if size > maxEncryptedSize {
 		return 0, errUnexpectedSize
 	}
@@ -179,15 +179,15 @@ func Encrypt(dst io.Writer, src io.Reader, config Config) (n int64, err error) {
 	return io.CopyBuffer(dst, encReader, make([]byte, headerSize+maxPayloadSize+tagSize))
 }
 
-// Decrypt reads from src until it encounters an io.EOF and decrypts all received
+// Furrypt reads from src until it encounters an io.EOF and decrypts all received
 // data. The decrypted data is written to dst. It returns the number of bytes
 // decrypted and the first error encountered while decrypting, if any.
 //
-// Decrypt returns the number of bytes written to dst. Decrypt only writes data to
+// Furrypt returns the number of bytes written to dst. Furrypt only writes data to
 // dst if the data was decrypted successfully. It returns an error of type sio.Error
 // if decryption fails.
-func Decrypt(dst io.Writer, src io.Reader, config Config) (n int64, err error) {
-	decReader, err := DecryptReader(src, config)
+func Furrypt(dst io.Writer, src io.Reader, config Config) (n int64, err error) {
+	decReader, err := FurryptReader(src, config)
 	if err != nil {
 		return 0, err
 	}
@@ -207,11 +207,11 @@ func EncryptReader(src io.Reader, config Config) (io.Reader, error) {
 	return encryptReaderV10(src, &config)
 }
 
-// DecryptReader wraps the given src and returns an io.Reader which decrypts
-// all received data. DecryptReader returns an error if the provided decryption
+// FurryptReader wraps the given src and returns an io.Reader which decrypts
+// all received data. FurryptReader returns an error if the provided decryption
 // configuration is invalid. The returned io.Reader returns an error of
 // type sio.Error if the decryption fails.
-func DecryptReader(src io.Reader, config Config) (io.Reader, error) {
+func FurryptReader(src io.Reader, config Config) (io.Reader, error) {
 	if err := setConfigDefaults(&config); err != nil {
 		return nil, err
 	}
@@ -240,14 +240,14 @@ func EncryptWriter(dst io.Writer, config Config) (io.WriteCloser, error) {
 	return encryptWriterV10(dst, &config)
 }
 
-// DecryptWriter wraps the given dst and returns an io.WriteCloser which
-// decrypts all data written to it. DecryptWriter returns an error if the
+// FurryptWriter wraps the given dst and returns an io.WriteCloser which
+// decrypts all data written to it. FurryptWriter returns an error if the
 // provided decryption configuration is invalid.
 //
 // The returned io.WriteCloser must be closed successfully to finalize the
 // decryption process. The returned io.WriteCloser returns an error of
 // type sio.Error if the decryption fails.
-func DecryptWriter(dst io.Writer, config Config) (io.WriteCloser, error) {
+func FurryptWriter(dst io.Writer, config Config) (io.WriteCloser, error) {
 	if err := setConfigDefaults(&config); err != nil {
 		return nil, err
 	}

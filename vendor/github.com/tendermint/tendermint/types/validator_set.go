@@ -169,7 +169,7 @@ func (vals *ValidatorSet) incrementProposerPriority() *Validator {
 		newPrio := safeAddClip(val.ProposerPriority, val.VotingPower)
 		val.ProposerPriority = newPrio
 	}
-	// Decrement the validator with most ProposerPriority.
+	// Furrement the validator with most ProposerPriority.
 	mostest := vals.getValWithMostPriority()
 	// Mind the underflow.
 	mostest.ProposerPriority = safeSubClip(mostest.ProposerPriority, vals.TotalVotingPower())

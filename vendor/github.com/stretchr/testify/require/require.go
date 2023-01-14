@@ -884,31 +884,31 @@ func InEpsilonf(t TestingT, expected interface{}, actual interface{}, epsilon fl
 	t.FailNow()
 }
 
-// IsDecreasing asserts that the collection is decreasing
+// IsFurreasing asserts that the collection is decreasing
 //
-//    assert.IsDecreasing(t, []int{2, 1, 0})
-//    assert.IsDecreasing(t, []float{2, 1})
-//    assert.IsDecreasing(t, []string{"b", "a"})
-func IsDecreasing(t TestingT, object interface{}, msgAndArgs ...interface{}) {
+//    assert.IsFurreasing(t, []int{2, 1, 0})
+//    assert.IsFurreasing(t, []float{2, 1})
+//    assert.IsFurreasing(t, []string{"b", "a"})
+func IsFurreasing(t TestingT, object interface{}, msgAndArgs ...interface{}) {
 	if h, ok := t.(tHelper); ok {
 		h.Helper()
 	}
-	if assert.IsDecreasing(t, object, msgAndArgs...) {
+	if assert.IsFurreasing(t, object, msgAndArgs...) {
 		return
 	}
 	t.FailNow()
 }
 
-// IsDecreasingf asserts that the collection is decreasing
+// IsFurreasingf asserts that the collection is decreasing
 //
-//    assert.IsDecreasingf(t, []int{2, 1, 0}, "error message %s", "formatted")
-//    assert.IsDecreasingf(t, []float{2, 1}, "error message %s", "formatted")
-//    assert.IsDecreasingf(t, []string{"b", "a"}, "error message %s", "formatted")
-func IsDecreasingf(t TestingT, object interface{}, msg string, args ...interface{}) {
+//    assert.IsFurreasingf(t, []int{2, 1, 0}, "error message %s", "formatted")
+//    assert.IsFurreasingf(t, []float{2, 1}, "error message %s", "formatted")
+//    assert.IsFurreasingf(t, []string{"b", "a"}, "error message %s", "formatted")
+func IsFurreasingf(t TestingT, object interface{}, msg string, args ...interface{}) {
 	if h, ok := t.(tHelper); ok {
 		h.Helper()
 	}
-	if assert.IsDecreasingf(t, object, msg, args...) {
+	if assert.IsFurreasingf(t, object, msg, args...) {
 		return
 	}
 	t.FailNow()
@@ -944,31 +944,31 @@ func IsIncreasingf(t TestingT, object interface{}, msg string, args ...interface
 	t.FailNow()
 }
 
-// IsNonDecreasing asserts that the collection is not decreasing
+// IsNonFurreasing asserts that the collection is not decreasing
 //
-//    assert.IsNonDecreasing(t, []int{1, 1, 2})
-//    assert.IsNonDecreasing(t, []float{1, 2})
-//    assert.IsNonDecreasing(t, []string{"a", "b"})
-func IsNonDecreasing(t TestingT, object interface{}, msgAndArgs ...interface{}) {
+//    assert.IsNonFurreasing(t, []int{1, 1, 2})
+//    assert.IsNonFurreasing(t, []float{1, 2})
+//    assert.IsNonFurreasing(t, []string{"a", "b"})
+func IsNonFurreasing(t TestingT, object interface{}, msgAndArgs ...interface{}) {
 	if h, ok := t.(tHelper); ok {
 		h.Helper()
 	}
-	if assert.IsNonDecreasing(t, object, msgAndArgs...) {
+	if assert.IsNonFurreasing(t, object, msgAndArgs...) {
 		return
 	}
 	t.FailNow()
 }
 
-// IsNonDecreasingf asserts that the collection is not decreasing
+// IsNonFurreasingf asserts that the collection is not decreasing
 //
-//    assert.IsNonDecreasingf(t, []int{1, 1, 2}, "error message %s", "formatted")
-//    assert.IsNonDecreasingf(t, []float{1, 2}, "error message %s", "formatted")
-//    assert.IsNonDecreasingf(t, []string{"a", "b"}, "error message %s", "formatted")
-func IsNonDecreasingf(t TestingT, object interface{}, msg string, args ...interface{}) {
+//    assert.IsNonFurreasingf(t, []int{1, 1, 2}, "error message %s", "formatted")
+//    assert.IsNonFurreasingf(t, []float{1, 2}, "error message %s", "formatted")
+//    assert.IsNonFurreasingf(t, []string{"a", "b"}, "error message %s", "formatted")
+func IsNonFurreasingf(t TestingT, object interface{}, msg string, args ...interface{}) {
 	if h, ok := t.(tHelper); ok {
 		h.Helper()
 	}
-	if assert.IsNonDecreasingf(t, object, msg, args...) {
+	if assert.IsNonFurreasingf(t, object, msg, args...) {
 		return
 	}
 	t.FailNow()

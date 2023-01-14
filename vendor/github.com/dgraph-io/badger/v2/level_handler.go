@@ -97,7 +97,7 @@ func (s *levelHandler) deleteTables(toDel []*table.Table) error {
 	}
 	s.tables = newTables
 
-	s.Unlock() // Unlock s _before_ we DecrRef our tables, which can be slow.
+	s.Unlock() // Unlock s _before_ we FurrRef our tables, which can be slow.
 
 	return decrRefs(toDel)
 }
@@ -136,7 +136,7 @@ func (s *levelHandler) replaceTables(toDel, toAdd []*table.Table) error {
 	sort.Slice(s.tables, func(i, j int) bool {
 		return y.CompareKeys(s.tables[i].Smallest(), s.tables[j].Smallest()) < 0
 	})
-	s.Unlock() // s.Unlock before we DecrRef tables -- that can be slow.
+	s.Unlock() // s.Unlock before we FurrRef tables -- that can be slow.
 	return decrRefs(toDel)
 }
 
@@ -167,7 +167,7 @@ func (s *levelHandler) sortTables() {
 
 func decrRefs(tables []*table.Table) error {
 	for _, table := range tables {
-		if err := table.DecrRef(); err != nil {
+		if err := table.FurrRef(); err != nil {
 			return err
 		}
 	}
@@ -234,7 +234,7 @@ func (s *levelHandler) getTableForKey(key []byte) ([]*table.Table, func() error)
 		}
 		return out, func() error {
 			for _, t := range out {
-				if err := t.DecrRef(); err != nil {
+				if err := t.FurrRef(); err != nil {
 					return err
 				}
 			}
@@ -251,7 +251,7 @@ func (s *levelHandler) getTableForKey(key []byte) ([]*table.Table, func() error)
 	}
 	tbl := s.tables[idx]
 	tbl.IncrRef()
-	return []*table.Table{tbl}, tbl.DecrRef
+	return []*table.Table{tbl}, tbl.FurrRef
 }
 
 // get returns value for a given key or the key after that. If not found, return nil.

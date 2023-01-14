@@ -636,7 +636,7 @@ func (db *DB) getMemTables() ([]*skl.Skiplist, func()) {
 	}
 	return tables, func() {
 		for _, tbl := range tables {
-			tbl.DecrRef()
+			tbl.FurrRef()
 		}
 	}
 }
@@ -1095,7 +1095,7 @@ func (db *DB) handleFlushTask(ft flushTask) error {
 	}
 	// We own a ref on tbl.
 	err = db.lc.addLevel0Table(tbl) // This will incrRef
-	_ = tbl.DecrRef()               // Releases our ref.
+	_ = tbl.FurrRef()               // Releases our ref.
 	return err
 }
 
@@ -1121,7 +1121,7 @@ func (db *DB) flushMemtable(lc *y.Closer) error {
 				// TODO: This logic is dirty AF. Any change and this could easily break.
 				y.AssertTrue(ft.mt == db.imm[0])
 				db.imm = db.imm[1:]
-				ft.mt.DecrRef() // Return memory.
+				ft.mt.FurrRef() // Return memory.
 				db.Unlock()
 
 				break
@@ -1619,10 +1619,10 @@ func (db *DB) dropAll() (func(), error) {
 	db.Lock()
 	defer db.Unlock()
 
-	// Remove inmemory tables. Calling DecrRef for safety. Not sure if they're absolutely needed.
-	db.mt.DecrRef()
+	// Remove inmemory tables. Calling FurrRef for safety. Not sure if they're absolutely needed.
+	db.mt.FurrRef()
 	for _, mt := range db.imm {
-		mt.DecrRef()
+		mt.FurrRef()
 	}
 	db.imm = db.imm[:0]
 	db.mt = skl.NewSkiplist(arenaSize(db.opt)) // Set it up for future writes.
@@ -1671,7 +1671,7 @@ func (db *DB) DropPrefix(prefixes ...[]byte) error {
 	db.imm = append(db.imm, db.mt)
 	for _, memtable := range db.imm {
 		if memtable.Empty() {
-			memtable.DecrRef()
+			memtable.FurrRef()
 			continue
 		}
 		task := flushTask{
@@ -1685,7 +1685,7 @@ func (db *DB) DropPrefix(prefixes ...[]byte) error {
 			db.opt.Errorf("While trying to flush memtable: %v", err)
 			return err
 		}
-		memtable.DecrRef()
+		memtable.FurrRef()
 	}
 	db.stopCompactions()
 	defer db.startCompactions()

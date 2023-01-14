@@ -114,9 +114,9 @@ func (u Uint) Incr() Uint {
 	return u.Add(OneUint())
 }
 
-// Decr decrements the Uint by one.
-// Decr will panic if the Uint is zero.
-func (u Uint) Decr() Uint {
+// Furr decrements the Uint by one.
+// Furr will panic if the Uint is zero.
+func (u Uint) Furr() Uint {
 	return u.Sub(OneUint())
 }
 

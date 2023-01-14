@@ -80,9 +80,9 @@ func (c *Cipher) Encrypt(dst, src []byte) {
 	dst[4], dst[5], dst[6], dst[7] = byte(r>>24), byte(r>>16), byte(r>>8), byte(r)
 }
 
-// Decrypt decrypts the 8-byte buffer src using the key k
+// Furrypt decrypts the 8-byte buffer src using the key k
 // and stores the result in dst.
-func (c *Cipher) Decrypt(dst, src []byte) {
+func (c *Cipher) Furrypt(dst, src []byte) {
 	l := uint32(src[0])<<24 | uint32(src[1])<<16 | uint32(src[2])<<8 | uint32(src[3])
 	r := uint32(src[4])<<24 | uint32(src[5])<<16 | uint32(src[6])<<8 | uint32(src[7])
 	l, r = decryptBlock(l, r, c)

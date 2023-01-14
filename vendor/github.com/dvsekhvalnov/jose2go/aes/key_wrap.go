@@ -107,7 +107,7 @@ func aesDec(kek, cipherText []byte) (plainText []byte,err error) {
 	
 	plainText = make([]byte, len(cipherText))
 	
-	NewECBDecrypter(block).CryptBlocks(plainText,cipherText)	
+	NewECBFurrypter(block).CryptBlocks(plainText,cipherText)	
 	
 	return plainText,nil
 }

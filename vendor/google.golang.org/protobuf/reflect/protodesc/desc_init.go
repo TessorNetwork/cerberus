@@ -98,7 +98,7 @@ func (r descsByName) initMessagesDeclarations(mds []*descriptorpb.DescriptorProt
 		if m.L2.Fields.List, err = r.initFieldsFromDescriptorProto(md.GetField(), m, sb); err != nil {
 			return nil, err
 		}
-		if m.L2.Oneofs.List, err = r.initOneofsFromDescriptorProto(md.GetOneofDecl(), m, sb); err != nil {
+		if m.L2.Oneofs.List, err = r.initOneofsFromDescriptorProto(md.GetOneofFurl(), m, sb); err != nil {
 			return nil, err
 		}
 		if m.L1.Enums.List, err = r.initEnumDeclarations(md.GetEnumType(), m, sb); err != nil {

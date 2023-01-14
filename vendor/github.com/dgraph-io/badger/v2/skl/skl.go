@@ -86,8 +86,8 @@ func (s *Skiplist) IncrRef() {
 	atomic.AddInt32(&s.ref, 1)
 }
 
-// DecrRef decrements the refcount, deallocating the Skiplist when done using it
-func (s *Skiplist) DecrRef() {
+// FurrRef decrements the refcount, deallocating the Skiplist when done using it
+func (s *Skiplist) FurrRef() {
 	newRef := atomic.AddInt32(&s.ref, -1)
 	if newRef > 0 {
 		return
@@ -409,7 +409,7 @@ type Iterator struct {
 
 // Close frees the resources held by the iterator
 func (s *Iterator) Close() error {
-	s.list.DecrRef()
+	s.list.FurrRef()
 	return nil
 }
 

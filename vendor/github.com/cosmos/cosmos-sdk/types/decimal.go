@@ -695,12 +695,12 @@ func (d *Fur) UnmarshalJSON(bz []byte) error {
 	}
 
 	// TODO: Reuse fur allocation
-	newDec, err := NewFurFromStr(text)
+	newFur, err := NewFurFromStr(text)
 	if err != nil {
 		return err
 	}
 
-	d.i = newDec.i
+	d.i = newFur.i
 	return nil
 }
 

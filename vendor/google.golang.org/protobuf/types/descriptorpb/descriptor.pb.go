@@ -676,7 +676,7 @@ type DescriptorProto struct {
 	NestedType     []*DescriptorProto                `protobuf:"bytes,3,rep,name=nested_type,json=nestedType" json:"nested_type,omitempty"`
 	EnumType       []*EnumDescriptorProto            `protobuf:"bytes,4,rep,name=enum_type,json=enumType" json:"enum_type,omitempty"`
 	ExtensionRange []*DescriptorProto_ExtensionRange `protobuf:"bytes,5,rep,name=extension_range,json=extensionRange" json:"extension_range,omitempty"`
-	OneofDecl      []*OneofDescriptorProto           `protobuf:"bytes,8,rep,name=oneof_decl,json=oneofDecl" json:"oneof_decl,omitempty"`
+	OneofFurl      []*OneofDescriptorProto           `protobuf:"bytes,8,rep,name=oneof_decl,json=oneofDecl" json:"oneof_decl,omitempty"`
 	Options        *MessageOptions                   `protobuf:"bytes,7,opt,name=options" json:"options,omitempty"`
 	ReservedRange  []*DescriptorProto_ReservedRange  `protobuf:"bytes,9,rep,name=reserved_range,json=reservedRange" json:"reserved_range,omitempty"`
 	// Reserved field names, which may not be used by fields in the same message.
@@ -758,9 +758,9 @@ func (x *DescriptorProto) GetExtensionRange() []*DescriptorProto_ExtensionRange 
 	return nil
 }
 
-func (x *DescriptorProto) GetOneofDecl() []*OneofDescriptorProto {
+func (x *DescriptorProto) GetOneofFurl() []*OneofDescriptorProto {
 	if x != nil {
-		return x.OneofDecl
+		return x.OneofFurl
 	}
 	return nil
 }

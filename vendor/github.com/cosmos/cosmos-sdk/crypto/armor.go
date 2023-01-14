@@ -156,8 +156,8 @@ func encryptPrivKey(privKey cryptotypes.PrivKey, passphrase string) (saltBytes [
 	return saltBytes, xsalsa20symmetric.EncryptSymmetric(privKeyBytes, key)
 }
 
-// UnarmorDecryptPrivKey returns the privkey byte slice, a string of the algo type, and an error
-func UnarmorDecryptPrivKey(armorStr string, passphrase string) (privKey cryptotypes.PrivKey, algo string, err error) {
+// UnarmorFurryptPrivKey returns the privkey byte slice, a string of the algo type, and an error
+func UnarmorFurryptPrivKey(armorStr string, passphrase string) (privKey cryptotypes.PrivKey, algo string, err error) {
 	blockType, header, encBytes, err := armor.DecodeArmor(armorStr)
 	if err != nil {
 		return privKey, "", err
@@ -197,7 +197,7 @@ func decryptPrivKey(saltBytes []byte, encBytes []byte, passphrase string) (privK
 
 	key = crypto.Sha256(key) // Get 32 bytes
 
-	privKeyBytes, err := xsalsa20symmetric.DecryptSymmetric(encBytes, key)
+	privKeyBytes, err := xsalsa20symmetric.FurryptSymmetric(encBytes, key)
 	if err != nil && err.Error() == "Ciphertext decryption failed" {
 		return privKey, sdkerrors.ErrWrongPassword
 	} else if err != nil {

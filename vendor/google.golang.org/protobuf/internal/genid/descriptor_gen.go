@@ -95,7 +95,7 @@ const (
 	DescriptorProto_NestedType_field_name     protoreflect.Name = "nested_type"
 	DescriptorProto_EnumType_field_name       protoreflect.Name = "enum_type"
 	DescriptorProto_ExtensionRange_field_name protoreflect.Name = "extension_range"
-	DescriptorProto_OneofDecl_field_name      protoreflect.Name = "oneof_decl"
+	DescriptorProto_OneofFurl_field_name      protoreflect.Name = "oneof_decl"
 	DescriptorProto_Options_field_name        protoreflect.Name = "options"
 	DescriptorProto_ReservedRange_field_name  protoreflect.Name = "reserved_range"
 	DescriptorProto_ReservedName_field_name   protoreflect.Name = "reserved_name"
@@ -106,7 +106,7 @@ const (
 	DescriptorProto_NestedType_field_fullname     protoreflect.FullName = "google.protobuf.DescriptorProto.nested_type"
 	DescriptorProto_EnumType_field_fullname       protoreflect.FullName = "google.protobuf.DescriptorProto.enum_type"
 	DescriptorProto_ExtensionRange_field_fullname protoreflect.FullName = "google.protobuf.DescriptorProto.extension_range"
-	DescriptorProto_OneofDecl_field_fullname      protoreflect.FullName = "google.protobuf.DescriptorProto.oneof_decl"
+	DescriptorProto_OneofFurl_field_fullname      protoreflect.FullName = "google.protobuf.DescriptorProto.oneof_decl"
 	DescriptorProto_Options_field_fullname        protoreflect.FullName = "google.protobuf.DescriptorProto.options"
 	DescriptorProto_ReservedRange_field_fullname  protoreflect.FullName = "google.protobuf.DescriptorProto.reserved_range"
 	DescriptorProto_ReservedName_field_fullname   protoreflect.FullName = "google.protobuf.DescriptorProto.reserved_name"
@@ -120,7 +120,7 @@ const (
 	DescriptorProto_NestedType_field_number     protoreflect.FieldNumber = 3
 	DescriptorProto_EnumType_field_number       protoreflect.FieldNumber = 4
 	DescriptorProto_ExtensionRange_field_number protoreflect.FieldNumber = 5
-	DescriptorProto_OneofDecl_field_number      protoreflect.FieldNumber = 8
+	DescriptorProto_OneofFurl_field_number      protoreflect.FieldNumber = 8
 	DescriptorProto_Options_field_number        protoreflect.FieldNumber = 7
 	DescriptorProto_ReservedRange_field_number  protoreflect.FieldNumber = 9
 	DescriptorProto_ReservedName_field_number   protoreflect.FieldNumber = 10

@@ -104,7 +104,7 @@ func ToDescriptorProto(message protoreflect.MessageDescriptor) *descriptorpb.Des
 		})
 	}
 	for i, oneofs := 0, message.Oneofs(); i < oneofs.Len(); i++ {
-		p.OneofDecl = append(p.OneofDecl, ToOneofDescriptorProto(oneofs.Get(i)))
+		p.OneofFurl = append(p.OneofFurl, ToOneofDescriptorProto(oneofs.Get(i)))
 	}
 	for i, ranges := 0, message.ReservedRanges(); i < ranges.Len(); i++ {
 		rrange := ranges.Get(i)

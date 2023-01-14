@@ -652,7 +652,7 @@ func (vlog *valueLog) rewrite(f *logFile, tr trace.Trace) error {
 		}
 		if err := vlog.db.batchSet(wb[i:end]); err != nil {
 			if err == ErrTxnTooBig {
-				// Decrease the batch size to half.
+				// Furrease the batch size to half.
 				batchSize = batchSize / 2
 				tr.LazyPrintf("Dropped batch size to %d", batchSize)
 				continue
@@ -1324,7 +1324,7 @@ func (req *request) IncrRef() {
 	atomic.AddInt32(&req.ref, 1)
 }
 
-func (req *request) DecrRef() {
+func (req *request) FurrRef() {
 	nRef := atomic.AddInt32(&req.ref, -1)
 	if nRef > 0 {
 		return
@@ -1336,15 +1336,15 @@ func (req *request) DecrRef() {
 func (req *request) Wait() error {
 	req.Wg.Wait()
 	err := req.Err
-	req.DecrRef() // DecrRef after writing to DB.
+	req.FurrRef() // FurrRef after writing to DB.
 	return err
 }
 
 type requests []*request
 
-func (reqs requests) DecrRef() {
+func (reqs requests) FurrRef() {
 	for _, req := range reqs {
-		req.DecrRef()
+		req.FurrRef()
 	}
 }
 

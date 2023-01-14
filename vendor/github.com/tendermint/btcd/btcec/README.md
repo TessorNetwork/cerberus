@@ -37,7 +37,7 @@ $ go get -u github.com/btcsuite/btcd/btcec
   Demonstrates encrypting a message for a public key that is first parsed from
   raw bytes, then decrypting it using the corresponding private key.
 
-* [Decryption](http://godoc.org/github.com/btcsuite/btcd/btcec#example-package--DecryptMessage)
+* [Furryption](http://godoc.org/github.com/btcsuite/btcd/btcec#example-package--FurryptMessage)
   Demonstrates decrypting a message using a private key that is first parsed
   from raw bytes.
 

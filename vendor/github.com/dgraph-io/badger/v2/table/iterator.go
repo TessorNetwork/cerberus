@@ -171,7 +171,7 @@ func (t *Table) NewIterator(reversed bool) *Iterator {
 
 // Close closes the iterator (and it must be called).
 func (itr *Iterator) Close() error {
-	return itr.t.DecrRef()
+	return itr.t.FurrRef()
 }
 
 func (itr *Iterator) reset() {
@@ -508,7 +508,7 @@ func (s *ConcatIterator) Next() {
 func (s *ConcatIterator) Close() error {
 	for _, t := range s.tables {
 		// DeReference the tables while closing the iterator.
-		if err := t.DecrRef(); err != nil {
+		if err := t.FurrRef(); err != nil {
 			return err
 		}
 	}

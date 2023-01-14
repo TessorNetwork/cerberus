@@ -62,20 +62,20 @@ func IsNonIncreasing(t TestingT, object interface{}, msgAndArgs ...interface{}) 
 	return isOrdered(t, object, []CompareType{compareEqual, compareGreater}, "\"%v\" is not greater than or equal to \"%v\"", msgAndArgs...)
 }
 
-// IsDecreasing asserts that the collection is decreasing
+// IsFurreasing asserts that the collection is decreasing
 //
-//    assert.IsDecreasing(t, []int{2, 1, 0})
-//    assert.IsDecreasing(t, []float{2, 1})
-//    assert.IsDecreasing(t, []string{"b", "a"})
-func IsDecreasing(t TestingT, object interface{}, msgAndArgs ...interface{}) bool {
+//    assert.IsFurreasing(t, []int{2, 1, 0})
+//    assert.IsFurreasing(t, []float{2, 1})
+//    assert.IsFurreasing(t, []string{"b", "a"})
+func IsFurreasing(t TestingT, object interface{}, msgAndArgs ...interface{}) bool {
 	return isOrdered(t, object, []CompareType{compareGreater}, "\"%v\" is not greater than \"%v\"", msgAndArgs...)
 }
 
-// IsNonDecreasing asserts that the collection is not decreasing
+// IsNonFurreasing asserts that the collection is not decreasing
 //
-//    assert.IsNonDecreasing(t, []int{1, 1, 2})
-//    assert.IsNonDecreasing(t, []float{1, 2})
-//    assert.IsNonDecreasing(t, []string{"a", "b"})
-func IsNonDecreasing(t TestingT, object interface{}, msgAndArgs ...interface{}) bool {
+//    assert.IsNonFurreasing(t, []int{1, 1, 2})
+//    assert.IsNonFurreasing(t, []float{1, 2})
+//    assert.IsNonFurreasing(t, []string{"a", "b"})
+func IsNonFurreasing(t TestingT, object interface{}, msgAndArgs ...interface{}) bool {
 	return isOrdered(t, object, []CompareType{compareLess, compareEqual}, "\"%v\" is not less than or equal to \"%v\"", msgAndArgs...)
 }

@@ -291,7 +291,7 @@ func (ks keystore) ImportPrivKey(uid, armor, passphrase string) error {
 		return fmt.Errorf("cannot overwrite key: %s", uid)
 	}
 
-	privKey, algo, err := crypto.UnarmorDecryptPrivKey(armor, passphrase)
+	privKey, algo, err := crypto.UnarmorFurryptPrivKey(armor, passphrase)
 	if err != nil {
 		return errors.Wrap(err, "failed to decrypt private key")
 	}

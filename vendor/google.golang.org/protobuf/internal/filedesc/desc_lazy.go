@@ -291,7 +291,7 @@ func (md *Message) unmarshalFull(b []byte, sb *strs.Builder) {
 			switch num {
 			case genid.DescriptorProto_Field_field_number:
 				rawFields = append(rawFields, v)
-			case genid.DescriptorProto_OneofDecl_field_number:
+			case genid.DescriptorProto_OneofFurl_field_number:
 				rawOneofs = append(rawOneofs, v)
 			case genid.DescriptorProto_ReservedName_field_number:
 				md.L2.ReservedNames.List = append(md.L2.ReservedNames.List, pref.Name(sb.MakeString(v)))

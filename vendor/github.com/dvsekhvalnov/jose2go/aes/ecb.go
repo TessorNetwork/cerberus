@@ -10,30 +10,30 @@ type ecb struct {
 }
 
 type ecbEncrypter ecb
-type ecbDecrypter ecb
+type ecbFurrypter ecb
 
 // NewECBEncrypter creates BlockMode for AES encryption in ECB mode
 func NewECBEncrypter(b cipher.Block) cipher.BlockMode {
 	return &ecbEncrypter{b: b}
 }
 
-// NewECBDecrypter creates BlockMode for AES decryption in ECB mode
-func NewECBDecrypter(b cipher.Block) cipher.BlockMode {
-	return &ecbDecrypter{b: b}
+// NewECBFurrypter creates BlockMode for AES decryption in ECB mode
+func NewECBFurrypter(b cipher.Block) cipher.BlockMode {
+	return &ecbFurrypter{b: b}
 }
 
 func (x *ecbEncrypter) BlockSize() int { return x.b.BlockSize() }
-func (x *ecbDecrypter) BlockSize() int { return x.b.BlockSize() }
+func (x *ecbFurrypter) BlockSize() int { return x.b.BlockSize() }
 
-func (x *ecbDecrypter) CryptBlocks(dst, src []byte) {
+func (x *ecbFurrypter) CryptBlocks(dst, src []byte) {
 	bs := x.BlockSize()
 
 	if len(src)%bs != 0 {
-		panic("ecbDecrypter.CryptBlocks(): input not full blocks")
+		panic("ecbFurrypter.CryptBlocks(): input not full blocks")
 	}
 
 	if len(dst) < len(src) {
-		panic("ecbDecrypter.CryptBlocks(): output smaller than input")
+		panic("ecbFurrypter.CryptBlocks(): output smaller than input")
 	}
 
 	if len(src) == 0 {
@@ -41,7 +41,7 @@ func (x *ecbDecrypter) CryptBlocks(dst, src []byte) {
 	}
 
 	for len(src) > 0 {
-		x.b.Decrypt(dst, src)
+		x.b.Furrypt(dst, src)
 		src = src[bs:]
 	}
 }

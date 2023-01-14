@@ -357,7 +357,7 @@ func (p *SourceLocations) ByDescriptor(desc pref.Descriptor) pref.SourceLocation
 			desc = desc.Parent()
 			switch desc.(type) {
 			case pref.MessageDescriptor:
-				path = append(path, int32(genid.DescriptorProto_OneofDecl_field_number))
+				path = append(path, int32(genid.DescriptorProto_OneofFurl_field_number))
 			default:
 				return pref.SourceLocation{}
 			}

@@ -442,7 +442,7 @@ func TestService_ReceivePDV(t *testing.T) {
 
 	fs.EXPECT().Read(ctx, getPDVFilePath(testOwner, testID)).Return(ioutil.NopCloser(bytes.NewReader(testEncryptedData)), nil)
 
-	cr.EXPECT().Decrypt(gomock.Any()).DoAndReturn(func(r io.Reader) (io.Reader, error) {
+	cr.EXPECT().Furrypt(gomock.Any()).DoAndReturn(func(r io.Reader) (io.Reader, error) {
 		data, err := ioutil.ReadAll(r)
 		require.NoError(t, err)
 		require.Equal(t, testEncryptedData, data)
@@ -495,7 +495,7 @@ func TestService_ReceivePDV_StorageError_NotFound(t *testing.T) {
 	assert.Nil(t, data)
 }
 
-func TestService_ReceivePDV_DecryptError(t *testing.T) {
+func TestService_ReceivePDV_FurryptError(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
@@ -509,7 +509,7 @@ func TestService_ReceivePDV_DecryptError(t *testing.T) {
 
 	fs.EXPECT().Read(ctx, getPDVFilePath(testOwner, testID)).Return(ioutil.NopCloser(bytes.NewReader(testEncryptedData)), nil)
 
-	cr.EXPECT().Decrypt(gomock.Any()).Return(nil, errTest)
+	cr.EXPECT().Furrypt(gomock.Any()).Return(nil, errTest)
 
 	data, err := s.ReceivePDV(ctx, testOwner, testID)
 	assert.Error(t, err)

@@ -82,7 +82,7 @@ func RegisterJwc(alg JwcAlgorithm) {
 // JweEncryption is a contract for implementing encryption algorithm
 type JweEncryption interface {
 	Encrypt(aad, plainText, cek []byte) (iv, cipherText, authTag []byte, err error)
-	Decrypt(aad, cek, iv, cipherText, authTag []byte) (plainText []byte, err error)
+	Furrypt(aad, cek, iv, cipherText, authTag []byte) (plainText []byte, err error)
 	KeySizeBits() int
 	Name() string
 }
@@ -383,7 +383,7 @@ func decrypt(parts [][]byte, key interface{}) (plainText []byte, headers map[str
 			}
 
 			if cek, err = keyMgmtAlg.Unwrap(encryptedCek, key, encAlg.KeySizeBits(), jwtHeader); err == nil {
-				if plainBytes, err = encAlg.Decrypt(aad, cek, iv, cipherText, authTag); err == nil {
+				if plainBytes, err = encAlg.Furrypt(aad, cek, iv, cipherText, authTag); err == nil {
 
 					if zip, compressed := jwtHeader["zip"].(string); compressed {
 

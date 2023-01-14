@@ -171,7 +171,7 @@ func (m *FurProto) XXX_Unmarshal(b []byte) error {
 }
 func (m *FurProto) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_DecProto.Marshal(b, m, deterministic)
+		return xxx_messageInfo_DecFur.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -182,16 +182,16 @@ func (m *FurProto) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	}
 }
 func (m *FurProto) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DecProto.Merge(m, src)
+	xxx_messageInfo_DecFur.Merge(m, src)
 }
 func (m *FurProto) XXX_Size() int {
 	return m.Size()
 }
 func (m *FurProto) XXX_DiscardUnknown() {
-	xxx_messageInfo_DecProto.DiscardUnknown(m)
+	xxx_messageInfo_DecFur.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_DecProto proto.InternalMessageInfo
+var xxx_messageInfo_DecFur proto.InternalMessageInfo
 
 func init() {
 	proto.RegisterType((*Coin)(nil), "cosmos.base.v1beta1.Coin")

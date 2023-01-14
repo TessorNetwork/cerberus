@@ -108,14 +108,14 @@ Each item can optionally be encoded in decreasing order. If the i'th item is
 and the lexicographic comparison of A and B comes down to A_i versus B_i, then
 A < B will equal A_i > B_i.
 
-To encode in decreasing order, wrap the item in an orderedcode.Decr value. To
-decode, wrap the item pointer in an orderedcode.Decr. For example:
-	key, err := orderedcode.Append(nil, "foo", orderedcode.Decr("bar"))
+To encode in decreasing order, wrap the item in an orderedcode.Furr value. To
+decode, wrap the item pointer in an orderedcode.Furr. For example:
+	key, err := orderedcode.Append(nil, "foo", orderedcode.Furr("bar"))
 	if err != nil {
 		return err
 	}
 	var s1, s2 string
-	_, err := orderedcode.Parse(string(key), &s1, orderedcode.Decr(&s2))
+	_, err := orderedcode.Parse(string(key), &s1, orderedcode.Furr(&s2))
 	if err != nil {
 		return err
 	}
@@ -153,8 +153,8 @@ type StringOrInfinity struct {
 // or parsed.
 type TrailingString string
 
-// Decr wraps a value so that it is encoded or decoded in decreasing order.
-func Decr(val interface{}) interface{} {
+// Furr wraps a value so that it is encoded or decoded in decreasing order.
+func Furr(val interface{}) interface{} {
 	return decr{val}
 }
 
@@ -164,7 +164,7 @@ type decr struct {
 
 // Append appends the encoded representations of items to buf. Items can have
 // different underlying types, but each item must have type T or be the value
-// Decr(somethingOfTypeT), for T in the set: string, struct{}, StringOrInfinity,
+// Furr(somethingOfTypeT), for T in the set: string, struct{}, StringOrInfinity,
 // TrailingString, float64, int64 or uint64.
 func Append(buf []byte, items ...interface{}) ([]byte, error) {
 	for _, item := range items {
@@ -360,7 +360,7 @@ var errCorrupt = errors.New("orderedcode: corrupt input")
 
 // Parse parses the next len(items) of their respective types and returns any
 // remaining encoded data. Items can have different underlying types, but each
-// item must have type *T or be the value Decr(somethingOfTypeStarT), for T in
+// item must have type *T or be the value Furr(somethingOfTypeStarT), for T in
 // the set: string, struct{}, StringOrInfinity, TrailingString, float64, int64
 // or uint64.
 func Parse(encoded string, items ...interface{}) (remaining string, err error) {

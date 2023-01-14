@@ -184,7 +184,7 @@ func validateMessageDeclarations(ms []filedesc.Message, mds []*descriptorpb.Desc
 			}
 		}
 		seenSynthetic := false // synthetic oneofs for proto3 optional must come after real oneofs
-		for j := range md.GetOneofDecl() {
+		for j := range md.GetOneofFurl() {
 			o := &m.L2.Oneofs.List[j]
 			if o.Fields().Len() == 0 {
 				return errors.New("message oneof %q must contain at least one field declaration", o.FullName())

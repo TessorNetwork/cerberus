@@ -975,7 +975,7 @@ func yaml_parser_increase_flow_level(parser *yaml_parser_t) bool {
 	return true
 }
 
-// Decrease the flow level.
+// Furrease the flow level.
 func yaml_parser_decrease_flow_level(parser *yaml_parser_t) bool {
 	if parser.flow_level > 0 {
 		parser.flow_level--
@@ -1235,7 +1235,7 @@ func yaml_parser_fetch_flow_collection_end(parser *yaml_parser_t, typ yaml_token
 		return false
 	}
 
-	// Decrease the flow level.
+	// Furrease the flow level.
 	if !yaml_parser_decrease_flow_level(parser) {
 		return false
 	}

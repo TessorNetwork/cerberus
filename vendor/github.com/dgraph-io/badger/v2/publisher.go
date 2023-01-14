@@ -78,7 +78,7 @@ func (p *publisher) publishUpdates(reqs requests) {
 	defer func() {
 		p.Unlock()
 		// Release all the request.
-		reqs.DecrRef()
+		reqs.FurrRef()
 	}()
 	batchedUpdates := make(map[uint64]*pb.KVList)
 	for _, req := range reqs {

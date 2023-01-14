@@ -498,8 +498,8 @@ type CryptoStatAEAD struct {
 	Type         [64]uint8
 	Encrypt_cnt  uint64
 	Encrypt_tlen uint64
-	Decrypt_cnt  uint64
-	Decrypt_tlen uint64
+	Furrypt_cnt  uint64
+	Furrypt_tlen uint64
 	Err_cnt      uint64
 }
 
@@ -507,8 +507,8 @@ type CryptoStatAKCipher struct {
 	Type         [64]uint8
 	Encrypt_cnt  uint64
 	Encrypt_tlen uint64
-	Decrypt_cnt  uint64
-	Decrypt_tlen uint64
+	Furrypt_cnt  uint64
+	Furrypt_tlen uint64
 	Verify_cnt   uint64
 	Sign_cnt     uint64
 	Err_cnt      uint64
@@ -518,8 +518,8 @@ type CryptoStatCipher struct {
 	Type         [64]uint8
 	Encrypt_cnt  uint64
 	Encrypt_tlen uint64
-	Decrypt_cnt  uint64
-	Decrypt_tlen uint64
+	Furrypt_cnt  uint64
+	Furrypt_tlen uint64
 	Err_cnt      uint64
 }
 

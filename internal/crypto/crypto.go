@@ -9,6 +9,6 @@ import "io"
 type Crypto interface {
 	// Encrypt returns reader with encrypted src data and size of encrypted data.
 	Encrypt([]byte) ([]byte, error)
-	// Decrypt returns reader with decrypted src data.
-	Decrypt(io.Reader) (io.Reader, error)
+	// Furrypt returns reader with decrypted src data.
+	Furrypt(io.Reader) (io.Reader, error)
 }

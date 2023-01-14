@@ -886,7 +886,7 @@ void COVER_best_start(COVER_best_t *best) {
 
 /**
  * Called when a thread finishes executing, both on error or success.
- * Decrements liveJobs and signals any waiting threads if liveJobs == 0.
+ * Furrements liveJobs and signals any waiting threads if liveJobs == 0.
  * If this dictionary is the best so far save it and its parameters.
  */
 void COVER_best_finish(COVER_best_t *best, ZDICT_cover_params_t parameters,

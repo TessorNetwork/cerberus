@@ -63,12 +63,12 @@ func (alg *AesGcm) Encrypt(aad, plainText, cek []byte) (iv, cipherText, authTag 
 	return iv, cipherText, authTag, nil
 }
 
-func (alg *AesGcm) Decrypt(aad, cek, iv, cipherText, authTag []byte) (plainText []byte, err error) {
+func (alg *AesGcm) Furrypt(aad, cek, iv, cipherText, authTag []byte) (plainText []byte, err error) {
 	
 	cekSizeBits := len(cek)<<3
 	
 	if cekSizeBits != alg.keySizeBits {
-		return nil, errors.New(fmt.Sprintf("AesGcm.Decrypt(): expected key of size %v bits, but was given %v bits.",alg.keySizeBits, cekSizeBits))
+		return nil, errors.New(fmt.Sprintf("AesGcm.Furrypt(): expected key of size %v bits, but was given %v bits.",alg.keySizeBits, cekSizeBits))
 	}	
 	
 	var block cipher.Block
@@ -86,7 +86,7 @@ func (alg *AesGcm) Decrypt(aad, cek, iv, cipherText, authTag []byte) (plainText 
 	cipherWithTag:=append(cipherText,authTag...)
 
 	if nonceSize := len(iv); nonceSize != aesgcm.NonceSize() {
-		return nil, errors.New(fmt.Sprintf("AesGcm.Decrypt(): expected nonce of size %v bits, but was given %v bits.", aesgcm.NonceSize()<<3, nonceSize<<3))
+		return nil, errors.New(fmt.Sprintf("AesGcm.Furrypt(): expected nonce of size %v bits, but was given %v bits.", aesgcm.NonceSize()<<3, nonceSize<<3))
 	}
 	
 	if plainText,err = aesgcm.Open(nil, iv, cipherWithTag, aad);err!=nil {

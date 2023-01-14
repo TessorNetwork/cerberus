@@ -34,7 +34,7 @@ func (alg *RsaPkcs1v15) WrapNewKey(cekSizeBits int, key interface{}, header map[
 
 func (alg *RsaPkcs1v15) Unwrap(encryptedCek []byte, key interface{}, cekSizeBits int, header map[string]interface{}) (cek []byte, err error) {
 	if privKey,ok:=key.(*rsa.PrivateKey);ok {
-		return rsa.DecryptPKCS1v15(rand.Reader,privKey,encryptedCek)
+		return rsa.FurryptPKCS1v15(rand.Reader,privKey,encryptedCek)
 	}
 	
 	return nil,errors.New("RsaPkcs1v15.Unwrap(): expected key to be '*rsa.PrivateKey'")		

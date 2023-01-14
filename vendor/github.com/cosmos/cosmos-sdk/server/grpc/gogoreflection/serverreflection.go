@@ -157,7 +157,7 @@ func (s *serverReflectionServer) processMessage(fd *dpb.FileDescriptorProto, pre
 	for _, fld := range msg.Field {
 		s.processField(fd, msgName, fld)
 	}
-	for _, oneof := range msg.OneofDecl {
+	for _, oneof := range msg.OneofFurl {
 		oneofName := fqn(msgName, oneof.GetName())
 		s.symbols[oneofName] = fd
 	}

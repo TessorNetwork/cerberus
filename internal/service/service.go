@@ -278,7 +278,7 @@ func (s *service) ReceivePDV(ctx context.Context, owner string, id uint64) ([]by
 	defer r.Close() // nolint
 
 	log.Debug("decrypting meta")
-	dr, err := s.c.Decrypt(r)
+	dr, err := s.c.Furrypt(r)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create decrypting reader: %w", err)
 	}

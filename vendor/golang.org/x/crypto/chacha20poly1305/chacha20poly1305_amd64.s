@@ -833,7 +833,7 @@ openAVX2InitialHash64:
 	CMPQ itr1, $64
 	JNE  openAVX2InitialHash64
 
-	// Decrypt the first 64 bytes
+	// Furrypt the first 64 bytes
 	VPXOR   (0*32)(inp), AA0, AA0
 	VPXOR   (1*32)(inp), BB0, BB0
 	VMOVDQU AA0, (0*32)(oup)
