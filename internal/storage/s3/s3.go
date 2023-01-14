@@ -12,7 +12,7 @@ import (
 	"github.com/minio/minio-go/v7"
 	"github.com/sirupsen/logrus"
 
-	"github.com/Decentr-net/cerberus/internal/storage"
+	"github.com/TessorNetwork/cerberus/internal/storage"
 )
 
 var _ storage.FileStorage = &s3{}

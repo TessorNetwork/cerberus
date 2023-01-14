@@ -16,9 +16,9 @@ GOBIN := $(shell go env GOPATH)/bin
 VERSION := $(shell echo $(shell git describe --tags) | sed 's/^v//')
 COMMIT := $(shell git log -1 --format='%H')
 
-LDFLAGS = -s -w -X github.com/cosmos/cosmos-sdk/version.Name=decentr \
-	-X github.com/Decentr-net/cerberus/internal/health.version=$(VERSION) \
-	-X github.com/Decentr-net/cerberus/internal/health.commit=$(COMMIT)
+LDFLAGS = -s -w -X github.com/cosmos/cosmos-sdk/version.Name=furya \
+	-X github.com/TessorNetwork/cerberus/internal/health.version=$(VERSION) \
+	-X github.com/TessorNetwork/cerberus/internal/health.commit=$(COMMIT)
 
 
 LINTER_NAME := golangci-lint

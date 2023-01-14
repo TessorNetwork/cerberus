@@ -291,9 +291,9 @@ func RegisterBroadcastAPIServer(s *grpc.Server, srv BroadcastAPIServer) {
 	s.RegisterService(&_BroadcastAPI_serviceDesc, srv)
 }
 
-func _BroadcastAPI_Ping_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _BroadcastAPI_Ping_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RequestPing)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
@@ -309,9 +309,9 @@ func _BroadcastAPI_Ping_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _BroadcastAPI_BroadcastTx_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _BroadcastAPI_BroadcastTx_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RequestBroadcastTx)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {

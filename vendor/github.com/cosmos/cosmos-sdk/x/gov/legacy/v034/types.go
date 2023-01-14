@@ -74,9 +74,9 @@ type (
 	}
 
 	TallyParams struct {
-		Quorum    sdk.Dec `json:"quorum,omitempty"`
-		Threshold sdk.Dec `json:"threshold,omitempty"`
-		Veto      sdk.Dec `json:"veto,omitempty"`
+		Quorum    sdk.Fur `json:"quorum,omitempty"`
+		Threshold sdk.Fur `json:"threshold,omitempty"`
+		Veto      sdk.Fur `json:"veto,omitempty"`
 	}
 
 	VotingParams struct {

@@ -16,7 +16,7 @@ func TestPDV_UnmarshalJSON(t *testing.T) {
 	"pdv": [
 		{
 			"type": "advertiserId",
-			"advertiser": "decentr",
+			"advertiser": "furya",
 			"name": "12345qwert",
 			"value": "12345value"
 		},
@@ -24,7 +24,7 @@ func TestPDV_UnmarshalJSON(t *testing.T) {
 			"timestamp": "2021-05-11T11:05:18Z",
 			"type": "cookie",
 			"source": {
-				"host": "https://decentr.xyz",
+				"host": "https://furya.xyz",
 				"path": "/"
 			},
             "name": "my cookie",
@@ -47,7 +47,7 @@ func TestPDV_UnmarshalJSON(t *testing.T) {
             "type": "profile",
             "firstName": "John",
             "lastName": "Dorian",
-            "emails": ["dev@decentr.xyz"],
+            "emails": ["dev@furya.xyz"],
             "bio": "Just cool guy",
             "gender": "male",
             "avatar": "http://john.dorian/avatar.png",
@@ -56,8 +56,8 @@ func TestPDV_UnmarshalJSON(t *testing.T) {
 		{
 			"timestamp": "2021-05-11T11:05:18Z",
 			"type": "searchHistory",
-			"engine": "decentr",
-			"domain": "decentr.xyz",
+			"engine": "furya",
+			"domain": "furya.xyz",
 			"query": "the best crypto"
 		}
 	]

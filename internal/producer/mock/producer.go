@@ -6,7 +6,7 @@ package mock
 
 import (
 	context "context"
-	producer "github.com/Decentr-net/cerberus/internal/producer"
+	producer "github.com/TessorNetwork/cerberus/internal/producer"
 	gomock "github.com/golang/mock/gomock"
 	reflect "reflect"
 )

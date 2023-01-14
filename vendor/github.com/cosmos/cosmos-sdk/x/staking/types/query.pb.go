@@ -1777,9 +1777,9 @@ func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
 	s.RegisterService(&_Query_serviceDesc, srv)
 }
 
-func _Query_Validators_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Query_Validators_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryValidatorsRequest)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
@@ -1795,9 +1795,9 @@ func _Query_Validators_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_Validator_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Query_Validator_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryValidatorRequest)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
@@ -1813,9 +1813,9 @@ func _Query_Validator_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_ValidatorDelegations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Query_ValidatorDelegations_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryValidatorDelegationsRequest)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
@@ -1831,9 +1831,9 @@ func _Query_ValidatorDelegations_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_ValidatorUnbondingDelegations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Query_ValidatorUnbondingDelegations_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryValidatorUnbondingDelegationsRequest)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
@@ -1849,9 +1849,9 @@ func _Query_ValidatorUnbondingDelegations_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_Delegation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Query_Delegation_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryDelegationRequest)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
@@ -1867,9 +1867,9 @@ func _Query_Delegation_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_UnbondingDelegation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Query_UnbondingDelegation_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryUnbondingDelegationRequest)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
@@ -1885,9 +1885,9 @@ func _Query_UnbondingDelegation_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_DelegatorDelegations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Query_DelegatorDelegations_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryDelegatorDelegationsRequest)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
@@ -1903,9 +1903,9 @@ func _Query_DelegatorDelegations_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_DelegatorUnbondingDelegations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Query_DelegatorUnbondingDelegations_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryDelegatorUnbondingDelegationsRequest)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
@@ -1921,9 +1921,9 @@ func _Query_DelegatorUnbondingDelegations_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_Redelegations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Query_Redelegations_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryRedelegationsRequest)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
@@ -1939,9 +1939,9 @@ func _Query_Redelegations_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_DelegatorValidators_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Query_DelegatorValidators_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryDelegatorValidatorsRequest)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
@@ -1957,9 +1957,9 @@ func _Query_DelegatorValidators_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_DelegatorValidator_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Query_DelegatorValidator_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryDelegatorValidatorRequest)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
@@ -1975,9 +1975,9 @@ func _Query_DelegatorValidator_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_HistoricalInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Query_HistoricalInfo_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryHistoricalInfoRequest)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
@@ -1993,9 +1993,9 @@ func _Query_HistoricalInfo_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_Pool_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Query_Pool_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryPoolRequest)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
@@ -2011,9 +2011,9 @@ func _Query_Pool_Handler(srv interface{}, ctx context.Context, dec func(interfac
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Query_Params_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryParamsRequest)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {

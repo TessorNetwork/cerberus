@@ -585,9 +585,9 @@ func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
 	s.RegisterService(&_Msg_serviceDesc, srv)
 }
 
-func _Msg_SetWithdrawAddress_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Msg_SetWithdrawAddress_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MsgSetWithdrawAddress)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
@@ -603,9 +603,9 @@ func _Msg_SetWithdrawAddress_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Msg_WithdrawDelegatorReward_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Msg_WithdrawDelegatorReward_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MsgWithdrawDelegatorReward)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
@@ -621,9 +621,9 @@ func _Msg_WithdrawDelegatorReward_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Msg_WithdrawValidatorCommission_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Msg_WithdrawValidatorCommission_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MsgWithdrawValidatorCommission)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
@@ -639,9 +639,9 @@ func _Msg_WithdrawValidatorCommission_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Msg_FundCommunityPool_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Msg_FundCommunityPool_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MsgFundCommunityPool)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {

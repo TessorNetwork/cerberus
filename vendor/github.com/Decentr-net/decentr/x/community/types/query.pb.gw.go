@@ -494,13 +494,13 @@ func RegisterQueryHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 }
 
 var (
-	pattern_Query_GetPost_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4}, []string{"decentr", "community", "posts", "post_owner", "post_uuid"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_GetPost_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 4}, []string{"furya", "community", "posts", "post_owner", "post_uuid"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_Query_ListUserPosts_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"decentr", "community", "posts", "owner"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_ListUserPosts_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"furya", "community", "posts", "owner"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_Query_Moderators_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"decentr", "community", "moderators"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_Moderators_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"furya", "community", "moderators"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_Query_ListFollowed_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"decentr", "community", "followers", "owner", "followed"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_ListFollowed_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"furya", "community", "followers", "owner", "followed"}, "", runtime.AssumeColonVerbOpt(false)))
 )
 
 var (

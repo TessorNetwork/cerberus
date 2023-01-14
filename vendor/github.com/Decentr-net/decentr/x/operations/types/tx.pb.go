@@ -31,7 +31,7 @@ const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type Reward struct {
 	Receiver string         `protobuf:"bytes,1,opt,name=receiver,proto3" json:"receiver,omitempty"`
-	Reward   types.DecProto `protobuf:"bytes,2,opt,name=reward,proto3" json:"reward"`
+	Reward   types.FurProto `protobuf:"bytes,2,opt,name=reward,proto3" json:"reward"`
 }
 
 func (m *Reward) Reset()         { *m = Reward{} }
@@ -74,11 +74,11 @@ func (m *Reward) GetReceiver() string {
 	return ""
 }
 
-func (m *Reward) GetReward() types.DecProto {
+func (m *Reward) GetReward() types.FurProto {
 	if m != nil {
 		return m.Reward
 	}
-	return types.DecProto{}
+	return types.FurProto{}
 }
 
 type MsgDistributeRewards struct {
@@ -516,9 +516,9 @@ func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
 	s.RegisterService(&_Msg_serviceDesc, srv)
 }
 
-func _Msg_DistributeRewards_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Msg_DistributeRewards_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MsgDistributeRewards)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
@@ -534,9 +534,9 @@ func _Msg_DistributeRewards_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Msg_ResetAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Msg_ResetAccount_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MsgResetAccount)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
@@ -552,9 +552,9 @@ func _Msg_ResetAccount_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Msg_Mint_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Msg_Mint_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MsgMint)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
@@ -570,9 +570,9 @@ func _Msg_Mint_Handler(srv interface{}, ctx context.Context, dec func(interface{
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Msg_Burn_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Msg_Burn_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MsgBurn)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {

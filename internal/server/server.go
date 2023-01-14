@@ -47,12 +47,12 @@ import (
 	"github.com/go-chi/cors"
 	log "github.com/sirupsen/logrus"
 
-	_ "github.com/Decentr-net/cerberus/internal/blockchain"     // set address prefix for addresses validation
-	_ "github.com/Decentr-net/cerberus/internal/server/swagger" // import models to be generated into swagger.json
-	"github.com/Decentr-net/cerberus/internal/service"
-	"github.com/Decentr-net/cerberus/internal/throttler"
-	"github.com/Decentr-net/decentr/config"
-	"github.com/Decentr-net/go-api"
+	_ "github.com/TessorNetwork/cerberus/internal/blockchain"     // set address prefix for addresses validation
+	_ "github.com/TessorNetwork/cerberus/internal/server/swagger" // import models to be generated into swagger.json
+	"github.com/TessorNetwork/cerberus/internal/service"
+	"github.com/TessorNetwork/cerberus/internal/throttler"
+	"github.com/TessorNetwork/furya/config"
+	"github.com/TessorNetwork/go-api"
 )
 
 //go:generate swagger generate spec -t swagger -m -c . -o ../../static/swagger.json
@@ -75,7 +75,7 @@ type server struct {
 	minPDVCount uint16
 	maxPDVCount uint16
 
-	pdvRewardsPoolSize sdk.Dec
+	pdvRewardsPoolSize sdk.Fur
 
 	rewardsPool *PDVRewardsPool
 }
@@ -104,7 +104,7 @@ type ValidatePDVResponse struct {
 
 // SetupRouter setups handlers to chi router.
 func SetupRouter(s service.Service, r chi.Router, timeout time.Duration, maxBodySize int64,
-	spt throttler.Throttler, minPDVCount, maxPDVCount uint16, pdvRewardsPoolSize sdk.Dec) {
+	spt throttler.Throttler, minPDVCount, maxPDVCount uint16, pdvRewardsPoolSize sdk.Fur) {
 	r.Use(
 		api.FileServerMiddleware("/docs", "static"),
 		api.LoggerMiddleware,

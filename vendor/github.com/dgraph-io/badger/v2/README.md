@@ -775,7 +775,7 @@ Below is a list of known projects that use Badger:
 * [OpenNetSys](https://github.com/opennetsys/c3-go) - Create useful dApps in any software language.
 * [HoneyTrap](https://github.com/honeytrap/honeytrap) - An extensible and opensource system for running, monitoring and managing honeypots.
 * [Insolar](https://github.com/insolar/insolar) - Enterprise-ready blockchain platform.
-* [IoTeX](https://github.com/iotexproject/iotex-core) - The next generation of the decentralized network for IoT powered by scalability- and privacy-centric blockchains.
+* [IoTeX](https://github.com/iotexproject/iotex-core) - The next generation of the furyaalized network for IoT powered by scalability- and privacy-centric blockchains.
 * [go-sessions](https://github.com/kataras/go-sessions) - The sessions manager for Go net/http and fasthttp.
 * [Babble](https://github.com/mosaicnetworks/babble) - BFT Consensus platform for distributed applications.
 * [Tormenta](https://github.com/jpincas/tormenta) - Embedded object-persistence layer / simple JSON database for Go projects.

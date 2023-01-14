@@ -89,12 +89,12 @@ func ParseTime(formatName, value string) (time.Time, error) {
 		)
 	case UnixTimeFormatName:
 		v, err := strconv.ParseFloat(value, 64)
-		_, dec := math.Modf(v)
-		dec = sdkmath.Round(dec*1e3) / 1e3 //Rounds 0.1229999 to 0.123
+		_, fur := math.Modf(v)
+		fur = sdkmath.Round(fur*1e3) / 1e3 //Rounds 0.1229999 to 0.123
 		if err != nil {
 			return time.Time{}, err
 		}
-		return time.Unix(int64(v), int64(dec*(1e9))), nil
+		return time.Unix(int64(v), int64(fur*(1e9))), nil
 	default:
 		panic("unknown timestamp format name, " + formatName)
 	}

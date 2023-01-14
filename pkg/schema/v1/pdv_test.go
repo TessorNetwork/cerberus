@@ -6,23 +6,23 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/Decentr-net/cerberus/pkg/schema/types"
+	"github.com/TessorNetwork/cerberus/pkg/schema/types"
 )
 
 func TestPDV_Validate(t *testing.T) {
 	require.True(t, PDV{
 		Cookie{
 			Timestamp: types.Timestamp{Time: time.Now()},
-			Source:    types.Source{Host: "https://decentr.xyz"},
+			Source:    types.Source{Host: "https://furya.xyz"},
 			Name:      "cookie",
 			Value:     "value",
 		},
 		Profile{
 			FirstName: "First",
 			LastName:  "Last",
-			Emails:    []string{"test@decentr.xyz"},
+			Emails:    []string{"test@furya.xyz"},
 			Gender:    types.GenderMale,
-			Avatar:    "https://decentr.xyz/avatar.jpeg",
+			Avatar:    "https://furya.xyz/avatar.jpeg",
 			Birthday:  mustDate("1990-01-01"),
 		},
 	}.Validate())
@@ -33,7 +33,7 @@ func TestPDV_Validate_invalid(t *testing.T) {
 
 	require.False(t, PDV{
 		Cookie{
-			Source: types.Source{Host: "https://decentr.xyz"},
+			Source: types.Source{Host: "https://furya.xyz"},
 			Name:   "cookie",
 		},
 	}.Validate())

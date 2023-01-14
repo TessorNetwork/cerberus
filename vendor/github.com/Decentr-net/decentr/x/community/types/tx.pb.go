@@ -550,9 +550,9 @@ func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
 	s.RegisterService(&_Msg_serviceDesc, srv)
 }
 
-func _Msg_CreatePost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Msg_CreatePost_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MsgCreatePost)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
@@ -568,9 +568,9 @@ func _Msg_CreatePost_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Msg_DeletePost_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Msg_DeletePost_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MsgDeletePost)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
@@ -586,9 +586,9 @@ func _Msg_DeletePost_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Msg_SetLike_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Msg_SetLike_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MsgSetLike)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
@@ -604,9 +604,9 @@ func _Msg_SetLike_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Msg_Follow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Msg_Follow_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MsgFollow)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
@@ -622,9 +622,9 @@ func _Msg_Follow_Handler(srv interface{}, ctx context.Context, dec func(interfac
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Msg_Unfollow_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Msg_Unfollow_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MsgUnfollow)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {

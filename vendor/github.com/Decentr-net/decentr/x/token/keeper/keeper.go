@@ -8,9 +8,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/tendermint/tendermint/libs/log"
 
-	"github.com/Decentr-net/decentr/config"
+	"github.com/TessorNetwork/furya/config"
 
-	"github.com/Decentr-net/decentr/x/token/types"
+	"github.com/TessorNetwork/furya/x/token/types"
 )
 
 type Keeper struct {
@@ -32,7 +32,7 @@ func (k Keeper) Logger(ctx sdk.Context) log.Logger {
 	return ctx.Logger().With("module", fmt.Sprintf("x/%s", types.ModuleName))
 }
 
-func (k Keeper) IncTokens(ctx sdk.Context, address sdk.AccAddress, amount sdk.Dec) {
+func (k Keeper) IncTokens(ctx sdk.Context, address sdk.AccAddress, amount sdk.Fur) {
 	if amount.IsZero() {
 		return
 	}
@@ -40,21 +40,21 @@ func (k Keeper) IncTokens(ctx sdk.Context, address sdk.AccAddress, amount sdk.De
 	k.SetBalance(ctx, address, k.GetBalance(ctx, address).Add(amount))
 }
 
-func (k Keeper) GetBalance(ctx sdk.Context, address sdk.AccAddress) sdk.Dec {
+func (k Keeper) GetBalance(ctx sdk.Context, address sdk.AccAddress) sdk.Fur {
 	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.BalancePrefix)
 
 	if !store.Has(address) {
 		return config.InitialTokenBalance
 	}
 
-	var d sdk.Dec
+	var d sdk.Fur
 	if err := d.Unmarshal(store.Get(address)); err != nil {
 		panic(fmt.Errorf("failed to get balance for %s: %w", address, err))
 	}
 	return d
 }
 
-func (k Keeper) SetBalance(ctx sdk.Context, address sdk.AccAddress, amount sdk.Dec) {
+func (k Keeper) SetBalance(ctx sdk.Context, address sdk.AccAddress, amount sdk.Fur) {
 	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.BalancePrefix)
 
 	if amount.IsZero() {
@@ -73,7 +73,7 @@ func (k Keeper) ResetAccount(ctx sdk.Context, address sdk.AccAddress) {
 	k.SetBalance(ctx, address, sdk.ZeroDec())
 }
 
-func (k Keeper) IterateBalance(ctx sdk.Context, handle func(address sdk.AccAddress, balance sdk.Dec) (stop bool)) {
+func (k Keeper) IterateBalance(ctx sdk.Context, handle func(address sdk.AccAddress, balance sdk.Fur) (stop bool)) {
 	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.BalancePrefix)
 
 	it := store.Iterator(nil, nil)
@@ -82,7 +82,7 @@ func (k Keeper) IterateBalance(ctx sdk.Context, handle func(address sdk.AccAddre
 	for it.Valid() {
 		address := sdk.AccAddress(it.Key())
 
-		var delta sdk.Dec
+		var delta sdk.Fur
 		if err := delta.Unmarshal(it.Value()); err != nil {
 			panic(fmt.Errorf("failed to get balance for %s: %w", address, err))
 		}

@@ -3,8 +3,8 @@ package operations
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/Decentr-net/decentr/x/operations/keeper"
-	"github.com/Decentr-net/decentr/x/operations/types"
+	"github.com/TessorNetwork/furya/x/operations/keeper"
+	"github.com/TessorNetwork/furya/x/operations/types"
 )
 
 // InitGenesis initializes the capability module's state from a provided genesis

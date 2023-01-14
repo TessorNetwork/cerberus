@@ -41,9 +41,9 @@ type (
 
 	GenesisState struct {
 		FeePool                         v034distr.FeePool                                `json:"fee_pool"`
-		CommunityTax                    sdk.Dec                                          `json:"community_tax"`
-		BaseProposerReward              sdk.Dec                                          `json:"base_proposer_reward"`
-		BonusProposerReward             sdk.Dec                                          `json:"bonus_proposer_reward"`
+		CommunityTax                    sdk.Fur                                          `json:"community_tax"`
+		BaseProposerReward              sdk.Fur                                          `json:"base_proposer_reward"`
+		BonusProposerReward             sdk.Fur                                          `json:"bonus_proposer_reward"`
 		WithdrawAddrEnabled             bool                                             `json:"withdraw_addr_enabled"`
 		DelegatorWithdrawInfos          []v034distr.DelegatorWithdrawInfo                `json:"delegator_withdraw_infos"`
 		PreviousProposer                sdk.ConsAddress                                  `json:"previous_proposer"`
@@ -65,7 +65,7 @@ type (
 )
 
 func NewGenesisState(
-	feePool v034distr.FeePool, communityTax, baseProposerReward, bonusProposerReward sdk.Dec,
+	feePool v034distr.FeePool, communityTax, baseProposerReward, bonusProposerReward sdk.Fur,
 	withdrawAddrEnabled bool, dwis []v034distr.DelegatorWithdrawInfo, pp sdk.ConsAddress,
 	r []v034distr.ValidatorOutstandingRewardsRecord, acc []v034distr.ValidatorAccumulatedCommissionRecord,
 	historical []v034distr.ValidatorHistoricalRewardsRecord, cur []v034distr.ValidatorCurrentRewardsRecord,

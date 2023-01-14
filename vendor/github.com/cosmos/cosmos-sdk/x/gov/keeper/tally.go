@@ -11,7 +11,7 @@ import (
 // Tally iterates over the votes and updates the tally of a proposal based on the voting power of the
 // voters
 func (keeper Keeper) Tally(ctx sdk.Context, proposal types.Proposal) (passes bool, burnDeposits bool, tallyResults types.TallyResult) {
-	results := make(map[types.VoteOption]sdk.Dec)
+	results := make(map[types.VoteOption]sdk.Fur)
 	results[types.OptionYes] = sdk.ZeroDec()
 	results[types.OptionAbstain] = sdk.ZeroDec()
 	results[types.OptionNo] = sdk.ZeroDec()

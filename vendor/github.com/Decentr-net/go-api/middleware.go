@@ -13,7 +13,7 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/tomasen/realip"
 
-	logging "github.com/Decentr-net/logrus/context"
+	logging "github.com/TessorNetwork/logrus/context"
 )
 
 // RecovererMiddleware handles panics.

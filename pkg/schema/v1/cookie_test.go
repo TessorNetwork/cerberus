@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/Decentr-net/cerberus/pkg/schema/types"
+	"github.com/TessorNetwork/cerberus/pkg/schema/types"
 )
 
 func TestCookie_Validate(t *testing.T) {
@@ -20,12 +20,12 @@ func TestCookie_Validate(t *testing.T) {
 			c: Cookie{
 				Timestamp: types.Timestamp{Time: time.Now()},
 				Source: types.Source{
-					Host: "https://decentr.xyz",
+					Host: "https://furya.xyz",
 					Path: "/?something#",
 				},
 				Name:           "name",
 				Value:          "value",
-				Domain:         "decentr.net",
+				Domain:         "furya.net",
 				HostOnly:       true,
 				Path:           "*",
 				Secure:         true,
@@ -38,7 +38,7 @@ func TestCookie_Validate(t *testing.T) {
 			name: "valid minimal",
 			c: Cookie{
 				Timestamp: types.Timestamp{Time: time.Now()},
-				Source:    types.Source{Host: "https://decentr.xyz"},
+				Source:    types.Source{Host: "https://furya.xyz"},
 				Name:      "name",
 				Value:     "value",
 			},
@@ -48,7 +48,7 @@ func TestCookie_Validate(t *testing.T) {
 			name: "without name",
 			c: Cookie{
 				Timestamp: types.Timestamp{Time: time.Now()},
-				Source:    types.Source{Host: "https://decentr.xyz"},
+				Source:    types.Source{Host: "https://furya.xyz"},
 				Value:     "value",
 			},
 			valid: false,
@@ -57,7 +57,7 @@ func TestCookie_Validate(t *testing.T) {
 			name: "without value",
 			c: Cookie{
 				Timestamp: types.Timestamp{Time: time.Now()},
-				Source:    types.Source{Host: "https://decentr.xyz"},
+				Source:    types.Source{Host: "https://furya.xyz"},
 				Name:      "name",
 			},
 			valid: false,
@@ -84,7 +84,7 @@ func TestCookie_Validate(t *testing.T) {
 		{
 			name: "without timestamp",
 			c: Cookie{
-				Source: types.Source{Host: "https://decentr.xyz"},
+				Source: types.Source{Host: "https://furya.xyz"},
 				Name:   "name",
 				Value:  "value",
 			},

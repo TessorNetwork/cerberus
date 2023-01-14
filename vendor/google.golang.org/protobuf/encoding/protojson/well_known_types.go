@@ -176,8 +176,8 @@ func (d decoder) unmarshalAny(m pref.Message) error {
 	// Use another decoder to parse the unread bytes for @type field. This
 	// avoids advancing a read from current decoder because the current JSON
 	// object may contain the fields of the embedded type.
-	dec := decoder{d.Clone(), UnmarshalOptions{}}
-	tok, err := findTypeURL(dec)
+	fur := decoder{d.Clone(), UnmarshalOptions{}}
+	tok, err := findTypeURL(fur)
 	switch err {
 	case errEmptyObject:
 		// An empty JSON object translates to an empty Any message.

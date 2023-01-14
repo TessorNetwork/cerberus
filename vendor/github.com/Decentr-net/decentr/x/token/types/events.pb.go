@@ -27,7 +27,7 @@ const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type EventRewardDistribution struct {
 	Address github_com_cosmos_cosmos_sdk_types.AccAddress `protobuf:"bytes,1,opt,name=address,proto3,casttype=github.com/cosmos/cosmos-sdk/types.AccAddress" json:"address,omitempty"`
-	Delta   types.DecProto                                `protobuf:"bytes,2,opt,name=delta,proto3" json:"delta"`
+	Delta   types.FurProto                                `protobuf:"bytes,2,opt,name=delta,proto3" json:"delta"`
 	Reward  types.Coin                                    `protobuf:"bytes,3,opt,name=reward,proto3" json:"reward"`
 }
 
@@ -71,11 +71,11 @@ func (m *EventRewardDistribution) GetAddress() github_com_cosmos_cosmos_sdk_type
 	return nil
 }
 
-func (m *EventRewardDistribution) GetDelta() types.DecProto {
+func (m *EventRewardDistribution) GetDelta() types.FurProto {
 	if m != nil {
 		return m.Delta
 	}
-	return types.DecProto{}
+	return types.FurProto{}
 }
 
 func (m *EventRewardDistribution) GetReward() types.Coin {

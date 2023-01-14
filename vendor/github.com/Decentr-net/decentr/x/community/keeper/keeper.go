@@ -13,7 +13,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
 
-	"github.com/Decentr-net/decentr/x/community/types"
+	"github.com/TessorNetwork/furya/x/community/types"
 )
 
 type Keeper struct {

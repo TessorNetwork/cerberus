@@ -12,7 +12,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/client/tx"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/Decentr-net/decentr/x/community/types"
+	"github.com/TessorNetwork/furya/x/community/types"
 )
 
 func GetTxCmd() *cobra.Command {

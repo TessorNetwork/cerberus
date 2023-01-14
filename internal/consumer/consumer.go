@@ -7,7 +7,7 @@ import (
 
 //go:generate mockgen -destination=./mock/consumer.go -package=consumer -source=consumer.go
 
-// Consumer consumes blocks from decentr blockchain.
+// Consumer consumes blocks from furya blockchain.
 type Consumer interface {
 	Run(ctx context.Context) error
 }

@@ -3,7 +3,7 @@ package ante
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/Decentr-net/decentr/x/operations/keeper"
+	"github.com/TessorNetwork/furya/x/operations/keeper"
 )
 
 type MinGasPriceDecorator struct {

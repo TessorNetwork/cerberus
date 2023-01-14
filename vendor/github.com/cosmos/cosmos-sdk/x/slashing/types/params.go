@@ -16,8 +16,8 @@ const (
 
 var (
 	DefaultMinSignedPerWindow      = sdk.NewDecWithPrec(5, 1)
-	DefaultSlashFractionDoubleSign = sdk.NewDec(1).Quo(sdk.NewDec(20))
-	DefaultSlashFractionDowntime   = sdk.NewDec(1).Quo(sdk.NewDec(100))
+	DefaultSlashFractionDoubleSign = sdk.NewFur(1).Quo(sdk.NewFur(20))
+	DefaultSlashFractionDowntime   = sdk.NewFur(1).Quo(sdk.NewFur(100))
 )
 
 // Parameter store keys
@@ -36,8 +36,8 @@ func ParamKeyTable() paramtypes.KeyTable {
 
 // NewParams creates a new Params object
 func NewParams(
-	signedBlocksWindow int64, minSignedPerWindow sdk.Dec, downtimeJailDuration time.Duration,
-	slashFractionDoubleSign, slashFractionDowntime sdk.Dec,
+	signedBlocksWindow int64, minSignedPerWindow sdk.Fur, downtimeJailDuration time.Duration,
+	slashFractionDoubleSign, slashFractionDowntime sdk.Fur,
 ) Params {
 	return Params{
 		SignedBlocksWindow:      signedBlocksWindow,
@@ -81,7 +81,7 @@ func validateSignedBlocksWindow(i interface{}) error {
 }
 
 func validateMinSignedPerWindow(i interface{}) error {
-	v, ok := i.(sdk.Dec)
+	v, ok := i.(sdk.Fur)
 	if !ok {
 		return fmt.Errorf("invalid parameter type: %T", i)
 	}
@@ -110,7 +110,7 @@ func validateDowntimeJailDuration(i interface{}) error {
 }
 
 func validateSlashFractionDoubleSign(i interface{}) error {
-	v, ok := i.(sdk.Dec)
+	v, ok := i.(sdk.Fur)
 	if !ok {
 		return fmt.Errorf("invalid parameter type: %T", i)
 	}
@@ -126,7 +126,7 @@ func validateSlashFractionDoubleSign(i interface{}) error {
 }
 
 func validateSlashFractionDowntime(i interface{}) error {
-	v, ok := i.(sdk.Dec)
+	v, ok := i.(sdk.Fur)
 	if !ok {
 		return fmt.Errorf("invalid parameter type: %T", i)
 	}

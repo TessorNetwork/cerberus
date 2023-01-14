@@ -285,7 +285,7 @@
         "parameters": [
           {
             "type": "string",
-            "example": "decentr1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz",
+            "example": "furya1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz",
             "description": "PDV's address",
             "name": "owner",
             "in": "path",
@@ -447,7 +447,7 @@
         "operationId": "GetProfiles",
         "parameters": [
           {
-            "example": "decentr1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz,decentr1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz",
+            "example": "furya1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz,furya1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz",
             "description": "profile address",
             "name": "address",
             "in": "query",
@@ -531,7 +531,7 @@
         }
       },
       "x-go-name": "Profile",
-      "x-go-package": "github.com/Decentr-net/cerberus/internal/server"
+      "x-go-package": "github.com/TessorNetwork/cerberus/internal/server"
     },
     "AdvertiserID": {
       "type": "object",
@@ -550,7 +550,7 @@
           "x-go-name": "Value"
         }
       },
-      "x-go-package": "github.com/Decentr-net/cerberus/pkg/schema/v1"
+      "x-go-package": "github.com/TessorNetwork/cerberus/pkg/schema/v1"
     },
     "Blacklist": {
       "type": "object",
@@ -564,7 +564,7 @@
           "x-go-name": "CookieSource"
         }
       },
-      "x-go-package": "github.com/Decentr-net/cerberus/internal/service"
+      "x-go-package": "github.com/TessorNetwork/cerberus/internal/service"
     },
     "Cookie": {
       "type": "object",
@@ -612,7 +612,7 @@
           "x-go-name": "Value"
         }
       },
-      "x-go-package": "github.com/Decentr-net/cerberus/pkg/schema/v1"
+      "x-go-package": "github.com/TessorNetwork/cerberus/pkg/schema/v1"
     },
     "DataV1": {
       "type": "object",
@@ -630,16 +630,16 @@
           "x-go-name": "TypeV1"
         }
       },
-      "x-go-package": "github.com/Decentr-net/cerberus/internal/server/swagger",
+      "x-go-package": "github.com/TessorNetwork/cerberus/internal/server/swagger",
       "discriminator": "type"
     },
     "Date": {
       "type": "object",
       "title": "Date in ISO-8601 format (yyyy-mm-dd).",
-      "x-go-package": "github.com/Decentr-net/cerberus/pkg/schema/types"
+      "x-go-package": "github.com/TessorNetwork/cerberus/pkg/schema/types"
     },
-    "Dec": {
-      "description": "NOTE: never use new(Dec) or else we will panic unmarshalling into the\nnil embedded big.Int",
+    "Fur": {
+      "description": "NOTE: never use new(Fur) or else we will panic unmarshalling into the\nnil embedded big.Int",
       "type": "object",
       "x-go-package": "github.com/cosmos/cosmos-sdk/types"
     },
@@ -652,12 +652,12 @@
           "x-go-name": "Error"
         }
       },
-      "x-go-package": "github.com/Decentr-net/go-api"
+      "x-go-package": "github.com/TessorNetwork/go-api"
     },
     "Gender": {
       "type": "string",
       "title": "Gender can be male or female.",
-      "x-go-package": "github.com/Decentr-net/cerberus/pkg/schema/types"
+      "x-go-package": "github.com/TessorNetwork/cerberus/pkg/schema/types"
     },
     "Location": {
       "type": "object",
@@ -682,7 +682,7 @@
           "x-go-name": "Time"
         }
       },
-      "x-go-package": "github.com/Decentr-net/cerberus/pkg/schema/v1"
+      "x-go-package": "github.com/TessorNetwork/cerberus/pkg/schema/v1"
     },
     "ObjectTypes": {
       "type": "object",
@@ -714,7 +714,7 @@
           "x-go-name": "SearchHistoryV1"
         }
       },
-      "x-go-package": "github.com/Decentr-net/cerberus/internal/server/swagger"
+      "x-go-package": "github.com/TessorNetwork/cerberus/internal/server/swagger"
     },
     "PDV": {
       "type": "object",
@@ -724,7 +724,7 @@
         }
       },
       "x-go-name": "PDVInterface",
-      "x-go-package": "github.com/Decentr-net/cerberus/internal/server/swagger",
+      "x-go-package": "github.com/TessorNetwork/cerberus/internal/server/swagger",
       "discriminator": "version"
     },
     "PDVMeta": {
@@ -740,20 +740,20 @@
           "x-go-name": "Reward"
         }
       },
-      "x-go-package": "github.com/Decentr-net/cerberus/internal/server/swagger"
+      "x-go-package": "github.com/TessorNetwork/cerberus/internal/server/swagger"
     },
     "PDVRewardDelta": {
       "type": "object",
       "title": "PDVRewardDelta ...",
       "properties": {
         "delta": {
-          "$ref": "#/definitions/Dec"
+          "$ref": "#/definitions/Fur"
         },
         "pool": {
           "$ref": "#/definitions/PDVRewardsPool"
         }
       },
-      "x-go-package": "github.com/Decentr-net/cerberus/internal/server"
+      "x-go-package": "github.com/TessorNetwork/cerberus/internal/server"
     },
     "PDVRewardsPool": {
       "type": "object",
@@ -765,13 +765,13 @@
           "x-go-name": "NextDistributionDate"
         },
         "size": {
-          "$ref": "#/definitions/Dec"
+          "$ref": "#/definitions/Fur"
         },
         "total_delta": {
-          "$ref": "#/definitions/Dec"
+          "$ref": "#/definitions/Fur"
         }
       },
-      "x-go-package": "github.com/Decentr-net/cerberus/internal/server"
+      "x-go-package": "github.com/TessorNetwork/cerberus/internal/server"
     },
     "Profile": {
       "type": "object",
@@ -807,7 +807,7 @@
           "x-go-name": "LastName"
         }
       },
-      "x-go-package": "github.com/Decentr-net/cerberus/pkg/schema/v1"
+      "x-go-package": "github.com/TessorNetwork/cerberus/pkg/schema/v1"
     },
     "SaveImageResponse": {
       "type": "object",
@@ -822,7 +822,7 @@
           "x-go-name": "Thumb"
         }
       },
-      "x-go-package": "github.com/Decentr-net/cerberus/internal/server"
+      "x-go-package": "github.com/TessorNetwork/cerberus/internal/server"
     },
     "SavePDVResponse": {
       "type": "object",
@@ -834,7 +834,7 @@
           "x-go-name": "ID"
         }
       },
-      "x-go-package": "github.com/Decentr-net/cerberus/internal/server"
+      "x-go-package": "github.com/TessorNetwork/cerberus/internal/server"
     },
     "SearchHistory": {
       "type": "object",
@@ -858,7 +858,7 @@
           "x-go-name": "Time"
         }
       },
-      "x-go-package": "github.com/Decentr-net/cerberus/pkg/schema/v1"
+      "x-go-package": "github.com/TessorNetwork/cerberus/pkg/schema/v1"
     },
     "Source": {
       "type": "object",
@@ -875,7 +875,7 @@
           "x-go-name": "Path"
         }
       },
-      "x-go-package": "github.com/Decentr-net/cerberus/pkg/schema/types"
+      "x-go-package": "github.com/TessorNetwork/cerberus/pkg/schema/types"
     },
     "Time": {
       "description": "Programs using times should typically store and pass them as values,\nnot pointers. That is, time variables and struct fields should be of\ntype time.Time, not *time.Time.\n\nA Time value can be used by multiple goroutines simultaneously except\nthat the methods GobDecode, UnmarshalBinary, UnmarshalJSON and\nUnmarshalText are not concurrency-safe.\n\nTime instants can be compared using the Before, After, and Equal methods.\nThe Sub method subtracts two instants, producing a Duration.\nThe Add method adds a Time and a Duration, producing a Time.\n\nThe zero value of type Time is January 1, year 1, 00:00:00.000000000 UTC.\nAs this time is unlikely to come up in practice, the IsZero method gives\na simple way of detecting a time that has not been initialized explicitly.\n\nEach Time has associated with it a Location, consulted when computing the\npresentation form of the time, such as in the Format, Hour, and Year methods.\nThe methods Local, UTC, and In return a Time with a specific location.\nChanging the location in this way changes only the presentation; it does not\nchange the instant in time being denoted and therefore does not affect the\ncomputations described in earlier paragraphs.\n\nRepresentations of a Time value saved by the GobEncode, MarshalBinary,\nMarshalJSON, and MarshalText methods store the Time.Location's offset, but not\nthe location name. They therefore lose information about Daylight Saving Time.\n\nIn addition to the required “wall clock” reading, a Time may contain an optional\nreading of the current process's monotonic clock, to provide additional precision\nfor comparison or subtraction.\nSee the “Monotonic Clocks” section in the package documentation for details.\n\nNote that the Go == operator compares not just the time instant but also the\nLocation and the monotonic clock reading. Therefore, Time values should not\nbe used as map or database keys without first guaranteeing that the\nidentical Location has been set for all values, which can be achieved\nthrough use of the UTC or Local method, and that the monotonic clock reading\nhas been stripped by setting t = t.Round(0). In general, prefer t.Equal(u)\nto t == u, since t.Equal uses the most accurate comparison available and\ncorrectly handles the case when only one of its arguments has a monotonic\nclock reading.",
@@ -893,7 +893,7 @@
           "x-go-name": "Time"
         }
       },
-      "x-go-package": "github.com/Decentr-net/cerberus/pkg/schema/types"
+      "x-go-package": "github.com/TessorNetwork/cerberus/pkg/schema/types"
     },
     "ValidatePDVResponse": {
       "type": "object",
@@ -912,7 +912,7 @@
           "x-go-name": "Valid"
         }
       },
-      "x-go-package": "github.com/Decentr-net/cerberus/internal/server"
+      "x-go-package": "github.com/TessorNetwork/cerberus/internal/server"
     },
     "advertiserId": {
       "title": "AdvertiserIDV1 contains id for an advertiser (e.g google, facebook).",
@@ -940,7 +940,7 @@
       ],
       "x-class": "advertiserId",
       "x-go-name": "AdvertiserIDV1",
-      "x-go-package": "github.com/Decentr-net/cerberus/internal/server/swagger"
+      "x-go-package": "github.com/TessorNetwork/cerberus/internal/server/swagger"
     },
     "cookie": {
       "title": "CookieV1 is PDVData implementation for Cookies(according to https://developer.chrome.com/extensions/cookies).",
@@ -997,7 +997,7 @@
       ],
       "x-class": "cookie",
       "x-go-name": "CookieV1",
-      "x-go-package": "github.com/Decentr-net/cerberus/internal/server/swagger"
+      "x-go-package": "github.com/TessorNetwork/cerberus/internal/server/swagger"
     },
     "location": {
       "title": "LocationV1 contains user's geolocation at a time.",
@@ -1031,7 +1031,7 @@
       ],
       "x-class": "location",
       "x-go-name": "LocationV1",
-      "x-go-package": "github.com/Decentr-net/cerberus/internal/server/swagger"
+      "x-go-package": "github.com/TessorNetwork/cerberus/internal/server/swagger"
     },
     "profile": {
       "title": "ProfileV1 is profile data.",
@@ -1076,7 +1076,7 @@
       ],
       "x-class": "profile",
       "x-go-name": "ProfileV1",
-      "x-go-package": "github.com/Decentr-net/cerberus/internal/server/swagger"
+      "x-go-package": "github.com/TessorNetwork/cerberus/internal/server/swagger"
     },
     "searchHistory": {
       "title": "SearchHistoryV1 contains user's search request.",
@@ -1109,7 +1109,7 @@
       ],
       "x-class": "searchHistory",
       "x-go-name": "SearchHistoryV1",
-      "x-go-package": "github.com/Decentr-net/cerberus/internal/server/swagger"
+      "x-go-package": "github.com/TessorNetwork/cerberus/internal/server/swagger"
     },
     "v1": {
       "title": "PDVV1 is main data object.",
@@ -1132,7 +1132,7 @@
       ],
       "x-class": "v1",
       "x-go-name": "PDVV1",
-      "x-go-package": "github.com/Decentr-net/cerberus/internal/server/swagger"
+      "x-go-package": "github.com/TessorNetwork/cerberus/internal/server/swagger"
     }
   },
   "securityDefinitions": {

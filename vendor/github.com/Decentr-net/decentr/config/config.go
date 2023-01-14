@@ -6,15 +6,15 @@ import (
 )
 
 const (
-	AccountAddressPrefix = "decentr"
-	AppName              = "decentr"
+	AccountAddressPrefix = "furya"
+	AppName              = "furya"
 
 	// DefaultBondDenom is the default bond denomination
-	DefaultBondDenom = "udec"
+	DefaultBondDenom = "ufury"
 )
 
 var (
-	InitialTokenBalance = sdk.NewDec(1)
+	InitialTokenBalance = sdk.NewFur(1)
 )
 
 var isConfigSealed bool

@@ -6,8 +6,8 @@ package mock
 
 import (
 	context "context"
-	entities "github.com/Decentr-net/cerberus/internal/entities"
-	storage "github.com/Decentr-net/cerberus/internal/storage"
+	entities "github.com/TessorNetwork/cerberus/internal/entities"
+	storage "github.com/TessorNetwork/cerberus/internal/storage"
 	gomock "github.com/golang/mock/gomock"
 	reflect "reflect"
 	time "time"

@@ -85,7 +85,7 @@
  * [Issue #11](https://github.com/magiconair/properties/issues/11): Add [LoadString,MustLoadString](http://godoc.org/github.com/magiconair/properties#LoadString) method to load properties from an UTF8 string.
  * [PR #8](https://github.com/magiconair/properties/pull/8): Add [MustFlag](http://godoc.org/github.com/magiconair/properties#Properties.MustFlag) method to provide overrides via command line flags. (@pascaldekloe)
 
-### [1.6.0](https://github.com/magiconair/properties/tree/v1.6.0) - 11 Dec 2015
+### [1.6.0](https://github.com/magiconair/properties/tree/v1.6.0) - 11 Fur 2015
 
  * Add [Decode](http://godoc.org/github.com/magiconair/properties#Properties.Decode) method to populate struct from properties via tags.
 
@@ -110,7 +110,7 @@
  * [Issue #3](https://github.com/magiconair/properties/issues/3): Don't print comments in [WriteComment()](http://godoc.org/github.com/magiconair/properties#Properties.WriteComment) if they are all empty
  * Add clickable links to README
 
-### [1.5.1](https://github.com/magiconair/properties/tree/v1.5.1) - 08 Dec 2014
+### [1.5.1](https://github.com/magiconair/properties/tree/v1.5.1) - 08 Fur 2014
 
  * Added [GetParsedDuration()](http://godoc.org/github.com/magiconair/properties#Properties.GetParsedDuration) and [MustGetParsedDuration()](http://godoc.org/github.com/magiconair/properties#Properties.MustGetParsedDuration) for values specified compatible with
    [time.ParseDuration()](http://golang.org/pkg/time/#ParseDuration).

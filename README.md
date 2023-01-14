@@ -1,7 +1,7 @@
 # Cerberus
-![img](https://img.shields.io/docker/cloud/build/decentr/cerberus.svg) ![img](https://img.shields.io/github/go-mod/go-version/Decentr-net/cerberus) ![img](https://img.shields.io/github/v/tag/Decentr-net/cerberus?label=version)
+![img](https://img.shields.io/docker/cloud/build/furya/cerberus.svg) ![img](https://img.shields.io/github/go-mod/go-version/TessorNetwork/cerberus) ![img](https://img.shields.io/github/v/tag/TessorNetwork/cerberus?label=version)
 
-Cerberus is a Decentr oracle. Cerberus stores and validates PDV (private data value).
+Cerberus is a Furya oracle. Cerberus stores and validates PDV (private data value).
 
 ## cerberusd
 
@@ -63,15 +63,15 @@ processord receives PDVs from SQS, rewards users and stores data into FileStorag
 | sqs.access-key-id | SQS_ACCESS_KEY_ID | | access key id for SQS
 | sqs.secret-access-key | SQS_SECRET_ACCESS_KEY | | secret access key for SQS
 | sqs.queue | SQS_QUEUE | testnet | SQS queue name
-| blockchain.node   | BLOCKCHAIN_NODE    | http://zeus.testnet.decentr.xyz:26657  | decentr node address
-| blockchain.from   | BLOCKCHAIN_FROM    |  | decentr account name to send stakes
-| blockchain.tx_memo   | BLOCKCHAIN_TX_MEMO    | | decentr tx's memo
-| blockchain.chain_id   | BLOCKCHAIN_CHAIN_ID    | testnet | decentr chain id
-| blockchain.client_home   | BLOCKCHAIN_CLIENT_HOME    | ~/.decentrcli | decentrcli home directory
-| blockchain.keyring_backend   | BLOCKCHAIN_KEYRING_BACKEND    | test | decentrcli keyring backend
-| blockchain.keyring_prompt_input   | BLOCKCHAIN_KEYRING_PROMPT_INPUT    | | decentrcli keyring prompt input
+| blockchain.node   | BLOCKCHAIN_NODE    | http://zeus.testnet.furya.xyz:26657  | furya node address
+| blockchain.from   | BLOCKCHAIN_FROM    |  | furya account name to send stakes
+| blockchain.tx_memo   | BLOCKCHAIN_TX_MEMO    | | furya tx's memo
+| blockchain.chain_id   | BLOCKCHAIN_CHAIN_ID    | testnet | furya chain id
+| blockchain.client_home   | BLOCKCHAIN_CLIENT_HOME    | ~/.furyacli | furyacli home directory
+| blockchain.keyring_backend   | BLOCKCHAIN_KEYRING_BACKEND    | test | furyacli keyring backend
+| blockchain.keyring_prompt_input   | BLOCKCHAIN_KEYRING_PROMPT_INPUT    | | furyacli keyring prompt input
 | blockchain.gas   | BLOCKCHAIN_GAS    | 10  | gas amount
-| blockchain.fee   | BLOCKCHAIN_FEE    | 1udec  | transaction fee
+| blockchain.fee   | BLOCKCHAIN_FEE    | 1ufury  | transaction fee
 | sentry.dsn    | SENTRY_DSN    |  | sentry dsn
 | log.level   | LOG_LEVEL   | info  | level of logger (debug,info,warn,error)
 
@@ -87,15 +87,15 @@ rewardsd send PDV rewards
 | postgres.max_open_connections    | POSTGRES_MAX_OPEN_CONNECTIONS    | 0 | postgres maximal open connections count, 0 means unlimited
 | postgres.max_idle_connections    | POSTGRES_MAX_IDLE_CONNECTIONS    | 5 | postgres maximal idle connections count
 | postgres.migrations    | POSTGRES_MIGRATIONS    | /migrations/postgres | postgres migrations directory
-| blockchain.node   | BLOCKCHAIN_NODE    | http://zeus.testnet.decentr.xyz:26657  | decentr node address
-| blockchain.from   | BLOCKCHAIN_FROM    |  | decentr account name to send stakes
-| blockchain.tx_memo   | BLOCKCHAIN_TX_MEMO    | | decentr tx's memo
-| blockchain.chain_id   | BLOCKCHAIN_CHAIN_ID    | testnet | decentr chain id
-| blockchain.client_home   | BLOCKCHAIN_CLIENT_HOME    | ~/.decentrcli | decentrcli home directory
-| blockchain.keyring_backend   | BLOCKCHAIN_KEYRING_BACKEND    | test | decentrcli keyring backend
-| blockchain.keyring_prompt_input   | BLOCKCHAIN_KEYRING_PROMPT_INPUT    | | decentrcli keyring prompt input
+| blockchain.node   | BLOCKCHAIN_NODE    | http://zeus.testnet.furya.xyz:26657  | furya node address
+| blockchain.from   | BLOCKCHAIN_FROM    |  | furya account name to send stakes
+| blockchain.tx_memo   | BLOCKCHAIN_TX_MEMO    | | furya tx's memo
+| blockchain.chain_id   | BLOCKCHAIN_CHAIN_ID    | testnet | furya chain id
+| blockchain.client_home   | BLOCKCHAIN_CLIENT_HOME    | ~/.furyacli | furyacli home directory
+| blockchain.keyring_backend   | BLOCKCHAIN_KEYRING_BACKEND    | test | furyacli keyring backend
+| blockchain.keyring_prompt_input   | BLOCKCHAIN_KEYRING_PROMPT_INPUT    | | furyacli keyring prompt input
 | blockchain.gas   | BLOCKCHAIN_GAS    | 10  | gas amount
-| blockchain.fee   | BLOCKCHAIN_FEE    | 1udec  | transaction fee
+| blockchain.fee   | BLOCKCHAIN_FEE    | 1ufury  | transaction fee
 | sentry.dsn    | SENTRY_DSN    |  | sentry dsn
 | log.level   | LOG_LEVEL   | info  | level of logger (debug,info,warn,error)
 | pdv-rewards.pool-size | PDV_REWARDS_POOL_SIZE   | 100000000000  | PDV rewards (uDEC)
@@ -110,7 +110,7 @@ syncd binary listens to blockchain and reacts on `operations/ResetAccount` messa
 
 | CLI param         | Environment var          | Default | Description
 |---------------|------------------|---------------|---------------------------------
-| blockchain.node   | BLOCKCHAIN_NODE    | zeus.testnet.decentr.xyz:9090 | true | decentr grpc node address
+| blockchain.node   | BLOCKCHAIN_NODE    | zeus.testnet.furya.xyz:9090 | true | furya grpc node address
 | blockchain.timeout   | BLOCKCHAIN_TIMEOUT    | 5s| true | timeout for requests to blockchain node
 | blockchain.retry_interval   | BLOCKCHAIN_RETRY_INTERVAL    | 2s | true | interval to be waited on error before retry
 | blockchain.last_block_retry_interval   | BLOCKCHAIN_LAST_BLOCK_RETRY_INTERVAL    | 1s | true | duration to be waited when new block isn't produced before retry

@@ -5,8 +5,8 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/Decentr-net/decentr/x/community/keeper"
-	"github.com/Decentr-net/decentr/x/community/types"
+	"github.com/TessorNetwork/furya/x/community/keeper"
+	"github.com/TessorNetwork/furya/x/community/types"
 )
 
 // InitGenesis initializes the capability module's state from a provided genesis

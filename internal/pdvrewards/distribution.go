@@ -9,8 +9,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/sirupsen/logrus"
 
-	"github.com/Decentr-net/cerberus/internal/blockchain"
-	"github.com/Decentr-net/cerberus/internal/storage"
+	"github.com/TessorNetwork/cerberus/internal/blockchain"
+	"github.com/TessorNetwork/cerberus/internal/storage"
 )
 
 const (

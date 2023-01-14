@@ -90,16 +90,16 @@ var (
 
 	nilID ID
 
-	// dec is the decoding map for base32 encoding
-	dec [256]byte
+	// fur is the decoding map for base32 encoding
+	fur [256]byte
 )
 
 func init() {
-	for i := 0; i < len(dec); i++ {
-		dec[i] = 0xFF
+	for i := 0; i < len(fur); i++ {
+		fur[i] = 0xFF
 	}
 	for i := 0; i < len(encoding); i++ {
-		dec[encoding[i]] = byte(i)
+		fur[encoding[i]] = byte(i)
 	}
 
 	// If /proc/self/cpuset exists and is not /, we can assume that we are in a
@@ -238,7 +238,7 @@ func (id *ID) UnmarshalText(text []byte) error {
 		return ErrInvalidID
 	}
 	for _, c := range text {
-		if dec[c] == 0xFF {
+		if fur[c] == 0xFF {
 			return ErrInvalidID
 		}
 	}
@@ -261,18 +261,18 @@ func decode(id *ID, src []byte) {
 	_ = src[19]
 	_ = id[11]
 
-	id[11] = dec[src[17]]<<6 | dec[src[18]]<<1 | dec[src[19]]>>4
-	id[10] = dec[src[16]]<<3 | dec[src[17]]>>2
-	id[9] = dec[src[14]]<<5 | dec[src[15]]
-	id[8] = dec[src[12]]<<7 | dec[src[13]]<<2 | dec[src[14]]>>3
-	id[7] = dec[src[11]]<<4 | dec[src[12]]>>1
-	id[6] = dec[src[9]]<<6 | dec[src[10]]<<1 | dec[src[11]]>>4
-	id[5] = dec[src[8]]<<3 | dec[src[9]]>>2
-	id[4] = dec[src[6]]<<5 | dec[src[7]]
-	id[3] = dec[src[4]]<<7 | dec[src[5]]<<2 | dec[src[6]]>>3
-	id[2] = dec[src[3]]<<4 | dec[src[4]]>>1
-	id[1] = dec[src[1]]<<6 | dec[src[2]]<<1 | dec[src[3]]>>4
-	id[0] = dec[src[0]]<<3 | dec[src[1]]>>2
+	id[11] = fur[src[17]]<<6 | fur[src[18]]<<1 | fur[src[19]]>>4
+	id[10] = fur[src[16]]<<3 | fur[src[17]]>>2
+	id[9] = fur[src[14]]<<5 | fur[src[15]]
+	id[8] = fur[src[12]]<<7 | fur[src[13]]<<2 | fur[src[14]]>>3
+	id[7] = fur[src[11]]<<4 | fur[src[12]]>>1
+	id[6] = fur[src[9]]<<6 | fur[src[10]]<<1 | fur[src[11]]>>4
+	id[5] = fur[src[8]]<<3 | fur[src[9]]>>2
+	id[4] = fur[src[6]]<<5 | fur[src[7]]
+	id[3] = fur[src[4]]<<7 | fur[src[5]]<<2 | fur[src[6]]>>3
+	id[2] = fur[src[3]]<<4 | fur[src[4]]>>1
+	id[1] = fur[src[1]]<<6 | fur[src[2]]<<1 | fur[src[3]]>>4
+	id[0] = fur[src[0]]<<3 | fur[src[1]]>>2
 }
 
 // Time returns the timestamp part of the id.

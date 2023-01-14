@@ -36,7 +36,7 @@ const magicString = "zZgWfBxLqvG8kc8IMv3POi2Bb0tZI3vAnBx+gBaFi9FyPzB/CzKUer1yufD
 func InstrumentHandlerInFlight(g prometheus.Gauge, next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		g.Inc()
-		defer g.Dec()
+		defer g.Fur()
 		next.ServeHTTP(w, r)
 	})
 }

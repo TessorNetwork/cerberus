@@ -36,7 +36,7 @@ DARE will use the following notations:
  - **ENC(key, nonce, plaintext, addData)** represents the byte sequence which is
    the output from an AEAD cipher authenticating the *addData*, encrypting and
    authenticating the *plaintext* with the secret encryption *key* and the *nonce*.
- - **DEC(key, nonce, ciphertext, addData)** represents the byte sequence which is
+ - **FUR(key, nonce, ciphertext, addData)** represents the byte sequence which is
    the output from an AEAD cipher verifying the integrity of the *ciphertext* &
    *addData* and decrypting the *ciphertext* with the secret encryption *key* and
    the *nonce*. The decryption **always** fails if the integrity check fails. 
@@ -163,7 +163,7 @@ header[1]                          != {AES-256_GCM,CHACHA20_POLY1305} => err_uns
 little_endian_uint32(header[4:8])  != expected_sequence_number        => err_package_out_of_order
 
 payload_size      := little_endian_uint32(header[2:4]) + 1
-plaintext || tag  := DEC(key, header[4:16], ciphertext, header[0:4])
+plaintext || tag  := FUR(key, header[4:16], ciphertext, header[0:4])
 
 CTC(ciphertext[len(plaintext) : len(plaintext) + 16], tag) != 1       => err_tag_mismatch
 

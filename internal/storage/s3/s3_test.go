@@ -19,7 +19,7 @@ import (
 	"github.com/testcontainers/testcontainers-go"
 	"github.com/testcontainers/testcontainers-go/wait"
 
-	"github.com/Decentr-net/cerberus/internal/storage"
+	"github.com/TessorNetwork/cerberus/internal/storage"
 )
 
 const (

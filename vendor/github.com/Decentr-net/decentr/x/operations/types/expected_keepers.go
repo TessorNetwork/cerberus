@@ -10,7 +10,7 @@ type BankKeeper interface {
 }
 
 type TokenKeeper interface {
-	IncTokens(ctx sdk.Context, address sdk.AccAddress, amount sdk.Dec)
+	IncTokens(ctx sdk.Context, address sdk.AccAddress, amount sdk.Fur)
 	ResetAccount(ctx sdk.Context, address sdk.AccAddress)
 }
 

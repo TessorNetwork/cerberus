@@ -15,7 +15,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/status"
 
-	"github.com/Decentr-net/decentr/app"
+	"github.com/TessorNetwork/furya/app"
 )
 
 // ErrTooHighBlockRequested returned when blockchain's height is less than requested.

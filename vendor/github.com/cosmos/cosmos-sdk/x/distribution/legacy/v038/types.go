@@ -30,9 +30,9 @@ type (
 	}
 
 	Params struct {
-		CommunityTax        sdk.Dec `json:"community_tax" yaml:"community_tax"`
-		BaseProposerReward  sdk.Dec `json:"base_proposer_reward" yaml:"base_proposer_reward"`
-		BonusProposerReward sdk.Dec `json:"bonus_proposer_reward" yaml:"bonus_proposer_reward"`
+		CommunityTax        sdk.Fur `json:"community_tax" yaml:"community_tax"`
+		BaseProposerReward  sdk.Fur `json:"base_proposer_reward" yaml:"base_proposer_reward"`
+		BonusProposerReward sdk.Fur `json:"bonus_proposer_reward" yaml:"bonus_proposer_reward"`
 		WithdrawAddrEnabled bool    `json:"withdraw_addr_enabled" yaml:"withdraw_addr_enabled"`
 	}
 )

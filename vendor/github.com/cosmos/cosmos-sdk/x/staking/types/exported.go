@@ -11,7 +11,7 @@ import (
 type DelegationI interface {
 	GetDelegatorAddr() sdk.AccAddress // delegator sdk.AccAddress for the bond
 	GetValidatorAddr() sdk.ValAddress // validator operator address
-	GetShares() sdk.Dec               // amount of validator's shares held in this delegation
+	GetShares() sdk.Fur               // amount of validator's shares held in this delegation
 }
 
 // ValidatorI expected validator functions
@@ -29,12 +29,12 @@ type ValidatorI interface {
 	GetTokens() sdk.Int                                     // validation tokens
 	GetBondedTokens() sdk.Int                               // validator bonded tokens
 	GetConsensusPower(sdk.Int) int64                        // validation power in tendermint
-	GetCommission() sdk.Dec                                 // validator commission rate
+	GetCommission() sdk.Fur                                 // validator commission rate
 	GetMinSelfDelegation() sdk.Int                          // validator minimum self delegation
-	GetDelegatorShares() sdk.Dec                            // total outstanding delegator shares
-	TokensFromShares(sdk.Dec) sdk.Dec                       // token worth of provided delegator shares
-	TokensFromSharesTruncated(sdk.Dec) sdk.Dec              // token worth of provided delegator shares, truncated
-	TokensFromSharesRoundUp(sdk.Dec) sdk.Dec                // token worth of provided delegator shares, rounded up
-	SharesFromTokens(amt sdk.Int) (sdk.Dec, error)          // shares worth of delegator's bond
-	SharesFromTokensTruncated(amt sdk.Int) (sdk.Dec, error) // truncated shares worth of delegator's bond
+	GetDelegatorShares() sdk.Fur                            // total outstanding delegator shares
+	TokensFromShares(sdk.Fur) sdk.Fur                       // token worth of provided delegator shares
+	TokensFromSharesTruncated(sdk.Fur) sdk.Fur              // token worth of provided delegator shares, truncated
+	TokensFromSharesRoundUp(sdk.Fur) sdk.Fur                // token worth of provided delegator shares, rounded up
+	SharesFromTokens(amt sdk.Int) (sdk.Fur, error)          // shares worth of delegator's bond
+	SharesFromTokensTruncated(amt sdk.Int) (sdk.Fur, error) // truncated shares worth of delegator's bond
 }

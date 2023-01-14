@@ -8,7 +8,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/query"
 	"github.com/gofrs/uuid"
 
-	"github.com/Decentr-net/decentr/x/community/types"
+	"github.com/TessorNetwork/furya/x/community/types"
 )
 
 var _ types.QueryServer = queryServer{}

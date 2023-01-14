@@ -6,10 +6,10 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	communitykeeper "github.com/Decentr-net/decentr/x/community/keeper"
-	communitytypes "github.com/Decentr-net/decentr/x/community/types"
-	operationskeeper "github.com/Decentr-net/decentr/x/operations/keeper"
-	operationstypes "github.com/Decentr-net/decentr/x/operations/types"
+	communitykeeper "github.com/TessorNetwork/furya/x/community/keeper"
+	communitytypes "github.com/TessorNetwork/furya/x/community/types"
+	operationskeeper "github.com/TessorNetwork/furya/x/operations/keeper"
+	operationstypes "github.com/TessorNetwork/furya/x/operations/types"
 )
 
 type FixedGasTxDecorator struct {

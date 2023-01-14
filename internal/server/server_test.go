@@ -8,8 +8,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/Decentr-net/go-api"
-	"github.com/Decentr-net/go-api/test"
+	"github.com/TessorNetwork/go-api"
+	"github.com/TessorNetwork/go-api/test"
 )
 
 func Test_writeVerifyError(t *testing.T) {

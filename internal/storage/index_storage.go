@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/Decentr-net/cerberus/internal/entities"
+	"github.com/TessorNetwork/cerberus/internal/entities"
 )
 
 //go:generate mockgen -destination=./mock/index_storage.go -package=mock -source=index_storage.go

@@ -9,7 +9,7 @@ import (
 
 	"github.com/sirupsen/logrus"
 
-	logging "github.com/Decentr-net/logrus/context"
+	logging "github.com/TessorNetwork/logrus/context"
 )
 
 // NewAPITestParameters returns a logger's buffer, ResponseRecorder and Request.

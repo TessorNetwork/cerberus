@@ -25,7 +25,7 @@ var _ = math.Inf
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type GenesisState struct {
-	Balances map[string]types.DecProto `protobuf:"bytes,1,rep,name=balances,proto3" json:"balances" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Balances map[string]types.FurProto `protobuf:"bytes,1,rep,name=balances,proto3" json:"balances" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 }
 
 func (m *GenesisState) Reset()         { *m = GenesisState{} }
@@ -61,7 +61,7 @@ func (m *GenesisState) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GenesisState proto.InternalMessageInfo
 
-func (m *GenesisState) GetBalances() map[string]types.DecProto {
+func (m *GenesisState) GetBalances() map[string]types.FurProto {
 	if m != nil {
 		return m.Balances
 	}
@@ -70,7 +70,7 @@ func (m *GenesisState) GetBalances() map[string]types.DecProto {
 
 func init() {
 	proto.RegisterType((*GenesisState)(nil), "token.GenesisState")
-	proto.RegisterMapType((map[string]types.DecProto)(nil), "token.GenesisState.BalancesEntry")
+	proto.RegisterMapType((map[string]types.FurProto)(nil), "token.GenesisState.BalancesEntry")
 }
 
 func init() { proto.RegisterFile("token/genesis.proto", fileDescriptor_7d637ba3268cd6c3) }
@@ -238,10 +238,10 @@ func (m *GenesisState) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			if m.Balances == nil {
-				m.Balances = make(map[string]types.DecProto)
+				m.Balances = make(map[string]types.FurProto)
 			}
 			var mapkey string
-			mapvalue := &types.DecProto{}
+			mapvalue := &types.FurProto{}
 			for iNdEx < postIndex {
 				entryPreIndex := iNdEx
 				var wire uint64
@@ -315,7 +315,7 @@ func (m *GenesisState) Unmarshal(dAtA []byte) error {
 					if postmsgIndex > l {
 						return io.ErrUnexpectedEOF
 					}
-					mapvalue = &types.DecProto{}
+					mapvalue = &types.FurProto{}
 					if err := mapvalue.Unmarshal(dAtA[iNdEx:postmsgIndex]); err != nil {
 						return err
 					}

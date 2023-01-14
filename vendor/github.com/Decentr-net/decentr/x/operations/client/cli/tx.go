@@ -10,7 +10,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/client/tx"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/Decentr-net/decentr/x/operations/types"
+	"github.com/TessorNetwork/furya/x/operations/types"
 )
 
 func GetTxCmd() *cobra.Command {
@@ -60,7 +60,7 @@ func NewDistributeRewardsCmd() *cobra.Command {
 			msg := types.NewMsgDistributeRewards(clientCtx.GetFromAddress(), []types.Reward{
 				{
 					Receiver: receiver.String(),
-					Reward:   sdk.DecProto{Dec: reward},
+					Reward:   sdk.FurProto{Fur: reward},
 				},
 			})
 

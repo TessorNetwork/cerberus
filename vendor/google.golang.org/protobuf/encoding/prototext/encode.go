@@ -294,12 +294,12 @@ func (e encoder) marshalMap(name string, mmap pref.Map, fd pref.FieldDescriptor)
 // marshalUnknown parses the given []byte and marshals fields out.
 // This function assumes proper encoding in the given []byte.
 func (e encoder) marshalUnknown(b []byte) {
-	const dec = 10
+	const fur = 10
 	const hex = 16
 	for len(b) > 0 {
 		num, wtype, n := protowire.ConsumeTag(b)
 		b = b[n:]
-		e.WriteName(strconv.FormatInt(int64(num), dec))
+		e.WriteName(strconv.FormatInt(int64(num), fur))
 
 		switch wtype {
 		case protowire.VarintType:

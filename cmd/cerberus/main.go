@@ -21,16 +21,16 @@ import (
 	"github.com/sirupsen/logrus"
 	"golang.org/x/sync/errgroup"
 
-	"github.com/Decentr-net/cerberus/internal/crypto/sio"
-	"github.com/Decentr-net/cerberus/internal/hades"
-	"github.com/Decentr-net/cerberus/internal/health"
-	"github.com/Decentr-net/cerberus/internal/producer"
-	"github.com/Decentr-net/cerberus/internal/server"
-	"github.com/Decentr-net/cerberus/internal/service"
-	"github.com/Decentr-net/cerberus/internal/storage"
-	"github.com/Decentr-net/cerberus/internal/storage/postgres"
-	"github.com/Decentr-net/cerberus/internal/throttler"
-	"github.com/Decentr-net/logrus/sentry"
+	"github.com/TessorNetwork/cerberus/internal/crypto/sio"
+	"github.com/TessorNetwork/cerberus/internal/hades"
+	"github.com/TessorNetwork/cerberus/internal/health"
+	"github.com/TessorNetwork/cerberus/internal/producer"
+	"github.com/TessorNetwork/cerberus/internal/server"
+	"github.com/TessorNetwork/cerberus/internal/service"
+	"github.com/TessorNetwork/cerberus/internal/storage"
+	"github.com/TessorNetwork/cerberus/internal/storage/postgres"
+	"github.com/TessorNetwork/cerberus/internal/throttler"
+	"github.com/TessorNetwork/logrus/sentry"
 )
 
 var opts = struct {
@@ -107,7 +107,7 @@ func main() {
 	server.SetupRouter(newServiceOrDie(fs, is, mustGetProducer()), r,
 		opts.RequestTimeout, opts.MaxBodySize, throttler.New(opts.SavePDVThrottlePeriod),
 		opts.MinPDVCount, opts.MaxPDVCount,
-		sdk.NewDec(opts.PDVRewardsPoolSize))
+		sdk.NewFur(opts.PDVRewardsPoolSize))
 	health.SetupRouter(r, fs, health.PingFunc(db.PingContext))
 
 	srv := http.Server{

@@ -6,9 +6,9 @@ package mock
 
 import (
 	context "context"
-	entities "github.com/Decentr-net/cerberus/internal/entities"
-	service "github.com/Decentr-net/cerberus/internal/service"
-	schema "github.com/Decentr-net/cerberus/pkg/schema"
+	entities "github.com/TessorNetwork/cerberus/internal/entities"
+	service "github.com/TessorNetwork/cerberus/internal/service"
+	schema "github.com/TessorNetwork/cerberus/pkg/schema"
 	types "github.com/cosmos/cosmos-sdk/types"
 	gomock "github.com/golang/mock/gomock"
 	io "io"
@@ -160,10 +160,10 @@ func (mr *MockServiceMockRecorder) GetBlacklist() *gomock.Call {
 }
 
 // GetPDVDelta mocks base method
-func (m *MockService) GetPDVDelta(ctx context.Context, owner string) (types.Dec, error) {
+func (m *MockService) GetPDVDelta(ctx context.Context, owner string) (types.Fur, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetPDVDelta", ctx, owner)
-	ret0, _ := ret[0].(types.Dec)
+	ret0, _ := ret[0].(types.Fur)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -175,10 +175,10 @@ func (mr *MockServiceMockRecorder) GetPDVDelta(ctx, owner interface{}) *gomock.C
 }
 
 // GetPDVTotalDelta mocks base method
-func (m *MockService) GetPDVTotalDelta(ctx context.Context) (types.Dec, error) {
+func (m *MockService) GetPDVTotalDelta(ctx context.Context) (types.Fur, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetPDVTotalDelta", ctx)
-	ret0, _ := ret[0].(types.Dec)
+	ret0, _ := ret[0].(types.Fur)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }

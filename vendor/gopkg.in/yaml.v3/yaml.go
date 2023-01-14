@@ -107,8 +107,8 @@ func NewDecoder(r io.Reader) *Decoder {
 
 // KnownFields ensures that the keys in decoded mappings to
 // exist as fields in the struct being decoded into.
-func (dec *Decoder) KnownFields(enable bool) {
-	dec.knownFields = enable
+func (fur *Decoder) KnownFields(enable bool) {
+	fur.knownFields = enable
 }
 
 // Decode reads the next YAML-encoded value from its input
@@ -116,11 +116,11 @@ func (dec *Decoder) KnownFields(enable bool) {
 //
 // See the documentation for Unmarshal for details about the
 // conversion of YAML into a Go value.
-func (dec *Decoder) Decode(v interface{}) (err error) {
+func (fur *Decoder) Decode(v interface{}) (err error) {
 	d := newDecoder()
-	d.knownFields = dec.knownFields
+	d.knownFields = fur.knownFields
 	defer handleErr(&err)
-	node := dec.parser.parse()
+	node := fur.parser.parse()
 	if node == nil {
 		return io.EOF
 	}

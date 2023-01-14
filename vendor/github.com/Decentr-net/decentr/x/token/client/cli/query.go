@@ -9,7 +9,7 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/client"
 
-	"github.com/Decentr-net/decentr/x/token/types"
+	"github.com/TessorNetwork/furya/x/token/types"
 )
 
 func GetQueryCmd(_ string) *cobra.Command {

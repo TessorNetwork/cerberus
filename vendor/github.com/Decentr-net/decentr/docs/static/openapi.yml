@@ -1,10 +1,10 @@
 swagger: '2.0'
 info:
-  title: Decentr - gRPC Gateway docs
+  title: Furya - gRPC Gateway docs
   description: A REST interface for state queries
   version: 1.5.3
 paths:
-  /decentr/token/balance/{address}:
+  /furya/token/balance/{address}:
     get:
       operationId: TokenBalance
       responses:
@@ -16,9 +16,9 @@ paths:
               balance:
                 type: object
                 properties:
-                  dec:
+                  fur:
                     type: string
-                description: DecProto defines a Protobuf wrapper around a Dec object.
+                description: FurProto defines a Protobuf wrapper around a Fur object.
         default:
           description: An unexpected error response.
           schema:
@@ -48,7 +48,7 @@ paths:
           type: string
       tags:
         - Token
-  /decentr/community/followers/{owner}/followed:
+  /furya/community/followers/{owner}/followed:
     get:
       operationId: CommunityListFollowed
       responses:
@@ -170,7 +170,7 @@ paths:
           type: boolean
       tags:
         - Community
-  /decentr/community/moderators:
+  /furya/community/moderators:
     get:
       operationId: CommunityModerators
       responses:
@@ -207,7 +207,7 @@ paths:
                       format: byte
       tags:
         - Community
-  /decentr/community/posts/{owner}:
+  /furya/community/posts/{owner}:
     get:
       operationId: CommunityListUserPosts
       responses:
@@ -354,7 +354,7 @@ paths:
           type: boolean
       tags:
         - Community
-  /decentr/community/posts/{post_owner}/{post_uuid}:
+  /furya/community/posts/{post_owner}/{post_uuid}:
     get:
       operationId: CommunityGetPost
       responses:
@@ -423,7 +423,7 @@ paths:
           type: string
       tags:
         - Community
-  /decentr/operations/min-gas-price:
+  /furya/operations/min-gas-price:
     get:
       summary: MinGasPrice returns set gas price
       operationId: OperationsMinGasPrice
@@ -445,7 +445,7 @@ paths:
                   amount.
 
 
-                  NOTE: The amount field is an Dec which implements the custom
+                  NOTE: The amount field is an Fur which implements the custom
                   method
 
                   signatures required by gogoproto.
@@ -10048,7 +10048,7 @@ paths:
                     amount.
 
 
-                    NOTE: The amount field is an Dec which implements the custom
+                    NOTE: The amount field is an Fur which implements the custom
                     method
 
                     signatures required by gogoproto.
@@ -10115,7 +10115,7 @@ paths:
                           decimal amount.
 
 
-                          NOTE: The amount field is an Dec which implements the
+                          NOTE: The amount field is an Fur which implements the
                           custom method
 
                           signatures required by gogoproto.
@@ -10137,7 +10137,7 @@ paths:
                     amount.
 
 
-                    NOTE: The amount field is an Dec which implements the custom
+                    NOTE: The amount field is an Fur which implements the custom
                     method
 
                     signatures required by gogoproto.
@@ -10199,7 +10199,7 @@ paths:
                     amount.
 
 
-                    NOTE: The amount field is an Dec which implements the custom
+                    NOTE: The amount field is an Fur which implements the custom
                     method
 
                     signatures required by gogoproto.
@@ -10416,7 +10416,7 @@ paths:
                         decimal amount.
 
 
-                        NOTE: The amount field is an Dec which implements the
+                        NOTE: The amount field is an Fur which implements the
                         custom method
 
                         signatures required by gogoproto.
@@ -10480,7 +10480,7 @@ paths:
                         decimal amount.
 
 
-                        NOTE: The amount field is an Dec which implements the
+                        NOTE: The amount field is an Fur which implements the
                         custom method
 
                         signatures required by gogoproto.
@@ -22727,12 +22727,12 @@ paths:
       tags:
         - Query
 definitions:
-  cosmos.base.v1beta1.DecProto:
+  cosmos.base.v1beta1.FurProto:
     type: object
     properties:
-      dec:
+      fur:
         type: string
-    description: DecProto defines a Protobuf wrapper around a Dec object.
+    description: FurProto defines a Protobuf wrapper around a Fur object.
   google.protobuf.Any:
     type: object
     properties:
@@ -23068,9 +23068,9 @@ definitions:
       balance:
         type: object
         properties:
-          dec:
+          fur:
             type: string
-        description: DecProto defines a Protobuf wrapper around a Dec object.
+        description: FurProto defines a Protobuf wrapper around a Fur object.
   community.Category:
     type: string
     enum:
@@ -23323,7 +23323,7 @@ definitions:
     description: |-
       DecCoin defines a token with a denomination and a decimal amount.
 
-      NOTE: The amount field is an Dec which implements the custom method
+      NOTE: The amount field is an Fur which implements the custom method
       signatures required by gogoproto.
   operations.MinGasPriceResponse:
     type: object
@@ -23338,7 +23338,7 @@ definitions:
         description: |-
           DecCoin defines a token with a denomination and a decimal amount.
 
-          NOTE: The amount field is an Dec which implements the custom method
+          NOTE: The amount field is an Fur which implements the custom method
           signatures required by gogoproto.
   CheckTxResult:
     type: object
@@ -29798,7 +29798,7 @@ definitions:
           description: |-
             DecCoin defines a token with a denomination and a decimal amount.
 
-            NOTE: The amount field is an Dec which implements the custom method
+            NOTE: The amount field is an Fur which implements the custom method
             signatures required by gogoproto.
     description: |-
       DelegationDelegatorReward represents the properties
@@ -29831,7 +29831,7 @@ definitions:
           description: |-
             DecCoin defines a token with a denomination and a decimal amount.
 
-            NOTE: The amount field is an Dec which implements the custom method
+            NOTE: The amount field is an Fur which implements the custom method
             signatures required by gogoproto.
         description: pool defines community pool's coins.
     description: >-
@@ -29854,7 +29854,7 @@ definitions:
           description: |-
             DecCoin defines a token with a denomination and a decimal amount.
 
-            NOTE: The amount field is an Dec which implements the custom method
+            NOTE: The amount field is an Fur which implements the custom method
             signatures required by gogoproto.
         description: rewards defines the rewards accrued by a delegation.
     description: |-
@@ -29884,7 +29884,7 @@ definitions:
                   amount.
 
 
-                  NOTE: The amount field is an Dec which implements the custom
+                  NOTE: The amount field is an Fur which implements the custom
                   method
 
                   signatures required by gogoproto.
@@ -29904,7 +29904,7 @@ definitions:
           description: |-
             DecCoin defines a token with a denomination and a decimal amount.
 
-            NOTE: The amount field is an Dec which implements the custom method
+            NOTE: The amount field is an Fur which implements the custom method
             signatures required by gogoproto.
         description: total defines the sum of all the rewards.
     description: |-
@@ -29968,7 +29968,7 @@ definitions:
                 amount.
 
 
-                NOTE: The amount field is an Dec which implements the custom
+                NOTE: The amount field is an Fur which implements the custom
                 method
 
                 signatures required by gogoproto.
@@ -29995,7 +29995,7 @@ definitions:
                 amount.
 
 
-                NOTE: The amount field is an Dec which implements the custom
+                NOTE: The amount field is an Fur which implements the custom
                 method
 
                 signatures required by gogoproto.
@@ -30062,7 +30062,7 @@ definitions:
           description: |-
             DecCoin defines a token with a denomination and a decimal amount.
 
-            NOTE: The amount field is an Dec which implements the custom method
+            NOTE: The amount field is an Fur which implements the custom method
             signatures required by gogoproto.
     description: |-
       ValidatorAccumulatedCommission represents accumulated commission
@@ -30082,7 +30082,7 @@ definitions:
           description: |-
             DecCoin defines a token with a denomination and a decimal amount.
 
-            NOTE: The amount field is an Dec which implements the custom method
+            NOTE: The amount field is an Fur which implements the custom method
             signatures required by gogoproto.
     description: |-
       ValidatorOutstandingRewards represents outstanding (un-withdrawn) rewards

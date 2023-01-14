@@ -79,7 +79,7 @@ func (cs *State) ReplayFile(file string, console bool) error {
 			nextN = pb.replayConsoleLoop()
 		}
 
-		msg, err = pb.dec.Decode()
+		msg, err = pb.fur.Decode()
 		if err == io.EOF {
 			return nil
 		} else if err != nil {
@@ -104,7 +104,7 @@ type playback struct {
 	cs *State
 
 	fp    *os.File
-	dec   *WALDecoder
+	fur   *WALDecoder
 	count int // how many lines/msgs into the file are we
 
 	// replays can be reset to beginning
@@ -118,7 +118,7 @@ func newPlayback(fileName string, fp *os.File, cs *State, genState sm.State) *pl
 		fp:           fp,
 		fileName:     fileName,
 		genesisState: genState,
-		dec:          NewWALDecoder(fp),
+		fur:          NewWALDecoder(fp),
 	}
 }
 
@@ -142,14 +142,14 @@ func (pb *playback) replayReset(count int, newStepSub types.Subscription) error 
 		return err
 	}
 	pb.fp = fp
-	pb.dec = NewWALDecoder(fp)
+	pb.fur = NewWALDecoder(fp)
 	count = pb.count - count
 	fmt.Printf("Reseting from %d to %d\n", pb.count, count)
 	pb.count = 0
 	pb.cs = newCS
 	var msg *TimedWALMessage
 	for i := 0; i < count; i++ {
-		msg, err = pb.dec.Decode()
+		msg, err = pb.fur.Decode()
 		if err == io.EOF {
 			return nil
 		} else if err != nil {

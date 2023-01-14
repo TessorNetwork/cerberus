@@ -142,11 +142,11 @@ func DecodeMessage(rd io.Reader) (msg *Message, err error) {
 		return nil, InvalidMessageError("invalid byte order")
 	}
 
-	dec := newDecoder(rd, order)
-	dec.pos = 1
+	fur := newDecoder(rd, order)
+	fur.pos = 1
 
 	msg = new(Message)
-	vs, err := dec.Decode(Signature{"yyyuu"})
+	vs, err := fur.Decode(Signature{"yyyuu"})
 	if err != nil {
 		return nil, err
 	}
@@ -166,9 +166,9 @@ func DecodeMessage(rd io.Reader) (msg *Message, err error) {
 	if hlength+length+16 > 1<<27 {
 		return nil, InvalidMessageError("message is too long")
 	}
-	dec = newDecoder(io.MultiReader(bytes.NewBuffer(b), rd), order)
-	dec.pos = 12
-	vs, err = dec.Decode(Signature{"a(yv)"})
+	fur = newDecoder(io.MultiReader(bytes.NewBuffer(b), rd), order)
+	fur.pos = 12
+	vs, err = fur.Decode(Signature{"a(yv)"})
 	if err != nil {
 		return nil, err
 	}
@@ -181,7 +181,7 @@ func DecodeMessage(rd io.Reader) (msg *Message, err error) {
 		msg.Headers[HeaderField(v.Field)] = v.Variant
 	}
 
-	dec.align(8)
+	fur.align(8)
 	body := make([]byte, int(length))
 	if length != 0 {
 		_, err := io.ReadFull(rd, body)
@@ -196,8 +196,8 @@ func DecodeMessage(rd io.Reader) (msg *Message, err error) {
 	sig, _ := msg.Headers[FieldSignature].value.(Signature)
 	if sig.str != "" {
 		buf := bytes.NewBuffer(body)
-		dec = newDecoder(buf, order)
-		vs, err := dec.Decode(sig)
+		fur = newDecoder(buf, order)
+		vs, err := fur.Decode(sig)
 		if err != nil {
 			return nil, err
 		}

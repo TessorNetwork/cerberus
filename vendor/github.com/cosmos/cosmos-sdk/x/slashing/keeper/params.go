@@ -15,7 +15,7 @@ func (k Keeper) SignedBlocksWindow(ctx sdk.Context) (res int64) {
 
 // MinSignedPerWindow - minimum blocks signed per window
 func (k Keeper) MinSignedPerWindow(ctx sdk.Context) int64 {
-	var minSignedPerWindow sdk.Dec
+	var minSignedPerWindow sdk.Fur
 	k.paramspace.Get(ctx, types.KeyMinSignedPerWindow, &minSignedPerWindow)
 	signedBlocksWindow := k.SignedBlocksWindow(ctx)
 
@@ -31,13 +31,13 @@ func (k Keeper) DowntimeJailDuration(ctx sdk.Context) (res time.Duration) {
 }
 
 // SlashFractionDoubleSign - fraction of power slashed in case of double sign
-func (k Keeper) SlashFractionDoubleSign(ctx sdk.Context) (res sdk.Dec) {
+func (k Keeper) SlashFractionDoubleSign(ctx sdk.Context) (res sdk.Fur) {
 	k.paramspace.Get(ctx, types.KeySlashFractionDoubleSign, &res)
 	return
 }
 
 // SlashFractionDowntime - fraction of power slashed for downtime
-func (k Keeper) SlashFractionDowntime(ctx sdk.Context) (res sdk.Dec) {
+func (k Keeper) SlashFractionDowntime(ctx sdk.Context) (res sdk.Fur) {
 	k.paramspace.Get(ctx, types.KeySlashFractionDowntime, &res)
 	return
 }

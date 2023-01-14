@@ -40,7 +40,7 @@ func ParamChanges(r *rand.Rand) []simtypes.ParamChange {
 			func(r *rand.Rand) string {
 				changes := []struct {
 					key   string
-					value sdk.Dec
+					value sdk.Fur
 				}{
 					{subkeyQuorum, GenTallyParamsQuorum(r)},
 					{subkeyThreshold, GenTallyParamsThreshold(r)},

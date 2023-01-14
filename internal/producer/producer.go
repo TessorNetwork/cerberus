@@ -4,7 +4,7 @@ package producer
 import (
 	"context"
 
-	"github.com/Decentr-net/cerberus/internal/entities"
+	"github.com/TessorNetwork/cerberus/internal/entities"
 )
 
 //go:generate mockgen -destination=./mock/producer.go -package=mock -source=producer.go

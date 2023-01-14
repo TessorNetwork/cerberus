@@ -14,10 +14,10 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/go-chi/chi"
 
-	"github.com/Decentr-net/cerberus/internal/service"
-	"github.com/Decentr-net/cerberus/pkg/schema"
-	"github.com/Decentr-net/go-api"
-	logging "github.com/Decentr-net/logrus/context"
+	"github.com/TessorNetwork/cerberus/internal/service"
+	"github.com/TessorNetwork/cerberus/pkg/schema"
+	"github.com/TessorNetwork/go-api"
+	logging "github.com/TessorNetwork/logrus/context"
 )
 
 // SavePDVResponse ...
@@ -36,15 +36,15 @@ type SaveImageResponse struct {
 // PDVRewardsPool ...
 // swagger:model PDVRewardsPool
 type PDVRewardsPool struct {
-	Size                 sdk.Dec   `json:"size"`
-	TotalDelta           sdk.Dec   `json:"total_delta"`
+	Size                 sdk.Fur   `json:"size"`
+	TotalDelta           sdk.Fur   `json:"total_delta"`
 	NextDistributionDate time.Time `json:"next_distribution_date"`
 }
 
 // PDVRewardDelta ...
 // swagger:model PDVRewardDelta
 type PDVRewardDelta struct {
-	Delta sdk.Dec         `json:"delta"`
+	Delta sdk.Fur         `json:"delta"`
 	Pool  *PDVRewardsPool `json:"pool"`
 }
 
@@ -276,7 +276,7 @@ func (s *server) listPDVHandler(w http.ResponseWriter, r *http.Request) {
 	//   description: PDV's address
 	//   in: path
 	//   required: true
-	//   example: decentr1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz
+	//   example: furya1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz
 	//   type: string
 	// - name: from
 	//   description: id of PDV to start from
@@ -498,7 +498,7 @@ func (s *server) getProfilesHandler(w http.ResponseWriter, r *http.Request) {
 	//   description: profile address
 	//   in: query
 	//   required: true
-	//   example: decentr1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz,decentr1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz
+	//   example: furya1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz,furya1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz
 	//   schema:
 	//      type: array
 	//      items:

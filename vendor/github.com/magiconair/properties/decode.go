@@ -96,13 +96,13 @@ func (p *Properties) Decode(x interface{}) error {
 	if t.Kind() != reflect.Ptr || v.Elem().Type().Kind() != reflect.Struct {
 		return fmt.Errorf("not a pointer to struct: %s", t)
 	}
-	if err := dec(p, "", nil, nil, v); err != nil {
+	if err := fur(p, "", nil, nil, v); err != nil {
 		return err
 	}
 	return nil
 }
 
-func dec(p *Properties, key string, def *string, opts map[string]string, v reflect.Value) error {
+func fur(p *Properties, key string, def *string, opts map[string]string, v reflect.Value) error {
 	t := v.Type()
 
 	// value returns the property value for key or the default if provided.
@@ -183,7 +183,7 @@ func dec(p *Properties, key string, def *string, opts map[string]string, v refle
 		v.Set(val)
 
 	case isPtr(t):
-		return dec(p, key, def, opts, v.Elem())
+		return fur(p, key, def, opts, v.Elem())
 
 	case isStruct(t):
 		for i := 0; i < v.NumField(); i++ {
@@ -198,7 +198,7 @@ func dec(p *Properties, key string, def *string, opts map[string]string, v refle
 			if key != "" {
 				fk = key + "." + fk
 			}
-			if err := dec(p, fk, def, opts, fv); err != nil {
+			if err := fur(p, fk, def, opts, fv); err != nil {
 				return err
 			}
 		}
@@ -226,7 +226,7 @@ func dec(p *Properties, key string, def *string, opts map[string]string, v refle
 		for postfix := range p.FilterStripPrefix(key + ".").m {
 			pp := strings.SplitN(postfix, ".", 2)
 			mk, mv := pp[0], reflect.New(valT)
-			if err := dec(p, key+"."+mk, nil, nil, mv); err != nil {
+			if err := fur(p, key+"."+mk, nil, nil, mv); err != nil {
 				return err
 			}
 			m.SetMapIndex(reflect.ValueOf(mk), mv.Elem())

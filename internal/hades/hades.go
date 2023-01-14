@@ -11,7 +11,7 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/Decentr-net/cerberus/pkg/schema"
+	"github.com/TessorNetwork/cerberus/pkg/schema"
 )
 
 var _ Hades = &client{}

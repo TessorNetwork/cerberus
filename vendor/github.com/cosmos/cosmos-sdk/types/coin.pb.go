@@ -73,11 +73,11 @@ func (m *Coin) GetDenom() string {
 
 // DecCoin defines a token with a denomination and a decimal amount.
 //
-// NOTE: The amount field is an Dec which implements the custom method
+// NOTE: The amount field is an Fur which implements the custom method
 // signatures required by gogoproto.
 type DecCoin struct {
 	Denom  string `protobuf:"bytes,1,opt,name=denom,proto3" json:"denom,omitempty"`
-	Amount Dec    `protobuf:"bytes,2,opt,name=amount,proto3,customtype=Dec" json:"amount"`
+	Amount Fur    `protobuf:"bytes,2,opt,name=amount,proto3,customtype=Fur" json:"amount"`
 }
 
 func (m *DecCoin) Reset()      { *m = DecCoin{} }
@@ -156,20 +156,20 @@ func (m *IntProto) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_IntProto proto.InternalMessageInfo
 
-// DecProto defines a Protobuf wrapper around a Dec object.
-type DecProto struct {
-	Dec Dec `protobuf:"bytes,1,opt,name=dec,proto3,customtype=Dec" json:"dec"`
+// FurProto defines a Protobuf wrapper around a Fur object.
+type FurProto struct {
+	Fur Fur `protobuf:"bytes,1,opt,name=fur,proto3,customtype=Fur" json:"fur"`
 }
 
-func (m *DecProto) Reset()      { *m = DecProto{} }
-func (*DecProto) ProtoMessage() {}
-func (*DecProto) Descriptor() ([]byte, []int) {
+func (m *FurProto) Reset()      { *m = FurProto{} }
+func (*FurProto) ProtoMessage() {}
+func (*FurProto) Descriptor() ([]byte, []int) {
 	return fileDescriptor_189a96714eafc2df, []int{3}
 }
-func (m *DecProto) XXX_Unmarshal(b []byte) error {
+func (m *FurProto) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *DecProto) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *FurProto) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_DecProto.Marshal(b, m, deterministic)
 	} else {
@@ -181,13 +181,13 @@ func (m *DecProto) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
-func (m *DecProto) XXX_Merge(src proto.Message) {
+func (m *FurProto) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_DecProto.Merge(m, src)
 }
-func (m *DecProto) XXX_Size() int {
+func (m *FurProto) XXX_Size() int {
 	return m.Size()
 }
-func (m *DecProto) XXX_DiscardUnknown() {
+func (m *FurProto) XXX_DiscardUnknown() {
 	xxx_messageInfo_DecProto.DiscardUnknown(m)
 }
 
@@ -197,7 +197,7 @@ func init() {
 	proto.RegisterType((*Coin)(nil), "cosmos.base.v1beta1.Coin")
 	proto.RegisterType((*DecCoin)(nil), "cosmos.base.v1beta1.DecCoin")
 	proto.RegisterType((*IntProto)(nil), "cosmos.base.v1beta1.IntProto")
-	proto.RegisterType((*DecProto)(nil), "cosmos.base.v1beta1.DecProto")
+	proto.RegisterType((*FurProto)(nil), "cosmos.base.v1beta1.FurProto")
 }
 
 func init() { proto.RegisterFile("cosmos/base/v1beta1/coin.proto", fileDescriptor_189a96714eafc2df) }
@@ -390,7 +390,7 @@ func (m *IntProto) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *DecProto) Marshal() (dAtA []byte, err error) {
+func (m *FurProto) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -400,20 +400,20 @@ func (m *DecProto) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *DecProto) MarshalTo(dAtA []byte) (int, error) {
+func (m *FurProto) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *DecProto) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *FurProto) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
 	{
-		size := m.Dec.Size()
+		size := m.Fur.Size()
 		i -= size
-		if _, err := m.Dec.MarshalTo(dAtA[i:]); err != nil {
+		if _, err := m.Fur.MarshalTo(dAtA[i:]); err != nil {
 			return 0, err
 		}
 		i = encodeVarintCoin(dAtA, i, uint64(size))
@@ -475,13 +475,13 @@ func (m *IntProto) Size() (n int) {
 	return n
 }
 
-func (m *DecProto) Size() (n int) {
+func (m *FurProto) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	l = m.Dec.Size()
+	l = m.Fur.Size()
 	n += 1 + l + sovCoin(uint64(l))
 	return n
 }
@@ -808,7 +808,7 @@ func (m *IntProto) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *DecProto) Unmarshal(dAtA []byte) error {
+func (m *FurProto) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -831,15 +831,15 @@ func (m *DecProto) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: DecProto: wiretype end group for non-group")
+			return fmt.Errorf("proto: FurProto: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: DecProto: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: FurProto: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Dec", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Fur", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -867,7 +867,7 @@ func (m *DecProto) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.Dec.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if err := m.Fur.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex

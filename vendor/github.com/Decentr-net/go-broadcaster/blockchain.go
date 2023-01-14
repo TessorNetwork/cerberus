@@ -1,4 +1,4 @@
-// Package broadcaster contains code for interacting with the decentr blockchain.
+// Package broadcaster contains code for interacting with the furya blockchain.
 package broadcaster
 
 import (
@@ -20,8 +20,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/auth/types"
 	"github.com/tendermint/spm/cosmoscmd"
 
-	"github.com/Decentr-net/decentr/app"
-	"github.com/Decentr-net/decentr/config"
+	"github.com/TessorNetwork/furya/app"
+	"github.com/TessorNetwork/furya/config"
 )
 
 func init() {

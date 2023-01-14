@@ -6,7 +6,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	"github.com/Decentr-net/decentr/x/operations/types"
+	"github.com/TessorNetwork/furya/x/operations/types"
 )
 
 var _ types.MsgServer = msgServer{}
@@ -53,7 +53,7 @@ func (s msgServer) DistributeRewards(
 		if err != nil {
 			return nil, sdkerrors.Wrapf(sdkerrors.ErrInvalidAddress, "invalid owner address: %s", err)
 		}
-		s.tokenKeeper.IncTokens(ctx, receiver, v.Reward.Dec)
+		s.tokenKeeper.IncTokens(ctx, receiver, v.Reward.Fur)
 	}
 
 	return &types.MsgDistributeRewardsResponse{}, nil

@@ -55,11 +55,11 @@ func TestCrypto_Encrypt_Decrypt(t *testing.T) {
 	require.NoError(t, err)
 	require.NotNil(t, enc)
 
-	dec, err := c.Decrypt(bytes.NewReader(enc))
+	fur, err := c.Decrypt(bytes.NewReader(enc))
 	require.NoError(t, err)
-	require.NotNil(t, dec)
+	require.NotNil(t, fur)
 
-	act, err := ioutil.ReadAll(dec)
+	act, err := ioutil.ReadAll(fur)
 	require.NoError(t, err)
 	assert.Equal(t, exp, act)
 }

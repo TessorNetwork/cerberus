@@ -21,7 +21,7 @@ type (
 
 	DelegatorStartingInfo struct {
 		PreviousPeriod uint64  `json:"previous_period"`
-		Stake          sdk.Dec `json:"stake"`
+		Stake          sdk.Fur `json:"stake"`
 		Height         uint64  `json:"height"`
 	}
 
@@ -79,14 +79,14 @@ type (
 
 	ValidatorSlashEvent struct {
 		ValidatorPeriod uint64  `json:"validator_period"`
-		Fraction        sdk.Dec `json:"fraction"`
+		Fraction        sdk.Fur `json:"fraction"`
 	}
 
 	GenesisState struct {
 		FeePool                         FeePool                                `json:"fee_pool"`
-		CommunityTax                    sdk.Dec                                `json:"community_tax"`
-		BaseProposerReward              sdk.Dec                                `json:"base_proposer_reward"`
-		BonusProposerReward             sdk.Dec                                `json:"bonus_proposer_reward"`
+		CommunityTax                    sdk.Fur                                `json:"community_tax"`
+		BaseProposerReward              sdk.Fur                                `json:"base_proposer_reward"`
+		BonusProposerReward             sdk.Fur                                `json:"bonus_proposer_reward"`
 		WithdrawAddrEnabled             bool                                   `json:"withdraw_addr_enabled"`
 		DelegatorWithdrawInfos          []DelegatorWithdrawInfo                `json:"delegator_withdraw_infos"`
 		PreviousProposer                sdk.ConsAddress                        `json:"previous_proposer"`

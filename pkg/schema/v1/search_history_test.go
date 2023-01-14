@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/Decentr-net/cerberus/pkg/schema/types"
+	"github.com/TessorNetwork/cerberus/pkg/schema/types"
 )
 
 func TestSearchHistory_Validate(t *testing.T) {
@@ -19,8 +19,8 @@ func TestSearchHistory_Validate(t *testing.T) {
 			name: "valid",
 			d: SearchHistory{
 				Timestamp: types.Timestamp{Time: time.Now()},
-				Engine:    "decentr",
-				Domain:    "decentr.xyz",
+				Engine:    "furya",
+				Domain:    "furya.xyz",
 				Query:     "the best crypto",
 			},
 			valid: true,
@@ -30,7 +30,7 @@ func TestSearchHistory_Validate(t *testing.T) {
 			d: SearchHistory{
 				Timestamp: types.Timestamp{Time: time.Now()},
 				Engine:    "",
-				Domain:    "decentr.xyz",
+				Domain:    "furya.xyz",
 				Query:     "the best crypto",
 			},
 			valid: false,
@@ -39,8 +39,8 @@ func TestSearchHistory_Validate(t *testing.T) {
 			name: "empty searchLine",
 			d: SearchHistory{
 				Timestamp: types.Timestamp{Time: time.Now()},
-				Engine:    "decentr",
-				Domain:    "decentr.xyz",
+				Engine:    "furya",
+				Domain:    "furya.xyz",
 				Query:     "",
 			},
 			valid: false,
@@ -49,7 +49,7 @@ func TestSearchHistory_Validate(t *testing.T) {
 			name: "empty domain",
 			d: SearchHistory{
 				Timestamp: types.Timestamp{Time: time.Now()},
-				Engine:    "decentr",
+				Engine:    "furya",
 				Domain:    "",
 				Query:     "",
 			},
@@ -58,9 +58,9 @@ func TestSearchHistory_Validate(t *testing.T) {
 		{
 			name: "invalid timestamp",
 			d: SearchHistory{
-				Engine: "decentr",
+				Engine: "furya",
 				Query:  "something",
-				Domain: "decentr.xyz",
+				Domain: "furya.xyz",
 			},
 			valid: false,
 		},

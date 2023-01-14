@@ -40,17 +40,17 @@ func GenVotingParamsVotingPeriod(r *rand.Rand) time.Duration {
 }
 
 // GenTallyParamsQuorum randomized TallyParamsQuorum
-func GenTallyParamsQuorum(r *rand.Rand) sdk.Dec {
+func GenTallyParamsQuorum(r *rand.Rand) sdk.Fur {
 	return sdk.NewDecWithPrec(int64(simulation.RandIntBetween(r, 334, 500)), 3)
 }
 
 // GenTallyParamsThreshold randomized TallyParamsThreshold
-func GenTallyParamsThreshold(r *rand.Rand) sdk.Dec {
+func GenTallyParamsThreshold(r *rand.Rand) sdk.Fur {
 	return sdk.NewDecWithPrec(int64(simulation.RandIntBetween(r, 450, 550)), 3)
 }
 
 // GenTallyParamsVeto randomized TallyParamsVeto
-func GenTallyParamsVeto(r *rand.Rand) sdk.Dec {
+func GenTallyParamsVeto(r *rand.Rand) sdk.Fur {
 	return sdk.NewDecWithPrec(int64(simulation.RandIntBetween(r, 250, 334)), 3)
 }
 
@@ -76,19 +76,19 @@ func RandomizedGenState(simState *module.SimulationState) {
 		func(r *rand.Rand) { votingPeriod = GenVotingParamsVotingPeriod(r) },
 	)
 
-	var quorum sdk.Dec
+	var quorum sdk.Fur
 	simState.AppParams.GetOrGenerate(
 		simState.Cdc, TallyParamsQuorum, &quorum, simState.Rand,
 		func(r *rand.Rand) { quorum = GenTallyParamsQuorum(r) },
 	)
 
-	var threshold sdk.Dec
+	var threshold sdk.Fur
 	simState.AppParams.GetOrGenerate(
 		simState.Cdc, TallyParamsThreshold, &threshold, simState.Rand,
 		func(r *rand.Rand) { threshold = GenTallyParamsThreshold(r) },
 	)
 
-	var veto sdk.Dec
+	var veto sdk.Fur
 	simState.AppParams.GetOrGenerate(
 		simState.Cdc, TallyParamsVeto, &veto, simState.Rand,
 		func(r *rand.Rand) { veto = GenTallyParamsVeto(r) },

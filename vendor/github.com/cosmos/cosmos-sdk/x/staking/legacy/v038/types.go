@@ -34,7 +34,7 @@ type (
 		Jailed                  bool                   `json:"jailed" yaml:"jailed"`
 		Status                  v034staking.BondStatus `json:"status" yaml:"status"`
 		Tokens                  sdk.Int                `json:"tokens" yaml:"tokens"`
-		DelegatorShares         sdk.Dec                `json:"delegator_shares" yaml:"delegator_shares"`
+		DelegatorShares         sdk.Fur                `json:"delegator_shares" yaml:"delegator_shares"`
 		Description             Description            `json:"description" yaml:"description"`
 		UnbondingHeight         int64                  `json:"unbonding_height" yaml:"unbonding_height"`
 		UnbondingCompletionTime time.Time              `json:"unbonding_time" yaml:"unbonding_time"`
@@ -48,7 +48,7 @@ type (
 		Jailed                  bool                   `json:"jailed" yaml:"jailed"`
 		Status                  v034staking.BondStatus `json:"status" yaml:"status"`
 		Tokens                  sdk.Int                `json:"tokens" yaml:"tokens"`
-		DelegatorShares         sdk.Dec                `json:"delegator_shares" yaml:"delegator_shares"`
+		DelegatorShares         sdk.Fur                `json:"delegator_shares" yaml:"delegator_shares"`
 		Description             Description            `json:"description" yaml:"description"`
 		UnbondingHeight         int64                  `json:"unbonding_height" yaml:"unbonding_height"`
 		UnbondingCompletionTime time.Time              `json:"unbonding_time" yaml:"unbonding_time"`

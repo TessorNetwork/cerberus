@@ -1,13 +1,13 @@
-module github.com/Decentr-net/cerberus
+module github.com/TessorNetwork/cerberus
 
 go 1.19
 
 require (
-	github.com/Decentr-net/ariadne v1.1.1
-	github.com/Decentr-net/decentr v1.6.2
-	github.com/Decentr-net/go-api v0.1.0
-	github.com/Decentr-net/go-broadcaster v0.1.3
-	github.com/Decentr-net/logrus v0.7.2
+	github.com/TessorNetwork/ariadne v1.1.1
+	github.com/TessorNetwork/fury v0.1.0-furya.1
+	github.com/TessorNetwork/go-api v0.1.0
+	github.com/TessorNetwork/go-broadcaster v0.1.3
+	github.com/TessorNetwork/logrus v0.7.2
 	github.com/asaskevich/govalidator v0.0.0-20200428143746-21a406dcc535
 	github.com/avast/retry-go v3.0.0+incompatible
 	github.com/aws/aws-sdk-go v1.40.45

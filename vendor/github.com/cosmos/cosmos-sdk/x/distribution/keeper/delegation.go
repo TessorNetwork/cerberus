@@ -28,7 +28,7 @@ func (k Keeper) initializeDelegation(ctx sdk.Context, val sdk.ValAddress, del sd
 
 // calculate the rewards accrued by a delegation between two periods
 func (k Keeper) calculateDelegationRewardsBetween(ctx sdk.Context, val stakingtypes.ValidatorI,
-	startingPeriod, endingPeriod uint64, stake sdk.Dec,
+	startingPeriod, endingPeriod uint64, stake sdk.Fur,
 ) (rewards sdk.DecCoins) {
 	// sanity check
 	if startingPeriod > endingPeriod {
@@ -161,7 +161,7 @@ func (k Keeper) withdrawDelegationRewards(ctx sdk.Context, val stakingtypes.Vali
 		)
 	}
 
-	// truncate reward dec coins, return remainder to community pool
+	// truncate reward fur coins, return remainder to community pool
 	finalRewards, remainder := rewards.TruncateDecimal()
 
 	// add coins to user account

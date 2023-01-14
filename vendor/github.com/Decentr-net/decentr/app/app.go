@@ -8,7 +8,7 @@ import (
 	"os"
 	"path/filepath"
 
-	v160 "github.com/Decentr-net/decentr/app/upgrade/v160"
+	v160 "github.com/TessorNetwork/furya/app/upgrade/v160"
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/grpc/tmservice"
@@ -92,24 +92,24 @@ import (
 	tmos "github.com/tendermint/tendermint/libs/os"
 	dbm "github.com/tendermint/tm-db"
 
-	appparams "github.com/Decentr-net/decentr/app/params"
+	appparams "github.com/TessorNetwork/furya/app/params"
 
 	"github.com/tendermint/spm/cosmoscmd"
 	"github.com/tendermint/spm/openapiconsole"
 
-	appante "github.com/Decentr-net/decentr/app/ante"
-	appconfig "github.com/Decentr-net/decentr/config"
-	"github.com/Decentr-net/decentr/docs"
+	appante "github.com/TessorNetwork/furya/app/ante"
+	appconfig "github.com/TessorNetwork/furya/config"
+	"github.com/TessorNetwork/furya/docs"
 
-	"github.com/Decentr-net/decentr/x/community"
-	communitykeeper "github.com/Decentr-net/decentr/x/community/keeper"
-	communitytypes "github.com/Decentr-net/decentr/x/community/types"
-	"github.com/Decentr-net/decentr/x/operations"
-	operationskeeper "github.com/Decentr-net/decentr/x/operations/keeper"
-	operationstypes "github.com/Decentr-net/decentr/x/operations/types"
-	"github.com/Decentr-net/decentr/x/token"
-	tokenkeeper "github.com/Decentr-net/decentr/x/token/keeper"
-	tokentypes "github.com/Decentr-net/decentr/x/token/types"
+	"github.com/TessorNetwork/furya/x/community"
+	communitykeeper "github.com/TessorNetwork/furya/x/community/keeper"
+	communitytypes "github.com/TessorNetwork/furya/x/community/types"
+	"github.com/TessorNetwork/furya/x/operations"
+	operationskeeper "github.com/TessorNetwork/furya/x/operations/keeper"
+	operationstypes "github.com/TessorNetwork/furya/x/operations/types"
+	"github.com/TessorNetwork/furya/x/token"
+	tokenkeeper "github.com/TessorNetwork/furya/x/token/keeper"
+	tokentypes "github.com/TessorNetwork/furya/x/token/types"
 )
 
 func getGovProposalHandlers() []govclient.ProposalHandler {
@@ -232,7 +232,7 @@ type App struct {
 	sm           *module.SimulationManager
 }
 
-// New returns a reference to an initialized Decentr.
+// New returns a reference to an initialized Furya.
 func New(
 	logger log.Logger,
 	db dbm.DB,
@@ -622,7 +622,7 @@ func (app *App) LegacyAmino() *codec.LegacyAmino {
 	return app.legacyAmino
 }
 
-// AppCodec returns Decentr's app codec.
+// AppCodec returns Furya's app codec.
 //
 // NOTE: This is solely to be used for testing purposes as it may be desirable
 // for modules to register their own custom testing types.
@@ -630,7 +630,7 @@ func (app *App) AppCodec() codec.Codec {
 	return app.appCodec
 }
 
-// InterfaceRegistry returns Decentr's InterfaceRegistry
+// InterfaceRegistry returns Furya's InterfaceRegistry
 func (app *App) InterfaceRegistry() types.InterfaceRegistry {
 	return app.interfaceRegistry
 }

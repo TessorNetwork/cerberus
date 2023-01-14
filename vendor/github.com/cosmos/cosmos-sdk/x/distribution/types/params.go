@@ -74,7 +74,7 @@ func (p Params) ValidateBasic() error {
 }
 
 func validateCommunityTax(i interface{}) error {
-	v, ok := i.(sdk.Dec)
+	v, ok := i.(sdk.Fur)
 	if !ok {
 		return fmt.Errorf("invalid parameter type: %T", i)
 	}
@@ -93,7 +93,7 @@ func validateCommunityTax(i interface{}) error {
 }
 
 func validateBaseProposerReward(i interface{}) error {
-	v, ok := i.(sdk.Dec)
+	v, ok := i.(sdk.Fur)
 	if !ok {
 		return fmt.Errorf("invalid parameter type: %T", i)
 	}
@@ -112,7 +112,7 @@ func validateBaseProposerReward(i interface{}) error {
 }
 
 func validateBonusProposerReward(i interface{}) error {
-	v, ok := i.(sdk.Dec)
+	v, ok := i.(sdk.Fur)
 	if !ok {
 		return fmt.Errorf("invalid parameter type: %T", i)
 	}

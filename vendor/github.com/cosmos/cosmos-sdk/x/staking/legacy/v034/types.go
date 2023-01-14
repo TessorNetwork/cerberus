@@ -57,9 +57,9 @@ type (
 	}
 
 	Commission struct {
-		Rate          sdk.Dec   `json:"rate"`
-		MaxRate       sdk.Dec   `json:"max_rate"`
-		MaxChangeRate sdk.Dec   `json:"max_change_rate"`
+		Rate          sdk.Fur   `json:"rate"`
+		MaxRate       sdk.Fur   `json:"max_rate"`
+		MaxChangeRate sdk.Fur   `json:"max_change_rate"`
 		UpdateTime    time.Time `json:"update_time"`
 	}
 
@@ -69,7 +69,7 @@ type (
 		Jailed                  bool           `json:"jailed"`              // has the validator been jailed from bonded status?
 		Status                  BondStatus     `json:"status"`              // validator status (bonded/unbonding/unbonded)
 		Tokens                  sdk.Int        `json:"tokens"`              // delegated tokens (incl. self-delegation)
-		DelegatorShares         sdk.Dec        `json:"delegator_shares"`    // total shares issued to a validator's delegators
+		DelegatorShares         sdk.Fur        `json:"delegator_shares"`    // total shares issued to a validator's delegators
 		Description             Description    `json:"description"`         // description terms for the validator
 		UnbondingHeight         int64          `json:"unbonding_height"`    // if unbonding, height at which this validator has begun unbonding
 		UnbondingCompletionTime time.Time      `json:"unbonding_time"`      // if unbonding, min time for the validator to complete unbonding
@@ -83,7 +83,7 @@ type (
 		Jailed                  bool               `json:"jailed"`
 		Status                  BondStatus         `json:"status"`
 		Tokens                  sdk.Int            `json:"tokens"`
-		DelegatorShares         sdk.Dec            `json:"delegator_shares"`
+		DelegatorShares         sdk.Fur            `json:"delegator_shares"`
 		Description             Description        `json:"description"`
 		UnbondingHeight         int64              `json:"unbonding_height"`
 		UnbondingCompletionTime time.Time          `json:"unbonding_time"`
@@ -96,7 +96,7 @@ type (
 	Delegation struct {
 		DelegatorAddress sdk.AccAddress `json:"delegator_address"`
 		ValidatorAddress sdk.ValAddress `json:"validator_address"`
-		Shares           sdk.Dec        `json:"shares"`
+		Shares           sdk.Fur        `json:"shares"`
 	}
 
 	Delegations []Delegation
@@ -118,7 +118,7 @@ type (
 		CreationHeight int64     `json:"creation_height"`
 		CompletionTime time.Time `json:"completion_time"`
 		InitialBalance sdk.Int   `json:"initial_balance"`
-		SharesDst      sdk.Dec   `json:"shares_dst"`
+		SharesDst      sdk.Fur   `json:"shares_dst"`
 	}
 
 	Redelegation struct {

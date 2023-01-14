@@ -12,7 +12,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/query"
 
-	"github.com/Decentr-net/decentr/x/community/types"
+	"github.com/TessorNetwork/furya/x/community/types"
 )
 
 func GetQueryCmd(_ string) *cobra.Command {

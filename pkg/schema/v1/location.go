@@ -1,7 +1,7 @@
 package schema
 
 import (
-	"github.com/Decentr-net/cerberus/pkg/schema/types"
+	"github.com/TessorNetwork/cerberus/pkg/schema/types"
 )
 
 // Location is user's geolocation.

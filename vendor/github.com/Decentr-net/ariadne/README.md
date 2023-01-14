@@ -1,11 +1,11 @@
 # Ariadne
-![img](https://img.shields.io/github/license/Decentr-net/ariadne) ![img](https://img.shields.io/github/go-mod/go-version/Decentr-net/ariadne) ![img](https://img.shields.io/github/v/tag/Decentr-net/ariadne?label=version)
+![img](https://img.shields.io/github/license/TessorNetwork/ariadne) ![img](https://img.shields.io/github/go-mod/go-version/TessorNetwork/ariadne) ![img](https://img.shields.io/github/v/tag/TessorNetwork/ariadne?label=version)
 
 Ariadne is a library for fetching blocks from cosmos based blockchain node. The library is helpful at off-chain services building.
 
 ## Install
 ```
-go get -u github.com/Decentr-net/ariadne
+go get -u github.com/TessorNetwork/ariadne
 ```
 
 ## Usage

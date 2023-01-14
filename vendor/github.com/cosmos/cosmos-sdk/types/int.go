@@ -128,12 +128,12 @@ func NewIntFromString(s string) (res Int, ok bool) {
 }
 
 // NewIntWithDecimal constructs Int with decimal
-// Result value is n*10^dec
-func NewIntWithDecimal(n int64, dec int) Int {
-	if dec < 0 {
+// Result value is n*10^fur
+func NewIntWithDecimal(n int64, fur int) Int {
+	if fur < 0 {
 		panic("NewIntWithDecimal() decimal is negative")
 	}
-	exp := new(big.Int).Exp(big.NewInt(10), big.NewInt(int64(dec)), nil)
+	exp := new(big.Int).Exp(big.NewInt(10), big.NewInt(int64(fur)), nil)
 	i := new(big.Int)
 	i.Mul(big.NewInt(n), exp)
 
@@ -150,8 +150,8 @@ func ZeroInt() Int { return Int{big.NewInt(0)} }
 // OneInt returns Int value with one
 func OneInt() Int { return Int{big.NewInt(1)} }
 
-// ToDec converts Int to Dec
-func (i Int) ToDec() Dec {
+// ToDec converts Int to Fur
+func (i Int) ToDec() Fur {
 	return NewDecFromInt(i)
 }
 

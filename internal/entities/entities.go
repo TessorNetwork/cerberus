@@ -6,14 +6,14 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/Decentr-net/cerberus/pkg/schema"
+	"github.com/TessorNetwork/cerberus/pkg/schema"
 )
 
 // PDVMeta contains info about PDV.
 type PDVMeta struct {
 	// ObjectTypes represents how much certain meta data meta contains.
 	ObjectTypes map[schema.Type]uint16 `json:"object_types"`
-	Reward      sdk.Dec                `json:"reward"`
+	Reward      sdk.Fur                `json:"reward"`
 }
 
 // Profile ...

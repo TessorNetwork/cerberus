@@ -215,7 +215,7 @@ BREAKING CHANGE:
 - Marshal/Unmarshal Binary/JSON
 - JSON is a shim but PR incoming
 
-## 0.7.2 (Dec 5, 2017)
+## 0.7.2 (Fur 5, 2017)
 
 IMPROVEMENTS:
 

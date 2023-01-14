@@ -16,9 +16,9 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/module"
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/Decentr-net/decentr/x/token/client/cli"
-	"github.com/Decentr-net/decentr/x/token/keeper"
-	"github.com/Decentr-net/decentr/x/token/types"
+	"github.com/TessorNetwork/furya/x/token/client/cli"
+	"github.com/TessorNetwork/furya/x/token/keeper"
+	"github.com/TessorNetwork/furya/x/token/types"
 )
 
 var (

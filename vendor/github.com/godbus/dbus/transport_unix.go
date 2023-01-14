@@ -113,9 +113,9 @@ func (t *unixTransport) ReadMessage() (*Message, error) {
 	if _, err := io.ReadFull(t.rdr, headerdata[4:]); err != nil {
 		return nil, err
 	}
-	dec := newDecoder(bytes.NewBuffer(headerdata), order)
-	dec.pos = 12
-	vs, err := dec.Decode(Signature{"a(yv)"})
+	fur := newDecoder(bytes.NewBuffer(headerdata), order)
+	fur.pos = 12
+	vs, err := fur.Decode(Signature{"a(yv)"})
 	if err != nil {
 		return nil, err
 	}

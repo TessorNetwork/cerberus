@@ -76,8 +76,8 @@ func (app *BaseApp) RegisterGRPCServer(server gogogrpc.Server) {
 			methodHandler := method.Handler
 			newMethods[i] = grpc.MethodDesc{
 				MethodName: method.MethodName,
-				Handler: func(srv interface{}, ctx context.Context, dec func(interface{}) error, _ grpc.UnaryServerInterceptor) (interface{}, error) {
-					return methodHandler(srv, ctx, dec, grpcmiddleware.ChainUnaryServer(
+				Handler: func(srv interface{}, ctx context.Context, fur func(interface{}) error, _ grpc.UnaryServerInterceptor) (interface{}, error) {
+					return methodHandler(srv, ctx, fur, grpcmiddleware.ChainUnaryServer(
 						grpcrecovery.UnaryServerInterceptor(),
 						interceptor,
 					))

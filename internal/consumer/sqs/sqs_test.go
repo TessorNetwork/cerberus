@@ -21,14 +21,14 @@ import (
 	"github.com/testcontainers/testcontainers-go"
 	"github.com/testcontainers/testcontainers-go/wait"
 
-	"github.com/Decentr-net/cerberus/internal/blockchain"
-	blockchainmock "github.com/Decentr-net/cerberus/internal/blockchain/mock"
-	"github.com/Decentr-net/cerberus/internal/entities"
-	"github.com/Decentr-net/cerberus/internal/producer"
-	sqsproducer "github.com/Decentr-net/cerberus/internal/producer/sqs"
-	"github.com/Decentr-net/cerberus/internal/storage"
-	storagemock "github.com/Decentr-net/cerberus/internal/storage/mock"
-	"github.com/Decentr-net/cerberus/pkg/schema"
+	"github.com/TessorNetwork/cerberus/internal/blockchain"
+	blockchainmock "github.com/TessorNetwork/cerberus/internal/blockchain/mock"
+	"github.com/TessorNetwork/cerberus/internal/entities"
+	"github.com/TessorNetwork/cerberus/internal/producer"
+	sqsproducer "github.com/TessorNetwork/cerberus/internal/producer/sqs"
+	"github.com/TessorNetwork/cerberus/internal/storage"
+	storagemock "github.com/TessorNetwork/cerberus/internal/storage/mock"
+	"github.com/TessorNetwork/cerberus/pkg/schema"
 )
 
 var (

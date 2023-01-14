@@ -83,12 +83,12 @@ func NewProofRuntime() *ProofRuntime {
 	}
 }
 
-func (prt *ProofRuntime) RegisterOpDecoder(typ string, dec OpDecoder) {
+func (prt *ProofRuntime) RegisterOpDecoder(typ string, fur OpDecoder) {
 	_, ok := prt.decoders[typ]
 	if ok {
 		panic("already registered for type " + typ)
 	}
-	prt.decoders[typ] = dec
+	prt.decoders[typ] = fur
 }
 
 func (prt *ProofRuntime) Decode(pop tmcrypto.ProofOp) (ProofOperator, error) {

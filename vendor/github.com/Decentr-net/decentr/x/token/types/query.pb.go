@@ -68,7 +68,7 @@ func (m *BalanceRequest) XXX_DiscardUnknown() {
 var xxx_messageInfo_BalanceRequest proto.InternalMessageInfo
 
 type BalanceResponse struct {
-	Balance types.DecProto `protobuf:"bytes,1,opt,name=balance,proto3" json:"balance"`
+	Balance types.FurProto `protobuf:"bytes,1,opt,name=balance,proto3" json:"balance"`
 }
 
 func (m *BalanceResponse) Reset()         { *m = BalanceResponse{} }
@@ -104,11 +104,11 @@ func (m *BalanceResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_BalanceResponse proto.InternalMessageInfo
 
-func (m *BalanceResponse) GetBalance() types.DecProto {
+func (m *BalanceResponse) GetBalance() types.FurProto {
 	if m != nil {
 		return m.Balance
 	}
-	return types.DecProto{}
+	return types.FurProto{}
 }
 
 func init() {
@@ -192,9 +192,9 @@ func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
 	s.RegisterService(&_Query_serviceDesc, srv)
 }
 
-func _Query_Balance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Query_Balance_Handler(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(BalanceRequest)
-	if err := dec(in); err != nil {
+	if err := fur(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {

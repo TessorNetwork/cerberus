@@ -27,9 +27,9 @@ const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 // Params defines the set of params for the distribution module.
 type Params struct {
-	CommunityTax        github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,1,opt,name=community_tax,json=communityTax,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"community_tax" yaml:"community_tax"`
-	BaseProposerReward  github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,2,opt,name=base_proposer_reward,json=baseProposerReward,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"base_proposer_reward" yaml:"base_proposer_reward"`
-	BonusProposerReward github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,3,opt,name=bonus_proposer_reward,json=bonusProposerReward,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"bonus_proposer_reward" yaml:"bonus_proposer_reward"`
+	CommunityTax        github_com_cosmos_cosmos_sdk_types.Fur `protobuf:"bytes,1,opt,name=community_tax,json=communityTax,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Fur" json:"community_tax" yaml:"community_tax"`
+	BaseProposerReward  github_com_cosmos_cosmos_sdk_types.Fur `protobuf:"bytes,2,opt,name=base_proposer_reward,json=baseProposerReward,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Fur" json:"base_proposer_reward" yaml:"base_proposer_reward"`
+	BonusProposerReward github_com_cosmos_cosmos_sdk_types.Fur `protobuf:"bytes,3,opt,name=bonus_proposer_reward,json=bonusProposerReward,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Fur" json:"bonus_proposer_reward" yaml:"bonus_proposer_reward"`
 	WithdrawAddrEnabled bool                                   `protobuf:"varint,4,opt,name=withdraw_addr_enabled,json=withdrawAddrEnabled,proto3" json:"withdraw_addr_enabled,omitempty" yaml:"withdraw_addr_enabled"`
 }
 
@@ -289,7 +289,7 @@ func (m *ValidatorOutstandingRewards) GetRewards() github_com_cosmos_cosmos_sdk_
 // for delegations which are withdrawn after a slash has occurred.
 type ValidatorSlashEvent struct {
 	ValidatorPeriod uint64                                 `protobuf:"varint,1,opt,name=validator_period,json=validatorPeriod,proto3" json:"validator_period,omitempty" yaml:"validator_period"`
-	Fraction        github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,2,opt,name=fraction,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"fraction"`
+	Fraction        github_com_cosmos_cosmos_sdk_types.Fur `protobuf:"bytes,2,opt,name=fraction,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Fur" json:"fraction"`
 }
 
 func (m *ValidatorSlashEvent) Reset()         { *m = ValidatorSlashEvent{} }
@@ -468,10 +468,10 @@ var xxx_messageInfo_CommunityPoolSpendProposal proto.InternalMessageInfo
 // staking token, and the creation height (to check later on if any slashes have
 // occurred). NOTE: Even though validators are slashed to whole staking tokens,
 // the delegators within the validator may be left with less than a full token,
-// thus sdk.Dec is used.
+// thus sdk.Fur is used.
 type DelegatorStartingInfo struct {
 	PreviousPeriod uint64                                 `protobuf:"varint,1,opt,name=previous_period,json=previousPeriod,proto3" json:"previous_period,omitempty" yaml:"previous_period"`
-	Stake          github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,2,opt,name=stake,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"stake" yaml:"stake"`
+	Stake          github_com_cosmos_cosmos_sdk_types.Fur `protobuf:"bytes,2,opt,name=stake,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Fur" json:"stake" yaml:"stake"`
 	Height         uint64                                 `protobuf:"varint,3,opt,name=height,proto3" json:"creation_height" yaml:"creation_height"`
 }
 

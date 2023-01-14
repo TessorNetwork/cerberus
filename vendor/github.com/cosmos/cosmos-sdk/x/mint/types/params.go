@@ -27,7 +27,7 @@ func ParamKeyTable() paramtypes.KeyTable {
 }
 
 func NewParams(
-	mintDenom string, inflationRateChange, inflationMax, inflationMin, goalBonded sdk.Dec, blocksPerYear uint64,
+	mintDenom string, inflationRateChange, inflationMax, inflationMin, goalBonded sdk.Fur, blocksPerYear uint64,
 ) Params {
 	return Params{
 		MintDenom:           mintDenom,
@@ -116,7 +116,7 @@ func validateMintDenom(i interface{}) error {
 }
 
 func validateInflationRateChange(i interface{}) error {
-	v, ok := i.(sdk.Dec)
+	v, ok := i.(sdk.Fur)
 	if !ok {
 		return fmt.Errorf("invalid parameter type: %T", i)
 	}
@@ -132,7 +132,7 @@ func validateInflationRateChange(i interface{}) error {
 }
 
 func validateInflationMax(i interface{}) error {
-	v, ok := i.(sdk.Dec)
+	v, ok := i.(sdk.Fur)
 	if !ok {
 		return fmt.Errorf("invalid parameter type: %T", i)
 	}
@@ -148,7 +148,7 @@ func validateInflationMax(i interface{}) error {
 }
 
 func validateInflationMin(i interface{}) error {
-	v, ok := i.(sdk.Dec)
+	v, ok := i.(sdk.Fur)
 	if !ok {
 		return fmt.Errorf("invalid parameter type: %T", i)
 	}
@@ -164,7 +164,7 @@ func validateInflationMin(i interface{}) error {
 }
 
 func validateGoalBonded(i interface{}) error {
-	v, ok := i.(sdk.Dec)
+	v, ok := i.(sdk.Fur)
 	if !ok {
 		return fmt.Errorf("invalid parameter type: %T", i)
 	}

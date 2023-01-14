@@ -83,7 +83,7 @@ func validateDepositParams(i interface{}) error {
 }
 
 // NewTallyParams creates a new TallyParams object
-func NewTallyParams(quorum, threshold, vetoThreshold sdk.Dec) TallyParams {
+func NewTallyParams(quorum, threshold, vetoThreshold sdk.Fur) TallyParams {
 	return TallyParams{
 		Quorum:        quorum,
 		Threshold:     threshold,

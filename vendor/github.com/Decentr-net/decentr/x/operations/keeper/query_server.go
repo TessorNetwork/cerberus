@@ -5,7 +5,7 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/Decentr-net/decentr/x/operations/types"
+	"github.com/TessorNetwork/furya/x/operations/types"
 )
 
 var _ types.QueryServer = queryServer{}

@@ -245,7 +245,7 @@ func (msg MsgVoteWeighted) ValidateBasic() error {
 		return sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, WeightedVoteOptions(msg.Options).String())
 	}
 
-	totalWeight := sdk.NewDec(0)
+	totalWeight := sdk.NewFur(0)
 	usedOptions := make(map[VoteOption]bool)
 	for _, option := range msg.Options {
 		if !ValidWeightedVoteOption(option) {
@@ -258,11 +258,11 @@ func (msg MsgVoteWeighted) ValidateBasic() error {
 		usedOptions[option.Option] = true
 	}
 
-	if totalWeight.GT(sdk.NewDec(1)) {
+	if totalWeight.GT(sdk.NewFur(1)) {
 		return sdkerrors.Wrap(ErrInvalidVote, "Total weight overflow 1.00")
 	}
 
-	if totalWeight.LT(sdk.NewDec(1)) {
+	if totalWeight.LT(sdk.NewFur(1)) {
 		return sdkerrors.Wrap(ErrInvalidVote, "Total weight lower than 1.00")
 	}
 

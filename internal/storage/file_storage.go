@@ -6,7 +6,7 @@ import (
 	"errors"
 	"io"
 
-	"github.com/Decentr-net/cerberus/internal/health"
+	"github.com/TessorNetwork/cerberus/internal/health"
 )
 
 //go:generate mockgen -destination=./mock/file_storage.go -package=mock -source=file_storage.go

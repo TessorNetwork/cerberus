@@ -16,9 +16,9 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/module"
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/Decentr-net/decentr/x/community/client/cli"
-	"github.com/Decentr-net/decentr/x/community/keeper"
-	"github.com/Decentr-net/decentr/x/community/types"
+	"github.com/TessorNetwork/furya/x/community/client/cli"
+	"github.com/TessorNetwork/furya/x/community/keeper"
+	"github.com/TessorNetwork/furya/x/community/types"
 )
 
 var (

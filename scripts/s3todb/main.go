@@ -15,8 +15,8 @@ import (
 	"github.com/minio/minio-go/v7/pkg/credentials"
 	"github.com/sirupsen/logrus"
 
-	"github.com/Decentr-net/cerberus/internal/entities"
-	"github.com/Decentr-net/cerberus/internal/storage/postgres"
+	"github.com/TessorNetwork/cerberus/internal/entities"
+	"github.com/TessorNetwork/cerberus/internal/storage/postgres"
 )
 
 type DBOpts struct {

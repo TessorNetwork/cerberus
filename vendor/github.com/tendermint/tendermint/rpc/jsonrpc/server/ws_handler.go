@@ -333,9 +333,9 @@ func (wsc *wsConnection) readRoutine() {
 				return
 			}
 
-			dec := json.NewDecoder(r)
+			fur := json.NewDecoder(r)
 			var request types.RPCRequest
-			err = dec.Decode(&request)
+			err = fur.Decode(&request)
 			if err != nil {
 				if err := wsc.WriteRPCResponse(writeCtx,
 					types.RPCParseError(fmt.Errorf("error unmarshaling request: %w", err))); err != nil {

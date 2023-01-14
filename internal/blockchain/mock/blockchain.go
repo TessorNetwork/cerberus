@@ -5,7 +5,7 @@
 package mock
 
 import (
-	blockchain "github.com/Decentr-net/cerberus/internal/blockchain"
+	blockchain "github.com/TessorNetwork/cerberus/internal/blockchain"
 	gomock "github.com/golang/mock/gomock"
 	reflect "reflect"
 )

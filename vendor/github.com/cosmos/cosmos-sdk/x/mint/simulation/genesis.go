@@ -22,59 +22,59 @@ const (
 )
 
 // GenInflation randomized Inflation
-func GenInflation(r *rand.Rand) sdk.Dec {
+func GenInflation(r *rand.Rand) sdk.Fur {
 	return sdk.NewDecWithPrec(int64(r.Intn(99)), 2)
 }
 
 // GenInflationRateChange randomized InflationRateChange
-func GenInflationRateChange(r *rand.Rand) sdk.Dec {
+func GenInflationRateChange(r *rand.Rand) sdk.Fur {
 	return sdk.NewDecWithPrec(int64(r.Intn(99)), 2)
 }
 
 // GenInflationMax randomized InflationMax
-func GenInflationMax(r *rand.Rand) sdk.Dec {
+func GenInflationMax(r *rand.Rand) sdk.Fur {
 	return sdk.NewDecWithPrec(20, 2)
 }
 
 // GenInflationMin randomized InflationMin
-func GenInflationMin(r *rand.Rand) sdk.Dec {
+func GenInflationMin(r *rand.Rand) sdk.Fur {
 	return sdk.NewDecWithPrec(7, 2)
 }
 
 // GenGoalBonded randomized GoalBonded
-func GenGoalBonded(r *rand.Rand) sdk.Dec {
+func GenGoalBonded(r *rand.Rand) sdk.Fur {
 	return sdk.NewDecWithPrec(67, 2)
 }
 
 // RandomizedGenState generates a random GenesisState for mint
 func RandomizedGenState(simState *module.SimulationState) {
 	// minter
-	var inflation sdk.Dec
+	var inflation sdk.Fur
 	simState.AppParams.GetOrGenerate(
 		simState.Cdc, Inflation, &inflation, simState.Rand,
 		func(r *rand.Rand) { inflation = GenInflation(r) },
 	)
 
 	// params
-	var inflationRateChange sdk.Dec
+	var inflationRateChange sdk.Fur
 	simState.AppParams.GetOrGenerate(
 		simState.Cdc, InflationRateChange, &inflationRateChange, simState.Rand,
 		func(r *rand.Rand) { inflationRateChange = GenInflationRateChange(r) },
 	)
 
-	var inflationMax sdk.Dec
+	var inflationMax sdk.Fur
 	simState.AppParams.GetOrGenerate(
 		simState.Cdc, InflationMax, &inflationMax, simState.Rand,
 		func(r *rand.Rand) { inflationMax = GenInflationMax(r) },
 	)
 
-	var inflationMin sdk.Dec
+	var inflationMin sdk.Fur
 	simState.AppParams.GetOrGenerate(
 		simState.Cdc, InflationMin, &inflationMin, simState.Rand,
 		func(r *rand.Rand) { inflationMin = GenInflationMin(r) },
 	)
 
-	var goalBonded sdk.Dec
+	var goalBonded sdk.Fur
 	simState.AppParams.GetOrGenerate(
 		simState.Cdc, GoalBonded, &goalBonded, simState.Rand,
 		func(r *rand.Rand) { goalBonded = GenGoalBonded(r) },

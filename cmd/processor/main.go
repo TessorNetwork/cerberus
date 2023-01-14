@@ -16,10 +16,10 @@ import (
 	"github.com/sirupsen/logrus"
 	"golang.org/x/sync/errgroup"
 
-	"github.com/Decentr-net/logrus/sentry"
+	"github.com/TessorNetwork/logrus/sentry"
 
-	"github.com/Decentr-net/cerberus/internal/health"
-	"github.com/Decentr-net/cerberus/internal/storage/postgres"
+	"github.com/TessorNetwork/cerberus/internal/health"
+	"github.com/TessorNetwork/cerberus/internal/storage/postgres"
 )
 
 var opts = struct {

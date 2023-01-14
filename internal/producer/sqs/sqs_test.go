@@ -19,9 +19,9 @@ import (
 	"github.com/testcontainers/testcontainers-go"
 	"github.com/testcontainers/testcontainers-go/wait"
 
-	"github.com/Decentr-net/cerberus/internal/entities"
-	"github.com/Decentr-net/cerberus/internal/producer"
-	"github.com/Decentr-net/cerberus/pkg/schema"
+	"github.com/TessorNetwork/cerberus/internal/entities"
+	"github.com/TessorNetwork/cerberus/internal/producer"
+	"github.com/TessorNetwork/cerberus/pkg/schema"
 )
 
 var (

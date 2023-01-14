@@ -6,7 +6,7 @@ package mock
 
 import (
 	context "context"
-	hades "github.com/Decentr-net/cerberus/internal/hades"
+	hades "github.com/TessorNetwork/cerberus/internal/hades"
 	gomock "github.com/golang/mock/gomock"
 	reflect "reflect"
 )

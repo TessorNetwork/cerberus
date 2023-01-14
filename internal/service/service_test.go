@@ -18,23 +18,23 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	_ "github.com/Decentr-net/cerberus/internal/blockchain"
-	cryptomock "github.com/Decentr-net/cerberus/internal/crypto/mock"
-	"github.com/Decentr-net/cerberus/internal/entities"
-	hadesclient "github.com/Decentr-net/cerberus/internal/hades"
-	hadesmock "github.com/Decentr-net/cerberus/internal/hades/mock"
-	"github.com/Decentr-net/cerberus/internal/producer"
-	producermock "github.com/Decentr-net/cerberus/internal/producer/mock"
-	"github.com/Decentr-net/cerberus/internal/storage"
-	storagemock "github.com/Decentr-net/cerberus/internal/storage/mock"
-	"github.com/Decentr-net/cerberus/pkg/schema"
-	"github.com/Decentr-net/cerberus/pkg/schema/types"
-	v1 "github.com/Decentr-net/cerberus/pkg/schema/v1"
+	_ "github.com/TessorNetwork/cerberus/internal/blockchain"
+	cryptomock "github.com/TessorNetwork/cerberus/internal/crypto/mock"
+	"github.com/TessorNetwork/cerberus/internal/entities"
+	hadesclient "github.com/TessorNetwork/cerberus/internal/hades"
+	hadesmock "github.com/TessorNetwork/cerberus/internal/hades/mock"
+	"github.com/TessorNetwork/cerberus/internal/producer"
+	producermock "github.com/TessorNetwork/cerberus/internal/producer/mock"
+	"github.com/TessorNetwork/cerberus/internal/storage"
+	storagemock "github.com/TessorNetwork/cerberus/internal/storage/mock"
+	"github.com/TessorNetwork/cerberus/pkg/schema"
+	"github.com/TessorNetwork/cerberus/pkg/schema/types"
+	v1 "github.com/TessorNetwork/cerberus/pkg/schema/v1"
 )
 
 var (
 	ctx                 = context.Background()
-	testOwner           = "decentr1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz"
+	testOwner           = "furya1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz"
 	testOwnerSdkAddr, _ = sdk.AccAddressFromBech32(testOwner)
 	testDevice          = "ios"
 	testID              = uint64(1)
@@ -52,7 +52,7 @@ var (
 var pdv = v1.PDV{
 	&v1.Cookie{
 		Source: schema.Source{
-			Host: "decentr.net",
+			Host: "furya.net",
 			Path: "/",
 		},
 		Name:           "my cookie",
@@ -307,7 +307,7 @@ func TestService_SavePDV_Profile(t *testing.T) {
 			})
 
 			is.EXPECT().SetProfile(ctx, gomock.Eq(&storage.SetProfileParams{
-				Address:   "decentr1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz",
+				Address:   "furya1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz",
 				FirstName: "first",
 				LastName:  "last",
 				Emails:    []string{"email1", "email2"},

@@ -68,7 +68,7 @@ func (k Keeper) StakingTokenSupply(ctx sdk.Context) sdk.Int {
 }
 
 // BondedRatio the fraction of the staking tokens which are currently bonded
-func (k Keeper) BondedRatio(ctx sdk.Context) sdk.Dec {
+func (k Keeper) BondedRatio(ctx sdk.Context) sdk.Fur {
 	stakeSupply := k.StakingTokenSupply(ctx)
 	if stakeSupply.IsPositive() {
 		return k.TotalBondedTokens(ctx).ToDec().QuoInt(stakeSupply)

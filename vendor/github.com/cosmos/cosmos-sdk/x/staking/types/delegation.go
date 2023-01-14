@@ -30,7 +30,7 @@ func (dvv DVVTriplet) String() string {
 // NewDelegation creates a new delegation object
 //
 //nolint:interfacer
-func NewDelegation(delegatorAddr sdk.AccAddress, validatorAddr sdk.ValAddress, shares sdk.Dec) Delegation {
+func NewDelegation(delegatorAddr sdk.AccAddress, validatorAddr sdk.ValAddress, shares sdk.Fur) Delegation {
 	return Delegation{
 		DelegatorAddress: delegatorAddr.String(),
 		ValidatorAddress: validatorAddr.String(),
@@ -73,7 +73,7 @@ func (d Delegation) GetValidatorAddr() sdk.ValAddress {
 	}
 	return addr
 }
-func (d Delegation) GetShares() sdk.Dec { return d.Shares }
+func (d Delegation) GetShares() sdk.Fur { return d.Shares }
 
 // String returns a human readable string representation of a Delegation.
 func (d Delegation) String() string {
@@ -188,7 +188,7 @@ func (ubds UnbondingDelegations) String() (out string) {
 	return strings.TrimSpace(out)
 }
 
-func NewRedelegationEntry(creationHeight int64, completionTime time.Time, balance sdk.Int, sharesDst sdk.Dec) RedelegationEntry {
+func NewRedelegationEntry(creationHeight int64, completionTime time.Time, balance sdk.Int, sharesDst sdk.Fur) RedelegationEntry {
 	return RedelegationEntry{
 		CreationHeight: creationHeight,
 		CompletionTime: completionTime,
@@ -211,7 +211,7 @@ func (e RedelegationEntry) IsMature(currentTime time.Time) bool {
 //nolint:interfacer
 func NewRedelegation(
 	delegatorAddr sdk.AccAddress, validatorSrcAddr, validatorDstAddr sdk.ValAddress,
-	creationHeight int64, minTime time.Time, balance sdk.Int, sharesDst sdk.Dec,
+	creationHeight int64, minTime time.Time, balance sdk.Int, sharesDst sdk.Fur,
 ) Redelegation {
 	return Redelegation{
 		DelegatorAddress:    delegatorAddr.String(),
@@ -224,7 +224,7 @@ func NewRedelegation(
 }
 
 // AddEntry - append entry to the unbonding delegation
-func (red *Redelegation) AddEntry(creationHeight int64, minTime time.Time, balance sdk.Int, sharesDst sdk.Dec) {
+func (red *Redelegation) AddEntry(creationHeight int64, minTime time.Time, balance sdk.Int, sharesDst sdk.Fur) {
 	entry := NewRedelegationEntry(creationHeight, minTime, balance, sharesDst)
 	red.Entries = append(red.Entries, entry)
 }
@@ -295,7 +295,7 @@ func (d Redelegations) String() (out string) {
 
 // NewDelegationResp creates a new DelegationResponse instance
 func NewDelegationResp(
-	delegatorAddr sdk.AccAddress, validatorAddr sdk.ValAddress, shares sdk.Dec, balance sdk.Coin,
+	delegatorAddr sdk.AccAddress, validatorAddr sdk.ValAddress, shares sdk.Fur, balance sdk.Coin,
 ) DelegationResponse {
 	return DelegationResponse{
 		Delegation: NewDelegation(delegatorAddr, validatorAddr, shares),
@@ -352,7 +352,7 @@ func NewRedelegationResponse(
 
 // NewRedelegationEntryResponse creates a new RedelegationEntryResponse instance.
 func NewRedelegationEntryResponse(
-	creationHeight int64, completionTime time.Time, sharesDst sdk.Dec, initialBalance, balance sdk.Int,
+	creationHeight int64, completionTime time.Time, sharesDst sdk.Fur, initialBalance, balance sdk.Int,
 ) RedelegationEntryResponse {
 	return RedelegationEntryResponse{
 		RedelegationEntry: NewRedelegationEntry(creationHeight, completionTime, initialBalance, sharesDst),

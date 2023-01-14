@@ -23,10 +23,10 @@ type Decoder struct {
 // The decoder introduces its own buffering and may read data from r beyond
 // the logfmt records requested.
 func NewDecoder(r io.Reader) *Decoder {
-	dec := &Decoder{
+	fur := &Decoder{
 		s: bufio.NewScanner(r),
 	}
-	return dec
+	return fur
 }
 
 // ScanRecord advances the Decoder to the next record, which can then be
@@ -34,16 +34,16 @@ func NewDecoder(r io.Reader) *Decoder {
 // either by reaching the end of the input or an error. After ScanRecord
 // returns false, the Err method will return any error that occurred during
 // decoding, except that if it was io.EOF, Err will return nil.
-func (dec *Decoder) ScanRecord() bool {
-	if dec.err != nil {
+func (fur *Decoder) ScanRecord() bool {
+	if fur.err != nil {
 		return false
 	}
-	if !dec.s.Scan() {
-		dec.err = dec.s.Err()
+	if !fur.s.Scan() {
+		fur.err = fur.s.Err()
 		return false
 	}
-	dec.lineNum++
-	dec.pos = 0
+	fur.lineNum++
+	fur.pos = 0
 	return true
 }
 
@@ -51,54 +51,54 @@ func (dec *Decoder) ScanRecord() bool {
 // record, which can then be retrieved with the Key and Value methods. It
 // returns false when decoding stops, either by reaching the end of the
 // current record or an error.
-func (dec *Decoder) ScanKeyval() bool {
-	dec.key, dec.value = nil, nil
-	if dec.err != nil {
+func (fur *Decoder) ScanKeyval() bool {
+	fur.key, fur.value = nil, nil
+	if fur.err != nil {
 		return false
 	}
 
-	line := dec.s.Bytes()
+	line := fur.s.Bytes()
 
 	// garbage
-	for p, c := range line[dec.pos:] {
+	for p, c := range line[fur.pos:] {
 		if c > ' ' {
-			dec.pos += p
+			fur.pos += p
 			goto key
 		}
 	}
-	dec.pos = len(line)
+	fur.pos = len(line)
 	return false
 
 key:
 	const invalidKeyError = "invalid key"
 
-	start, multibyte := dec.pos, false
-	for p, c := range line[dec.pos:] {
+	start, multibyte := fur.pos, false
+	for p, c := range line[fur.pos:] {
 		switch {
 		case c == '=':
-			dec.pos += p
-			if dec.pos > start {
-				dec.key = line[start:dec.pos]
-				if multibyte && bytes.ContainsRune(dec.key, utf8.RuneError) {
-					dec.syntaxError(invalidKeyError)
+			fur.pos += p
+			if fur.pos > start {
+				fur.key = line[start:fur.pos]
+				if multibyte && bytes.ContainsRune(fur.key, utf8.RuneError) {
+					fur.syntaxError(invalidKeyError)
 					return false
 				}
 			}
-			if dec.key == nil {
-				dec.unexpectedByte(c)
+			if fur.key == nil {
+				fur.unexpectedByte(c)
 				return false
 			}
 			goto equal
 		case c == '"':
-			dec.pos += p
-			dec.unexpectedByte(c)
+			fur.pos += p
+			fur.unexpectedByte(c)
 			return false
 		case c <= ' ':
-			dec.pos += p
-			if dec.pos > start {
-				dec.key = line[start:dec.pos]
-				if multibyte && bytes.ContainsRune(dec.key, utf8.RuneError) {
-					dec.syntaxError(invalidKeyError)
+			fur.pos += p
+			if fur.pos > start {
+				fur.key = line[start:fur.pos]
+				if multibyte && bytes.ContainsRune(fur.key, utf8.RuneError) {
+					fur.syntaxError(invalidKeyError)
 					return false
 				}
 			}
@@ -107,22 +107,22 @@ key:
 			multibyte = true
 		}
 	}
-	dec.pos = len(line)
-	if dec.pos > start {
-		dec.key = line[start:dec.pos]
-		if multibyte && bytes.ContainsRune(dec.key, utf8.RuneError) {
-			dec.syntaxError(invalidKeyError)
+	fur.pos = len(line)
+	if fur.pos > start {
+		fur.key = line[start:fur.pos]
+		if multibyte && bytes.ContainsRune(fur.key, utf8.RuneError) {
+			fur.syntaxError(invalidKeyError)
 			return false
 		}
 	}
 	return true
 
 equal:
-	dec.pos++
-	if dec.pos >= len(line) {
+	fur.pos++
+	if fur.pos >= len(line) {
 		return true
 	}
-	switch c := line[dec.pos]; {
+	switch c := line[fur.pos]; {
 	case c <= ' ':
 		return true
 	case c == '"':
@@ -130,24 +130,24 @@ equal:
 	}
 
 	// value
-	start = dec.pos
-	for p, c := range line[dec.pos:] {
+	start = fur.pos
+	for p, c := range line[fur.pos:] {
 		switch {
 		case c == '=' || c == '"':
-			dec.pos += p
-			dec.unexpectedByte(c)
+			fur.pos += p
+			fur.unexpectedByte(c)
 			return false
 		case c <= ' ':
-			dec.pos += p
-			if dec.pos > start {
-				dec.value = line[start:dec.pos]
+			fur.pos += p
+			if fur.pos > start {
+				fur.value = line[start:fur.pos]
 			}
 			return true
 		}
 	}
-	dec.pos = len(line)
-	if dec.pos > start {
-		dec.value = line[start:dec.pos]
+	fur.pos = len(line)
+	if fur.pos > start {
+		fur.value = line[start:fur.pos]
 	}
 	return true
 
@@ -158,70 +158,70 @@ qvalue:
 	)
 
 	hasEsc, esc := false, false
-	start = dec.pos
-	for p, c := range line[dec.pos+1:] {
+	start = fur.pos
+	for p, c := range line[fur.pos+1:] {
 		switch {
 		case esc:
 			esc = false
 		case c == '\\':
 			hasEsc, esc = true, true
 		case c == '"':
-			dec.pos += p + 2
+			fur.pos += p + 2
 			if hasEsc {
-				v, ok := unquoteBytes(line[start:dec.pos])
+				v, ok := unquoteBytes(line[start:fur.pos])
 				if !ok {
-					dec.syntaxError(invalidQuote)
+					fur.syntaxError(invalidQuote)
 					return false
 				}
-				dec.value = v
+				fur.value = v
 			} else {
 				start++
-				end := dec.pos - 1
+				end := fur.pos - 1
 				if end > start {
-					dec.value = line[start:end]
+					fur.value = line[start:end]
 				}
 			}
 			return true
 		}
 	}
-	dec.pos = len(line)
-	dec.syntaxError(untermQuote)
+	fur.pos = len(line)
+	fur.syntaxError(untermQuote)
 	return false
 }
 
 // Key returns the most recent key found by a call to ScanKeyval. The returned
 // slice may point to internal buffers and is only valid until the next call
 // to ScanRecord.  It does no allocation.
-func (dec *Decoder) Key() []byte {
-	return dec.key
+func (fur *Decoder) Key() []byte {
+	return fur.key
 }
 
 // Value returns the most recent value found by a call to ScanKeyval. The
 // returned slice may point to internal buffers and is only valid until the
 // next call to ScanRecord.  It does no allocation when the value has no
 // escape sequences.
-func (dec *Decoder) Value() []byte {
-	return dec.value
+func (fur *Decoder) Value() []byte {
+	return fur.value
 }
 
 // Err returns the first non-EOF error that was encountered by the Scanner.
-func (dec *Decoder) Err() error {
-	return dec.err
+func (fur *Decoder) Err() error {
+	return fur.err
 }
 
-func (dec *Decoder) syntaxError(msg string) {
-	dec.err = &SyntaxError{
+func (fur *Decoder) syntaxError(msg string) {
+	fur.err = &SyntaxError{
 		Msg:  msg,
-		Line: dec.lineNum,
-		Pos:  dec.pos + 1,
+		Line: fur.lineNum,
+		Pos:  fur.pos + 1,
 	}
 }
 
-func (dec *Decoder) unexpectedByte(c byte) {
-	dec.err = &SyntaxError{
+func (fur *Decoder) unexpectedByte(c byte) {
+	fur.err = &SyntaxError{
 		Msg:  fmt.Sprintf("unexpected %q", c),
-		Line: dec.lineNum,
-		Pos:  dec.pos + 1,
+		Line: fur.lineNum,
+		Pos:  fur.pos + 1,
 	}
 }
 

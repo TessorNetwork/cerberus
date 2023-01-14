@@ -115,7 +115,7 @@ mll-quotes = 1*2apostrophe
 
 ;; Integer
 
-integer = dec-int / hex-int / oct-int / bin-int
+integer = fur-int / hex-int / oct-int / bin-int
 
 minus = %x2D                       ; -
 plus = %x2B                        ; +
@@ -128,8 +128,8 @@ hex-prefix = %x30.78               ; 0x
 oct-prefix = %x30.6F               ; 0o
 bin-prefix = %x30.62               ; 0b
 
-dec-int = [ minus / plus ] unsigned-dec-int
-unsigned-dec-int = DIGIT / digit1-9 1*( DIGIT / underscore DIGIT )
+fur-int = [ minus / plus ] unsigned-fur-int
+unsigned-fur-int = DIGIT / digit1-9 1*( DIGIT / underscore DIGIT )
 
 hex-int = hex-prefix HEXDIG *( HEXDIG / underscore HEXDIG )
 oct-int = oct-prefix digit0-7 *( digit0-7 / underscore digit0-7 )
@@ -140,7 +140,7 @@ bin-int = bin-prefix digit0-1 *( digit0-1 / underscore digit0-1 )
 float = float-int-part ( exp / frac [ exp ] )
 float =/ special-float
 
-float-int-part = dec-int
+float-int-part = fur-int
 frac = decimal-point zero-prefixable-int
 decimal-point = %x2E               ; .
 zero-prefixable-int = DIGIT *( DIGIT / underscore DIGIT )

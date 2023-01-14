@@ -47,7 +47,7 @@ type StakingKeeper interface {
 	ValidatorByConsAddr(sdk.Context, sdk.ConsAddress) stakingtypes.ValidatorI // get a particular validator by consensus address
 
 	// slash the validator and delegators of the validator, specifying offence height, offence power, and slash fraction
-	Slash(sdk.Context, sdk.ConsAddress, int64, int64, sdk.Dec)
+	Slash(sdk.Context, sdk.ConsAddress, int64, int64, sdk.Fur)
 	Jail(sdk.Context, sdk.ConsAddress)   // jail a validator
 	Unjail(sdk.Context, sdk.ConsAddress) // unjail a validator
 
@@ -75,5 +75,5 @@ type StakingHooks interface {
 	BeforeDelegationCreated(ctx sdk.Context, delAddr sdk.AccAddress, valAddr sdk.ValAddress)        // Must be called when a delegation is created
 	BeforeDelegationSharesModified(ctx sdk.Context, delAddr sdk.AccAddress, valAddr sdk.ValAddress) // Must be called when a delegation's shares are modified
 	AfterDelegationModified(ctx sdk.Context, delAddr sdk.AccAddress, valAddr sdk.ValAddress)
-	BeforeValidatorSlashed(ctx sdk.Context, valAddr sdk.ValAddress, fraction sdk.Dec)
+	BeforeValidatorSlashed(ctx sdk.Context, valAddr sdk.ValAddress, fraction sdk.Fur)
 }

@@ -59,7 +59,7 @@ type ValidatorSet interface {
 	StakingTokenSupply(sdk.Context) sdk.Int                      // total staking token supply
 
 	// slash the validator and delegators of the validator, specifying offence height, offence power, and slash fraction
-	Slash(sdk.Context, sdk.ConsAddress, int64, int64, sdk.Dec)
+	Slash(sdk.Context, sdk.ConsAddress, int64, int64, sdk.Fur)
 	Jail(sdk.Context, sdk.ConsAddress)   // jail a validator
 	Unjail(sdk.Context, sdk.ConsAddress) // unjail a validator
 
@@ -100,5 +100,5 @@ type StakingHooks interface {
 	BeforeDelegationSharesModified(ctx sdk.Context, delAddr sdk.AccAddress, valAddr sdk.ValAddress) // Must be called when a delegation's shares are modified
 	BeforeDelegationRemoved(ctx sdk.Context, delAddr sdk.AccAddress, valAddr sdk.ValAddress)        // Must be called when a delegation is removed
 	AfterDelegationModified(ctx sdk.Context, delAddr sdk.AccAddress, valAddr sdk.ValAddress)
-	BeforeValidatorSlashed(ctx sdk.Context, valAddr sdk.ValAddress, fraction sdk.Dec)
+	BeforeValidatorSlashed(ctx sdk.Context, valAddr sdk.ValAddress, fraction sdk.Fur)
 }

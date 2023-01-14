@@ -21,14 +21,14 @@ import (
 	"github.com/google/uuid"
 	log "github.com/sirupsen/logrus"
 
-	"github.com/Decentr-net/cerberus/internal/crypto"
-	"github.com/Decentr-net/cerberus/internal/entities"
-	"github.com/Decentr-net/cerberus/internal/hades"
-	"github.com/Decentr-net/cerberus/internal/producer"
-	"github.com/Decentr-net/cerberus/internal/refine"
-	"github.com/Decentr-net/cerberus/internal/storage"
-	"github.com/Decentr-net/cerberus/pkg/schema"
-	logging "github.com/Decentr-net/logrus/context"
+	"github.com/TessorNetwork/cerberus/internal/crypto"
+	"github.com/TessorNetwork/cerberus/internal/entities"
+	"github.com/TessorNetwork/cerberus/internal/hades"
+	"github.com/TessorNetwork/cerberus/internal/producer"
+	"github.com/TessorNetwork/cerberus/internal/refine"
+	"github.com/TessorNetwork/cerberus/internal/storage"
+	"github.com/TessorNetwork/cerberus/pkg/schema"
+	logging "github.com/TessorNetwork/logrus/context"
 )
 
 //go:generate mockgen -destination=./mock/service.go -package=mock -source=service.go
@@ -43,7 +43,7 @@ var (
 )
 
 // RewardMap contains dictionary with PDV types and rewards for them.
-type RewardMap map[schema.Type]sdk.Dec
+type RewardMap map[schema.Type]sdk.Fur
 
 // Blacklist contains attributes of worthless pdv.
 // swagger:model Blacklist
@@ -74,10 +74,10 @@ type Service interface {
 	GetBlacklist() Blacklist
 
 	// GetPDVDelta ...
-	GetPDVDelta(ctx context.Context, owner string) (sdk.Dec, error)
+	GetPDVDelta(ctx context.Context, owner string) (sdk.Fur, error)
 
 	// GetPDVTotalDelta ...
-	GetPDVTotalDelta(ctx context.Context) (sdk.Dec, error)
+	GetPDVTotalDelta(ctx context.Context) (sdk.Fur, error)
 
 	// GetPDVRewardsNextDistributionDate ...
 	GetPDVRewardsNextDistributionDate(ctx context.Context) (time.Time, error)
@@ -304,32 +304,32 @@ func (s *service) GetPDVMeta(ctx context.Context, owner string, id uint64) (*ent
 	return meta, nil
 }
 
-func (s *service) GetPDVDelta(ctx context.Context, owner string) (sdk.Dec, error) {
+func (s *service) GetPDVDelta(ctx context.Context, owner string) (sdk.Fur, error) {
 	total, err := s.is.GetPDVDelta(ctx, owner)
 	if err != nil {
 		return sdk.ZeroDec(), fmt.Errorf("failed to get pdv delta: %w", err)
 	}
 
-	dec, err := float64ToDecimal(total)
+	fur, err := float64ToDecimal(total)
 	if err != nil {
-		return sdk.ZeroDec(), fmt.Errorf("failed to convert to sdk.Dec: %w", err)
+		return sdk.ZeroDec(), fmt.Errorf("failed to convert to sdk.Fur: %w", err)
 	}
 
-	return dec, nil
+	return fur, nil
 }
 
-func (s *service) GetPDVTotalDelta(ctx context.Context) (sdk.Dec, error) {
+func (s *service) GetPDVTotalDelta(ctx context.Context) (sdk.Fur, error) {
 	total, err := s.is.GetPDVTotalDelta(ctx)
 	if err != nil {
 		return sdk.ZeroDec(), fmt.Errorf("failed to get pdv delta total: %w", err)
 	}
 
-	dec, err := float64ToDecimal(total)
+	fur, err := float64ToDecimal(total)
 	if err != nil {
-		return sdk.ZeroDec(), fmt.Errorf("failed to convert to sdk.Dec: %w", err)
+		return sdk.ZeroDec(), fmt.Errorf("failed to convert to sdk.Fur: %w", err)
 	}
 
-	return dec, nil
+	return fur, nil
 }
 
 func (s *service) GetPDVRewardsNextDistributionDate(ctx context.Context) (time.Time, error) {
@@ -341,7 +341,7 @@ func (s *service) GetPDVRewardsNextDistributionDate(ctx context.Context) (time.T
 	return date.Add(s.pdvRewardsInterval), nil
 }
 
-func float64ToDecimal(f float64) (sdk.Dec, error) {
+func float64ToDecimal(f float64) (sdk.Fur, error) {
 	return sdk.NewDecFromStr(strconv.FormatFloat(f, 'f', 6, 64))
 }
 

@@ -16,10 +16,10 @@ import (
 	"github.com/sirupsen/logrus"
 	"golang.org/x/sync/errgroup"
 
-	"github.com/Decentr-net/cerberus/internal/blockchain"
-	"github.com/Decentr-net/cerberus/internal/consumer"
-	"github.com/Decentr-net/cerberus/internal/producer"
-	"github.com/Decentr-net/cerberus/internal/storage"
+	"github.com/TessorNetwork/cerberus/internal/blockchain"
+	"github.com/TessorNetwork/cerberus/internal/consumer"
+	"github.com/TessorNetwork/cerberus/internal/producer"
+	"github.com/TessorNetwork/cerberus/internal/storage"
 )
 
 var _ consumer.Consumer = &impl{}

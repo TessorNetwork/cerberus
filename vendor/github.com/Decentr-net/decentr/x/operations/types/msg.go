@@ -13,10 +13,10 @@ func NewMsgDistributeRewards(owner sdk.AccAddress, rewards []Reward) MsgDistribu
 	}
 }
 
-func NewReward(address sdk.AccAddress, reward sdk.Dec) Reward {
+func NewReward(address sdk.AccAddress, reward sdk.Fur) Reward {
 	return Reward{
 		Receiver: address.String(),
-		Reward:   sdk.DecProto{Dec: reward},
+		Reward:   sdk.FurProto{Fur: reward},
 	}
 }
 
@@ -55,7 +55,7 @@ func (m MsgDistributeRewards) ValidateBasic() error {
 			return sdkerrors.Wrapf(sdkerrors.ErrInvalidAddress, "invalid reward %d: invalid receiver", i+1)
 		}
 
-		reward := v.Reward.Dec
+		reward := v.Reward.Fur
 		if reward.IsNil() || reward.IsZero() || reward.IsNegative() {
 			return sdkerrors.Wrapf(sdkerrors.ErrInvalidRequest, "invalid reward %d: invalid reward", i+1)
 		}

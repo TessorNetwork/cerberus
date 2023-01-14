@@ -9,9 +9,9 @@ import (
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/require"
 
-	blockchainmock "github.com/Decentr-net/cerberus/internal/blockchain/mock"
-	"github.com/Decentr-net/cerberus/internal/storage"
-	"github.com/Decentr-net/cerberus/internal/storage/mock"
+	blockchainmock "github.com/TessorNetwork/cerberus/internal/blockchain/mock"
+	"github.com/TessorNetwork/cerberus/internal/storage"
+	"github.com/TessorNetwork/cerberus/internal/storage/mock"
 )
 
 func TestDistributor_prepareRewardsQueue_EmptyGetPDVDeltaList(t *testing.T) {

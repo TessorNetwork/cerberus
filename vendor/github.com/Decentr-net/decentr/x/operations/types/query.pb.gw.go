@@ -145,7 +145,7 @@ func RegisterQueryHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 }
 
 var (
-	pattern_Query_MinGasPrice_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"decentr", "operations", "min-gas-price"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_MinGasPrice_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"furya", "operations", "min-gas-price"}, "", runtime.AssumeColonVerbOpt(false)))
 )
 
 var (

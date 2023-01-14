@@ -9,12 +9,12 @@ import (
 	"github.com/davecgh/go-spew/spew"
 	"github.com/sirupsen/logrus"
 
-	"github.com/Decentr-net/ariadne"
-	"github.com/Decentr-net/decentr/config"
-	operationstypes "github.com/Decentr-net/decentr/x/operations/types"
+	"github.com/TessorNetwork/ariadne"
+	"github.com/TessorNetwork/furya/config"
+	operationstypes "github.com/TessorNetwork/furya/x/operations/types"
 
-	"github.com/Decentr-net/cerberus/internal/consumer"
-	"github.com/Decentr-net/cerberus/internal/storage"
+	"github.com/TessorNetwork/cerberus/internal/consumer"
+	"github.com/TessorNetwork/cerberus/internal/storage"
 )
 
 // nolint:gochecknoinits

@@ -68,8 +68,8 @@ func (o UnmarshalOptions) unmarshal(b []byte, m proto.Message) error {
 		o.Resolver = protoregistry.GlobalTypes
 	}
 
-	dec := decoder{text.NewDecoder(b), o}
-	if err := dec.unmarshalMessage(m.ProtoReflect(), false); err != nil {
+	fur := decoder{text.NewDecoder(b), o}
+	if err := fur.unmarshalMessage(m.ProtoReflect(), false); err != nil {
 		return err
 	}
 	if o.AllowPartial {

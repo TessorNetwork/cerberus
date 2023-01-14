@@ -21,17 +21,17 @@ const (
 )
 
 // GenCommunityTax randomized CommunityTax
-func GenCommunityTax(r *rand.Rand) sdk.Dec {
+func GenCommunityTax(r *rand.Rand) sdk.Fur {
 	return sdk.NewDecWithPrec(1, 2).Add(sdk.NewDecWithPrec(int64(r.Intn(30)), 2))
 }
 
 // GenBaseProposerReward randomized BaseProposerReward
-func GenBaseProposerReward(r *rand.Rand) sdk.Dec {
+func GenBaseProposerReward(r *rand.Rand) sdk.Fur {
 	return sdk.NewDecWithPrec(1, 2).Add(sdk.NewDecWithPrec(int64(r.Intn(30)), 2))
 }
 
 // GenBonusProposerReward randomized BonusProposerReward
-func GenBonusProposerReward(r *rand.Rand) sdk.Dec {
+func GenBonusProposerReward(r *rand.Rand) sdk.Fur {
 	return sdk.NewDecWithPrec(1, 2).Add(sdk.NewDecWithPrec(int64(r.Intn(30)), 2))
 }
 
@@ -42,19 +42,19 @@ func GenWithdrawEnabled(r *rand.Rand) bool {
 
 // RandomizedGenState generates a random GenesisState for distribution
 func RandomizedGenState(simState *module.SimulationState) {
-	var communityTax sdk.Dec
+	var communityTax sdk.Fur
 	simState.AppParams.GetOrGenerate(
 		simState.Cdc, CommunityTax, &communityTax, simState.Rand,
 		func(r *rand.Rand) { communityTax = GenCommunityTax(r) },
 	)
 
-	var baseProposerReward sdk.Dec
+	var baseProposerReward sdk.Fur
 	simState.AppParams.GetOrGenerate(
 		simState.Cdc, BaseProposerReward, &baseProposerReward, simState.Rand,
 		func(r *rand.Rand) { baseProposerReward = GenBaseProposerReward(r) },
 	)
 
-	var bonusProposerReward sdk.Dec
+	var bonusProposerReward sdk.Fur
 	simState.AppParams.GetOrGenerate(
 		simState.Cdc, BonusProposerReward, &bonusProposerReward, simState.Rand,
 		func(r *rand.Rand) { bonusProposerReward = GenBonusProposerReward(r) },

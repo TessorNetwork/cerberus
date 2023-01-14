@@ -7,8 +7,8 @@ import (
 	awssqs "github.com/aws/aws-sdk-go/service/sqs"
 	"github.com/sirupsen/logrus"
 
-	"github.com/Decentr-net/cerberus/internal/producer"
-	"github.com/Decentr-net/cerberus/internal/producer/sqs"
+	"github.com/TessorNetwork/cerberus/internal/producer"
+	"github.com/TessorNetwork/cerberus/internal/producer/sqs"
 )
 
 type SQSOpts struct {

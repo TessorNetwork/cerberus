@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/Decentr-net/cerberus/pkg/schema/types"
+	"github.com/TessorNetwork/cerberus/pkg/schema/types"
 )
 
 func TestLocation_Validate(t *testing.T) {
@@ -21,7 +21,7 @@ func TestLocation_Validate(t *testing.T) {
 				Timestamp:   types.Timestamp{Time: time.Now()},
 				Latitude:    10,
 				Longitude:   -10,
-				RequestedBy: &types.Source{Host: "decentr.xyz"},
+				RequestedBy: &types.Source{Host: "furya.xyz"},
 			},
 			valid: true,
 		},

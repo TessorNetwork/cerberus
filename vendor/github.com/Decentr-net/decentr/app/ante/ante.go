@@ -5,9 +5,9 @@ import (
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/cosmos/cosmos-sdk/x/auth/ante"
 
-	communitykeeper "github.com/Decentr-net/decentr/x/community/keeper"
-	operationsante "github.com/Decentr-net/decentr/x/operations/ante"
-	operationskeeper "github.com/Decentr-net/decentr/x/operations/keeper"
+	communitykeeper "github.com/TessorNetwork/furya/x/community/keeper"
+	operationsante "github.com/TessorNetwork/furya/x/operations/ante"
+	operationskeeper "github.com/TessorNetwork/furya/x/operations/keeper"
 )
 
 type HandlerOptions struct {

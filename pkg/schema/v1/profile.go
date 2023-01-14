@@ -6,7 +6,7 @@ import (
 
 	valid "github.com/asaskevich/govalidator"
 
-	"github.com/Decentr-net/cerberus/pkg/schema/types"
+	"github.com/TessorNetwork/cerberus/pkg/schema/types"
 )
 
 const (

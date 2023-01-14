@@ -561,8 +561,8 @@ func (c *Client) updateLightClientIfNeededTo(ctx context.Context, height *int64)
 	return l, nil
 }
 
-func (c *Client) RegisterOpDecoder(typ string, dec merkle.OpDecoder) {
-	c.prt.RegisterOpDecoder(typ, dec)
+func (c *Client) RegisterOpDecoder(typ string, fur merkle.OpDecoder) {
+	c.prt.RegisterOpDecoder(typ, fur)
 }
 
 // SubscribeWS subscribes for events using the given query and remote address as

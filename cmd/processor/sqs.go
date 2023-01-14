@@ -7,12 +7,12 @@ import (
 	awssqs "github.com/aws/aws-sdk-go/service/sqs"
 	"github.com/sirupsen/logrus"
 
-	"github.com/Decentr-net/go-broadcaster"
+	"github.com/TessorNetwork/go-broadcaster"
 
-	"github.com/Decentr-net/cerberus/internal/blockchain"
-	"github.com/Decentr-net/cerberus/internal/consumer"
-	"github.com/Decentr-net/cerberus/internal/consumer/sqs"
-	"github.com/Decentr-net/cerberus/internal/storage"
+	"github.com/TessorNetwork/cerberus/internal/blockchain"
+	"github.com/TessorNetwork/cerberus/internal/consumer"
+	"github.com/TessorNetwork/cerberus/internal/consumer/sqs"
+	"github.com/TessorNetwork/cerberus/internal/storage"
 )
 
 type SQSOpts struct {

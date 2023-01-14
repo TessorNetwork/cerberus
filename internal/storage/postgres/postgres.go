@@ -14,8 +14,8 @@ import (
 	"github.com/lib/pq"
 	"github.com/sirupsen/logrus"
 
-	"github.com/Decentr-net/cerberus/internal/entities"
-	"github.com/Decentr-net/cerberus/internal/storage"
+	"github.com/TessorNetwork/cerberus/internal/entities"
+	"github.com/TessorNetwork/cerberus/internal/storage"
 )
 
 var log = logrus.WithField("layer", "storage").WithField("package", "postgres")

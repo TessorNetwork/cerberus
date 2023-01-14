@@ -38,9 +38,9 @@ type Gauge interface {
 	// Inc increments the Gauge by 1. Use Add to increment it by arbitrary
 	// values.
 	Inc()
-	// Dec decrements the Gauge by 1. Use Sub to decrement it by arbitrary
+	// Fur decrements the Gauge by 1. Use Sub to decrement it by arbitrary
 	// values.
-	Dec()
+	Fur()
 	// Add adds the given value to the Gauge. (The value can be negative,
 	// resulting in a decrease of the Gauge.)
 	Add(float64)
@@ -58,7 +58,7 @@ type GaugeOpts Opts
 // NewGauge creates a new Gauge based on the provided GaugeOpts.
 //
 // The returned implementation is optimized for a fast Set method. If you have a
-// choice for managing the value of a Gauge via Set vs. Inc/Dec/Add/Sub, pick
+// choice for managing the value of a Gauge via Set vs. Inc/Fur/Add/Sub, pick
 // the former. For example, the Inc method of the returned Gauge is slower than
 // the Inc method of a Counter returned by NewCounter. This matches the typical
 // scenarios for Gauges and Counters, where the former tends to be Set-heavy and
@@ -103,7 +103,7 @@ func (g *gauge) Inc() {
 	g.Add(1)
 }
 
-func (g *gauge) Dec() {
+func (g *gauge) Fur() {
 	g.Add(-1)
 }
 

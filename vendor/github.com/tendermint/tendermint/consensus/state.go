@@ -2360,13 +2360,13 @@ func repairWalFile(src, dst string) error {
 	defer out.Close()
 
 	var (
-		dec = NewWALDecoder(in)
+		fur = NewWALDecoder(in)
 		enc = NewWALEncoder(out)
 	)
 
 	// best-case repair (until first error is encountered)
 	for {
-		msg, err := dec.Decode()
+		msg, err := fur.Decode()
 		if err != nil {
 			break
 		}

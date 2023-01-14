@@ -61,7 +61,7 @@ const (
 var statusOK = status.New(codes.OK, "")
 var logger = grpclog.Component("core")
 
-type methodHandler func(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor UnaryServerInterceptor) (interface{}, error)
+type methodHandler func(srv interface{}, ctx context.Context, fur func(interface{}) error, interceptor UnaryServerInterceptor) (interface{}, error)
 
 // MethodDesc represents an RPC service's method specification.
 type MethodDesc struct {

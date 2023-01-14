@@ -247,9 +247,9 @@ func (wal *BaseWAL) SearchForEndHeight(
 			return nil, false, err
 		}
 
-		dec := NewWALDecoder(gr)
+		fur := NewWALDecoder(gr)
 		for {
-			msg, err = dec.Decode()
+			msg, err = fur.Decode()
 			if err == io.EOF {
 				// OPTIMISATION: no need to look for height in older files if we've seen h < height
 				if lastHeightFound > 0 && lastHeightFound < height {
@@ -362,10 +362,10 @@ func NewWALDecoder(rd io.Reader) *WALDecoder {
 }
 
 // Decode reads the next custom-encoded value from its reader and returns it.
-func (dec *WALDecoder) Decode() (*TimedWALMessage, error) {
+func (fur *WALDecoder) Decode() (*TimedWALMessage, error) {
 	b := make([]byte, 4)
 
-	_, err := dec.rd.Read(b)
+	_, err := fur.rd.Read(b)
 	if errors.Is(err, io.EOF) {
 		return nil, err
 	}
@@ -375,7 +375,7 @@ func (dec *WALDecoder) Decode() (*TimedWALMessage, error) {
 	crc := binary.BigEndian.Uint32(b)
 
 	b = make([]byte, 4)
-	_, err = dec.rd.Read(b)
+	_, err = fur.rd.Read(b)
 	if err != nil {
 		return nil, DataCorruptionError{fmt.Errorf("failed to read length: %v", err)}
 	}
@@ -389,7 +389,7 @@ func (dec *WALDecoder) Decode() (*TimedWALMessage, error) {
 	}
 
 	data := make([]byte, length)
-	n, err := dec.rd.Read(data)
+	n, err := fur.rd.Read(data)
 	if err != nil {
 		return nil, DataCorruptionError{fmt.Errorf("failed to read data: %v (read: %d, wanted: %d)", err, n, length)}
 	}

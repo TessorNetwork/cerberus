@@ -5,8 +5,8 @@ import (
 	"github.com/minio/minio-go/v7/pkg/credentials"
 	"github.com/sirupsen/logrus"
 
-	"github.com/Decentr-net/cerberus/internal/storage"
-	"github.com/Decentr-net/cerberus/internal/storage/s3"
+	"github.com/TessorNetwork/cerberus/internal/storage"
+	"github.com/TessorNetwork/cerberus/internal/storage/s3"
 )
 
 type S3opts struct {

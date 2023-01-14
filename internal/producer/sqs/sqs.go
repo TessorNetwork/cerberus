@@ -9,7 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/sqs"
 
-	"github.com/Decentr-net/cerberus/internal/producer"
+	"github.com/TessorNetwork/cerberus/internal/producer"
 )
 
 var _ producer.Producer = &impl{}

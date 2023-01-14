@@ -21,18 +21,18 @@ import (
 	"github.com/tendermint/tendermint/crypto/secp256k1"
 	"golang.org/x/net/context"
 
-	_ "github.com/Decentr-net/cerberus/internal/blockchain"
-	"github.com/Decentr-net/cerberus/internal/entities"
-	"github.com/Decentr-net/cerberus/internal/service"
-	"github.com/Decentr-net/cerberus/internal/service/mock"
-	"github.com/Decentr-net/cerberus/internal/throttler"
-	"github.com/Decentr-net/cerberus/pkg/schema"
-	"github.com/Decentr-net/go-api"
-	apitest "github.com/Decentr-net/go-api/test"
-	logging "github.com/Decentr-net/logrus/context"
+	_ "github.com/TessorNetwork/cerberus/internal/blockchain"
+	"github.com/TessorNetwork/cerberus/internal/entities"
+	"github.com/TessorNetwork/cerberus/internal/service"
+	"github.com/TessorNetwork/cerberus/internal/service/mock"
+	"github.com/TessorNetwork/cerberus/internal/throttler"
+	"github.com/TessorNetwork/cerberus/pkg/schema"
+	"github.com/TessorNetwork/go-api"
+	apitest "github.com/TessorNetwork/go-api/test"
+	logging "github.com/TessorNetwork/logrus/context"
 )
 
-const testOwner = "decentr1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz"
+const testOwner = "furya1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz"
 
 var pdv = []byte(`{
     "version": "v1",
@@ -40,7 +40,7 @@ var pdv = []byte(`{
         {
 			"timestamp": "2021-05-11T11:05:18Z",
 			"source": {
-			    "host": "decentr.net",
+			    "host": "furya.net",
 			    "path": "/"
 			},
             "type": "cookie",
@@ -56,7 +56,7 @@ var pdv = []byte(`{
         {
 			"timestamp": "2021-05-11T11:05:18Z",
 			"source": {
-			    "host": "decentr.net",
+			    "host": "furya.net",
 			    "path": "/"
 			},
             "type": "cookie",
@@ -388,7 +388,7 @@ func TestServer_ReceivePDVHandler(t *testing.T) {
 		},
 		{
 			name:  "forbidden error",
-			owner: "decentr1ltx6yymrs8eq4nmnhzfzxj6tspjuymh8mgd6gz",
+			owner: "furya1ltx6yymrs8eq4nmnhzfzxj6tspjuymh8mgd6gz",
 			id:    "1",
 			f:     nil,
 			rcode: http.StatusForbidden,
@@ -450,7 +450,7 @@ func TestServer_GetPDVMeta(t *testing.T) {
 			owner: testOwner,
 			id:    "1",
 			f: func(_ context.Context, owner string, id uint64) (*entities.PDVMeta, error) {
-				return &entities.PDVMeta{ObjectTypes: map[schema.Type]uint16{schema.PDVCookieType: 1}, Reward: sdk.NewDec(2)}, nil
+				return &entities.PDVMeta{ObjectTypes: map[schema.Type]uint16{schema.PDVCookieType: 1}, Reward: sdk.NewFur(2)}, nil
 			},
 			rcode: http.StatusOK,
 			rdata: `{"object_types":{"cookie": 1}, "reward": "2.000000000000000000"}`,
@@ -549,12 +549,12 @@ func TestServer_GetProfiles(t *testing.T) {
 	}{
 		{
 			name:  "success",
-			url:   "v1/profiles?address=decentr1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz,decentr1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz",
+			url:   "v1/profiles?address=furya1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz,furya1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz",
 			owner: []string{testOwner, testOwner},
 			f: func(_ context.Context, owner []string) ([]*entities.Profile, error) {
 				return []*entities.Profile{
 					{
-						Address:   "decentr1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz",
+						Address:   "furya1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz",
 						FirstName: "2",
 						LastName:  "3",
 						Emails:    []string{"email"},
@@ -566,7 +566,7 @@ func TestServer_GetProfiles(t *testing.T) {
 						CreatedAt: time.Unix(200000, 0),
 					},
 					{
-						Address:   "decentr1u1slwz3sje8j94ccpwlslflg0506yc8y2ylmtz",
+						Address:   "furya1u1slwz3sje8j94ccpwlslflg0506yc8y2ylmtz",
 						FirstName: "22",
 						LastName:  "23",
 						Emails:    []string{"email"},
@@ -578,7 +578,7 @@ func TestServer_GetProfiles(t *testing.T) {
 						CreatedAt: time.Unix(2200000, 0),
 					},
 					{
-						Address:   "decentr1u1slwz3sje8j94ccpwlslflg0506yc8y2ylmtz",
+						Address:   "furya1u1slwz3sje8j94ccpwlslflg0506yc8y2ylmtz",
 						FirstName: "222",
 						LastName:  "233",
 						Emails:    []string{"email"},
@@ -593,20 +593,20 @@ func TestServer_GetProfiles(t *testing.T) {
 			},
 			rcode: http.StatusOK,
 			rdata: `[
-	{"address":"decentr1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz","firstName":"2","lastName":"3","emails":["email"],"bio":"4","avatar":"5","gender":"6","banned":false, "birthday":"1970-01-01","createdAt":200000},
-	{"address":"decentr1u1slwz3sje8j94ccpwlslflg0506yc8y2ylmtz","firstName":"22","lastName":"23","bio":"24","avatar":"25","gender":"26", "banned":false, "birthday":"1970-01-03","createdAt":2200000},
-	{"address":"decentr1u1slwz3sje8j94ccpwlslflg0506yc8y2ylmtz","firstName":"222","lastName":"233","bio":"243","avatar":"253","gender":"263", "banned":true, "createdAt":2300000}
+	{"address":"furya1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz","firstName":"2","lastName":"3","emails":["email"],"bio":"4","avatar":"5","gender":"6","banned":false, "birthday":"1970-01-01","createdAt":200000},
+	{"address":"furya1u1slwz3sje8j94ccpwlslflg0506yc8y2ylmtz","firstName":"22","lastName":"23","bio":"24","avatar":"25","gender":"26", "banned":false, "birthday":"1970-01-03","createdAt":2200000},
+	{"address":"furya1u1slwz3sje8j94ccpwlslflg0506yc8y2ylmtz","firstName":"222","lastName":"233","bio":"243","avatar":"253","gender":"263", "banned":true, "createdAt":2300000}
 		]`,
 		},
 		{
 			name:         "success_unauthorized",
-			url:          "v1/profiles?address=decentr1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz,decentr1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz",
+			url:          "v1/profiles?address=furya1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz,furya1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz",
 			owner:        []string{testOwner, testOwner},
 			unauthorized: true,
 			f: func(_ context.Context, owner []string) ([]*entities.Profile, error) {
 				return []*entities.Profile{
 					{
-						Address:   "decentr1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz",
+						Address:   "furya1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz",
 						FirstName: "2",
 						LastName:  "3",
 						Emails:    []string{"email"},
@@ -617,7 +617,7 @@ func TestServer_GetProfiles(t *testing.T) {
 						CreatedAt: time.Unix(200000, 0),
 					},
 					{
-						Address:   "decentr1u1slwz3sje8j94ccpwlslflg0506yc8y2ylmtz",
+						Address:   "furya1u1slwz3sje8j94ccpwlslflg0506yc8y2ylmtz",
 						FirstName: "22",
 						LastName:  "23",
 						Emails:    []string{"email"},
@@ -631,8 +631,8 @@ func TestServer_GetProfiles(t *testing.T) {
 			},
 			rcode: http.StatusOK,
 			rdata: `[
-	{"address":"decentr1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz","firstName":"2","lastName":"3","bio":"4","avatar":"5","gender":"6","birthday":"1970-01-01","createdAt":200000, "banned": false},
-	{"address":"decentr1u1slwz3sje8j94ccpwlslflg0506yc8y2ylmtz","firstName":"22","lastName":"23","bio":"24","avatar":"25","gender":"26","birthday":"1970-01-03","createdAt":2200000, "banned": false}
+	{"address":"furya1u9slwz3sje8j94ccpwlslflg0506yc8y2ylmtz","firstName":"2","lastName":"3","bio":"4","avatar":"5","gender":"6","birthday":"1970-01-01","createdAt":200000, "banned": false},
+	{"address":"furya1u1slwz3sje8j94ccpwlslflg0506yc8y2ylmtz","firstName":"22","lastName":"23","bio":"24","avatar":"25","gender":"26","birthday":"1970-01-03","createdAt":2200000, "banned": false}
 		]`,
 		},
 		{
@@ -693,7 +693,7 @@ func Test_getRewardsConfig(t *testing.T) {
 
 	srv := mock.NewMockService(ctrl)
 
-	srv.EXPECT().GetRewardsMap().Return(map[schema.Type]sdk.Dec{
+	srv.EXPECT().GetRewardsMap().Return(map[schema.Type]sdk.Fur{
 		"cookie":  sdk.NewDecWithPrec(1, 6),
 		"history": sdk.NewDecWithPrec(2, 6),
 	})
@@ -806,7 +806,7 @@ func Test_savePDVHander_Amount(t *testing.T) {
 		            "type": "profile",
 		            "firstName": "John",
 		            "lastName": "Dorian",
-		            "emails": ["dev@decentr.xyz"],
+		            "emails": ["dev@furya.xyz"],
 		            "bio": "Just cool guy",
 		            "gender": "",
 		            "avatar": "http://john.dorian/avatar.png",
@@ -824,31 +824,31 @@ func Test_savePDVHander_Amount(t *testing.T) {
 				{
 					"timestamp": "2021-05-11T11:05:18Z",
 					"type": "searchHistory",
-					"engine": "decentr",
+					"engine": "furya",
 					"query": "the best crypto"
 				},
 				{
 					"timestamp": "2021-05-11T11:05:18Z",
 					"type": "searchHistory",
-					"engine": "decentr",
+					"engine": "furya",
 					"query": "the best crypto"
 				},
 				{
 					"timestamp": "2021-05-11T11:05:18Z",
 					"type": "searchHistory",
-					"engine": "decentr",
+					"engine": "furya",
 					"query": "the best crypto"
 				},
 				{
 					"timestamp": "2021-05-11T11:05:18Z",
 					"type": "searchHistory",
-					"engine": "decentr",
+					"engine": "furya",
 					"query": "the best crypto"
 				},
 				{
 					"timestamp": "2021-05-11T11:05:18Z",
 					"type": "searchHistory",
-					"engine": "decentr",
+					"engine": "furya",
 					"query": "the best crypto"
 				}
 				]
@@ -863,7 +863,7 @@ func Test_savePDVHander_Amount(t *testing.T) {
 				{
 					"timestamp": "2021-05-11T11:05:18Z",
 					"type": "searchHistory",
-					"engine": "decentr",
+					"engine": "furya",
 					"query": "the best crypto"
 				}
 				]

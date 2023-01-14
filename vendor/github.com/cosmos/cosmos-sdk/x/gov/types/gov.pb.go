@@ -126,7 +126,7 @@ func (ProposalStatus) EnumDescriptor() ([]byte, []int) {
 // Since: cosmos-sdk 0.43
 type WeightedVoteOption struct {
 	Option VoteOption                             `protobuf:"varint,1,opt,name=option,proto3,enum=cosmos.gov.v1beta1.VoteOption" json:"option,omitempty"`
-	Weight github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,2,opt,name=weight,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"weight" yaml:"weight"`
+	Weight github_com_cosmos_cosmos_sdk_types.Fur `protobuf:"bytes,2,opt,name=weight,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Fur" json:"weight" yaml:"weight"`
 }
 
 func (m *WeightedVoteOption) Reset()      { *m = WeightedVoteOption{} }
@@ -453,12 +453,12 @@ var xxx_messageInfo_VotingParams proto.InternalMessageInfo
 type TallyParams struct {
 	//  Minimum percentage of total stake needed to vote for a result to be
 	//  considered valid.
-	Quorum github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,1,opt,name=quorum,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"quorum,omitempty"`
+	Quorum github_com_cosmos_cosmos_sdk_types.Fur `protobuf:"bytes,1,opt,name=quorum,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Fur" json:"quorum,omitempty"`
 	//  Minimum proportion of Yes votes for proposal to pass. Default value: 0.5.
-	Threshold github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,2,opt,name=threshold,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"threshold,omitempty"`
+	Threshold github_com_cosmos_cosmos_sdk_types.Fur `protobuf:"bytes,2,opt,name=threshold,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Fur" json:"threshold,omitempty"`
 	//  Minimum value of Veto votes to Total votes ratio for proposal to be
 	//  vetoed. Default value: 1/3.
-	VetoThreshold github_com_cosmos_cosmos_sdk_types.Dec `protobuf:"bytes,3,opt,name=veto_threshold,json=vetoThreshold,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Dec" json:"veto_threshold,omitempty" yaml:"veto_threshold"`
+	VetoThreshold github_com_cosmos_cosmos_sdk_types.Fur `protobuf:"bytes,3,opt,name=veto_threshold,json=vetoThreshold,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Fur" json:"veto_threshold,omitempty" yaml:"veto_threshold"`
 }
 
 func (m *TallyParams) Reset()      { *m = TallyParams{} }

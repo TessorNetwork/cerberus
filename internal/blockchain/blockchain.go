@@ -1,4 +1,4 @@
-// Package blockchain contains code for interacting with the decentr blockchain.
+// Package blockchain contains code for interacting with the furya blockchain.
 package blockchain
 
 import (
@@ -12,9 +12,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 
-	"github.com/Decentr-net/decentr/config"
-	operationstypes "github.com/Decentr-net/decentr/x/operations/types"
-	"github.com/Decentr-net/go-broadcaster"
+	"github.com/TessorNetwork/furya/config"
+	operationstypes "github.com/TessorNetwork/furya/x/operations/types"
+	"github.com/TessorNetwork/go-broadcaster"
 )
 
 // nolint: gochecknoinits
@@ -35,7 +35,7 @@ var ErrInvalidAddress = errors.New("invalid address")
 type Reward struct {
 	Receiver string
 	ID       uint64
-	Reward   sdk.Dec
+	Reward   sdk.Fur
 }
 
 // Stake ...
@@ -72,7 +72,7 @@ func (b blockchain) DistributeRewards(rewards []Reward) (string, error) {
 
 		rr[i] = operationstypes.Reward{
 			Receiver: owner.String(),
-			Reward:   sdk.DecProto{Dec: v.Reward},
+			Reward:   sdk.FurProto{Fur: v.Reward},
 		}
 	}
 

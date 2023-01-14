@@ -105,7 +105,7 @@ func NewEditValidatorCmd() *cobra.Command {
 			details, _ := cmd.Flags().GetString(FlagDetails)
 			description := types.NewDescription(moniker, identity, website, security, details)
 
-			var newRate *sdk.Dec
+			var newRate *sdk.Fur
 
 			commissionRate, _ := cmd.Flags().GetString(FlagCommissionRate)
 			if commissionRate != "" {

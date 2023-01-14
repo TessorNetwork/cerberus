@@ -7,7 +7,7 @@ import (
 
 	"github.com/minio/sio"
 
-	icrypto "github.com/Decentr-net/cerberus/internal/crypto"
+	icrypto "github.com/TessorNetwork/cerberus/internal/crypto"
 )
 
 type crypto struct {

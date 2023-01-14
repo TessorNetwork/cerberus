@@ -9,9 +9,9 @@ import (
 )
 
 func Fuzz(data []byte) int {
-	dec := NewWALDecoder(bytes.NewReader(data))
+	fur := NewWALDecoder(bytes.NewReader(data))
 	for {
-		msg, err := dec.Decode()
+		msg, err := fur.Decode()
 		if err == io.EOF {
 			break
 		}

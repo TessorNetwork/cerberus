@@ -14,42 +14,42 @@ github.com/ChainSafe/go-schnorrkel
 # github.com/DataDog/zstd v1.4.5
 ## explicit
 github.com/DataDog/zstd
-# github.com/Decentr-net/ariadne v1.1.1
+# github.com/TessorNetwork/ariadne v1.1.1
 ## explicit; go 1.16
-github.com/Decentr-net/ariadne
-github.com/Decentr-net/ariadne/mock
-# github.com/Decentr-net/decentr v1.6.2
+github.com/TessorNetwork/ariadne
+github.com/TessorNetwork/ariadne/mock
+# github.com/TessorNetwork/fury v0.1.0-furya.1
 ## explicit; go 1.19
-github.com/Decentr-net/decentr/app
-github.com/Decentr-net/decentr/app/ante
-github.com/Decentr-net/decentr/app/params
-github.com/Decentr-net/decentr/app/upgrade/v160
-github.com/Decentr-net/decentr/config
-github.com/Decentr-net/decentr/docs
-github.com/Decentr-net/decentr/x/community
-github.com/Decentr-net/decentr/x/community/client/cli
-github.com/Decentr-net/decentr/x/community/keeper
-github.com/Decentr-net/decentr/x/community/types
-github.com/Decentr-net/decentr/x/operations
-github.com/Decentr-net/decentr/x/operations/ante
-github.com/Decentr-net/decentr/x/operations/client/cli
-github.com/Decentr-net/decentr/x/operations/keeper
-github.com/Decentr-net/decentr/x/operations/types
-github.com/Decentr-net/decentr/x/token
-github.com/Decentr-net/decentr/x/token/client/cli
-github.com/Decentr-net/decentr/x/token/keeper
-github.com/Decentr-net/decentr/x/token/types
-# github.com/Decentr-net/go-api v0.1.0
+github.com/TessorNetwork/furya/app
+github.com/TessorNetwork/furya/app/ante
+github.com/TessorNetwork/furya/app/params
+github.com/TessorNetwork/furya/app/upgrade/v160
+github.com/TessorNetwork/furya/config
+github.com/TessorNetwork/furya/docs
+github.com/TessorNetwork/furya/x/community
+github.com/TessorNetwork/furya/x/community/client/cli
+github.com/TessorNetwork/furya/x/community/keeper
+github.com/TessorNetwork/furya/x/community/types
+github.com/TessorNetwork/furya/x/operations
+github.com/TessorNetwork/furya/x/operations/ante
+github.com/TessorNetwork/furya/x/operations/client/cli
+github.com/TessorNetwork/furya/x/operations/keeper
+github.com/TessorNetwork/furya/x/operations/types
+github.com/TessorNetwork/furya/x/token
+github.com/TessorNetwork/furya/x/token/client/cli
+github.com/TessorNetwork/furya/x/token/keeper
+github.com/TessorNetwork/furya/x/token/types
+# github.com/TessorNetwork/go-api v0.1.0
 ## explicit; go 1.15
-github.com/Decentr-net/go-api
-github.com/Decentr-net/go-api/test
-# github.com/Decentr-net/go-broadcaster v0.1.3
+github.com/TessorNetwork/go-api
+github.com/TessorNetwork/go-api/test
+# github.com/TessorNetwork/go-broadcaster v0.1.3
 ## explicit; go 1.19
-github.com/Decentr-net/go-broadcaster
-# github.com/Decentr-net/logrus v0.7.2
+github.com/TessorNetwork/go-broadcaster
+# github.com/TessorNetwork/logrus v0.7.2
 ## explicit; go 1.14
-github.com/Decentr-net/logrus/context
-github.com/Decentr-net/logrus/sentry
+github.com/TessorNetwork/logrus/context
+github.com/TessorNetwork/logrus/sentry
 # github.com/Microsoft/go-winio v0.5.2
 ## explicit; go 1.13
 github.com/Microsoft/go-winio

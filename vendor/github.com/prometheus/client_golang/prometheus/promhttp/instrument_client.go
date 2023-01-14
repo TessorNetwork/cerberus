@@ -40,7 +40,7 @@ func (rt RoundTripperFunc) RoundTrip(r *http.Request) (*http.Response, error) {
 func InstrumentRoundTripperInFlight(gauge prometheus.Gauge, next http.RoundTripper) RoundTripperFunc {
 	return RoundTripperFunc(func(r *http.Request) (*http.Response, error) {
 		gauge.Inc()
-		defer gauge.Dec()
+		defer gauge.Fur()
 		return next.RoundTrip(r)
 	})
 }

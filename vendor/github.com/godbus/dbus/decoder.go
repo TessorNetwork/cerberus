@@ -15,32 +15,32 @@ type decoder struct {
 // newDecoder returns a new decoder that reads values from in. The input is
 // expected to be in the given byte order.
 func newDecoder(in io.Reader, order binary.ByteOrder) *decoder {
-	dec := new(decoder)
-	dec.in = in
-	dec.order = order
-	return dec
+	fur := new(decoder)
+	fur.in = in
+	fur.order = order
+	return fur
 }
 
 // align aligns the input to the given boundary and panics on error.
-func (dec *decoder) align(n int) {
-	if dec.pos%n != 0 {
-		newpos := (dec.pos + n - 1) & ^(n - 1)
-		empty := make([]byte, newpos-dec.pos)
-		if _, err := io.ReadFull(dec.in, empty); err != nil {
+func (fur *decoder) align(n int) {
+	if fur.pos%n != 0 {
+		newpos := (fur.pos + n - 1) & ^(n - 1)
+		empty := make([]byte, newpos-fur.pos)
+		if _, err := io.ReadFull(fur.in, empty); err != nil {
 			panic(err)
 		}
-		dec.pos = newpos
+		fur.pos = newpos
 	}
 }
 
-// Calls binary.Read(dec.in, dec.order, v) and panics on read errors.
-func (dec *decoder) binread(v interface{}) {
-	if err := binary.Read(dec.in, dec.order, v); err != nil {
+// Calls binary.Read(fur.in, fur.order, v) and panics on read errors.
+func (fur *decoder) binread(v interface{}) {
+	if err := binary.Read(fur.in, fur.order, v); err != nil {
 		panic(err)
 	}
 }
 
-func (dec *decoder) Decode(sig Signature) (vs []interface{}, err error) {
+func (fur *decoder) Decode(sig Signature) (vs []interface{}, err error) {
 	defer func() {
 		var ok bool
 		v := recover()
@@ -57,25 +57,25 @@ func (dec *decoder) Decode(sig Signature) (vs []interface{}, err error) {
 		if err != nil {
 			return nil, err
 		}
-		v := dec.decode(s[:len(s)-len(rem)], 0)
+		v := fur.decode(s[:len(s)-len(rem)], 0)
 		vs = append(vs, v)
 		s = rem
 	}
 	return vs, nil
 }
 
-func (dec *decoder) decode(s string, depth int) interface{} {
-	dec.align(alignment(typeFor(s)))
+func (fur *decoder) decode(s string, depth int) interface{} {
+	fur.align(alignment(typeFor(s)))
 	switch s[0] {
 	case 'y':
 		var b [1]byte
-		if _, err := dec.in.Read(b[:]); err != nil {
+		if _, err := fur.in.Read(b[:]); err != nil {
 			panic(err)
 		}
-		dec.pos++
+		fur.pos++
 		return b[0]
 	case 'b':
-		i := dec.decode("u", depth).(uint32)
+		i := fur.decode("u", depth).(uint32)
 		switch {
 		case i == 0:
 			return false
@@ -86,56 +86,56 @@ func (dec *decoder) decode(s string, depth int) interface{} {
 		}
 	case 'n':
 		var i int16
-		dec.binread(&i)
-		dec.pos += 2
+		fur.binread(&i)
+		fur.pos += 2
 		return i
 	case 'i':
 		var i int32
-		dec.binread(&i)
-		dec.pos += 4
+		fur.binread(&i)
+		fur.pos += 4
 		return i
 	case 'x':
 		var i int64
-		dec.binread(&i)
-		dec.pos += 8
+		fur.binread(&i)
+		fur.pos += 8
 		return i
 	case 'q':
 		var i uint16
-		dec.binread(&i)
-		dec.pos += 2
+		fur.binread(&i)
+		fur.pos += 2
 		return i
 	case 'u':
 		var i uint32
-		dec.binread(&i)
-		dec.pos += 4
+		fur.binread(&i)
+		fur.pos += 4
 		return i
 	case 't':
 		var i uint64
-		dec.binread(&i)
-		dec.pos += 8
+		fur.binread(&i)
+		fur.pos += 8
 		return i
 	case 'd':
 		var f float64
-		dec.binread(&f)
-		dec.pos += 8
+		fur.binread(&f)
+		fur.pos += 8
 		return f
 	case 's':
-		length := dec.decode("u", depth).(uint32)
+		length := fur.decode("u", depth).(uint32)
 		b := make([]byte, int(length)+1)
-		if _, err := io.ReadFull(dec.in, b); err != nil {
+		if _, err := io.ReadFull(fur.in, b); err != nil {
 			panic(err)
 		}
-		dec.pos += int(length) + 1
+		fur.pos += int(length) + 1
 		return string(b[:len(b)-1])
 	case 'o':
-		return ObjectPath(dec.decode("s", depth).(string))
+		return ObjectPath(fur.decode("s", depth).(string))
 	case 'g':
-		length := dec.decode("y", depth).(byte)
+		length := fur.decode("y", depth).(byte)
 		b := make([]byte, int(length)+1)
-		if _, err := io.ReadFull(dec.in, b); err != nil {
+		if _, err := io.ReadFull(fur.in, b); err != nil {
 			panic(err)
 		}
-		dec.pos += int(length) + 1
+		fur.pos += int(length) + 1
 		sig, err := ParseSignature(string(b[:len(b)-1]))
 		if err != nil {
 			panic(err)
@@ -146,7 +146,7 @@ func (dec *decoder) decode(s string, depth int) interface{} {
 			panic(FormatError("input exceeds container depth limit"))
 		}
 		var variant Variant
-		sig := dec.decode("g", depth).(Signature)
+		sig := fur.decode("g", depth).(Signature)
 		if len(sig.str) == 0 {
 			panic(FormatError("variant signature is empty"))
 		}
@@ -158,10 +158,10 @@ func (dec *decoder) decode(s string, depth int) interface{} {
 			panic(FormatError("variant signature has multiple types"))
 		}
 		variant.sig = sig
-		variant.value = dec.decode(sig.str, depth+1)
+		variant.value = fur.decode(sig.str, depth+1)
 		return variant
 	case 'h':
-		return UnixFDIndex(dec.decode("u", depth).(uint32))
+		return UnixFDIndex(fur.decode("u", depth).(uint32))
 	case 'a':
 		if len(s) > 1 && s[1] == '{' {
 			ksig := s[2:3]
@@ -170,17 +170,17 @@ func (dec *decoder) decode(s string, depth int) interface{} {
 			if depth >= 63 {
 				panic(FormatError("input exceeds container depth limit"))
 			}
-			length := dec.decode("u", depth).(uint32)
+			length := fur.decode("u", depth).(uint32)
 			// Even for empty maps, the correct padding must be included
-			dec.align(8)
-			spos := dec.pos
-			for dec.pos < spos+int(length) {
-				dec.align(8)
+			fur.align(8)
+			spos := fur.pos
+			for fur.pos < spos+int(length) {
+				fur.align(8)
 				if !isKeyType(v.Type().Key()) {
 					panic(InvalidTypeError{v.Type()})
 				}
-				kv := dec.decode(ksig, depth+2)
-				vv := dec.decode(vsig, depth+2)
+				kv := fur.decode(ksig, depth+2)
+				vv := fur.decode(vsig, depth+2)
 				v.SetMapIndex(reflect.ValueOf(kv), reflect.ValueOf(vv))
 			}
 			return v.Interface()
@@ -189,7 +189,7 @@ func (dec *decoder) decode(s string, depth int) interface{} {
 			panic(FormatError("input exceeds container depth limit"))
 		}
 		sig := s[1:]
-		length := dec.decode("u", depth).(uint32)
+		length := fur.decode("u", depth).(uint32)
 		// capacity can be determined only for fixed-size element types
 		var capacity int
 		if s := sigByteSize(sig); s != 0 {
@@ -204,10 +204,10 @@ func (dec *decoder) decode(s string, depth int) interface{} {
 			//but the dbus alignment does not match this
 			align = 8
 		}
-		dec.align(align)
-		spos := dec.pos
-		for dec.pos < spos+int(length) {
-			ev := dec.decode(s[1:], depth+1)
+		fur.align(align)
+		spos := fur.pos
+		for fur.pos < spos+int(length) {
+			ev := fur.decode(s[1:], depth+1)
 			v = reflect.Append(v, reflect.ValueOf(ev))
 		}
 		return v.Interface()
@@ -215,7 +215,7 @@ func (dec *decoder) decode(s string, depth int) interface{} {
 		if depth >= 64 {
 			panic(FormatError("input exceeds container depth limit"))
 		}
-		dec.align(8)
+		fur.align(8)
 		v := make([]interface{}, 0)
 		s = s[1 : len(s)-1]
 		for s != "" {
@@ -223,7 +223,7 @@ func (dec *decoder) decode(s string, depth int) interface{} {
 			if err != nil {
 				panic(err)
 			}
-			ev := dec.decode(s[:len(s)-len(rem)], depth+1)
+			ev := fur.decode(s[:len(s)-len(rem)], depth+1)
 			v = append(v, ev)
 			s = rem
 		}

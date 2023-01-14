@@ -244,10 +244,10 @@ func unquoteBytes(s []byte) (t []byte, ok bool) {
 				r += 6
 				if utf16.IsSurrogate(rr) {
 					rr1 := getu4(s[r:])
-					if dec := utf16.DecodeRune(rr, rr1); dec != unicode.ReplacementChar {
+					if fur := utf16.DecodeRune(rr, rr1); fur != unicode.ReplacementChar {
 						// A valid pair; consume.
 						r += 6
-						w += utf8.EncodeRune(b[w:], dec)
+						w += utf8.EncodeRune(b[w:], fur)
 						break
 					}
 					// Invalid surrogate; fall back to replacement rune.

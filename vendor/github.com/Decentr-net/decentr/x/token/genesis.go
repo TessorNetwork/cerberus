@@ -5,8 +5,8 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/Decentr-net/decentr/x/token/keeper"
-	"github.com/Decentr-net/decentr/x/token/types"
+	"github.com/TessorNetwork/furya/x/token/keeper"
+	"github.com/TessorNetwork/furya/x/token/types"
 )
 
 // InitGenesis initializes the capability module's state from a provided genesis
@@ -17,16 +17,16 @@ func InitGenesis(ctx sdk.Context, keeper keeper.Keeper, genState types.GenesisSt
 		if err != nil {
 			panic(fmt.Errorf("invalid address %s in balances : %w", k, err))
 		}
-		keeper.SetBalance(ctx, address, v.Dec)
+		keeper.SetBalance(ctx, address, v.Fur)
 	}
 }
 
 // ExportGenesis returns the capability module's exported genesis.
 func ExportGenesis(ctx sdk.Context, k keeper.Keeper) *types.GenesisState {
-	balances := map[string]sdk.DecProto{}
+	balances := map[string]sdk.FurProto{}
 
-	k.IterateBalance(ctx, func(address sdk.AccAddress, balance sdk.Dec) (stop bool) {
-		balances[address.String()] = sdk.DecProto{Dec: balance}
+	k.IterateBalance(ctx, func(address sdk.AccAddress, balance sdk.Fur) (stop bool) {
+		balances[address.String()] = sdk.FurProto{Fur: balance}
 		return false
 	})
 

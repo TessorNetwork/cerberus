@@ -1,20 +1,20 @@
 # broadcaster
-![img](https://img.shields.io/github/go-mod/go-version/Decentr-net/go-broadcaster) ![img](https://img.shields.io/github/v/tag/Decentr-net/go-broadcaster?label=version)
+![img](https://img.shields.io/github/go-mod/go-version/TessorNetwork/go-broadcaster) ![img](https://img.shields.io/github/v/tag/TessorNetwork/go-broadcaster?label=version)
 
-Package which simplifies broadcasting messages to decentr blockchain node
+Package which simplifies broadcasting messages to furya blockchain node
 
 ## Example
 
 ```
 import (
-    . "github.com/Decentr-net/decentr/testutil"
-    communitytypes "github.com/Decentr-net/decentr/x/community/types"
-    "github.com/Decentr-net/go-broadcaster"
+    . "github.com/TessorNetwork/furya/testutil"
+    communitytypes "github.com/TessorNetwork/furya/x/community/types"
+    "github.com/TessorNetwork/go-broadcaster"
 )
 
 func main() {
 	b, err := broadcaster.New(Config{
-		KeyringRootDir:     "~/.decentr",
+		KeyringRootDir:     "~/.furya",
 		KeyringBackend:     "test",
 		KeyringPromptInput: "",
 		NodeURI:            "http://localhost:26657",

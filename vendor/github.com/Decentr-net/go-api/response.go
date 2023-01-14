@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"net/http"
 
-	logging "github.com/Decentr-net/logrus/context"
+	logging "github.com/TessorNetwork/logrus/context"
 )
 
 // Error ...

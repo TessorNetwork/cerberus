@@ -6,7 +6,7 @@ package mock
 
 import (
 	context "context"
-	ariadne "github.com/Decentr-net/ariadne"
+	ariadne "github.com/TessorNetwork/ariadne"
 	gomock "github.com/golang/mock/gomock"
 	reflect "reflect"
 )

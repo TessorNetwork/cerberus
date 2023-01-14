@@ -146,7 +146,7 @@ func (d *textDecoder) Decode(v *dto.MetricFamily) error {
 // SampleDecoder wraps a Decoder to extract samples from the metric families
 // decoded by the wrapped Decoder.
 type SampleDecoder struct {
-	Dec  Decoder
+	Fur  Decoder
 	Opts *DecodeOptions
 
 	f dto.MetricFamily
@@ -155,7 +155,7 @@ type SampleDecoder struct {
 // Decode calls the Decode method of the wrapped Decoder and then extracts the
 // samples from the decoded MetricFamily into the provided model.Vector.
 func (sd *SampleDecoder) Decode(s *model.Vector) error {
-	err := sd.Dec.Decode(&sd.f)
+	err := sd.Fur.Decode(&sd.f)
 	if err != nil {
 		return err
 	}

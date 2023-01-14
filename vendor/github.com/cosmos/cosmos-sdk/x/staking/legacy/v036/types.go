@@ -25,9 +25,9 @@ type (
 	}
 
 	CommissionRates struct {
-		Rate          sdk.Dec `json:"rate" yaml:"rate"`
-		MaxRate       sdk.Dec `json:"max_rate" yaml:"max_rate"`
-		MaxChangeRate sdk.Dec `json:"max_change_rate" yaml:"max_change_rate"`
+		Rate          sdk.Fur `json:"rate" yaml:"rate"`
+		MaxRate       sdk.Fur `json:"max_rate" yaml:"max_rate"`
+		MaxChangeRate sdk.Fur `json:"max_change_rate" yaml:"max_change_rate"`
 	}
 
 	Validator struct {
@@ -36,7 +36,7 @@ type (
 		Jailed                  bool                    `json:"jailed" yaml:"jailed"`
 		Status                  v034staking.BondStatus  `json:"status" yaml:"status"`
 		Tokens                  sdk.Int                 `json:"tokens" yaml:"tokens"`
-		DelegatorShares         sdk.Dec                 `json:"delegator_shares" yaml:"delegator_shares"`
+		DelegatorShares         sdk.Fur                 `json:"delegator_shares" yaml:"delegator_shares"`
 		Description             v034staking.Description `json:"description" yaml:"description"`
 		UnbondingHeight         int64                   `json:"unbonding_height" yaml:"unbonding_height"`
 		UnbondingCompletionTime time.Time               `json:"unbonding_time" yaml:"unbonding_time"`
@@ -50,7 +50,7 @@ type (
 		Jailed                  bool                    `json:"jailed" yaml:"jailed"`
 		Status                  v034staking.BondStatus  `json:"status" yaml:"status"`
 		Tokens                  sdk.Int                 `json:"tokens" yaml:"tokens"`
-		DelegatorShares         sdk.Dec                 `json:"delegator_shares" yaml:"delegator_shares"`
+		DelegatorShares         sdk.Fur                 `json:"delegator_shares" yaml:"delegator_shares"`
 		Description             v034staking.Description `json:"description" yaml:"description"`
 		UnbondingHeight         int64                   `json:"unbonding_height" yaml:"unbonding_height"`
 		UnbondingCompletionTime time.Time               `json:"unbonding_time" yaml:"unbonding_time"`

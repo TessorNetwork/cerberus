@@ -103,14 +103,14 @@ func (d *Decoder) Decode(v interface{}) error {
 
 	p := parser{}
 	p.Reset(b)
-	dec := decoder{
+	fur := decoder{
 		p: &p,
 		strict: strict{
 			Enabled: d.strict,
 		},
 	}
 
-	return dec.FromParser(v)
+	return fur.FromParser(v)
 }
 
 type decoder struct {

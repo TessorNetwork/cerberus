@@ -302,24 +302,24 @@ func (v Validator) InvalidExRate() bool {
 }
 
 // calculate the token worth of provided shares
-func (v Validator) TokensFromShares(shares sdk.Dec) sdk.Dec {
+func (v Validator) TokensFromShares(shares sdk.Fur) sdk.Fur {
 	return (shares.MulInt(v.Tokens)).Quo(v.DelegatorShares)
 }
 
 // calculate the token worth of provided shares, truncated
-func (v Validator) TokensFromSharesTruncated(shares sdk.Dec) sdk.Dec {
+func (v Validator) TokensFromSharesTruncated(shares sdk.Fur) sdk.Fur {
 	return (shares.MulInt(v.Tokens)).QuoTruncate(v.DelegatorShares)
 }
 
 // TokensFromSharesRoundUp returns the token worth of provided shares, rounded
 // up.
-func (v Validator) TokensFromSharesRoundUp(shares sdk.Dec) sdk.Dec {
+func (v Validator) TokensFromSharesRoundUp(shares sdk.Fur) sdk.Fur {
 	return (shares.MulInt(v.Tokens)).QuoRoundUp(v.DelegatorShares)
 }
 
 // SharesFromTokens returns the shares of a delegation given a bond amount. It
 // returns an error if the validator has no tokens.
-func (v Validator) SharesFromTokens(amt sdk.Int) (sdk.Dec, error) {
+func (v Validator) SharesFromTokens(amt sdk.Int) (sdk.Fur, error) {
 	if v.Tokens.IsZero() {
 		return sdk.ZeroDec(), ErrInsufficientShares
 	}
@@ -329,7 +329,7 @@ func (v Validator) SharesFromTokens(amt sdk.Int) (sdk.Dec, error) {
 
 // SharesFromTokensTruncated returns the truncated shares of a delegation given
 // a bond amount. It returns an error if the validator has no tokens.
-func (v Validator) SharesFromTokensTruncated(amt sdk.Int) (sdk.Dec, error) {
+func (v Validator) SharesFromTokensTruncated(amt sdk.Int) (sdk.Fur, error) {
 	if v.Tokens.IsZero() {
 		return sdk.ZeroDec(), ErrInsufficientShares
 	}
@@ -369,9 +369,9 @@ func (v Validator) UpdateStatus(newStatus BondStatus) Validator {
 }
 
 // AddTokensFromDel adds tokens to a validator
-func (v Validator) AddTokensFromDel(amount sdk.Int) (Validator, sdk.Dec) {
+func (v Validator) AddTokensFromDel(amount sdk.Int) (Validator, sdk.Fur) {
 	// calculate the shares to issue
-	var issuedShares sdk.Dec
+	var issuedShares sdk.Fur
 	if v.DelegatorShares.IsZero() {
 		// the first delegation to a validator sets the exchange rate to one
 		issuedShares = amount.ToDec()
@@ -409,7 +409,7 @@ func (v Validator) RemoveTokens(tokens sdk.Int) Validator {
 // NOTE: because token fractions are left in the valiadator,
 //
 //	the exchange rate of future shares of this validator can increase.
-func (v Validator) RemoveDelShares(delShares sdk.Dec) (Validator, sdk.Int) {
+func (v Validator) RemoveDelShares(delShares sdk.Fur) (Validator, sdk.Int) {
 	remainingShares := v.DelegatorShares.Sub(delShares)
 
 	var issuedTokens sdk.Int
@@ -508,9 +508,9 @@ func (v Validator) GetBondedTokens() sdk.Int { return v.BondedTokens() }
 func (v Validator) GetConsensusPower(r sdk.Int) int64 {
 	return v.ConsensusPower(r)
 }
-func (v Validator) GetCommission() sdk.Dec        { return v.Commission.Rate }
+func (v Validator) GetCommission() sdk.Fur        { return v.Commission.Rate }
 func (v Validator) GetMinSelfDelegation() sdk.Int { return v.MinSelfDelegation }
-func (v Validator) GetDelegatorShares() sdk.Dec   { return v.DelegatorShares }
+func (v Validator) GetDelegatorShares() sdk.Fur   { return v.DelegatorShares }
 
 // UnpackInterfaces implements UnpackInterfacesMessage.UnpackInterfaces
 func (v Validator) UnpackInterfaces(unpacker codectypes.AnyUnpacker) error {

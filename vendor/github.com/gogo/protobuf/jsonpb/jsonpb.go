@@ -764,9 +764,9 @@ type Unmarshaler struct {
 // UnmarshalNext unmarshals the next protocol buffer from a JSON object stream.
 // This function is lenient and will decode any options permutations of the
 // related Marshaler.
-func (u *Unmarshaler) UnmarshalNext(dec *json.Decoder, pb proto.Message) error {
+func (u *Unmarshaler) UnmarshalNext(fur *json.Decoder, pb proto.Message) error {
 	inputValue := json.RawMessage{}
-	if err := dec.Decode(&inputValue); err != nil {
+	if err := fur.Decode(&inputValue); err != nil {
 		return err
 	}
 	if err := u.unmarshalValue(reflect.ValueOf(pb).Elem(), inputValue, nil); err != nil {
@@ -779,15 +779,15 @@ func (u *Unmarshaler) UnmarshalNext(dec *json.Decoder, pb proto.Message) error {
 // buffer. This function is lenient and will decode any options
 // permutations of the related Marshaler.
 func (u *Unmarshaler) Unmarshal(r io.Reader, pb proto.Message) error {
-	dec := json.NewDecoder(r)
-	return u.UnmarshalNext(dec, pb)
+	fur := json.NewDecoder(r)
+	return u.UnmarshalNext(fur, pb)
 }
 
 // UnmarshalNext unmarshals the next protocol buffer from a JSON object stream.
 // This function is lenient and will decode any options permutations of the
 // related Marshaler.
-func UnmarshalNext(dec *json.Decoder, pb proto.Message) error {
-	return new(Unmarshaler).UnmarshalNext(dec, pb)
+func UnmarshalNext(fur *json.Decoder, pb proto.Message) error {
+	return new(Unmarshaler).UnmarshalNext(fur, pb)
 }
 
 // Unmarshal unmarshals a JSON object stream into a protocol

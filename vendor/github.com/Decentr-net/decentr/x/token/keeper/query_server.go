@@ -3,7 +3,7 @@ package keeper
 import (
 	"context"
 
-	"github.com/Decentr-net/decentr/x/token/types"
+	"github.com/TessorNetwork/furya/x/token/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )
@@ -31,6 +31,6 @@ func (s queryServer) Balance(goCtx context.Context, r *types.BalanceRequest) (*t
 	}
 
 	return &types.BalanceResponse{
-		Balance: sdk.DecProto{Dec: s.keeper.GetBalance(ctx, addr)},
+		Balance: sdk.FurProto{Fur: s.keeper.GetBalance(ctx, addr)},
 	}, nil
 }

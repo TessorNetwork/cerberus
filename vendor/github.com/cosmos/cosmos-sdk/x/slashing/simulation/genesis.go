@@ -29,7 +29,7 @@ func GenSignedBlocksWindow(r *rand.Rand) int64 {
 }
 
 // GenMinSignedPerWindow randomized MinSignedPerWindow
-func GenMinSignedPerWindow(r *rand.Rand) sdk.Dec {
+func GenMinSignedPerWindow(r *rand.Rand) sdk.Fur {
 	return sdk.NewDecWithPrec(int64(r.Intn(10)), 1)
 }
 
@@ -39,13 +39,13 @@ func GenDowntimeJailDuration(r *rand.Rand) time.Duration {
 }
 
 // GenSlashFractionDoubleSign randomized SlashFractionDoubleSign
-func GenSlashFractionDoubleSign(r *rand.Rand) sdk.Dec {
-	return sdk.NewDec(1).Quo(sdk.NewDec(int64(r.Intn(50) + 1)))
+func GenSlashFractionDoubleSign(r *rand.Rand) sdk.Fur {
+	return sdk.NewFur(1).Quo(sdk.NewFur(int64(r.Intn(50) + 1)))
 }
 
 // GenSlashFractionDowntime randomized SlashFractionDowntime
-func GenSlashFractionDowntime(r *rand.Rand) sdk.Dec {
-	return sdk.NewDec(1).Quo(sdk.NewDec(int64(r.Intn(200) + 1)))
+func GenSlashFractionDowntime(r *rand.Rand) sdk.Fur {
+	return sdk.NewFur(1).Quo(sdk.NewFur(int64(r.Intn(200) + 1)))
 }
 
 // RandomizedGenState generates a random GenesisState for slashing
@@ -56,7 +56,7 @@ func RandomizedGenState(simState *module.SimulationState) {
 		func(r *rand.Rand) { signedBlocksWindow = GenSignedBlocksWindow(r) },
 	)
 
-	var minSignedPerWindow sdk.Dec
+	var minSignedPerWindow sdk.Fur
 	simState.AppParams.GetOrGenerate(
 		simState.Cdc, MinSignedPerWindow, &minSignedPerWindow, simState.Rand,
 		func(r *rand.Rand) { minSignedPerWindow = GenMinSignedPerWindow(r) },
@@ -68,13 +68,13 @@ func RandomizedGenState(simState *module.SimulationState) {
 		func(r *rand.Rand) { downtimeJailDuration = GenDowntimeJailDuration(r) },
 	)
 
-	var slashFractionDoubleSign sdk.Dec
+	var slashFractionDoubleSign sdk.Fur
 	simState.AppParams.GetOrGenerate(
 		simState.Cdc, SlashFractionDoubleSign, &slashFractionDoubleSign, simState.Rand,
 		func(r *rand.Rand) { slashFractionDoubleSign = GenSlashFractionDoubleSign(r) },
 	)
 
-	var slashFractionDowntime sdk.Dec
+	var slashFractionDowntime sdk.Fur
 	simState.AppParams.GetOrGenerate(
 		simState.Cdc, SlashFractionDowntime, &slashFractionDowntime, simState.Rand,
 		func(r *rand.Rand) { slashFractionDowntime = GenSlashFractionDowntime(r) },

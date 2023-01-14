@@ -107,8 +107,8 @@ func NewDecoder(r io.Reader) *Decoder {
 
 // SetStrict sets whether strict decoding behaviour is enabled when
 // decoding items in the data (see UnmarshalStrict). By default, decoding is not strict.
-func (dec *Decoder) SetStrict(strict bool) {
-	dec.strict = strict
+func (fur *Decoder) SetStrict(strict bool) {
+	fur.strict = strict
 }
 
 // Decode reads the next YAML-encoded value from its input
@@ -116,10 +116,10 @@ func (dec *Decoder) SetStrict(strict bool) {
 //
 // See the documentation for Unmarshal for details about the
 // conversion of YAML into a Go value.
-func (dec *Decoder) Decode(v interface{}) (err error) {
-	d := newDecoder(dec.strict)
+func (fur *Decoder) Decode(v interface{}) (err error) {
+	d := newDecoder(fur.strict)
 	defer handleErr(&err)
-	node := dec.parser.parse()
+	node := fur.parser.parse()
 	if node == nil {
 		return io.EOF
 	}

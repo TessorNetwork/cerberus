@@ -29,7 +29,7 @@ func InitialValidatorAccumulatedCommission() ValidatorAccumulatedCommission {
 }
 
 // create a new ValidatorSlashEvent
-func NewValidatorSlashEvent(validatorPeriod uint64, fraction sdk.Dec) ValidatorSlashEvent {
+func NewValidatorSlashEvent(validatorPeriod uint64, fraction sdk.Fur) ValidatorSlashEvent {
 	return ValidatorSlashEvent{
 		ValidatorPeriod: validatorPeriod,
 		Fraction:        fraction,
