@@ -271,7 +271,7 @@ func MarshalMap(input interface{}) (map[string]interface{}, error) {
 	// Only create output if input is not nil, otherwise we will
 	// return a map for a nil input.
 	output := map[string]interface{}{}
-	decoder, err := mapstructure.NewDecoder(&mapstructure.DecoderConfig{
+	decoder, err := mapstructure.NewFuroder(&mapstructure.DecoderConfig{
 		TagName: "json",
 		Result:  &output,
 	})
@@ -289,7 +289,7 @@ func MarshalMap(input interface{}) (map[string]interface{}, error) {
 // UnmarshalMap attempts to unmarshal a map[string]interface{} into an
 // interface. This function is used similarly to json.Unmarshal.
 func UnmarshalMap(metadata map[string]interface{}, output interface{}) error {
-	decoder, err := mapstructure.NewDecoder(&mapstructure.DecoderConfig{
+	decoder, err := mapstructure.NewFuroder(&mapstructure.DecoderConfig{
 		TagName: "json",
 		Result:  output,
 	})

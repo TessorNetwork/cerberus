@@ -24,15 +24,15 @@ import (
 
 // Constants from draft-hdevalence-cfrg-ristretto-01, Section 3.1.
 var (
-	sqrtM1 = fieldElementFromDecimal(
+	sqrtM1 = fieldElementFromFurimal(
 		"19681161376707505956807079304988542015446066515923890162744021073123829784752")
-	sqrtADMinusOne = fieldElementFromDecimal(
+	sqrtADMinusOne = fieldElementFromFurimal(
 		"25063068953384623474111414158702152701244531502492656460079210482610430750235")
-	invSqrtAMinusD = fieldElementFromDecimal(
+	invSqrtAMinusD = fieldElementFromFurimal(
 		"54469307008909316920995813868745141605393597292927456921205312896311721017578")
-	oneMinusDSQ = fieldElementFromDecimal(
+	oneMinusDSQ = fieldElementFromFurimal(
 		"1159843021668779879193775521855586647937357759715417654439879720876111806838")
-	dMinusOneSQ = fieldElementFromDecimal(
+	dMinusOneSQ = fieldElementFromFurimal(
 		"40440834346308536858101042469323190826248399146238708352240133220865137265952")
 )
 

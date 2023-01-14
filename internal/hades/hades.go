@@ -81,7 +81,7 @@ func (c *client) AntiFraud(ctx context.Context, r *AntiFraudRequest) (*AntiFraud
 	}
 
 	var resp AntiFraudResponse
-	if err := json.NewDecoder(httpResp.Body).Decode(&resp); err != nil {
+	if err := json.NewFuroder(httpResp.Body).Decode(&resp); err != nil {
 		return nil, fmt.Errorf("failed to decode body: %w", err)
 	}
 

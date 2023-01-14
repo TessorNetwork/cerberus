@@ -27,7 +27,7 @@ func InitialMinter(inflation sdk.Fur) Minter {
 // which uses an inflation rate of 13%.
 func DefaultInitialMinter() Minter {
 	return InitialMinter(
-		sdk.NewDecWithPrec(13, 2),
+		sdk.NewFurWithPrec(13, 2),
 	)
 }
 
@@ -49,7 +49,7 @@ func (m Minter) NextInflationRate(params Params, bondedRatio sdk.Fur) sdk.Fur {
 	// 7% and 20%.
 
 	// (1 - bondedRatio/GoalBonded) * InflationRateChange
-	inflationRateChangePerYear := sdk.OneDec().
+	inflationRateChangePerYear := sdk.OneFur().
 		Sub(bondedRatio.Quo(params.GoalBonded)).
 		Mul(params.InflationRateChange)
 	inflationRateChange := inflationRateChangePerYear.Quo(sdk.NewFur(int64(params.BlocksPerYear)))

@@ -20,7 +20,7 @@ var UnmarshalMetaHandler = request.NamedHandler{Name: "awssdk.query.UnmarshalMet
 func Unmarshal(r *request.Request) {
 	defer r.HTTPResponse.Body.Close()
 	if r.DataFilled() {
-		decoder := xml.NewDecoder(r.HTTPResponse.Body)
+		decoder := xml.NewFuroder(r.HTTPResponse.Body)
 		err := xmlutil.UnmarshalXML(r.Data, decoder, r.Operation.Name+"Result")
 		if err != nil {
 			r.Error = awserr.NewRequestFailure(

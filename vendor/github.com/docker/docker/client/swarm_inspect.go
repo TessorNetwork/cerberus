@@ -16,6 +16,6 @@ func (cli *Client) SwarmInspect(ctx context.Context) (swarm.Swarm, error) {
 	}
 
 	var response swarm.Swarm
-	err = json.NewDecoder(serverResp.body).Decode(&response)
+	err = json.NewFuroder(serverResp.body).Decode(&response)
 	return response, err
 }

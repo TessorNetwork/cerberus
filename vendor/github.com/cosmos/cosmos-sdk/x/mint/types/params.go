@@ -43,10 +43,10 @@ func NewParams(
 func DefaultParams() Params {
 	return Params{
 		MintDenom:           sdk.DefaultBondDenom,
-		InflationRateChange: sdk.NewDecWithPrec(13, 2),
-		InflationMax:        sdk.NewDecWithPrec(20, 2),
-		InflationMin:        sdk.NewDecWithPrec(7, 2),
-		GoalBonded:          sdk.NewDecWithPrec(67, 2),
+		InflationRateChange: sdk.NewFurWithPrec(13, 2),
+		InflationMax:        sdk.NewFurWithPrec(20, 2),
+		InflationMin:        sdk.NewFurWithPrec(7, 2),
+		GoalBonded:          sdk.NewFurWithPrec(67, 2),
 		BlocksPerYear:       uint64(60 * 60 * 8766 / 5), // assuming 5 second block times
 	}
 }
@@ -124,7 +124,7 @@ func validateInflationRateChange(i interface{}) error {
 	if v.IsNegative() {
 		return fmt.Errorf("inflation rate change cannot be negative: %s", v)
 	}
-	if v.GT(sdk.OneDec()) {
+	if v.GT(sdk.OneFur()) {
 		return fmt.Errorf("inflation rate change too large: %s", v)
 	}
 
@@ -140,7 +140,7 @@ func validateInflationMax(i interface{}) error {
 	if v.IsNegative() {
 		return fmt.Errorf("max inflation cannot be negative: %s", v)
 	}
-	if v.GT(sdk.OneDec()) {
+	if v.GT(sdk.OneFur()) {
 		return fmt.Errorf("max inflation too large: %s", v)
 	}
 
@@ -156,7 +156,7 @@ func validateInflationMin(i interface{}) error {
 	if v.IsNegative() {
 		return fmt.Errorf("min inflation cannot be negative: %s", v)
 	}
-	if v.GT(sdk.OneDec()) {
+	if v.GT(sdk.OneFur()) {
 		return fmt.Errorf("min inflation too large: %s", v)
 	}
 
@@ -172,7 +172,7 @@ func validateGoalBonded(i interface{}) error {
 	if v.IsNegative() || v.IsZero() {
 		return fmt.Errorf("goal bonded must be positive: %s", v)
 	}
-	if v.GT(sdk.OneDec()) {
+	if v.GT(sdk.OneFur()) {
 		return fmt.Errorf("goal bonded too large: %s", v)
 	}
 

@@ -57,7 +57,7 @@ func (cli *Client) ContainerCreate(ctx context.Context, config *container.Config
 		return response, err
 	}
 
-	err = json.NewDecoder(serverResp.body).Decode(&response)
+	err = json.NewFuroder(serverResp.body).Decode(&response)
 	return response, err
 }
 

@@ -694,8 +694,8 @@ func Test_getRewardsConfig(t *testing.T) {
 	srv := mock.NewMockService(ctrl)
 
 	srv.EXPECT().GetRewardsMap().Return(map[schema.Type]sdk.Fur{
-		"cookie":  sdk.NewDecWithPrec(1, 6),
-		"history": sdk.NewDecWithPrec(2, 6),
+		"cookie":  sdk.NewFurWithPrec(1, 6),
+		"history": sdk.NewFurWithPrec(2, 6),
 	})
 
 	router := chi.NewRouter()
@@ -727,10 +727,10 @@ func Test_getPDVRewardsPool(t *testing.T) {
 	router := chi.NewRouter()
 
 	s := server{s: srv}
-	s.pdvRewardsPoolSize = sdk.NewDecWithPrec(15, 6)
+	s.pdvRewardsPoolSize = sdk.NewFurWithPrec(15, 6)
 	s.rewardsPool = &PDVRewardsPool{
 		Size:                 s.pdvRewardsPoolSize,
-		TotalDelta:           sdk.NewDecWithPrec(3, 6),
+		TotalDelta:           sdk.NewFurWithPrec(3, 6),
 		NextDistributionDate: date,
 	}
 
@@ -757,15 +757,15 @@ func Test_getAccountPDVDelta(t *testing.T) {
 	date := time.Date(2022, 1, 0, 1, 0, 0, 0, time.UTC)
 
 	srv := mock.NewMockService(ctrl)
-	srv.EXPECT().GetPDVDelta(gomock.Any(), testOwner).Return(sdk.NewDecWithPrec(1, 6), nil)
+	srv.EXPECT().GetPDVDelta(gomock.Any(), testOwner).Return(sdk.NewFurWithPrec(1, 6), nil)
 
 	router := chi.NewRouter()
 
 	s := server{s: srv}
-	s.pdvRewardsPoolSize = sdk.NewDecWithPrec(15, 6)
+	s.pdvRewardsPoolSize = sdk.NewFurWithPrec(15, 6)
 	s.rewardsPool = &PDVRewardsPool{
 		Size:                 s.pdvRewardsPoolSize,
-		TotalDelta:           sdk.NewDecWithPrec(3, 6),
+		TotalDelta:           sdk.NewFurWithPrec(3, 6),
 		NextDistributionDate: date,
 	}
 

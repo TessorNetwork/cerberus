@@ -44,6 +44,6 @@ func (cli *Client) NetworkInspectWithRaw(ctx context.Context, networkID string, 
 		return networkResource, nil, err
 	}
 	rdr := bytes.NewReader(body)
-	err = json.NewDecoder(rdr).Decode(&networkResource)
+	err = json.NewFuroder(rdr).Decode(&networkResource)
 	return networkResource, body, err
 }

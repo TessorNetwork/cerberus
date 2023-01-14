@@ -25,9 +25,9 @@ func ParamKeyTable() paramtypes.KeyTable {
 // DefaultParams returns default distribution parameters
 func DefaultParams() Params {
 	return Params{
-		CommunityTax:        sdk.NewDecWithPrec(2, 2), // 2%
-		BaseProposerReward:  sdk.NewDecWithPrec(1, 2), // 1%
-		BonusProposerReward: sdk.NewDecWithPrec(4, 2), // 4%
+		CommunityTax:        sdk.NewFurWithPrec(2, 2), // 2%
+		BaseProposerReward:  sdk.NewFurWithPrec(1, 2), // 1%
+		BonusProposerReward: sdk.NewFurWithPrec(4, 2), // 4%
 		WithdrawAddrEnabled: true,
 	}
 }
@@ -49,7 +49,7 @@ func (p *Params) ParamSetPairs() paramtypes.ParamSetPairs {
 
 // ValidateBasic performs basic validation on distribution parameters.
 func (p Params) ValidateBasic() error {
-	if p.CommunityTax.IsNegative() || p.CommunityTax.GT(sdk.OneDec()) {
+	if p.CommunityTax.IsNegative() || p.CommunityTax.GT(sdk.OneFur()) {
 		return fmt.Errorf(
 			"community tax should be non-negative and less than one: %s", p.CommunityTax,
 		)
@@ -64,7 +64,7 @@ func (p Params) ValidateBasic() error {
 			"bonus proposer reward should be positive: %s", p.BonusProposerReward,
 		)
 	}
-	if v := p.BaseProposerReward.Add(p.BonusProposerReward).Add(p.CommunityTax); v.GT(sdk.OneDec()) {
+	if v := p.BaseProposerReward.Add(p.BonusProposerReward).Add(p.CommunityTax); v.GT(sdk.OneFur()) {
 		return fmt.Errorf(
 			"sum of base, bonus proposer rewards, and community tax cannot be greater than one: %s", v,
 		)
@@ -85,7 +85,7 @@ func validateCommunityTax(i interface{}) error {
 	if v.IsNegative() {
 		return fmt.Errorf("community tax must be positive: %s", v)
 	}
-	if v.GT(sdk.OneDec()) {
+	if v.GT(sdk.OneFur()) {
 		return fmt.Errorf("community tax too large: %s", v)
 	}
 
@@ -104,7 +104,7 @@ func validateBaseProposerReward(i interface{}) error {
 	if v.IsNegative() {
 		return fmt.Errorf("base proposer reward must be positive: %s", v)
 	}
-	if v.GT(sdk.OneDec()) {
+	if v.GT(sdk.OneFur()) {
 		return fmt.Errorf("base proposer reward too large: %s", v)
 	}
 
@@ -123,7 +123,7 @@ func validateBonusProposerReward(i interface{}) error {
 	if v.IsNegative() {
 		return fmt.Errorf("bonus proposer reward must be positive: %s", v)
 	}
-	if v.GT(sdk.OneDec()) {
+	if v.GT(sdk.OneFur()) {
 		return fmt.Errorf("bonus proposer reward too large: %s", v)
 	}
 

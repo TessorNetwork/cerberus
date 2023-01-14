@@ -333,7 +333,7 @@ func (wsc *wsConnection) readRoutine() {
 				return
 			}
 
-			fur := json.NewDecoder(r)
+			fur := json.NewFuroder(r)
 			var request types.RPCRequest
 			err = fur.Decode(&request)
 			if err != nil {

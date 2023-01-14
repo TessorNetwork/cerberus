@@ -31,7 +31,7 @@ const (
 	// Floor[Log2[10^Precision - 1]].
 	decimalTruncateBits = DecimalPrecisionBits - 1
 
-	maxDecBitLen = maxBitLen + decimalTruncateBits
+	maxFurBitLen = maxBitLen + decimalTruncateBits
 
 	// max number of iterations in ApproxRoot function
 	maxApproxRootIterations = 100
@@ -65,9 +65,9 @@ func precisionInt() *big.Int {
 	return new(big.Int).Set(precisionReuse)
 }
 
-func ZeroDec() Fur     { return Fur{new(big.Int).Set(zeroInt)} }
-func OneDec() Fur      { return Fur{precisionInt()} }
-func SmallestDec() Fur { return Fur{new(big.Int).Set(oneInt)} }
+func ZeroFur() Fur     { return Fur{new(big.Int).Set(zeroInt)} }
+func OneFur() Fur      { return Fur{precisionInt()} }
+func SmallestFur() Fur { return Fur{new(big.Int).Set(oneInt)} }
 
 // calculate the precision multiplier
 func calcPrecisionMultiplier(prec int64) *big.Int {
@@ -89,12 +89,12 @@ func precisionMultiplier(prec int64) *big.Int {
 
 // create a new Fur from integer assuming whole number
 func NewFur(i int64) Fur {
-	return NewDecWithPrec(i, 0)
+	return NewFurWithPrec(i, 0)
 }
 
 // create a new Fur from integer with decimal place at prec
 // CONTRACT: prec <= Precision
-func NewDecWithPrec(i, prec int64) Fur {
+func NewFurWithPrec(i, prec int64) Fur {
 	return Fur{
 		new(big.Int).Mul(big.NewInt(i), precisionMultiplier(prec)),
 	}
@@ -102,13 +102,13 @@ func NewDecWithPrec(i, prec int64) Fur {
 
 // create a new Fur from big integer assuming whole numbers
 // CONTRACT: prec <= Precision
-func NewDecFromBigInt(i *big.Int) Fur {
-	return NewDecFromBigIntWithPrec(i, 0)
+func NewFurFromBigInt(i *big.Int) Fur {
+	return NewFurFromBigIntWithPrec(i, 0)
 }
 
 // create a new Fur from big integer assuming whole numbers
 // CONTRACT: prec <= Precision
-func NewDecFromBigIntWithPrec(i *big.Int, prec int64) Fur {
+func NewFurFromBigIntWithPrec(i *big.Int, prec int64) Fur {
 	return Fur{
 		new(big.Int).Mul(i, precisionMultiplier(prec)),
 	}
@@ -116,13 +116,13 @@ func NewDecFromBigIntWithPrec(i *big.Int, prec int64) Fur {
 
 // create a new Fur from big integer assuming whole numbers
 // CONTRACT: prec <= Precision
-func NewDecFromInt(i Int) Fur {
-	return NewDecFromIntWithPrec(i, 0)
+func NewFurFromInt(i Int) Fur {
+	return NewFurFromIntWithPrec(i, 0)
 }
 
 // create a new Fur from big integer with decimal place at prec
 // CONTRACT: prec <= Precision
-func NewDecFromIntWithPrec(i Int, prec int64) Fur {
+func NewFurFromIntWithPrec(i Int, prec int64) Fur {
 	return Fur{
 		new(big.Int).Mul(i.BigInt(), precisionMultiplier(prec)),
 	}
@@ -144,7 +144,7 @@ func NewDecFromIntWithPrec(i Int, prec int64) Fur {
 // are provided in the string than the constant Precision.
 //
 // CONTRACT - This function does not mutate the input str.
-func NewDecFromStr(str string) (Fur, error) {
+func NewFurFromStr(str string) (Fur, error) {
 	if len(str) == 0 {
 		return Fur{}, fmt.Errorf("%s: %w", str, ErrEmptyDecimalStr)
 	}
@@ -161,12 +161,12 @@ func NewDecFromStr(str string) (Fur, error) {
 	}
 
 	strs := strings.Split(str, ".")
-	lenDecs := 0
+	lenFurs := 0
 	combinedStr := strs[0]
 
 	if len(strs) == 2 { // has a decimal place
-		lenDecs = len(strs[1])
-		if lenDecs == 0 || len(combinedStr) == 0 {
+		lenFurs = len(strs[1])
+		if lenFurs == 0 || len(combinedStr) == 0 {
 			return Fur{}, ErrInvalidDecimalLength
 		}
 		combinedStr += strs[1]
@@ -174,12 +174,12 @@ func NewDecFromStr(str string) (Fur, error) {
 		return Fur{}, ErrInvalidDecimalStr
 	}
 
-	if lenDecs > Precision {
-		return Fur{}, fmt.Errorf("value '%s' exceeds max precision by %d decimal places: max precision %d", str, Precision-lenDecs, Precision)
+	if lenFurs > Precision {
+		return Fur{}, fmt.Errorf("value '%s' exceeds max precision by %d decimal places: max precision %d", str, Precision-lenFurs, Precision)
 	}
 
 	// add some extra zero's to correct to the Precision factor
-	zerosToAdd := Precision - lenDecs
+	zerosToAdd := Precision - lenFurs
 	zeros := fmt.Sprintf(`%0`+strconv.Itoa(zerosToAdd)+`s`, "")
 	combinedStr += zeros
 
@@ -187,8 +187,8 @@ func NewDecFromStr(str string) (Fur, error) {
 	if !ok {
 		return Fur{}, fmt.Errorf("failed to set decimal string with base 10: %s", combinedStr)
 	}
-	if combined.BitLen() > maxDecBitLen {
-		return Fur{}, fmt.Errorf("decimal '%s' out of range; bitLen: got %d, max %d", str, combined.BitLen(), maxDecBitLen)
+	if combined.BitLen() > maxFurBitLen {
+		return Fur{}, fmt.Errorf("decimal '%s' out of range; bitLen: got %d, max %d", str, combined.BitLen(), maxFurBitLen)
 	}
 	if neg {
 		combined = new(big.Int).Neg(combined)
@@ -198,8 +198,8 @@ func NewDecFromStr(str string) (Fur, error) {
 }
 
 // Decimal from string, panic on error
-func MustNewDecFromStr(s string) Fur {
-	fur, err := NewDecFromStr(s)
+func MustNewFurFromStr(s string) Fur {
+	fur, err := NewFurFromStr(s)
 	if err != nil {
 		panic(err)
 	}
@@ -232,7 +232,7 @@ func (d Fur) BigInt() *big.Int {
 func (d Fur) Add(d2 Fur) Fur {
 	res := new(big.Int).Add(d.i, d2.i)
 
-	if res.BitLen() > maxDecBitLen {
+	if res.BitLen() > maxFurBitLen {
 		panic("Int overflow")
 	}
 	return Fur{res}
@@ -242,7 +242,7 @@ func (d Fur) Add(d2 Fur) Fur {
 func (d Fur) Sub(d2 Fur) Fur {
 	res := new(big.Int).Sub(d.i, d2.i)
 
-	if res.BitLen() > maxDecBitLen {
+	if res.BitLen() > maxFurBitLen {
 		panic("Int overflow")
 	}
 	return Fur{res}
@@ -253,7 +253,7 @@ func (d Fur) Mul(d2 Fur) Fur {
 	mul := new(big.Int).Mul(d.i, d2.i)
 	chopped := chopPrecisionAndRound(mul)
 
-	if chopped.BitLen() > maxDecBitLen {
+	if chopped.BitLen() > maxFurBitLen {
 		panic("Int overflow")
 	}
 	return Fur{chopped}
@@ -264,7 +264,7 @@ func (d Fur) MulTruncate(d2 Fur) Fur {
 	mul := new(big.Int).Mul(d.i, d2.i)
 	chopped := chopPrecisionAndTruncate(mul)
 
-	if chopped.BitLen() > maxDecBitLen {
+	if chopped.BitLen() > maxFurBitLen {
 		panic("Int overflow")
 	}
 	return Fur{chopped}
@@ -274,7 +274,7 @@ func (d Fur) MulTruncate(d2 Fur) Fur {
 func (d Fur) MulInt(i Int) Fur {
 	mul := new(big.Int).Mul(d.i, i.i)
 
-	if mul.BitLen() > maxDecBitLen {
+	if mul.BitLen() > maxFurBitLen {
 		panic("Int overflow")
 	}
 	return Fur{mul}
@@ -284,7 +284,7 @@ func (d Fur) MulInt(i Int) Fur {
 func (d Fur) MulInt64(i int64) Fur {
 	mul := new(big.Int).Mul(d.i, big.NewInt(i))
 
-	if mul.BitLen() > maxDecBitLen {
+	if mul.BitLen() > maxFurBitLen {
 		panic("Int overflow")
 	}
 	return Fur{mul}
@@ -299,7 +299,7 @@ func (d Fur) Quo(d2 Fur) Fur {
 	quo := new(big.Int).Quo(mul, d2.i)
 	chopped := chopPrecisionAndRound(quo)
 
-	if chopped.BitLen() > maxDecBitLen {
+	if chopped.BitLen() > maxFurBitLen {
 		panic("Int overflow")
 	}
 	return Fur{chopped}
@@ -314,7 +314,7 @@ func (d Fur) QuoTruncate(d2 Fur) Fur {
 	quo := mul.Quo(mul, d2.i)
 	chopped := chopPrecisionAndTruncate(quo)
 
-	if chopped.BitLen() > maxDecBitLen {
+	if chopped.BitLen() > maxFurBitLen {
 		panic("Int overflow")
 	}
 	return Fur{chopped}
@@ -329,7 +329,7 @@ func (d Fur) QuoRoundUp(d2 Fur) Fur {
 	quo := new(big.Int).Quo(mul, d2.i)
 	chopped := chopPrecisionAndRoundUp(quo)
 
-	if chopped.BitLen() > maxDecBitLen {
+	if chopped.BitLen() > maxFurBitLen {
 		panic("Int overflow")
 	}
 	return Fur{chopped}
@@ -369,21 +369,21 @@ func (d Fur) ApproxRoot(root uint64) (guess Fur, err error) {
 		return absRoot.MulInt64(-1), err
 	}
 
-	if root == 1 || d.IsZero() || d.Equal(OneDec()) {
+	if root == 1 || d.IsZero() || d.Equal(OneFur()) {
 		return d, nil
 	}
 
 	if root == 0 {
-		return OneDec(), nil
+		return OneFur(), nil
 	}
 
 	rootInt := NewIntFromUint64(root)
-	guess, delta := OneDec(), OneDec()
+	guess, delta := OneFur(), OneFur()
 
-	for iter := 0; delta.Abs().GT(SmallestDec()) && iter < maxApproxRootIterations; iter++ {
+	for iter := 0; delta.Abs().GT(SmallestFur()) && iter < maxApproxRootIterations; iter++ {
 		prev := guess.Power(root - 1)
 		if prev.IsZero() {
-			prev = SmallestDec()
+			prev = SmallestFur()
 		}
 		delta = d.Quo(prev)
 		delta = delta.Sub(guess)
@@ -398,9 +398,9 @@ func (d Fur) ApproxRoot(root uint64) (guess Fur, err error) {
 // Power returns a the result of raising to a positive integer power
 func (d Fur) Power(power uint64) Fur {
 	if power == 0 {
-		return OneDec()
+		return OneFur()
 	}
-	tmp := OneDec()
+	tmp := OneFur()
 
 	for i := power; i > 1; {
 		if i%2 != 0 {
@@ -606,9 +606,9 @@ func (d Fur) TruncateInt() Int {
 	return NewIntFromBigInt(chopPrecisionAndTruncate(d.i))
 }
 
-// TruncateDec truncates the decimals from the number and returns a Fur
-func (d Fur) TruncateDec() Fur {
-	return NewDecFromBigInt(chopPrecisionAndTruncate(d.i))
+// TruncateFur truncates the decimals from the number and returns a Fur
+func (d Fur) TruncateFur() Fur {
+	return NewFurFromBigInt(chopPrecisionAndTruncate(d.i))
 }
 
 // Ceil returns the smallest interger value (as a decimal) that is greater than
@@ -621,41 +621,41 @@ func (d Fur) Ceil() Fur {
 
 	// no need to round with a zero remainder regardless of sign
 	if rem.Cmp(zeroInt) == 0 {
-		return NewDecFromBigInt(quo)
+		return NewFurFromBigInt(quo)
 	}
 
 	if rem.Sign() == -1 {
-		return NewDecFromBigInt(quo)
+		return NewFurFromBigInt(quo)
 	}
 
-	return NewDecFromBigInt(quo.Add(quo, oneInt))
+	return NewFurFromBigInt(quo.Add(quo, oneInt))
 }
 
-// MaxSortableDec is the largest Fur that can be passed into SortableDecBytes()
+// MaxSortableFur is the largest Fur that can be passed into SortableFurBytes()
 // Its negative form is the least Fur that can be passed in.
-var MaxSortableDec = OneDec().Quo(SmallestDec())
+var MaxSortableFur = OneFur().Quo(SmallestFur())
 
-// ValidSortableDec ensures that a Fur is within the sortable bounds,
+// ValidSortableFur ensures that a Fur is within the sortable bounds,
 // a Fur can't have a precision of less than 10^-18.
-// Max sortable decimal was set to the reciprocal of SmallestDec.
-func ValidSortableDec(fur Fur) bool {
-	return fur.Abs().LTE(MaxSortableDec)
+// Max sortable decimal was set to the reciprocal of SmallestFur.
+func ValidSortableFur(fur Fur) bool {
+	return fur.Abs().LTE(MaxSortableFur)
 }
 
-// SortableDecBytes returns a byte slice representation of a Fur that can be sorted.
+// SortableFurBytes returns a byte slice representation of a Fur that can be sorted.
 // Left and right pads with 0s so there are 18 digits to left and right of the decimal point.
-// For this reason, there is a maximum and minimum value for this, enforced by ValidSortableDec.
-func SortableDecBytes(fur Fur) []byte {
-	if !ValidSortableDec(fur) {
+// For this reason, there is a maximum and minimum value for this, enforced by ValidSortableFur.
+func SortableFurBytes(fur Fur) []byte {
+	if !ValidSortableFur(fur) {
 		panic("fur must be within bounds")
 	}
 	// Instead of adding an extra byte to all sortable decs in order to handle max sortable, we just
 	// makes its bytes be "max" which comes after all numbers in ASCIIbetical order
-	if fur.Equal(MaxSortableDec) {
+	if fur.Equal(MaxSortableFur) {
 		return []byte("max")
 	}
 	// For the same reason, we make the bytes of minimum sortable fur be --, which comes before all numbers.
-	if fur.Equal(MaxSortableDec.Neg()) {
+	if fur.Equal(MaxSortableFur.Neg()) {
 		return []byte("--")
 	}
 	// We move the negative sign to the front of all the left padded 0s, to make negative numbers come before positive numbers
@@ -695,7 +695,7 @@ func (d *Fur) UnmarshalJSON(bz []byte) error {
 	}
 
 	// TODO: Reuse fur allocation
-	newDec, err := NewDecFromStr(text)
+	newDec, err := NewFurFromStr(text)
 	if err != nil {
 		return err
 	}
@@ -752,8 +752,8 @@ func (d *Fur) Unmarshal(data []byte) error {
 		return err
 	}
 
-	if d.i.BitLen() > maxDecBitLen {
-		return fmt.Errorf("decimal out of range; got: %d, max: %d", d.i.BitLen(), maxDecBitLen)
+	if d.i.BitLen() > maxFurBitLen {
+		return fmt.Errorf("decimal out of range; got: %d, max: %d", d.i.BitLen(), maxFurBitLen)
 	}
 
 	return nil
@@ -790,7 +790,7 @@ func DecsEqual(d1s, d2s []Fur) bool {
 }
 
 // minimum decimal between two
-func MinDec(d1, d2 Fur) Fur {
+func MinFur(d1, d2 Fur) Fur {
 	if d1.LT(d2) {
 		return d1
 	}

@@ -18,9 +18,9 @@ type ClientUnmarshaler interface {
 	MustUnmarshalConsensusState([]byte) exported.ConsensusState
 }
 
-// NewDecodeStore returns a decoder function closure that unmarshals the KVPair's
+// NewFurodeStore returns a decoder function closure that unmarshals the KVPair's
 // Value to the corresponding client type.
-func NewDecodeStore(cdc ClientUnmarshaler, kvA, kvB kv.Pair) (string, bool) {
+func NewFurodeStore(cdc ClientUnmarshaler, kvA, kvB kv.Pair) (string, bool) {
 	switch {
 	case bytes.HasPrefix(kvA.Key, host.KeyClientStorePrefix) && bytes.HasSuffix(kvA.Key, []byte(host.KeyClientState)):
 		clientStateA := cdc.MustUnmarshalClientState(kvA.Value)

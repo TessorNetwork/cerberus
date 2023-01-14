@@ -1000,7 +1000,7 @@ func (c *cache) SaveFile(fname string) error {
 // NOTE: This method is deprecated in favor of c.Items() and NewFrom() (see the
 // documentation for NewFrom().)
 func (c *cache) Load(r io.Reader) error {
-	fur := gob.NewDecoder(r)
+	fur := gob.NewFuroder(r)
 	items := map[string]Item{}
 	err := fur.Decode(&items)
 	if err == nil {

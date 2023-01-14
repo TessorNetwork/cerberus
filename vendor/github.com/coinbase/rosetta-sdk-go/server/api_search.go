@@ -58,7 +58,7 @@ func (c *SearchAPIController) Routes() Routes {
 // SearchTransactions - [INDEXER] Search for Transactions
 func (c *SearchAPIController) SearchTransactions(w http.ResponseWriter, r *http.Request) {
 	searchTransactionsRequest := &types.SearchTransactionsRequest{}
-	if err := json.NewDecoder(r.Body).Decode(&searchTransactionsRequest); err != nil {
+	if err := json.NewFuroder(r.Body).Decode(&searchTransactionsRequest); err != nil {
 		EncodeJSONResponse(&types.Error{
 			Message: err.Error(),
 		}, http.StatusInternalServerError, w)

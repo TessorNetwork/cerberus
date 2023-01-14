@@ -452,7 +452,7 @@ func (coins Coins) Max(coinsB Coins) Coins {
 // {2A, 3B}.Min({1B, 4C}) == {1B}
 // {1A, 2B}.Min({3C}) == empty
 //
-// See also DecCoins.Intersect().
+// See also FurCoins.Intersect().
 func (coins Coins) Min(coinsB Coins) Coins {
 	min := make([]Coin, 0)
 	for indexA, indexB := 0, 0; indexA < len(coins) && indexB < len(coinsB); {
@@ -765,7 +765,7 @@ var (
 	reDecAmt    = `[[:digit:]]+(?:\.[[:digit:]]+)?|\.[[:digit:]]+`
 	reSpc       = `[[:space:]]*`
 	reDnm       *regexp.Regexp
-	reDecCoin   *regexp.Regexp
+	reFurCoin   *regexp.Regexp
 )
 
 func init() {
@@ -786,7 +786,7 @@ func SetCoinDenomRegex(reFn func() string) {
 	coinDenomRegex = reFn
 
 	reDnm = regexp.MustCompile(fmt.Sprintf(`^%s$`, coinDenomRegex()))
-	reDecCoin = regexp.MustCompile(fmt.Sprintf(`^(%s)%s(%s)$`, reDecAmt, reSpc, coinDenomRegex()))
+	reFurCoin = regexp.MustCompile(fmt.Sprintf(`^(%s)%s(%s)$`, reDecAmt, reSpc, coinDenomRegex()))
 }
 
 // ValidateDenom is the default validation function for Coin.Denom.
@@ -807,12 +807,12 @@ func mustValidateDenom(denom string) {
 // as well.
 // Expected format: "{amount}{denomination}"
 func ParseCoinNormalized(coinStr string) (coin Coin, err error) {
-	decCoin, err := ParseDecCoin(coinStr)
+	decCoin, err := ParseFurCoin(coinStr)
 	if err != nil {
 		return Coin{}, err
 	}
 
-	coin, _ = NormalizeDecCoin(decCoin).TruncateDecimal()
+	coin, _ = NormalizeFurCoin(decCoin).TruncateFurimal()
 	return coin, nil
 }
 
@@ -825,7 +825,7 @@ func ParseCoinNormalized(coinStr string) (coin Coin, err error) {
 // ParseCoinsNormalized supports decimal coins as inputs, and truncate them to int after converted to the smallest unit.
 // Expected format: "{amount0}{denomination},...,{amountN}{denominationN}"
 func ParseCoinsNormalized(coinStr string) (Coins, error) {
-	coins, err := ParseDecCoins(coinStr)
+	coins, err := ParseFurCoins(coinStr)
 	if err != nil {
 		return Coins{}, err
 	}

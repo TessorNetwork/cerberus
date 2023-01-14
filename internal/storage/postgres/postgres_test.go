@@ -325,7 +325,7 @@ func TestPg_SetPDVMeta(t *testing.T) {
 		ObjectTypes: map[schema.Type]uint16{
 			"cookie": 1,
 		},
-		Reward: sdk.NewDecWithPrec(1, 6),
+		Reward: sdk.NewFurWithPrec(1, 6),
 	}
 
 	require.NoError(t, s.SetPDVMeta(ctx, "1", 1, "tx", "ios", exp))
@@ -371,13 +371,13 @@ func TestPg_GetPDVDeltaTotal(t *testing.T) {
 
 	t.Run("3 different accounts", func(t *testing.T) {
 		require.NoError(t, s.SetPDVMeta(ctx, "address1", 1, "trx1", "ios", &entities.PDVMeta{
-			Reward: sdk.NewDecWithPrec(1, 6),
+			Reward: sdk.NewFurWithPrec(1, 6),
 		}))
 		require.NoError(t, s.SetPDVMeta(ctx, "address2", 1, "trx2", "desktop", &entities.PDVMeta{
-			Reward: sdk.NewDecWithPrec(2, 6),
+			Reward: sdk.NewFurWithPrec(2, 6),
 		}))
 		require.NoError(t, s.SetPDVMeta(ctx, "address3", 1, "trx3", "android", &entities.PDVMeta{
-			Reward: sdk.NewDecWithPrec(3, 6),
+			Reward: sdk.NewFurWithPrec(3, 6),
 		}))
 
 		total, err := s.GetPDVTotalDelta(ctx)
@@ -405,10 +405,10 @@ func TestPg_GetPDVDelta(t *testing.T) {
 		const addr = "address"
 
 		require.NoError(t, s.SetPDVMeta(ctx, addr, 1, "trx1", "ios", &entities.PDVMeta{
-			Reward: sdk.NewDecWithPrec(1, 6),
+			Reward: sdk.NewFurWithPrec(1, 6),
 		}))
 		require.NoError(t, s.SetPDVMeta(ctx, addr, 2, "trx2", "ios", &entities.PDVMeta{
-			Reward: sdk.NewDecWithPrec(2, 6),
+			Reward: sdk.NewFurWithPrec(2, 6),
 		}))
 
 		delta, err := s.GetPDVDelta(ctx, addr)
@@ -433,16 +433,16 @@ func TestPg_GetPDVDeltaList(t *testing.T) {
 	require.Len(t, deltas, 0)
 
 	require.NoError(t, s.SetPDVMeta(ctx, "address1", 1, "trx1", "ios", &entities.PDVMeta{
-		Reward: sdk.NewDecWithPrec(1, 6),
+		Reward: sdk.NewFurWithPrec(1, 6),
 	}))
 	require.NoError(t, s.SetPDVMeta(ctx, "address2", 1, "trx2", "ios", &entities.PDVMeta{
-		Reward: sdk.NewDecWithPrec(2, 6),
+		Reward: sdk.NewFurWithPrec(2, 6),
 	}))
 	require.NoError(t, s.SetPDVMeta(ctx, "address2", 2, "trx22", "ios", &entities.PDVMeta{
-		Reward: sdk.NewDecWithPrec(20, 6),
+		Reward: sdk.NewFurWithPrec(20, 6),
 	}))
 	require.NoError(t, s.SetPDVMeta(ctx, "address3", 1, "trx3", "ios", &entities.PDVMeta{
-		Reward: sdk.NewDecWithPrec(3, 6),
+		Reward: sdk.NewFurWithPrec(3, 6),
 	}))
 
 	deltas, err = s.GetPDVDeltaList(ctx)
@@ -482,7 +482,7 @@ func TestPg_ListPDV(t *testing.T) {
 			ObjectTypes: map[schema.Type]uint16{
 				"cookie": 1,
 			},
-			Reward: sdk.NewDecWithPrec(1, 6),
+			Reward: sdk.NewFurWithPrec(1, 6),
 		}))
 	}
 
@@ -507,7 +507,7 @@ func TestPg_DeletePDV(t *testing.T) {
 			ObjectTypes: map[schema.Type]uint16{
 				"cookie": 1,
 			},
-			Reward: sdk.NewDecWithPrec(1, 6),
+			Reward: sdk.NewFurWithPrec(1, 6),
 		}))
 	}
 

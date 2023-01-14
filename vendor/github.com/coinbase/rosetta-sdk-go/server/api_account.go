@@ -64,7 +64,7 @@ func (c *AccountAPIController) Routes() Routes {
 // AccountBalance - Get an Account's Balance
 func (c *AccountAPIController) AccountBalance(w http.ResponseWriter, r *http.Request) {
 	accountBalanceRequest := &types.AccountBalanceRequest{}
-	if err := json.NewDecoder(r.Body).Decode(&accountBalanceRequest); err != nil {
+	if err := json.NewFuroder(r.Body).Decode(&accountBalanceRequest); err != nil {
 		EncodeJSONResponse(&types.Error{
 			Message: err.Error(),
 		}, http.StatusInternalServerError, w)
@@ -94,7 +94,7 @@ func (c *AccountAPIController) AccountBalance(w http.ResponseWriter, r *http.Req
 // AccountCoins - Get an Account's Unspent Coins
 func (c *AccountAPIController) AccountCoins(w http.ResponseWriter, r *http.Request) {
 	accountCoinsRequest := &types.AccountCoinsRequest{}
-	if err := json.NewDecoder(r.Body).Decode(&accountCoinsRequest); err != nil {
+	if err := json.NewFuroder(r.Body).Decode(&accountCoinsRequest); err != nil {
 		EncodeJSONResponse(&types.Error{
 			Message: err.Error(),
 		}, http.StatusInternalServerError, w)

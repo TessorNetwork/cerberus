@@ -122,7 +122,7 @@ func TestImpl_ProcessMessage(t *testing.T) {
 			ObjectTypes: map[schema.Type]uint16{
 				schema.PDVCookieType: 1,
 			},
-			Reward: sdk.NewDecWithPrec(1, 6),
+			Reward: sdk.NewFurWithPrec(1, 6),
 		},
 		Data: []byte(`{"id": 1}`),
 	}))
@@ -133,7 +133,7 @@ func TestImpl_ProcessMessage(t *testing.T) {
 			ObjectTypes: map[schema.Type]uint16{
 				schema.PDVCookieType: 2,
 			},
-			Reward: sdk.NewDecWithPrec(2, 6),
+			Reward: sdk.NewFurWithPrec(2, 6),
 		},
 		Data: []byte(`{"id": 2}`),
 	}))
@@ -160,13 +160,13 @@ func TestImpl_ProcessMessage(t *testing.T) {
 	b.EXPECT().DistributeRewards([]blockchain.Reward{{
 		Receiver: addr2,
 		ID:       2,
-		Reward:   sdk.NewDecWithPrec(2, 6),
+		Reward:   sdk.NewFurWithPrec(2, 6),
 	}}).Return("tx", nil)
 	is.EXPECT().SetPDVMeta(gomock.Any(), addr2, uint64(2), "tx", &entities.PDVMeta{
 		ObjectTypes: map[schema.Type]uint16{
 			schema.PDVCookieType: 2,
 		},
-		Reward: sdk.NewDecWithPrec(2, 6),
+		Reward: sdk.NewFurWithPrec(2, 6),
 	}, "android")
 
 	require.ErrorIs(t, i.Run(ctx), context.Canceled)

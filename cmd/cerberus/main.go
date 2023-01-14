@@ -48,7 +48,7 @@ var opts = struct {
 	MaxPDVCount           uint16        `long:"max-pdv-count" env:"MAX_PDV_COUNT" default:"100" description:"maximal count of pdv to save"`
 	EncryptKey            string        `long:"encrypt-key" env:"ENCRYPT_KEY" description:"encrypt key in hex which will be used for encrypting and decrypting user's data"`
 
-	PDVRewardsPoolSize int64         `long:"pdv-rewards.pool-size" env:"PDV_REWARDS_POOL_SIZE" default:"100000000000" description:"PDV rewards (uDEC)"`
+	PDVRewardsPoolSize int64         `long:"pdv-rewards.pool-size" env:"PDV_REWARDS_POOL_SIZE" default:"100000000000" description:"PDV rewards (uFUR)"`
 	PDVRewardsInterval time.Duration `long:"pdv-rewards.interval" env:"PDV_REWARDS_INTERVAL" default:"720h" description:"how often to pay PDV rewards"`
 
 	HadesURL string `long:"hades.url" env:"HADES_URL"  description:"Hades service url"`

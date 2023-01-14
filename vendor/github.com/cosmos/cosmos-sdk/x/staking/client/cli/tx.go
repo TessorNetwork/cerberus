@@ -109,7 +109,7 @@ func NewEditValidatorCmd() *cobra.Command {
 
 			commissionRate, _ := cmd.Flags().GetString(FlagCommissionRate)
 			if commissionRate != "" {
-				rate, err := sdk.NewDecFromStr(commissionRate)
+				rate, err := sdk.NewFurFromStr(commissionRate)
 				if err != nil {
 					return fmt.Errorf("invalid new commission rate: %v", err)
 				}

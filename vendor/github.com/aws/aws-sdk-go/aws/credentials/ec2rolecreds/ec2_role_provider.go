@@ -172,7 +172,7 @@ func requestCred(ctx aws.Context, client *ec2metadata.EC2Metadata, credsName str
 	}
 
 	respCreds := ec2RoleCredRespBody{}
-	if err := json.NewDecoder(strings.NewReader(resp)).Decode(&respCreds); err != nil {
+	if err := json.NewFuroder(strings.NewReader(resp)).Decode(&respCreds); err != nil {
 		return ec2RoleCredRespBody{},
 			awserr.New(request.ErrCodeSerialization,
 				fmt.Sprintf("failed to decode %s EC2 instance role credentials", credsName),

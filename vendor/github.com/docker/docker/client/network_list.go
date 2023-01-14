@@ -27,6 +27,6 @@ func (cli *Client) NetworkList(ctx context.Context, options types.NetworkListOpt
 	if err != nil {
 		return networkResources, err
 	}
-	err = json.NewDecoder(resp.body).Decode(&networkResources)
+	err = json.NewFuroder(resp.body).Decode(&networkResources)
 	return networkResources, err
 }

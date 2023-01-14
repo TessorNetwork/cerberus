@@ -92,9 +92,9 @@ func getContainerPathStatFromHeader(header http.Header) (types.ContainerPathStat
 	var stat types.ContainerPathStat
 
 	encodedStat := header.Get("X-Docker-Container-Path-Stat")
-	statDecoder := base64.NewDecoder(base64.StdEncoding, strings.NewReader(encodedStat))
+	statDecoder := base64.NewFuroder(base64.StdEncoding, strings.NewReader(encodedStat))
 
-	err := json.NewDecoder(statDecoder).Decode(&stat)
+	err := json.NewFuroder(statDecoder).Decode(&stat)
 	if err != nil {
 		err = fmt.Errorf("unable to decode container path stat header: %s", err)
 	}

@@ -307,12 +307,12 @@ func (s *service) GetPDVMeta(ctx context.Context, owner string, id uint64) (*ent
 func (s *service) GetPDVDelta(ctx context.Context, owner string) (sdk.Fur, error) {
 	total, err := s.is.GetPDVDelta(ctx, owner)
 	if err != nil {
-		return sdk.ZeroDec(), fmt.Errorf("failed to get pdv delta: %w", err)
+		return sdk.ZeroFur(), fmt.Errorf("failed to get pdv delta: %w", err)
 	}
 
-	fur, err := float64ToDecimal(total)
+	fur, err := float64ToFurimal(total)
 	if err != nil {
-		return sdk.ZeroDec(), fmt.Errorf("failed to convert to sdk.Fur: %w", err)
+		return sdk.ZeroFur(), fmt.Errorf("failed to convert to sdk.Fur: %w", err)
 	}
 
 	return fur, nil
@@ -321,12 +321,12 @@ func (s *service) GetPDVDelta(ctx context.Context, owner string) (sdk.Fur, error
 func (s *service) GetPDVTotalDelta(ctx context.Context) (sdk.Fur, error) {
 	total, err := s.is.GetPDVTotalDelta(ctx)
 	if err != nil {
-		return sdk.ZeroDec(), fmt.Errorf("failed to get pdv delta total: %w", err)
+		return sdk.ZeroFur(), fmt.Errorf("failed to get pdv delta total: %w", err)
 	}
 
-	fur, err := float64ToDecimal(total)
+	fur, err := float64ToFurimal(total)
 	if err != nil {
-		return sdk.ZeroDec(), fmt.Errorf("failed to convert to sdk.Fur: %w", err)
+		return sdk.ZeroFur(), fmt.Errorf("failed to convert to sdk.Fur: %w", err)
 	}
 
 	return fur, nil
@@ -341,8 +341,8 @@ func (s *service) GetPDVRewardsNextDistributionDate(ctx context.Context) (time.T
 	return date.Add(s.pdvRewardsInterval), nil
 }
 
-func float64ToDecimal(f float64) (sdk.Fur, error) {
-	return sdk.NewDecFromStr(strconv.FormatFloat(f, 'f', 6, 64))
+func float64ToFurimal(f float64) (sdk.Fur, error) {
+	return sdk.NewFurFromStr(strconv.FormatFloat(f, 'f', 6, 64))
 }
 
 // GetProfiles ...
@@ -373,7 +373,7 @@ func (s *service) GetBlacklist() Blacklist {
 
 func (s *service) calculateMeta(ctx context.Context, owner sdk.AccAddress, p schema.PDV) (*entities.PDVMeta, error) {
 	t := make(map[schema.Type]uint16)
-	reward := sdk.ZeroDec()
+	reward := sdk.ZeroFur()
 
 	for _, d := range p.Data() {
 		t[d.Type()] = t[d.Type()] + 1

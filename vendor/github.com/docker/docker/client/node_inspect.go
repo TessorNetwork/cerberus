@@ -27,6 +27,6 @@ func (cli *Client) NodeInspectWithRaw(ctx context.Context, nodeID string) (swarm
 
 	var response swarm.Node
 	rdr := bytes.NewReader(body)
-	err = json.NewDecoder(rdr).Decode(&response)
+	err = json.NewFuroder(rdr).Decode(&response)
 	return response, body, err
 }

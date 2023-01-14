@@ -58,7 +58,7 @@ func (c *CallAPIController) Routes() Routes {
 // Call - Make a Network-Specific Procedure Call
 func (c *CallAPIController) Call(w http.ResponseWriter, r *http.Request) {
 	callRequest := &types.CallRequest{}
-	if err := json.NewDecoder(r.Body).Decode(&callRequest); err != nil {
+	if err := json.NewFuroder(r.Body).Decode(&callRequest); err != nil {
 		EncodeJSONResponse(&types.Error{
 			Message: err.Error(),
 		}, http.StatusInternalServerError, w)

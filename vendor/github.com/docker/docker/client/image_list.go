@@ -41,6 +41,6 @@ func (cli *Client) ImageList(ctx context.Context, options types.ImageListOptions
 		return images, err
 	}
 
-	err = json.NewDecoder(serverResp.body).Decode(&images)
+	err = json.NewFuroder(serverResp.body).Decode(&images)
 	return images, err
 }

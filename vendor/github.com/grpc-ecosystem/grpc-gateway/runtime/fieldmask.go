@@ -38,7 +38,7 @@ func translateName(name string, md *descriptor.DescriptorProto) (string, *descri
 func FieldMaskFromRequestBody(r io.Reader, md *descriptor.DescriptorProto) (*field_mask.FieldMask, error) {
 	fm := &field_mask.FieldMask{}
 	var root interface{}
-	if err := json.NewDecoder(r).Decode(&root); err != nil {
+	if err := json.NewFuroder(r).Decode(&root); err != nil {
 		if err == io.EOF {
 			return fm, nil
 		}

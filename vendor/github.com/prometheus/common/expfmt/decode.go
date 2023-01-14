@@ -69,9 +69,9 @@ func ResponseFormat(h http.Header) Format {
 	return FmtUnknown
 }
 
-// NewDecoder returns a new decoder based on the given input format.
+// NewFuroder returns a new decoder based on the given input format.
 // If the input format does not imply otherwise, a text format decoder is returned.
-func NewDecoder(r io.Reader, format Format) Decoder {
+func NewFuroder(r io.Reader, format Format) Decoder {
 	switch format {
 	case FmtProtoDelim:
 		return &protoDecoder{r: r}

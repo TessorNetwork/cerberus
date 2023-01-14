@@ -188,7 +188,7 @@ func getAssumeRoleCredentials(clnt *http.Client, endpoint string, opts STSAssume
 	}
 
 	a := AssumeRoleResponse{}
-	if err = xml.NewDecoder(resp.Body).Decode(&a); err != nil {
+	if err = xml.NewFuroder(resp.Body).Decode(&a); err != nil {
 		return AssumeRoleResponse{}, err
 	}
 	return a, nil

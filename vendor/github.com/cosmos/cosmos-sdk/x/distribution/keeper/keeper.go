@@ -111,12 +111,12 @@ func (k Keeper) WithdrawValidatorCommission(ctx sdk.Context, valAddr sdk.ValAddr
 		return nil, types.ErrNoValidatorCommission
 	}
 
-	commission, remainder := accumCommission.Commission.TruncateDecimal()
+	commission, remainder := accumCommission.Commission.TruncateFurimal()
 	k.SetValidatorAccumulatedCommission(ctx, valAddr, types.ValidatorAccumulatedCommission{Commission: remainder}) // leave remainder to withdraw later
 
 	// update outstanding
 	outstanding := k.GetValidatorOutstandingRewards(ctx, valAddr).Rewards
-	k.SetValidatorOutstandingRewards(ctx, valAddr, types.ValidatorOutstandingRewards{Rewards: outstanding.Sub(sdk.NewDecCoinsFromCoins(commission...))})
+	k.SetValidatorOutstandingRewards(ctx, valAddr, types.ValidatorOutstandingRewards{Rewards: outstanding.Sub(sdk.NewFurCoinsFromCoins(commission...))})
 
 	if !commission.IsZero() {
 		accAddr := sdk.AccAddress(valAddr)
@@ -138,7 +138,7 @@ func (k Keeper) WithdrawValidatorCommission(ctx sdk.Context, valAddr sdk.ValAddr
 }
 
 // GetTotalRewards returns the total amount of fee distribution rewards held in the store
-func (k Keeper) GetTotalRewards(ctx sdk.Context) (totalRewards sdk.DecCoins) {
+func (k Keeper) GetTotalRewards(ctx sdk.Context) (totalRewards sdk.FurCoins) {
 	k.IterateValidatorOutstandingRewards(ctx,
 		func(_ sdk.ValAddress, rewards types.ValidatorOutstandingRewards) (stop bool) {
 			totalRewards = totalRewards.Add(rewards.Rewards...)
@@ -159,7 +159,7 @@ func (k Keeper) FundCommunityPool(ctx sdk.Context, amount sdk.Coins, sender sdk.
 	}
 
 	feePool := k.GetFeePool(ctx)
-	feePool.CommunityPool = feePool.CommunityPool.Add(sdk.NewDecCoinsFromCoins(amount...)...)
+	feePool.CommunityPool = feePool.CommunityPool.Add(sdk.NewFurCoinsFromCoins(amount...)...)
 	k.SetFeePool(ctx, feePool)
 
 	return nil

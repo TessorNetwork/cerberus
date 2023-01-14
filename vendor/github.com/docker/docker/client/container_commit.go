@@ -50,6 +50,6 @@ func (cli *Client) ContainerCommit(ctx context.Context, container string, option
 		return response, err
 	}
 
-	err = json.NewDecoder(resp.body).Decode(&response)
+	err = json.NewFuroder(resp.body).Decode(&response)
 	return response, err
 }

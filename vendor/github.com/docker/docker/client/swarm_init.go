@@ -16,6 +16,6 @@ func (cli *Client) SwarmInit(ctx context.Context, req swarm.InitRequest) (string
 	}
 
 	var response string
-	err = json.NewDecoder(serverResp.body).Decode(&response)
+	err = json.NewFuroder(serverResp.body).Decode(&response)
 	return response, err
 }

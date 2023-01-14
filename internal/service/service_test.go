@@ -43,9 +43,9 @@ var (
 	errTest             = errors.New("test")
 	pdvRewardsInterval  = time.Hour
 	rewardsMap          = RewardMap{
-		schema.PDVCookieType:   sdk.NewDecWithPrec(2, 6),
-		schema.PDVLocationType: sdk.NewDecWithPrec(4, 6),
-		schema.PDVProfileType:  sdk.NewDecWithPrec(6, 6),
+		schema.PDVCookieType:   sdk.NewFurWithPrec(2, 6),
+		schema.PDVLocationType: sdk.NewFurWithPrec(4, 6),
+		schema.PDVProfileType:  sdk.NewFurWithPrec(6, 6),
 	}
 )
 
@@ -146,7 +146,7 @@ func TestService_SavePDV(t *testing.T) {
 			schema.PDVCookieType:   1,
 			schema.PDVLocationType: 1,
 		},
-		Reward: sdk.NewDecWithPrec(6, 6),
+		Reward: sdk.NewFurWithPrec(6, 6),
 	}
 
 	is.EXPECT().IsProfileBanned(gomock.Any(), testOwnerSdkAddr.String()).Return(false, nil)
@@ -192,7 +192,7 @@ func TestService_SavePDV_Blacklist(t *testing.T) {
 		ObjectTypes: map[schema.Type]uint16{
 			schema.PDVCookieType: 1,
 		},
-		Reward: sdk.ZeroDec(),
+		Reward: sdk.ZeroFur(),
 	}
 
 	is.EXPECT().IsProfileBanned(gomock.Any(), testOwnerSdkAddr.String()).Return(false, nil)
@@ -233,12 +233,12 @@ func TestService_SavePDV_Blacklist(t *testing.T) {
 	require.NoError(t, err)
 }
 
-func TestFloat64ToDecimal(t *testing.T) {
-	d, err := float64ToDecimal(0.5)
+func TestFloat64ToFurimal(t *testing.T) {
+	d, err := float64ToFurimal(0.5)
 	require.NoError(t, err)
 	require.Equal(t, "0.500000000000000000", d.String())
 
-	d, err = float64ToDecimal(201.53)
+	d, err = float64ToFurimal(201.53)
 	require.NoError(t, err)
 	require.Equal(t, "201.530000000000000000", d.String())
 }
@@ -268,7 +268,7 @@ func TestService_SavePDV_Profile(t *testing.T) {
 				ObjectTypes: map[schema.Type]uint16{
 					schema.PDVProfileType: 1,
 				},
-				Reward: sdk.ZeroDec(),
+				Reward: sdk.ZeroFur(),
 			},
 		},
 		{
@@ -278,7 +278,7 @@ func TestService_SavePDV_Profile(t *testing.T) {
 				ObjectTypes: map[schema.Type]uint16{
 					schema.PDVProfileType: 1,
 				},
-				Reward: sdk.NewDecWithPrec(6, 6),
+				Reward: sdk.NewFurWithPrec(6, 6),
 			},
 		},
 	}
@@ -534,7 +534,7 @@ func TestService_GetPDVMeta(t *testing.T) {
 			schema.PDVCookieType:   1,
 			schema.PDVLocationType: 2,
 		},
-		Reward: sdk.NewDecWithPrec(10, 6),
+		Reward: sdk.NewFurWithPrec(10, 6),
 	}
 	is.EXPECT().GetPDVMeta(gomock.Any(), testOwner, testID).Return(exp, nil)
 
@@ -671,8 +671,8 @@ func TestService_GetProfiles(t *testing.T) {
 
 func TestService_GetRewardsMap(t *testing.T) {
 	rm := RewardMap{
-		"m": sdk.NewDecWithPrec(1, 6),
-		"t": sdk.NewDecWithPrec(2, 6),
+		"m": sdk.NewFurWithPrec(1, 6),
+		"t": sdk.NewFurWithPrec(2, 6),
 	}
 	s := service{rewardMap: rm}
 

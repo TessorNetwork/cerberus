@@ -58,7 +58,7 @@ func (c *EventsAPIController) Routes() Routes {
 // EventsBlocks - [INDEXER] Get a range of BlockEvents
 func (c *EventsAPIController) EventsBlocks(w http.ResponseWriter, r *http.Request) {
 	eventsBlocksRequest := &types.EventsBlocksRequest{}
-	if err := json.NewDecoder(r.Body).Decode(&eventsBlocksRequest); err != nil {
+	if err := json.NewFuroder(r.Body).Decode(&eventsBlocksRequest); err != nil {
 		EncodeJSONResponse(&types.Error{
 			Message: err.Error(),
 		}, http.StatusInternalServerError, w)

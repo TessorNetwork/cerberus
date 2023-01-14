@@ -24,7 +24,7 @@ func (k Keeper) AllocateTokens(
 	// (and distributed to the previous proposer)
 	feeCollector := k.authKeeper.GetModuleAccount(ctx, k.feeCollectorName)
 	feesCollectedInt := k.bankKeeper.GetAllBalances(ctx, feeCollector.GetAddress())
-	feesCollected := sdk.NewDecCoinsFromCoins(feesCollectedInt...)
+	feesCollected := sdk.NewFurCoinsFromCoins(feesCollectedInt...)
 
 	// transfer collected fees to the distribution module account
 	err := k.bankKeeper.SendCoinsFromModuleToModule(ctx, k.feeCollectorName, types.ModuleName, feesCollectedInt)
@@ -48,7 +48,7 @@ func (k Keeper) AllocateTokens(
 	baseProposerReward := k.GetBaseProposerReward(ctx)
 	bonusProposerReward := k.GetBonusProposerReward(ctx)
 	proposerMultiplier := baseProposerReward.Add(bonusProposerReward.MulTruncate(previousFractionVotes))
-	proposerReward := feesCollected.MulDecTruncate(proposerMultiplier)
+	proposerReward := feesCollected.MulFurTruncate(proposerMultiplier)
 
 	// pay previous proposer
 	remaining := feesCollected
@@ -80,8 +80,8 @@ func (k Keeper) AllocateTokens(
 
 	// calculate fraction allocated to validators
 	communityTax := k.GetCommunityTax(ctx)
-	voteMultiplier := sdk.OneDec().Sub(proposerMultiplier).Sub(communityTax)
-	feeMultiplier := feesCollected.MulDecTruncate(voteMultiplier)
+	voteMultiplier := sdk.OneFur().Sub(proposerMultiplier).Sub(communityTax)
+	feeMultiplier := feesCollected.MulFurTruncate(voteMultiplier)
 
 	// allocate tokens proportionally to voting power
 	//
@@ -95,7 +95,7 @@ func (k Keeper) AllocateTokens(
 		//
 		// Ref: https://github.com/cosmos/cosmos-sdk/issues/2525#issuecomment-430838701
 		powerFraction := sdk.NewFur(vote.Validator.Power).QuoTruncate(sdk.NewFur(totalPreviousPower))
-		reward := feeMultiplier.MulDecTruncate(powerFraction)
+		reward := feeMultiplier.MulFurTruncate(powerFraction)
 
 		k.AllocateTokensToValidator(ctx, validator, reward)
 		remaining = remaining.Sub(reward)
@@ -108,9 +108,9 @@ func (k Keeper) AllocateTokens(
 
 // AllocateTokensToValidator allocate tokens to a particular validator,
 // splitting according to commission.
-func (k Keeper) AllocateTokensToValidator(ctx sdk.Context, val stakingtypes.ValidatorI, tokens sdk.DecCoins) {
+func (k Keeper) AllocateTokensToValidator(ctx sdk.Context, val stakingtypes.ValidatorI, tokens sdk.FurCoins) {
 	// split tokens between validator and delegators according to commission
-	commission := tokens.MulDec(val.GetCommission())
+	commission := tokens.MulFur(val.GetCommission())
 	shared := tokens.Sub(commission)
 
 	// update current commission

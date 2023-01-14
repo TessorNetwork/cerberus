@@ -22,7 +22,7 @@ func (cli *Client) ContainerInspect(ctx context.Context, containerID string) (ty
 	}
 
 	var response types.ContainerJSON
-	err = json.NewDecoder(serverResp.body).Decode(&response)
+	err = json.NewFuroder(serverResp.body).Decode(&response)
 	return response, err
 }
 
@@ -48,6 +48,6 @@ func (cli *Client) ContainerInspectWithRaw(ctx context.Context, containerID stri
 
 	var response types.ContainerJSON
 	rdr := bytes.NewReader(body)
-	err = json.NewDecoder(rdr).Decode(&response)
+	err = json.NewFuroder(rdr).Decode(&response)
 	return response, body, err
 }

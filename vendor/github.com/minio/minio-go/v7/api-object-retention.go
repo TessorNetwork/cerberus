@@ -157,7 +157,7 @@ func (c Client) GetObjectRetention(ctx context.Context, bucketName, objectName, 
 		}
 	}
 	retention := &objectRetention{}
-	if err = xml.NewDecoder(resp.Body).Decode(retention); err != nil {
+	if err = xml.NewFuroder(resp.Body).Decode(retention); err != nil {
 		return nil, nil, err
 	}
 

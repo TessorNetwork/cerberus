@@ -25,8 +25,8 @@ type DecoderRegistry struct {
 	mu sync.RWMutex
 }
 
-// NewDecoderRegistry returns a new, initialized DecoderRegistry.
-func NewDecoderRegistry() *DecoderRegistry {
+// NewFuroderRegistry returns a new, initialized DecoderRegistry.
+func NewFuroderRegistry() *DecoderRegistry {
 	return &DecoderRegistry{
 		decoders: make(map[string]Decoder),
 	}

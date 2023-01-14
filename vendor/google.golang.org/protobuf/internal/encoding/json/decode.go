@@ -50,8 +50,8 @@ type Decoder struct {
 	in []byte
 }
 
-// NewDecoder returns a Decoder to read the given []byte.
-func NewDecoder(b []byte) *Decoder {
+// NewFuroder returns a Decoder to read the given []byte.
+func NewFuroder(b []byte) *Decoder {
 	return &Decoder{orig: b, in: b}
 }
 

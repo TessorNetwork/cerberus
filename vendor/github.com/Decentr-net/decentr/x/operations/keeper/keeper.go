@@ -51,9 +51,9 @@ func (k Keeper) GetParams(ctx sdk.Context) (params types.Params) {
 	return
 }
 
-func (k Keeper) GetMinGasPrice(ctx sdk.Context) sdk.DecCoin {
+func (k Keeper) GetMinGasPrice(ctx sdk.Context) sdk.FurCoin {
 	params := types.Params{
-		MinGasPrice: sdk.NewDecCoin(config.DefaultBondDenom, sdk.ZeroInt()),
+		MinGasPrice: sdk.NewFurCoin(config.DefaultBondDenom, sdk.ZeroInt()),
 	}
 	k.paramSpace.GetParamSetIfExists(ctx, &params)
 	return params.MinGasPrice

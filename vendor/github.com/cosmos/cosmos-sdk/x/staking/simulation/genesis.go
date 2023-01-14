@@ -77,7 +77,7 @@ func RandomizedGenState(simState *module.SimulationState) {
 		valAddr := sdk.ValAddress(simState.Accounts[i].Address)
 		valAddrs[i] = valAddr
 
-		maxCommission := sdk.NewDecWithPrec(int64(simulation.RandIntBetween(simState.Rand, 1, 100)), 2)
+		maxCommission := sdk.NewFurWithPrec(int64(simulation.RandIntBetween(simState.Rand, 1, 100)), 2)
 		commission := types.NewCommission(
 			simulation.RandomDecAmount(simState.Rand, maxCommission),
 			maxCommission,

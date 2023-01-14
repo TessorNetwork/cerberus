@@ -52,6 +52,6 @@ func (cli *Client) ContainerList(ctx context.Context, options types.ContainerLis
 	}
 
 	var containers []types.Container
-	err = json.NewDecoder(resp.body).Decode(&containers)
+	err = json.NewFuroder(resp.body).Decode(&containers)
 	return containers, err
 }

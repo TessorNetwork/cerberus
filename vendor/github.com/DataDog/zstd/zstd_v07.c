@@ -90,7 +90,7 @@ ZSTDLIBv07_API size_t ZSTDv07_decompressBegin(ZSTDv07_DCtx* dctx);
 ZSTDLIBv07_API size_t ZSTDv07_decompressBegin_usingDict(ZSTDv07_DCtx* dctx, const void* dict, size_t dictSize);
 ZSTDLIBv07_API void   ZSTDv07_copyDCtx(ZSTDv07_DCtx* dctx, const ZSTDv07_DCtx* preparedDCtx);
 
-ZSTDLIBv07_API size_t ZSTDv07_nextSrcSizeToDecompress(ZSTDv07_DCtx* dctx);
+ZSTDLIBv07_API size_t ZSTDv07_nextSrcSizeToFurompress(ZSTDv07_DCtx* dctx);
 ZSTDLIBv07_API size_t ZSTDv07_decompressContinue(ZSTDv07_DCtx* dctx, void* dst, size_t dstCapacity, const void* src, size_t srcSize);
 
 /*
@@ -114,8 +114,8 @@ ZSTDLIBv07_API size_t ZSTDv07_decompressContinue(ZSTDv07_DCtx* dctx, void* dst, 
   Start decompression, with ZSTDv07_decompressBegin() or ZSTDv07_decompressBegin_usingDict().
   Alternatively, you can copy a prepared context, using ZSTDv07_copyDCtx().
 
-  Then use ZSTDv07_nextSrcSizeToDecompress() and ZSTDv07_decompressContinue() alternatively.
-  ZSTDv07_nextSrcSizeToDecompress() tells how much bytes to provide as 'srcSize' to ZSTDv07_decompressContinue().
+  Then use ZSTDv07_nextSrcSizeToFurompress() and ZSTDv07_decompressContinue() alternatively.
+  ZSTDv07_nextSrcSizeToFurompress() tells how much bytes to provide as 'srcSize' to ZSTDv07_decompressContinue().
   ZSTDv07_decompressContinue() requires this exact amount of bytes, or it will fail.
 
   @result of ZSTDv07_decompressContinue() is the number of bytes regenerated within 'dst' (necessarily <= dstCapacity).
@@ -128,7 +128,7 @@ ZSTDLIBv07_API size_t ZSTDv07_decompressContinue(ZSTDv07_DCtx* dctx, void* dst, 
   if 2 blocks don't follow each other, make sure that either the compressor breaks contiguity at the same place,
     or that previous contiguous segment is large enough to properly handle maximum back-reference.
 
-  A frame is fully decoded when ZSTDv07_nextSrcSizeToDecompress() returns zero.
+  A frame is fully decoded when ZSTDv07_nextSrcSizeToFurompress() returns zero.
   Context can then be reset to start a new decompression.
 
 
@@ -3963,7 +3963,7 @@ void ZSTDv07_findFrameSizeInfoLegacy(const void *src, size_t srcSize, size_t* cS
 /*_******************************
 *  Streaming Decompression API
 ********************************/
-size_t ZSTDv07_nextSrcSizeToDecompress(ZSTDv07_DCtx* dctx)
+size_t ZSTDv07_nextSrcSizeToFurompress(ZSTDv07_DCtx* dctx)
 {
     return dctx->expected;
 }
@@ -4419,11 +4419,11 @@ size_t ZBUFFv07_decompressContinue(ZBUFFv07_DCtx* zbd,
             }   }
 
             /* Consume header */
-            {   size_t const h1Size = ZSTDv07_nextSrcSizeToDecompress(zbd->zd);  /* == ZSTDv07_frameHeaderSize_min */
+            {   size_t const h1Size = ZSTDv07_nextSrcSizeToFurompress(zbd->zd);  /* == ZSTDv07_frameHeaderSize_min */
                 size_t const h1Result = ZSTDv07_decompressContinue(zbd->zd, NULL, 0, zbd->headerBuffer, h1Size);
                 if (ZSTDv07_isError(h1Result)) return h1Result;
                 if (h1Size < zbd->lhSize) {   /* long header */
-                    size_t const h2Size = ZSTDv07_nextSrcSizeToDecompress(zbd->zd);
+                    size_t const h2Size = ZSTDv07_nextSrcSizeToFurompress(zbd->zd);
                     size_t const h2Result = ZSTDv07_decompressContinue(zbd->zd, NULL, 0, zbd->headerBuffer+h1Size, h2Size);
                     if (ZSTDv07_isError(h2Result)) return h2Result;
             }   }
@@ -4450,7 +4450,7 @@ size_t ZBUFFv07_decompressContinue(ZBUFFv07_DCtx* zbd,
             /* pass-through */
 	    /* fall-through */
         case ZBUFFds_read:
-            {   size_t const neededInSize = ZSTDv07_nextSrcSizeToDecompress(zbd->zd);
+            {   size_t const neededInSize = ZSTDv07_nextSrcSizeToFurompress(zbd->zd);
                 if (neededInSize==0) {  /* end of frame */
                     zbd->stage = ZBUFFds_init;
                     notDone = 0;
@@ -4473,7 +4473,7 @@ size_t ZBUFFv07_decompressContinue(ZBUFFv07_DCtx* zbd,
             }
 	    /* fall-through */
         case ZBUFFds_load:
-            {   size_t const neededInSize = ZSTDv07_nextSrcSizeToDecompress(zbd->zd);
+            {   size_t const neededInSize = ZSTDv07_nextSrcSizeToFurompress(zbd->zd);
                 size_t const toLoad = neededInSize - zbd->inPos;   /* should always be <= remaining space within inBuff */
                 size_t loadedSize;
                 if (toLoad > zbd->inBuffSize - zbd->inPos) return ERROR(corruption_detected);   /* should never happen */
@@ -4518,7 +4518,7 @@ size_t ZBUFFv07_decompressContinue(ZBUFFv07_DCtx* zbd,
     /* result */
     *srcSizePtr = ip-istart;
     *dstCapacityPtr = op-ostart;
-    {   size_t nextSrcSizeHint = ZSTDv07_nextSrcSizeToDecompress(zbd->zd);
+    {   size_t nextSrcSizeHint = ZSTDv07_nextSrcSizeToFurompress(zbd->zd);
         nextSrcSizeHint -= zbd->inPos;   /* already loaded*/
         return nextSrcSizeHint;
     }

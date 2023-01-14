@@ -102,7 +102,7 @@ func feSqrtRatio(r, u, v *radix51.FieldElement) (wasSquare int) {
 	return correctSignSqrt | flippedSignSqrt
 }
 
-func fieldElementFromDecimal(s string) *radix51.FieldElement {
+func fieldElementFromFurimal(s string) *radix51.FieldElement {
 	n, ok := new(big.Int).SetString(s, 10)
 	if !ok {
 		panic("ristretto255: not a valid decimal: " + s)

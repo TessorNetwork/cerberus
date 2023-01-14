@@ -132,7 +132,7 @@ func (keeper Keeper) deleteVote(ctx sdk.Context, proposalID uint64, voterAddr sd
 // populateLegacyOption adds graceful fallback of deprecated `Option` field, in case
 // there's only 1 VoteOption.
 func populateLegacyOption(vote *types.Vote) {
-	if len(vote.Options) == 1 && vote.Options[0].Weight.Equal(sdk.MustNewDecFromStr("1.0")) {
+	if len(vote.Options) == 1 && vote.Options[0].Weight.Equal(sdk.MustNewFurFromStr("1.0")) {
 		vote.Option = vote.Options[0].Option //nolint
 	}
 }

@@ -66,7 +66,7 @@ func (cli *Client) ServiceUpdate(ctx context.Context, serviceID string, version 
 		return response, err
 	}
 
-	err = json.NewDecoder(resp.body).Decode(&response)
+	err = json.NewFuroder(resp.body).Decode(&response)
 	if resolveWarning != "" {
 		response.Warnings = append(response.Warnings, resolveWarning)
 	}

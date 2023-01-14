@@ -73,7 +73,7 @@ type ValidatorOutstandingRewardsRecord struct {
 	// validator_address is the address of the validator.
 	ValidatorAddress string `protobuf:"bytes,1,opt,name=validator_address,json=validatorAddress,proto3" json:"validator_address,omitempty" yaml:"validator_address"`
 	// outstanding_rewards represents the oustanding rewards of a validator.
-	OutstandingRewards github_com_cosmos_cosmos_sdk_types.DecCoins `protobuf:"bytes,2,rep,name=outstanding_rewards,json=outstandingRewards,proto3,castrepeated=github.com/cosmos/cosmos-sdk/types.DecCoins" json:"outstanding_rewards" yaml:"outstanding_rewards"`
+	OutstandingRewards github_com_cosmos_cosmos_sdk_types.FurCoins `protobuf:"bytes,2,rep,name=outstanding_rewards,json=outstandingRewards,proto3,castrepeated=github.com/cosmos/cosmos-sdk/types.FurCoins" json:"outstanding_rewards" yaml:"outstanding_rewards"`
 }
 
 func (m *ValidatorOutstandingRewardsRecord) Reset()         { *m = ValidatorOutstandingRewardsRecord{} }
@@ -1319,7 +1319,7 @@ func (m *ValidatorOutstandingRewardsRecord) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.OutstandingRewards = append(m.OutstandingRewards, types.DecCoin{})
+			m.OutstandingRewards = append(m.OutstandingRewards, types.FurCoin{})
 			if err := m.OutstandingRewards[len(m.OutstandingRewards)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}

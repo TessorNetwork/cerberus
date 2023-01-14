@@ -30,7 +30,7 @@ const (
 )
 
 type (
-	ValidatorAccumulatedCommission = sdk.DecCoins
+	ValidatorAccumulatedCommission = sdk.FurCoins
 
 	ValidatorSlashEventRecord struct {
 		ValidatorAddress sdk.ValAddress                `json:"validator_address"`

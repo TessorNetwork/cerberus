@@ -67,7 +67,7 @@ func (m *MinGasPriceRequest) XXX_DiscardUnknown() {
 var xxx_messageInfo_MinGasPriceRequest proto.InternalMessageInfo
 
 type MinGasPriceResponse struct {
-	MinGasPrice types.DecCoin `protobuf:"bytes,1,opt,name=min_gas_price,json=minGasPrice,proto3" json:"min_gas_price"`
+	MinGasPrice types.FurCoin `protobuf:"bytes,1,opt,name=min_gas_price,json=minGasPrice,proto3" json:"min_gas_price"`
 }
 
 func (m *MinGasPriceResponse) Reset()         { *m = MinGasPriceResponse{} }
@@ -103,11 +103,11 @@ func (m *MinGasPriceResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MinGasPriceResponse proto.InternalMessageInfo
 
-func (m *MinGasPriceResponse) GetMinGasPrice() types.DecCoin {
+func (m *MinGasPriceResponse) GetMinGasPrice() types.FurCoin {
 	if m != nil {
 		return m.MinGasPrice
 	}
-	return types.DecCoin{}
+	return types.FurCoin{}
 }
 
 func init() {

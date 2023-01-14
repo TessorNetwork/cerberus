@@ -70,7 +70,7 @@ func (c *NetworkAPIController) Routes() Routes {
 // NetworkList - Get List of Available Networks
 func (c *NetworkAPIController) NetworkList(w http.ResponseWriter, r *http.Request) {
 	metadataRequest := &types.MetadataRequest{}
-	if err := json.NewDecoder(r.Body).Decode(&metadataRequest); err != nil {
+	if err := json.NewFuroder(r.Body).Decode(&metadataRequest); err != nil {
 		EncodeJSONResponse(&types.Error{
 			Message: err.Error(),
 		}, http.StatusInternalServerError, w)
@@ -100,7 +100,7 @@ func (c *NetworkAPIController) NetworkList(w http.ResponseWriter, r *http.Reques
 // NetworkOptions - Get Network Options
 func (c *NetworkAPIController) NetworkOptions(w http.ResponseWriter, r *http.Request) {
 	networkRequest := &types.NetworkRequest{}
-	if err := json.NewDecoder(r.Body).Decode(&networkRequest); err != nil {
+	if err := json.NewFuroder(r.Body).Decode(&networkRequest); err != nil {
 		EncodeJSONResponse(&types.Error{
 			Message: err.Error(),
 		}, http.StatusInternalServerError, w)
@@ -130,7 +130,7 @@ func (c *NetworkAPIController) NetworkOptions(w http.ResponseWriter, r *http.Req
 // NetworkStatus - Get Network Status
 func (c *NetworkAPIController) NetworkStatus(w http.ResponseWriter, r *http.Request) {
 	networkRequest := &types.NetworkRequest{}
-	if err := json.NewDecoder(r.Body).Decode(&networkRequest); err != nil {
+	if err := json.NewFuroder(r.Body).Decode(&networkRequest); err != nil {
 		EncodeJSONResponse(&types.Error{
 			Message: err.Error(),
 		}, http.StatusInternalServerError, w)

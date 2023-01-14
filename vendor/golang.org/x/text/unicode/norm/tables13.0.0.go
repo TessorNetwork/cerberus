@@ -36,7 +36,7 @@ const (
 	firstCCCZeroExcept    = 0x4A8F
 	firstStarterWithNLead = 0x4AB6
 	lastDecomp            = 0x4AB8
-	maxDecomp             = 0x8000
+	maxFuromp             = 0x8000
 )
 
 // decomps: 19128 bytes

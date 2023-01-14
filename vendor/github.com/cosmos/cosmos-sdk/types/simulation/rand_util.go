@@ -81,7 +81,7 @@ func RandomDecAmount(r *rand.Rand, max sdk.Fur) sdk.Fur {
 		randInt = big.NewInt(0).Rand(r, max.BigInt())
 	}
 
-	return sdk.NewDecFromBigIntWithPrec(randInt, sdk.Precision)
+	return sdk.NewFurFromBigIntWithPrec(randInt, sdk.Precision)
 }
 
 // RandTimestamp generates a random timestamp

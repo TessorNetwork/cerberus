@@ -26,7 +26,7 @@ var opts = struct {
 	SentryDSN string `long:"sentry.dsn" env:"SENTRY_DSN" description:"sentry dsn"`
 	LogLevel  string `long:"log.level" env:"LOG_LEVEL" default:"info" description:"Log level" choice:"debug" choice:"info" choice:"warning" choice:"error"`
 
-	PDVRewardsPoolSize int64         `long:"pdv-rewards.pool-size" env:"PDV_REWARDS_POOL_SIZE" default:"100000000000" description:"PDV rewards (uDEC)"`
+	PDVRewardsPoolSize int64         `long:"pdv-rewards.pool-size" env:"PDV_REWARDS_POOL_SIZE" default:"100000000000" description:"PDV rewards (uFUR)"`
 	PDVRewardsInterval time.Duration `long:"pdv-rewards.interval" env:"PDV_REWARDS_INTERVAL" default:"720h" description:"how often to pay PDV rewards"`
 
 	DBOpts

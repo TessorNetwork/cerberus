@@ -27,7 +27,7 @@ const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 type Params struct {
 	Supervisors []string       `protobuf:"bytes,1,rep,name=supervisors,proto3" json:"supervisors,omitempty"`
 	FixedGas    FixedGasParams `protobuf:"bytes,2,opt,name=fixed_gas,json=fixedGas,proto3" json:"fixed_gas"`
-	MinGasPrice types.DecCoin  `protobuf:"bytes,3,opt,name=min_gas_price,json=minGasPrice,proto3" json:"min_gas_price"`
+	MinGasPrice types.FurCoin  `protobuf:"bytes,3,opt,name=min_gas_price,json=minGasPrice,proto3" json:"min_gas_price"`
 }
 
 func (m *Params) Reset()         { *m = Params{} }
@@ -77,11 +77,11 @@ func (m *Params) GetFixedGas() FixedGasParams {
 	return FixedGasParams{}
 }
 
-func (m *Params) GetMinGasPrice() types.DecCoin {
+func (m *Params) GetMinGasPrice() types.FurCoin {
 	if m != nil {
 		return m.MinGasPrice
 	}
-	return types.DecCoin{}
+	return types.FurCoin{}
 }
 
 type FixedGasParams struct {

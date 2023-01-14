@@ -306,7 +306,7 @@ func Reset() {
 // TODO: make this lazy initialization instead
 func (v *Viper) resetEncoding() {
 	encoderRegistry := encoding.NewEncoderRegistry()
-	decoderRegistry := encoding.NewDecoderRegistry()
+	decoderRegistry := encoding.NewFuroderRegistry()
 
 	{
 		codec := yaml.Codec{}
@@ -1106,7 +1106,7 @@ func defaultDecoderConfig(output interface{}, opts ...DecoderConfigOption) *maps
 
 // A wrapper around mapstructure.Decode that mimics the WeakDecode functionality
 func decode(input interface{}, config *mapstructure.DecoderConfig) error {
-	decoder, err := mapstructure.NewDecoder(config)
+	decoder, err := mapstructure.NewFuroder(config)
 	if err != nil {
 		return err
 	}

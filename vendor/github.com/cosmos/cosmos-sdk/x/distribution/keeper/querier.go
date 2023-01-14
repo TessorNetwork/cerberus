@@ -68,7 +68,7 @@ func queryValidatorOutstandingRewards(ctx sdk.Context, _ []string, req abci.Requ
 
 	rewards := k.GetValidatorOutstandingRewards(ctx, params.ValidatorAddress)
 	if rewards.GetRewards() == nil {
-		rewards.Rewards = sdk.DecCoins{}
+		rewards.Rewards = sdk.FurCoins{}
 	}
 
 	bz, err := codec.MarshalJSONIndent(legacyQuerierCdc, rewards)
@@ -88,7 +88,7 @@ func queryValidatorCommission(ctx sdk.Context, _ []string, req abci.RequestQuery
 
 	commission := k.GetValidatorAccumulatedCommission(ctx, params.ValidatorAddress)
 	if commission.Commission == nil {
-		commission.Commission = sdk.DecCoins{}
+		commission.Commission = sdk.FurCoins{}
 	}
 
 	bz, err := codec.MarshalJSONIndent(legacyQuerierCdc, commission)
@@ -145,7 +145,7 @@ func queryDelegationRewards(ctx sdk.Context, _ []string, req abci.RequestQuery, 
 	endingPeriod := k.IncrementValidatorPeriod(ctx, val)
 	rewards := k.CalculateDelegationRewards(ctx, val, del, endingPeriod)
 	if rewards == nil {
-		rewards = sdk.DecCoins{}
+		rewards = sdk.FurCoins{}
 	}
 
 	bz, err := codec.MarshalJSONIndent(legacyQuerierCdc, rewards)
@@ -166,7 +166,7 @@ func queryDelegatorTotalRewards(ctx sdk.Context, _ []string, req abci.RequestQue
 	// branch the context to isolate state changes
 	ctx, _ = ctx.CacheContext()
 
-	total := sdk.DecCoins{}
+	total := sdk.FurCoins{}
 
 	var delRewards []types.DelegationDelegatorReward
 
@@ -244,7 +244,7 @@ func queryDelegatorWithdrawAddress(ctx sdk.Context, _ []string, req abci.Request
 func queryCommunityPool(ctx sdk.Context, _ []string, _ abci.RequestQuery, k Keeper, legacyQuerierCdc *codec.LegacyAmino) ([]byte, error) {
 	pool := k.GetFeePoolCommunityCoins(ctx)
 	if pool == nil {
-		pool = sdk.DecCoins{}
+		pool = sdk.FurCoins{}
 	}
 
 	bz, err := legacyQuerierCdc.MarshalJSON(pool)

@@ -65,7 +65,7 @@ type JSONPBUnmarshaler interface {
 
 // Unmarshal unmarshals a JSON object from r into m.
 func (u *Unmarshaler) Unmarshal(r io.Reader, m proto.Message) error {
-	return u.UnmarshalNext(json.NewDecoder(r), m)
+	return u.UnmarshalNext(json.NewFuroder(r), m)
 }
 
 // UnmarshalNext unmarshals the next JSON object from d into m.

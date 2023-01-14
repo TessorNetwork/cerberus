@@ -28,6 +28,6 @@ func (cli *Client) VolumeList(ctx context.Context, filter filters.Args) (volumet
 		return volumes, err
 	}
 
-	err = json.NewDecoder(resp.body).Decode(&volumes)
+	err = json.NewFuroder(resp.body).Decode(&volumes)
 	return volumes, err
 }

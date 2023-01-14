@@ -7,12 +7,12 @@ import (
 )
 
 // get outstanding rewards
-func (k Keeper) GetValidatorOutstandingRewardsCoins(ctx sdk.Context, val sdk.ValAddress) sdk.DecCoins {
+func (k Keeper) GetValidatorOutstandingRewardsCoins(ctx sdk.Context, val sdk.ValAddress) sdk.FurCoins {
 	return k.GetValidatorOutstandingRewards(ctx, val).Rewards
 }
 
 // get the community coins
-func (k Keeper) GetFeePoolCommunityCoins(ctx sdk.Context) sdk.DecCoins {
+func (k Keeper) GetFeePoolCommunityCoins(ctx sdk.Context) sdk.FurCoins {
 	return k.GetFeePool(ctx).CommunityPool
 }
 

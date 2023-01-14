@@ -293,7 +293,7 @@ func unmarshalXML(reader io.Reader, isObject bool) (*Tags, error) {
 		},
 	}
 
-	if err := xml.NewDecoder(reader).Decode(tagging); err != nil {
+	if err := xml.NewFuroder(reader).Decode(tagging); err != nil {
 		return nil, err
 	}
 

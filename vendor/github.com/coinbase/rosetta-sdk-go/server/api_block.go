@@ -64,7 +64,7 @@ func (c *BlockAPIController) Routes() Routes {
 // Block - Get a Block
 func (c *BlockAPIController) Block(w http.ResponseWriter, r *http.Request) {
 	blockRequest := &types.BlockRequest{}
-	if err := json.NewDecoder(r.Body).Decode(&blockRequest); err != nil {
+	if err := json.NewFuroder(r.Body).Decode(&blockRequest); err != nil {
 		EncodeJSONResponse(&types.Error{
 			Message: err.Error(),
 		}, http.StatusInternalServerError, w)
@@ -94,7 +94,7 @@ func (c *BlockAPIController) Block(w http.ResponseWriter, r *http.Request) {
 // BlockTransaction - Get a Block Transaction
 func (c *BlockAPIController) BlockTransaction(w http.ResponseWriter, r *http.Request) {
 	blockTransactionRequest := &types.BlockTransactionRequest{}
-	if err := json.NewDecoder(r.Body).Decode(&blockTransactionRequest); err != nil {
+	if err := json.NewFuroder(r.Body).Decode(&blockTransactionRequest); err != nil {
 		EncodeJSONResponse(&types.Error{
 			Message: err.Error(),
 		}, http.StatusInternalServerError, w)

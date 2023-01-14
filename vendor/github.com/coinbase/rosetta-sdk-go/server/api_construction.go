@@ -100,7 +100,7 @@ func (c *ConstructionAPIController) Routes() Routes {
 // ConstructionCombine - Create Network Transaction from Signatures
 func (c *ConstructionAPIController) ConstructionCombine(w http.ResponseWriter, r *http.Request) {
 	constructionCombineRequest := &types.ConstructionCombineRequest{}
-	if err := json.NewDecoder(r.Body).Decode(&constructionCombineRequest); err != nil {
+	if err := json.NewFuroder(r.Body).Decode(&constructionCombineRequest); err != nil {
 		EncodeJSONResponse(&types.Error{
 			Message: err.Error(),
 		}, http.StatusInternalServerError, w)
@@ -130,7 +130,7 @@ func (c *ConstructionAPIController) ConstructionCombine(w http.ResponseWriter, r
 // ConstructionDerive - Derive an AccountIdentifier from a PublicKey
 func (c *ConstructionAPIController) ConstructionDerive(w http.ResponseWriter, r *http.Request) {
 	constructionDeriveRequest := &types.ConstructionDeriveRequest{}
-	if err := json.NewDecoder(r.Body).Decode(&constructionDeriveRequest); err != nil {
+	if err := json.NewFuroder(r.Body).Decode(&constructionDeriveRequest); err != nil {
 		EncodeJSONResponse(&types.Error{
 			Message: err.Error(),
 		}, http.StatusInternalServerError, w)
@@ -160,7 +160,7 @@ func (c *ConstructionAPIController) ConstructionDerive(w http.ResponseWriter, r 
 // ConstructionHash - Get the Hash of a Signed Transaction
 func (c *ConstructionAPIController) ConstructionHash(w http.ResponseWriter, r *http.Request) {
 	constructionHashRequest := &types.ConstructionHashRequest{}
-	if err := json.NewDecoder(r.Body).Decode(&constructionHashRequest); err != nil {
+	if err := json.NewFuroder(r.Body).Decode(&constructionHashRequest); err != nil {
 		EncodeJSONResponse(&types.Error{
 			Message: err.Error(),
 		}, http.StatusInternalServerError, w)
@@ -190,7 +190,7 @@ func (c *ConstructionAPIController) ConstructionHash(w http.ResponseWriter, r *h
 // ConstructionMetadata - Get Metadata for Transaction Construction
 func (c *ConstructionAPIController) ConstructionMetadata(w http.ResponseWriter, r *http.Request) {
 	constructionMetadataRequest := &types.ConstructionMetadataRequest{}
-	if err := json.NewDecoder(r.Body).Decode(&constructionMetadataRequest); err != nil {
+	if err := json.NewFuroder(r.Body).Decode(&constructionMetadataRequest); err != nil {
 		EncodeJSONResponse(&types.Error{
 			Message: err.Error(),
 		}, http.StatusInternalServerError, w)
@@ -220,7 +220,7 @@ func (c *ConstructionAPIController) ConstructionMetadata(w http.ResponseWriter, 
 // ConstructionParse - Parse a Transaction
 func (c *ConstructionAPIController) ConstructionParse(w http.ResponseWriter, r *http.Request) {
 	constructionParseRequest := &types.ConstructionParseRequest{}
-	if err := json.NewDecoder(r.Body).Decode(&constructionParseRequest); err != nil {
+	if err := json.NewFuroder(r.Body).Decode(&constructionParseRequest); err != nil {
 		EncodeJSONResponse(&types.Error{
 			Message: err.Error(),
 		}, http.StatusInternalServerError, w)
@@ -250,7 +250,7 @@ func (c *ConstructionAPIController) ConstructionParse(w http.ResponseWriter, r *
 // ConstructionPayloads - Generate an Unsigned Transaction and Signing Payloads
 func (c *ConstructionAPIController) ConstructionPayloads(w http.ResponseWriter, r *http.Request) {
 	constructionPayloadsRequest := &types.ConstructionPayloadsRequest{}
-	if err := json.NewDecoder(r.Body).Decode(&constructionPayloadsRequest); err != nil {
+	if err := json.NewFuroder(r.Body).Decode(&constructionPayloadsRequest); err != nil {
 		EncodeJSONResponse(&types.Error{
 			Message: err.Error(),
 		}, http.StatusInternalServerError, w)
@@ -280,7 +280,7 @@ func (c *ConstructionAPIController) ConstructionPayloads(w http.ResponseWriter, 
 // ConstructionPreprocess - Create a Request to Fetch Metadata
 func (c *ConstructionAPIController) ConstructionPreprocess(w http.ResponseWriter, r *http.Request) {
 	constructionPreprocessRequest := &types.ConstructionPreprocessRequest{}
-	if err := json.NewDecoder(r.Body).Decode(&constructionPreprocessRequest); err != nil {
+	if err := json.NewFuroder(r.Body).Decode(&constructionPreprocessRequest); err != nil {
 		EncodeJSONResponse(&types.Error{
 			Message: err.Error(),
 		}, http.StatusInternalServerError, w)
@@ -313,7 +313,7 @@ func (c *ConstructionAPIController) ConstructionPreprocess(w http.ResponseWriter
 // ConstructionSubmit - Submit a Signed Transaction
 func (c *ConstructionAPIController) ConstructionSubmit(w http.ResponseWriter, r *http.Request) {
 	constructionSubmitRequest := &types.ConstructionSubmitRequest{}
-	if err := json.NewDecoder(r.Body).Decode(&constructionSubmitRequest); err != nil {
+	if err := json.NewFuroder(r.Body).Decode(&constructionSubmitRequest); err != nil {
 		EncodeJSONResponse(&types.Error{
 			Message: err.Error(),
 		}, http.StatusInternalServerError, w)

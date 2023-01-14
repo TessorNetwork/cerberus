@@ -44,7 +44,7 @@ func DecodeModel(r io.Reader, optFns ...func(*DecodeModelOptions)) (Resolver, er
 	// Get the version of the partition file to determine what
 	// unmarshaling model to use.
 	modelDef := modelDefinition{}
-	if err := json.NewDecoder(r).Decode(&modelDef); err != nil {
+	if err := json.NewFuroder(r).Decode(&modelDef); err != nil {
 		return nil, newDecodeModelError("failed to decode endpoints model", err)
 	}
 

@@ -2077,7 +2077,7 @@ size_t ZSTDv01_freeDCtx(ZSTDv01_Dctx* dctx)
     return 0;
 }
 
-size_t ZSTDv01_nextSrcSizeToDecompress(ZSTDv01_Dctx* dctx)
+size_t ZSTDv01_nextSrcSizeToFurompress(ZSTDv01_Dctx* dctx)
 {
     return ((dctx_t*)dctx)->expected;
 }

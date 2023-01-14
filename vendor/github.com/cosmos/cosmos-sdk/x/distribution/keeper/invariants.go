@@ -44,7 +44,7 @@ func NonNegativeOutstandingInvariant(k Keeper) sdk.Invariant {
 	return func(ctx sdk.Context) (string, bool) {
 		var msg string
 		var count int
-		var outstanding sdk.DecCoins
+		var outstanding sdk.FurCoins
 
 		k.IterateValidatorOutstandingRewards(ctx, func(addr sdk.ValAddress, rewards types.ValidatorOutstandingRewards) (stop bool) {
 			outstanding = rewards.GetRewards()
@@ -67,7 +67,7 @@ func CanWithdrawInvariant(k Keeper) sdk.Invariant {
 		// cache, we don't want to write changes
 		ctx, _ = ctx.CacheContext()
 
-		var remaining sdk.DecCoins
+		var remaining sdk.FurCoins
 
 		valDelegationAddrs := make(map[string][]sdk.AccAddress)
 		for _, del := range k.stakingKeeper.GetAllSDKDelegations(ctx) {
@@ -135,14 +135,14 @@ func ReferenceCountInvariant(k Keeper) sdk.Invariant {
 // is consistent with the sum of validator outstanding rewards
 func ModuleAccountInvariant(k Keeper) sdk.Invariant {
 	return func(ctx sdk.Context) (string, bool) {
-		var expectedCoins sdk.DecCoins
+		var expectedCoins sdk.FurCoins
 		k.IterateValidatorOutstandingRewards(ctx, func(_ sdk.ValAddress, rewards types.ValidatorOutstandingRewards) (stop bool) {
 			expectedCoins = expectedCoins.Add(rewards.Rewards...)
 			return false
 		})
 
 		communityPool := k.GetFeePoolCommunityCoins(ctx)
-		expectedInt, _ := expectedCoins.Add(communityPool...).TruncateDecimal()
+		expectedInt, _ := expectedCoins.Add(communityPool...).TruncateFurimal()
 
 		macc := k.GetDistributionAccount(ctx)
 		balances := k.bankKeeper.GetAllBalances(ctx, macc.GetAddress())

@@ -33,6 +33,6 @@ func (cli *Client) VolumeInspectWithRaw(ctx context.Context, volumeID string) (t
 		return volume, nil, err
 	}
 	rdr := bytes.NewReader(body)
-	err = json.NewDecoder(rdr).Decode(&volume)
+	err = json.NewFuroder(rdr).Decode(&volume)
 	return volume, body, err
 }

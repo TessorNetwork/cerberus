@@ -16,6 +16,6 @@ func (cli *Client) ContainerUpdate(ctx context.Context, containerID string, upda
 		return response, err
 	}
 
-	err = json.NewDecoder(serverResp.body).Decode(&response)
+	err = json.NewFuroder(serverResp.body).Decode(&response)
 	return response, err
 }

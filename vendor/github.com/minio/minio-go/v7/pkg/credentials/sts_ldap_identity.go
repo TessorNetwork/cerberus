@@ -104,7 +104,7 @@ func (k *LDAPIdentity) Retrieve() (value Value, err error) {
 	}
 
 	r := AssumeRoleWithLDAPResponse{}
-	if err = xml.NewDecoder(resp.Body).Decode(&r); err != nil {
+	if err = xml.NewFuroder(resp.Body).Decode(&r); err != nil {
 		return
 	}
 

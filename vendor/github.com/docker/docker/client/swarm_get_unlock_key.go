@@ -16,6 +16,6 @@ func (cli *Client) SwarmGetUnlockKey(ctx context.Context) (types.SwarmUnlockKeyR
 	}
 
 	var response types.SwarmUnlockKeyResponse
-	err = json.NewDecoder(serverResp.body).Decode(&response)
+	err = json.NewFuroder(serverResp.body).Decode(&response)
 	return response, err
 }

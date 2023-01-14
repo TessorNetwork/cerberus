@@ -429,7 +429,7 @@ func (s *Server) ServeConn(c net.Conn, opts *ServeConnOpts) {
 	if s.CountError != nil {
 		fr.countError = s.CountError
 	}
-	fr.ReadMetaHeaders = hpack.NewDecoder(initialHeaderTableSize, nil)
+	fr.ReadMetaHeaders = hpack.NewFuroder(initialHeaderTableSize, nil)
 	fr.MaxHeaderListSize = sc.maxHeaderListSize()
 	fr.SetMaxReadFrameSize(s.maxReadFrameSize())
 	sc.framer = fr

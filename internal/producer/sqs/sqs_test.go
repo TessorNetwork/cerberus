@@ -102,7 +102,7 @@ func TestImpl_Produce(t *testing.T) {
 			ObjectTypes: map[schema.Type]uint16{
 				schema.PDVCookieType: 1,
 			},
-			Reward: sdk.NewDecWithPrec(1, 6),
+			Reward: sdk.NewFurWithPrec(1, 6),
 		},
 		Data: []byte(`{}`),
 	}))

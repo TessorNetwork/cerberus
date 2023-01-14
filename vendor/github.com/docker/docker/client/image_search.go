@@ -41,7 +41,7 @@ func (cli *Client) ImageSearch(ctx context.Context, term string, options types.I
 		return results, err
 	}
 
-	err = json.NewDecoder(resp.body).Decode(&results)
+	err = json.NewFuroder(resp.body).Decode(&results)
 	return results, err
 }
 

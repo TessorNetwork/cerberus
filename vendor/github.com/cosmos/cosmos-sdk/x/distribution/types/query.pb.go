@@ -454,7 +454,7 @@ var xxx_messageInfo_QueryDelegationRewardsRequest proto.InternalMessageInfo
 // Query/DelegationRewards RPC method.
 type QueryDelegationRewardsResponse struct {
 	// rewards defines the rewards accrued by a delegation.
-	Rewards github_com_cosmos_cosmos_sdk_types.DecCoins `protobuf:"bytes,1,rep,name=rewards,proto3,castrepeated=github.com/cosmos/cosmos-sdk/types.DecCoins" json:"rewards"`
+	Rewards github_com_cosmos_cosmos_sdk_types.FurCoins `protobuf:"bytes,1,rep,name=rewards,proto3,castrepeated=github.com/cosmos/cosmos-sdk/types.FurCoins" json:"rewards"`
 }
 
 func (m *QueryDelegationRewardsResponse) Reset()         { *m = QueryDelegationRewardsResponse{} }
@@ -490,7 +490,7 @@ func (m *QueryDelegationRewardsResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_QueryDelegationRewardsResponse proto.InternalMessageInfo
 
-func (m *QueryDelegationRewardsResponse) GetRewards() github_com_cosmos_cosmos_sdk_types.DecCoins {
+func (m *QueryDelegationRewardsResponse) GetRewards() github_com_cosmos_cosmos_sdk_types.FurCoins {
 	if m != nil {
 		return m.Rewards
 	}
@@ -543,7 +543,7 @@ type QueryDelegationTotalRewardsResponse struct {
 	// rewards defines all the rewards accrued by a delegator.
 	Rewards []DelegationDelegatorReward `protobuf:"bytes,1,rep,name=rewards,proto3" json:"rewards"`
 	// total defines the sum of all the rewards.
-	Total github_com_cosmos_cosmos_sdk_types.DecCoins `protobuf:"bytes,2,rep,name=total,proto3,castrepeated=github.com/cosmos/cosmos-sdk/types.DecCoins" json:"total"`
+	Total github_com_cosmos_cosmos_sdk_types.FurCoins `protobuf:"bytes,2,rep,name=total,proto3,castrepeated=github.com/cosmos/cosmos-sdk/types.FurCoins" json:"total"`
 }
 
 func (m *QueryDelegationTotalRewardsResponse) Reset()         { *m = QueryDelegationTotalRewardsResponse{} }
@@ -586,7 +586,7 @@ func (m *QueryDelegationTotalRewardsResponse) GetRewards() []DelegationDelegator
 	return nil
 }
 
-func (m *QueryDelegationTotalRewardsResponse) GetTotal() github_com_cosmos_cosmos_sdk_types.DecCoins {
+func (m *QueryDelegationTotalRewardsResponse) GetTotal() github_com_cosmos_cosmos_sdk_types.FurCoins {
 	if m != nil {
 		return m.Total
 	}
@@ -795,7 +795,7 @@ var xxx_messageInfo_QueryCommunityPoolRequest proto.InternalMessageInfo
 // RPC method.
 type QueryCommunityPoolResponse struct {
 	// pool defines community pool's coins.
-	Pool github_com_cosmos_cosmos_sdk_types.DecCoins `protobuf:"bytes,1,rep,name=pool,proto3,castrepeated=github.com/cosmos/cosmos-sdk/types.DecCoins" json:"pool"`
+	Pool github_com_cosmos_cosmos_sdk_types.FurCoins `protobuf:"bytes,1,rep,name=pool,proto3,castrepeated=github.com/cosmos/cosmos-sdk/types.FurCoins" json:"pool"`
 }
 
 func (m *QueryCommunityPoolResponse) Reset()         { *m = QueryCommunityPoolResponse{} }
@@ -831,7 +831,7 @@ func (m *QueryCommunityPoolResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_QueryCommunityPoolResponse proto.InternalMessageInfo
 
-func (m *QueryCommunityPoolResponse) GetPool() github_com_cosmos_cosmos_sdk_types.DecCoins {
+func (m *QueryCommunityPoolResponse) GetPool() github_com_cosmos_cosmos_sdk_types.FurCoins {
 	if m != nil {
 		return m.Pool
 	}
@@ -3126,7 +3126,7 @@ func (m *QueryDelegationRewardsResponse) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Rewards = append(m.Rewards, types.DecCoin{})
+			m.Rewards = append(m.Rewards, types.FurCoin{})
 			if err := m.Rewards[len(m.Rewards)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
@@ -3326,7 +3326,7 @@ func (m *QueryDelegationTotalRewardsResponse) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Total = append(m.Total, types.DecCoin{})
+			m.Total = append(m.Total, types.FurCoin{})
 			if err := m.Total[len(m.Total)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
@@ -3788,7 +3788,7 @@ func (m *QueryCommunityPoolResponse) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Pool = append(m.Pool, types.DecCoin{})
+			m.Pool = append(m.Pool, types.FurCoin{})
 			if err := m.Pool[len(m.Pool)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}

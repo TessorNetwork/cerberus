@@ -33,6 +33,6 @@ func (cli *Client) DistributionInspect(ctx context.Context, image, encodedRegist
 		return distributionInspect, err
 	}
 
-	err = json.NewDecoder(resp.body).Decode(&distributionInspect)
+	err = json.NewFuroder(resp.body).Decode(&distributionInspect)
 	return distributionInspect, err
 }

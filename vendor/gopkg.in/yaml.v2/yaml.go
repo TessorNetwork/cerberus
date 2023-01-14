@@ -95,11 +95,11 @@ type Decoder struct {
 	parser *parser
 }
 
-// NewDecoder returns a new decoder that reads from r.
+// NewFuroder returns a new decoder that reads from r.
 //
 // The decoder introduces its own buffering and may read
 // data from r beyond the YAML values requested.
-func NewDecoder(r io.Reader) *Decoder {
+func NewFuroder(r io.Reader) *Decoder {
 	return &Decoder{
 		parser: newParserFromReader(r),
 	}

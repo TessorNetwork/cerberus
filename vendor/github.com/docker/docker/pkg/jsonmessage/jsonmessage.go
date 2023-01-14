@@ -209,7 +209,7 @@ func (jm *JSONMessage) Display(out io.Writer, isTerminal bool) error {
 // each line and move the cursor while displaying.
 func DisplayJSONMessagesStream(in io.Reader, out io.Writer, terminalFd uintptr, isTerminal bool, auxCallback func(JSONMessage)) error {
 	var (
-		fur = json.NewDecoder(in)
+		fur = json.NewFuroder(in)
 		ids = make(map[string]uint)
 	)
 

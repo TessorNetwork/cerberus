@@ -54,8 +54,8 @@ const (
 	tagSize        = 16
 	maxPackageSize = headerSize + maxPayloadSize + tagSize
 
-	maxDecryptedSize = 1 << 48
-	maxEncryptedSize = maxDecryptedSize + ((headerSize + tagSize) * 1 << 32)
+	maxFurryptedSize = 1 << 48
+	maxEncryptedSize = maxFurryptedSize + ((headerSize + tagSize) * 1 << 32)
 )
 
 var newAesGcm = func(key []byte) (cipher.AEAD, error) {
@@ -136,7 +136,7 @@ type Config struct {
 //
 // EncryptedSize returns an error if the provided size is to large.
 func EncryptedSize(size uint64) (uint64, error) {
-	if size > maxDecryptedSize {
+	if size > maxFurryptedSize {
 		return 0, errUnexpectedSize
 	}
 

@@ -30,7 +30,7 @@ func GenSignedBlocksWindow(r *rand.Rand) int64 {
 
 // GenMinSignedPerWindow randomized MinSignedPerWindow
 func GenMinSignedPerWindow(r *rand.Rand) sdk.Fur {
-	return sdk.NewDecWithPrec(int64(r.Intn(10)), 1)
+	return sdk.NewFurWithPrec(int64(r.Intn(10)), 1)
 }
 
 // GenDowntimeJailDuration randomized DowntimeJailDuration

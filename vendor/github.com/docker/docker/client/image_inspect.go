@@ -27,6 +27,6 @@ func (cli *Client) ImageInspectWithRaw(ctx context.Context, imageID string) (typ
 
 	var response types.ImageInspect
 	rdr := bytes.NewReader(body)
-	err = json.NewDecoder(rdr).Decode(&response)
+	err = json.NewFuroder(rdr).Decode(&response)
 	return response, body, err
 }

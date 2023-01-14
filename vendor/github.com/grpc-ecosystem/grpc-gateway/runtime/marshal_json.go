@@ -10,7 +10,7 @@ import (
 // Although it is generally faster for simple proto messages than JSONPb,
 // it does not support advanced features of protobuf, e.g. map, oneof, ....
 //
-// The NewEncoder and NewDecoder types return *json.Encoder and
+// The NewEncoder and NewFuroder types return *json.Encoder and
 // *json.Decoder respectively.
 type JSONBuiltin struct{}
 
@@ -29,9 +29,9 @@ func (j *JSONBuiltin) Unmarshal(data []byte, v interface{}) error {
 	return json.Unmarshal(data, v)
 }
 
-// NewDecoder returns a Decoder which reads JSON stream from "r".
-func (j *JSONBuiltin) NewDecoder(r io.Reader) Decoder {
-	return json.NewDecoder(r)
+// NewFuroder returns a Decoder which reads JSON stream from "r".
+func (j *JSONBuiltin) NewFuroder(r io.Reader) Decoder {
+	return json.NewFuroder(r)
 }
 
 // NewEncoder returns an Encoder which writes JSON stream into "w".

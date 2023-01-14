@@ -840,7 +840,7 @@ size_t ZSTD_decompress(void* dst, size_t dstCapacity, const void* src, size_t sr
 *   Advanced Streaming Decompression API
 *   Bufferless and synchronous
 ****************************************/
-size_t ZSTD_nextSrcSizeToDecompress(ZSTD_DCtx* dctx) { return dctx->expected; }
+size_t ZSTD_nextSrcSizeToFurompress(ZSTD_DCtx* dctx) { return dctx->expected; }
 
 ZSTD_nextInputType_e ZSTD_nextInputType(ZSTD_DCtx* dctx) {
     switch(dctx->stage)
@@ -867,7 +867,7 @@ ZSTD_nextInputType_e ZSTD_nextInputType(ZSTD_DCtx* dctx) {
 static int ZSTD_isSkipFrame(ZSTD_DCtx* dctx) { return dctx->stage == ZSTDds_skipFrame; }
 
 /** ZSTD_decompressContinue() :
- *  srcSize : must be the exact nb of bytes expected (see ZSTD_nextSrcSizeToDecompress())
+ *  srcSize : must be the exact nb of bytes expected (see ZSTD_nextSrcSizeToFurompress())
  *  @return : nb of bytes generated into `dst` (necessarily <= `dstCapacity)
  *            or an error code, which can be tested using ZSTD_isError() */
 size_t ZSTD_decompressContinue(ZSTD_DCtx* dctx, void* dst, size_t dstCapacity, const void* src, size_t srcSize)
@@ -1638,7 +1638,7 @@ size_t ZSTD_decompressStream(ZSTD_DStream* zds, ZSTD_outBuffer* output, ZSTD_inB
 
         case zdss_read:
             DEBUGLOG(5, "stage zdss_read");
-            {   size_t const neededInSize = ZSTD_nextSrcSizeToDecompress(zds);
+            {   size_t const neededInSize = ZSTD_nextSrcSizeToFurompress(zds);
                 DEBUGLOG(5, "neededInSize = %u", (U32)neededInSize);
                 if (neededInSize==0) {  /* end of frame */
                     zds->streamStage = zdss_init;
@@ -1662,7 +1662,7 @@ size_t ZSTD_decompressStream(ZSTD_DStream* zds, ZSTD_outBuffer* output, ZSTD_inB
             /* fall-through */
 
         case zdss_load:
-            {   size_t const neededInSize = ZSTD_nextSrcSizeToDecompress(zds);
+            {   size_t const neededInSize = ZSTD_nextSrcSizeToFurompress(zds);
                 size_t const toLoad = neededInSize - zds->inPos;
                 int const isSkipFrame = ZSTD_isSkipFrame(zds);
                 size_t loadedSize;
@@ -1728,7 +1728,7 @@ size_t ZSTD_decompressStream(ZSTD_DStream* zds, ZSTD_outBuffer* output, ZSTD_inB
     } else {
         zds->noForwardProgress = 0;
     }
-    {   size_t nextSrcSizeHint = ZSTD_nextSrcSizeToDecompress(zds);
+    {   size_t nextSrcSizeHint = ZSTD_nextSrcSizeToFurompress(zds);
         if (!nextSrcSizeHint) {   /* frame fully decoded */
             if (zds->outEnd == zds->outStart) {  /* output fully flushed */
                 if (zds->hostageByte) {

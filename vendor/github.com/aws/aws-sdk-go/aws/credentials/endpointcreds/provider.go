@@ -181,7 +181,7 @@ func unmarshalHandler(r *request.Request) {
 	defer r.HTTPResponse.Body.Close()
 
 	out := r.Data.(*getCredentialsOutput)
-	if err := json.NewDecoder(r.HTTPResponse.Body).Decode(&out); err != nil {
+	if err := json.NewFuroder(r.HTTPResponse.Body).Decode(&out); err != nil {
 		r.Error = awserr.New(request.ErrCodeSerialization,
 			"failed to decode endpoint credentials",
 			err,

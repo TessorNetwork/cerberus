@@ -13,9 +13,9 @@ type TransferUnmarshaler interface {
 	MustUnmarshalDenomTrace([]byte) types.DenomTrace
 }
 
-// NewDecodeStore returns a decoder function closure that unmarshals the KVPair's
+// NewFurodeStore returns a decoder function closure that unmarshals the KVPair's
 // Value to the corresponding DenomTrace type.
-func NewDecodeStore(cdc TransferUnmarshaler) func(kvA, kvB kv.Pair) string {
+func NewFurodeStore(cdc TransferUnmarshaler) func(kvA, kvB kv.Pair) string {
 	return func(kvA, kvB kv.Pair) string {
 		switch {
 		case bytes.Equal(kvA.Key[:1], types.PortKey):

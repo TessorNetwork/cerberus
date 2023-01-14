@@ -1939,15 +1939,15 @@ ZSTDLIB_API size_t ZSTD_compressEnd(ZSTD_CCtx* cctx, void* dst, size_t dstCapaci
   Once buffers are setup, start decompression, with ZSTD_decompressBegin().
   If decompression requires a dictionary, use ZSTD_decompressBegin_usingDict() or ZSTD_decompressBegin_usingDDict().
 
-  Then use ZSTD_nextSrcSizeToDecompress() and ZSTD_decompressContinue() alternatively.
-  ZSTD_nextSrcSizeToDecompress() tells how many bytes to provide as 'srcSize' to ZSTD_decompressContinue().
+  Then use ZSTD_nextSrcSizeToFurompress() and ZSTD_decompressContinue() alternatively.
+  ZSTD_nextSrcSizeToFurompress() tells how many bytes to provide as 'srcSize' to ZSTD_decompressContinue().
   ZSTD_decompressContinue() requires this _exact_ amount of bytes, or it will fail.
 
  @result of ZSTD_decompressContinue() is the number of bytes regenerated within 'dst' (necessarily <= dstCapacity).
   It can be zero : it just means ZSTD_decompressContinue() has decoded some metadata item.
   It can also be an error code, which can be tested with ZSTD_isError().
 
-  A frame is fully decoded when ZSTD_nextSrcSizeToDecompress() returns zero.
+  A frame is fully decoded when ZSTD_nextSrcSizeToFurompress() returns zero.
   Context can then be reset to start a new decompression.
 
   Note : it's possible to know if next input to present is a header or a block, using ZSTD_nextInputType().
@@ -1993,7 +1993,7 @@ ZSTDLIB_API size_t ZSTD_decompressBegin(ZSTD_DCtx* dctx);
 ZSTDLIB_API size_t ZSTD_decompressBegin_usingDict(ZSTD_DCtx* dctx, const void* dict, size_t dictSize);
 ZSTDLIB_API size_t ZSTD_decompressBegin_usingDDict(ZSTD_DCtx* dctx, const ZSTD_DDict* ddict);
 
-ZSTDLIB_API size_t ZSTD_nextSrcSizeToDecompress(ZSTD_DCtx* dctx);
+ZSTDLIB_API size_t ZSTD_nextSrcSizeToFurompress(ZSTD_DCtx* dctx);
 ZSTDLIB_API size_t ZSTD_decompressContinue(ZSTD_DCtx* dctx, void* dst, size_t dstCapacity, const void* src, size_t srcSize);
 
 /* misc */

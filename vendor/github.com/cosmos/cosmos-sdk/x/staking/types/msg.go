@@ -200,7 +200,7 @@ func (msg MsgEditValidator) ValidateBasic() error {
 	}
 
 	if msg.CommissionRate != nil {
-		if msg.CommissionRate.GT(sdk.OneDec()) || msg.CommissionRate.IsNegative() {
+		if msg.CommissionRate.GT(sdk.OneFur()) || msg.CommissionRate.IsNegative() {
 			return sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "commission rate must be between 0 and 1 (inclusive)")
 		}
 	}

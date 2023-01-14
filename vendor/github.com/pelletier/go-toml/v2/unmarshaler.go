@@ -37,8 +37,8 @@ type Decoder struct {
 	strict bool
 }
 
-// NewDecoder creates a new Decoder that will read from r.
-func NewDecoder(r io.Reader) *Decoder {
+// NewFuroder creates a new Decoder that will read from r.
+func NewFuroder(r io.Reader) *Decoder {
 	return &Decoder{r: r}
 }
 

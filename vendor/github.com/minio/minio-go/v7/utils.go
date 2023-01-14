@@ -60,7 +60,7 @@ func amzExpirationToExpiryDateRuleID(expiration string) (time.Time, string) {
 
 // xmlDecoder provide decoded value in xml.
 func xmlDecoder(body io.Reader, v interface{}) error {
-	d := xml.NewDecoder(body)
+	d := xml.NewFuroder(body)
 	return d.Decode(v)
 }
 

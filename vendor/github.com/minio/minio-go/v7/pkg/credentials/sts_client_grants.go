@@ -136,7 +136,7 @@ func getClientGrantsCredentials(clnt *http.Client, endpoint string,
 	}
 
 	a := AssumeRoleWithClientGrantsResponse{}
-	if err = xml.NewDecoder(resp.Body).Decode(&a); err != nil {
+	if err = xml.NewFuroder(resp.Body).Decode(&a); err != nil {
 		return AssumeRoleWithClientGrantsResponse{}, err
 	}
 	return a, nil

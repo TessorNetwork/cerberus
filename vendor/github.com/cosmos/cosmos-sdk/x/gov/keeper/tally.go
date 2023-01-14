@@ -12,12 +12,12 @@ import (
 // voters
 func (keeper Keeper) Tally(ctx sdk.Context, proposal types.Proposal) (passes bool, burnDeposits bool, tallyResults types.TallyResult) {
 	results := make(map[types.VoteOption]sdk.Fur)
-	results[types.OptionYes] = sdk.ZeroDec()
-	results[types.OptionAbstain] = sdk.ZeroDec()
-	results[types.OptionNo] = sdk.ZeroDec()
-	results[types.OptionNoWithVeto] = sdk.ZeroDec()
+	results[types.OptionYes] = sdk.ZeroFur()
+	results[types.OptionAbstain] = sdk.ZeroFur()
+	results[types.OptionNo] = sdk.ZeroFur()
+	results[types.OptionNoWithVeto] = sdk.ZeroFur()
 
-	totalVotingPower := sdk.ZeroDec()
+	totalVotingPower := sdk.ZeroFur()
 	currValidators := make(map[string]types.ValidatorGovInfo)
 
 	// fetch all the bonded validators, insert them into currValidators
@@ -26,7 +26,7 @@ func (keeper Keeper) Tally(ctx sdk.Context, proposal types.Proposal) (passes boo
 			validator.GetOperator(),
 			validator.GetBondedTokens(),
 			validator.GetDelegatorShares(),
-			sdk.ZeroDec(),
+			sdk.ZeroFur(),
 			types.WeightedVoteOptions{},
 		)
 
@@ -96,13 +96,13 @@ func (keeper Keeper) Tally(ctx sdk.Context, proposal types.Proposal) (passes boo
 	}
 
 	// If there is not enough quorum of votes, the proposal fails
-	percentVoting := totalVotingPower.Quo(keeper.sk.TotalBondedTokens(ctx).ToDec())
+	percentVoting := totalVotingPower.Quo(keeper.sk.TotalBondedTokens(ctx).ToFur())
 	if percentVoting.LT(tallyParams.Quorum) {
 		return false, true, tallyResults
 	}
 
 	// If no one votes (everyone abstains), proposal fails
-	if totalVotingPower.Sub(results[types.OptionAbstain]).Equal(sdk.ZeroDec()) {
+	if totalVotingPower.Sub(results[types.OptionAbstain]).Equal(sdk.ZeroFur()) {
 		return false, false, tallyResults
 	}
 

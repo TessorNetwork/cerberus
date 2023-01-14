@@ -9,7 +9,7 @@ import (
 
 // InitGenesis sets distribution information for genesis
 func (k Keeper) InitGenesis(ctx sdk.Context, data types.GenesisState) {
-	var moduleHoldings sdk.DecCoins
+	var moduleHoldings sdk.FurCoins
 
 	k.SetFeePool(ctx, data.FeePool)
 	k.SetParams(ctx, data.Params)
@@ -78,7 +78,7 @@ func (k Keeper) InitGenesis(ctx sdk.Context, data types.GenesisState) {
 	}
 
 	moduleHoldings = moduleHoldings.Add(data.FeePool.CommunityPool...)
-	moduleHoldingsInt, _ := moduleHoldings.TruncateDecimal()
+	moduleHoldingsInt, _ := moduleHoldings.TruncateFurimal()
 
 	// check if the module account exists
 	moduleAcc := k.GetDistributionAccount(ctx)

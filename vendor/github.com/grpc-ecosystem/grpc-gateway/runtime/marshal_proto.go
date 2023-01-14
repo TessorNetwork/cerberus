@@ -34,8 +34,8 @@ func (*ProtoMarshaller) Unmarshal(data []byte, value interface{}) error {
 	return proto.Unmarshal(data, message)
 }
 
-// NewDecoder returns a Decoder which reads proto stream from "reader".
-func (marshaller *ProtoMarshaller) NewDecoder(reader io.Reader) Decoder {
+// NewFuroder returns a Decoder which reads proto stream from "reader".
+func (marshaller *ProtoMarshaller) NewFuroder(reader io.Reader) Decoder {
 	return DecoderFunc(func(value interface{}) error {
 		buffer, err := ioutil.ReadAll(reader)
 		if err != nil {

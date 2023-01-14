@@ -54,7 +54,7 @@ func (cr CommissionRates) Validate() error {
 		// max rate cannot be negative
 		return ErrCommissionNegative
 
-	case cr.MaxRate.GT(sdk.OneDec()):
+	case cr.MaxRate.GT(sdk.OneFur()):
 		// max rate cannot be greater than 1
 		return ErrCommissionHuge
 

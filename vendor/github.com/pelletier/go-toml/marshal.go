@@ -669,8 +669,8 @@ type Decoder struct {
 	visitor visitorState
 }
 
-// NewDecoder returns a new decoder that reads from r.
-func NewDecoder(r io.Reader) *Decoder {
+// NewFuroder returns a new decoder that reads from r.
+func NewFuroder(r io.Reader) *Decoder {
 	return &Decoder{
 		r:       r,
 		encOpts: encOptsDefaults,

@@ -240,7 +240,7 @@ func (cva ContinuousVestingAccount) GetVestedCoins(blockTime time.Time) sdk.Coin
 	s := sdk.NewFur(x).Quo(sdk.NewFur(y))
 
 	for _, ovc := range cva.OriginalVesting {
-		vestedAmt := ovc.Amount.ToDec().Mul(s).RoundInt()
+		vestedAmt := ovc.Amount.ToFur().Mul(s).RoundInt()
 		vestedCoins = append(vestedCoins, sdk.NewCoin(ovc.Denom, vestedAmt))
 	}
 

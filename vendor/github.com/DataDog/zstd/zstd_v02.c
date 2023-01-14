@@ -927,7 +927,7 @@ typedef struct ZSTD_DCtx_s ZSTD_DCtx;
 
 /*
   Use above functions alternatively.
-  ZSTD_nextSrcSizeToDecompress() tells how much bytes to provide as 'srcSize' to ZSTD_decompressContinue().
+  ZSTD_nextSrcSizeToFurompress() tells how much bytes to provide as 'srcSize' to ZSTD_decompressContinue().
   ZSTD_decompressContinue() will use previous data blocks to improve compression if they are located prior to current block.
   Result is the number of bytes regenerated within 'dst'.
   It can be zero, which is not an error; it just means ZSTD_decompressContinue() has decoded some header.
@@ -3402,7 +3402,7 @@ static size_t ZSTD_freeDCtx(ZSTD_DCtx* dctx)
     return 0;
 }
 
-static size_t ZSTD_nextSrcSizeToDecompress(ZSTD_DCtx* dctx)
+static size_t ZSTD_nextSrcSizeToFurompress(ZSTD_DCtx* dctx)
 {
     return dctx->expected;
 }
@@ -3503,9 +3503,9 @@ size_t ZSTDv02_resetDCtx(ZSTDv02_Dctx* dctx)
     return ZSTD_resetDCtx((ZSTD_DCtx*)dctx);
 }
 
-size_t ZSTDv02_nextSrcSizeToDecompress(ZSTDv02_Dctx* dctx)
+size_t ZSTDv02_nextSrcSizeToFurompress(ZSTDv02_Dctx* dctx)
 {
-    return ZSTD_nextSrcSizeToDecompress((ZSTD_DCtx*)dctx);
+    return ZSTD_nextSrcSizeToFurompress((ZSTD_DCtx*)dctx);
 }
 
 size_t ZSTDv02_decompressContinue(ZSTDv02_Dctx* dctx, void* dst, size_t maxDstSize, const void* src, size_t srcSize)

@@ -361,8 +361,8 @@ ZSTDLIBv06_API size_t ZSTDv06_decompressBegin(ZSTDv06_DCtx* dctx);
   Start decompression, with ZSTDv06_decompressBegin() or ZSTDv06_decompressBegin_usingDict().
   Alternatively, you can copy a prepared context, using ZSTDv06_copyDCtx().
 
-  Then use ZSTDv06_nextSrcSizeToDecompress() and ZSTDv06_decompressContinue() alternatively.
-  ZSTDv06_nextSrcSizeToDecompress() tells how much bytes to provide as 'srcSize' to ZSTDv06_decompressContinue().
+  Then use ZSTDv06_nextSrcSizeToFurompress() and ZSTDv06_decompressContinue() alternatively.
+  ZSTDv06_nextSrcSizeToFurompress() tells how much bytes to provide as 'srcSize' to ZSTDv06_decompressContinue().
   ZSTDv06_decompressContinue() requires this exact amount of bytes, or it will fail.
   ZSTDv06_decompressContinue() needs previous data blocks during decompression, up to (1 << windowlog).
   They should preferably be located contiguously, prior to current block. Alternatively, a round buffer is also possible.
@@ -370,7 +370,7 @@ ZSTDLIBv06_API size_t ZSTDv06_decompressBegin(ZSTDv06_DCtx* dctx);
   @result of ZSTDv06_decompressContinue() is the number of bytes regenerated within 'dst' (necessarily <= dstCapacity)
   It can be zero, which is not an error; it just means ZSTDv06_decompressContinue() has decoded some header.
 
-  A frame is fully decoded when ZSTDv06_nextSrcSizeToDecompress() returns zero.
+  A frame is fully decoded when ZSTDv06_nextSrcSizeToFurompress() returns zero.
   Context can then be reset to start a new decompression.
 */
 
@@ -3715,7 +3715,7 @@ void ZSTDv06_findFrameSizeInfoLegacy(const void *src, size_t srcSize, size_t* cS
 /*_******************************
 *  Streaming Decompression API
 ********************************/
-size_t ZSTDv06_nextSrcSizeToDecompress(ZSTDv06_DCtx* dctx)
+size_t ZSTDv06_nextSrcSizeToFurompress(ZSTDv06_DCtx* dctx)
 {
     return dctx->expected;
 }
@@ -4041,11 +4041,11 @@ size_t ZBUFFv06_decompressContinue(ZBUFFv06_DCtx* zbd,
             }   }
 
             /* Consume header */
-            {   size_t const h1Size = ZSTDv06_nextSrcSizeToDecompress(zbd->zd);  /* == ZSTDv06_frameHeaderSize_min */
+            {   size_t const h1Size = ZSTDv06_nextSrcSizeToFurompress(zbd->zd);  /* == ZSTDv06_frameHeaderSize_min */
                 size_t const h1Result = ZSTDv06_decompressContinue(zbd->zd, NULL, 0, zbd->headerBuffer, h1Size);
                 if (ZSTDv06_isError(h1Result)) return h1Result;
                 if (h1Size < zbd->lhSize) {   /* long header */
-                    size_t const h2Size = ZSTDv06_nextSrcSizeToDecompress(zbd->zd);
+                    size_t const h2Size = ZSTDv06_nextSrcSizeToFurompress(zbd->zd);
                     size_t const h2Result = ZSTDv06_decompressContinue(zbd->zd, NULL, 0, zbd->headerBuffer+h1Size, h2Size);
                     if (ZSTDv06_isError(h2Result)) return h2Result;
             }   }
@@ -4069,7 +4069,7 @@ size_t ZBUFFv06_decompressContinue(ZBUFFv06_DCtx* zbd,
             zbd->stage = ZBUFFds_read;
 	    /* fall-through */
         case ZBUFFds_read:
-            {   size_t const neededInSize = ZSTDv06_nextSrcSizeToDecompress(zbd->zd);
+            {   size_t const neededInSize = ZSTDv06_nextSrcSizeToFurompress(zbd->zd);
                 if (neededInSize==0) {  /* end of frame */
                     zbd->stage = ZBUFFds_init;
                     notDone = 0;
@@ -4091,7 +4091,7 @@ size_t ZBUFFv06_decompressContinue(ZBUFFv06_DCtx* zbd,
             }
 	    /* fall-through */
         case ZBUFFds_load:
-            {   size_t const neededInSize = ZSTDv06_nextSrcSizeToDecompress(zbd->zd);
+            {   size_t const neededInSize = ZSTDv06_nextSrcSizeToFurompress(zbd->zd);
                 size_t const toLoad = neededInSize - zbd->inPos;   /* should always be <= remaining space within inBuff */
                 size_t loadedSize;
                 if (toLoad > zbd->inBuffSize - zbd->inPos) return ERROR(corruption_detected);   /* should never happen */
@@ -4134,7 +4134,7 @@ size_t ZBUFFv06_decompressContinue(ZBUFFv06_DCtx* zbd,
     /* result */
     *srcSizePtr = ip-istart;
     *dstCapacityPtr = op-ostart;
-    {   size_t nextSrcSizeHint = ZSTDv06_nextSrcSizeToDecompress(zbd->zd);
+    {   size_t nextSrcSizeHint = ZSTDv06_nextSrcSizeToFurompress(zbd->zd);
         if (nextSrcSizeHint > ZSTDv06_blockHeaderSize) nextSrcSizeHint+= ZSTDv06_blockHeaderSize;   /* get following block header too */
         nextSrcSizeHint -= zbd->inPos;   /* already loaded*/
         return nextSrcSizeHint;

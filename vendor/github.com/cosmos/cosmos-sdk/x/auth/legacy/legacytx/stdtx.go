@@ -66,8 +66,8 @@ func (fee StdFee) Bytes() []byte {
 // NOTE: The gas prices returned are not the true gas prices that were
 // originally part of the submitted transaction because the fee is computed
 // as fee = ceil(gasWanted * gasPrices).
-func (fee StdFee) GasPrices() sdk.DecCoins {
-	return sdk.NewDecCoinsFromCoins(fee.Amount...).QuoDec(sdk.NewFur(int64(fee.Gas)))
+func (fee StdFee) GasPrices() sdk.FurCoins {
+	return sdk.NewFurCoinsFromCoins(fee.Amount...).QuoFur(sdk.NewFur(int64(fee.Gas)))
 }
 
 // StdTx is the legacy transaction format for wrapping a Msg with Fee and Signatures.

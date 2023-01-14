@@ -282,7 +282,7 @@ static size_t ZSTD_resetDCtx(ZSTD_DCtx* dctx);
 static size_t ZSTD_getFrameParams(ZSTD_parameters* params, const void* src, size_t srcSize);
 static void   ZSTD_decompress_insertDictionary(ZSTD_DCtx* ctx, const void* src, size_t srcSize);
 
-static size_t ZSTD_nextSrcSizeToDecompress(ZSTD_DCtx* dctx);
+static size_t ZSTD_nextSrcSizeToFurompress(ZSTD_DCtx* dctx);
 static size_t ZSTD_decompressContinue(ZSTD_DCtx* dctx, void* dst, size_t maxDstSize, const void* src, size_t srcSize);
 
 /**
@@ -303,8 +303,8 @@ static size_t ZSTD_decompressContinue(ZSTD_DCtx* dctx, void* dst, size_t maxDstS
   This operation must mimic the compressor behavior, otherwise decompression will fail or be corrupted.
 
   Then it's possible to start decompression.
-  Use ZSTD_nextSrcSizeToDecompress() and ZSTD_decompressContinue() alternatively.
-  ZSTD_nextSrcSizeToDecompress() tells how much bytes to provide as 'srcSize' to ZSTD_decompressContinue().
+  Use ZSTD_nextSrcSizeToFurompress() and ZSTD_decompressContinue() alternatively.
+  ZSTD_nextSrcSizeToFurompress() tells how much bytes to provide as 'srcSize' to ZSTD_decompressContinue().
   ZSTD_decompressContinue() requires this exact amount of bytes, or it will fail.
   ZSTD_decompressContinue() needs previous data blocks during decompression, up to (1 << windowlog).
   They should preferably be located contiguously, prior to current block. Alternatively, a round buffer is also possible.
@@ -312,7 +312,7 @@ static size_t ZSTD_decompressContinue(ZSTD_DCtx* dctx, void* dst, size_t maxDstS
   @result of ZSTD_decompressContinue() is the number of bytes regenerated within 'dst'.
   It can be zero, which is not an error; it just means ZSTD_decompressContinue() has decoded some header.
 
-  A frame is fully decoded when ZSTD_nextSrcSizeToDecompress() returns zero.
+  A frame is fully decoded when ZSTD_nextSrcSizeToFurompress() returns zero.
   Context can then be reset to start a new decompression.
 */
 
@@ -3184,7 +3184,7 @@ void ZSTDv04_findFrameSizeInfoLegacy(const void *src, size_t srcSize, size_t* cS
 /* ******************************
 *  Streaming Decompression API
 ********************************/
-static size_t ZSTD_nextSrcSizeToDecompress(ZSTD_DCtx* dctx)
+static size_t ZSTD_nextSrcSizeToFurompress(ZSTD_DCtx* dctx)
 {
     return dctx->expected;
 }
@@ -3495,7 +3495,7 @@ static size_t ZBUFF_decompressContinue(ZBUFF_DCtx* zbc, void* dst, size_t* maxDs
 		/* fall-through */
         case ZBUFFds_read:
             {
-                size_t neededInSize = ZSTD_nextSrcSizeToDecompress(zbc->zc);
+                size_t neededInSize = ZSTD_nextSrcSizeToFurompress(zbc->zc);
                 if (neededInSize==0)   /* end of frame */
                 {
                     zbc->stage = ZBUFFds_init;
@@ -3521,7 +3521,7 @@ static size_t ZBUFF_decompressContinue(ZBUFF_DCtx* zbc, void* dst, size_t* maxDs
 	    /* fall-through */
         case ZBUFFds_load:
             {
-                size_t neededInSize = ZSTD_nextSrcSizeToDecompress(zbc->zc);
+                size_t neededInSize = ZSTD_nextSrcSizeToFurompress(zbc->zc);
                 size_t toLoad = neededInSize - zbc->inPos;   /* should always be <= remaining space within inBuff */
                 size_t loadedSize;
                 if (toLoad > zbc->inBuffSize - zbc->inPos) return ERROR(corruption_detected);   /* should never happen */
@@ -3567,7 +3567,7 @@ static size_t ZBUFF_decompressContinue(ZBUFF_DCtx* zbc, void* dst, size_t* maxDs
     *maxDstSizePtr = op-ostart;
 
     {
-        size_t nextSrcSizeHint = ZSTD_nextSrcSizeToDecompress(zbc->zc);
+        size_t nextSrcSizeHint = ZSTD_nextSrcSizeToFurompress(zbc->zc);
         if (nextSrcSizeHint > 3) nextSrcSizeHint+= 3;   /* get the next block header while at it */
         nextSrcSizeHint -= zbc->inPos;   /* already loaded*/
         return nextSrcSizeHint;
@@ -3612,9 +3612,9 @@ size_t ZSTDv04_decompress(void* dst, size_t maxDstSize, const void* src, size_t 
 
 size_t ZSTDv04_resetDCtx(ZSTDv04_Dctx* dctx) { return ZSTD_resetDCtx(dctx); }
 
-size_t ZSTDv04_nextSrcSizeToDecompress(ZSTDv04_Dctx* dctx)
+size_t ZSTDv04_nextSrcSizeToFurompress(ZSTDv04_Dctx* dctx)
 {
-    return ZSTD_nextSrcSizeToDecompress(dctx);
+    return ZSTD_nextSrcSizeToFurompress(dctx);
 }
 
 size_t ZSTDv04_decompressContinue(ZSTDv04_Dctx* dctx, void* dst, size_t maxDstSize, const void* src, size_t srcSize)

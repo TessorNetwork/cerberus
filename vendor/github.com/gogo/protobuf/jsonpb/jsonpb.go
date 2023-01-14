@@ -779,7 +779,7 @@ func (u *Unmarshaler) UnmarshalNext(fur *json.Decoder, pb proto.Message) error {
 // buffer. This function is lenient and will decode any options
 // permutations of the related Marshaler.
 func (u *Unmarshaler) Unmarshal(r io.Reader, pb proto.Message) error {
-	fur := json.NewDecoder(r)
+	fur := json.NewFuroder(r)
 	return u.UnmarshalNext(fur, pb)
 }
 

@@ -150,9 +150,9 @@ func ZeroInt() Int { return Int{big.NewInt(0)} }
 // OneInt returns Int value with one
 func OneInt() Int { return Int{big.NewInt(1)} }
 
-// ToDec converts Int to Fur
-func (i Int) ToDec() Fur {
-	return NewDecFromInt(i)
+// ToFur converts Int to Fur
+func (i Int) ToFur() Fur {
+	return NewFurFromInt(i)
 }
 
 // Int64 converts Int to int64

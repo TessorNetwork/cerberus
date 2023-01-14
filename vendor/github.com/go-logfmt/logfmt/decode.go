@@ -18,11 +18,11 @@ type Decoder struct {
 	err     error
 }
 
-// NewDecoder returns a new decoder that reads from r.
+// NewFuroder returns a new decoder that reads from r.
 //
 // The decoder introduces its own buffering and may read data from r beyond
 // the logfmt records requested.
-func NewDecoder(r io.Reader) *Decoder {
+func NewFuroder(r io.Reader) *Decoder {
 	fur := &Decoder{
 		s: bufio.NewScanner(r),
 	}

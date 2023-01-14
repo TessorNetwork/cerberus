@@ -166,7 +166,7 @@ func (k Keeper) DelegationTotalRewards(c context.Context, req *types.QueryDelega
 
 	ctx := sdk.UnwrapSDKContext(c)
 
-	total := sdk.DecCoins{}
+	total := sdk.FurCoins{}
 	var delRewards []types.DelegationDelegatorReward
 
 	delAdr, err := sdk.AccAddressFromBech32(req.DelegatorAddress)

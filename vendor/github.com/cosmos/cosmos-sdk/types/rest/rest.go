@@ -69,7 +69,7 @@ type BaseReq struct {
 	Sequence      uint64       `json:"sequence"`
 	TimeoutHeight uint64       `json:"timeout_height"`
 	Fees          sdk.Coins    `json:"fees"`
-	GasPrices     sdk.DecCoins `json:"gas_prices"`
+	GasPrices     sdk.FurCoins `json:"gas_prices"`
 	Gas           string       `json:"gas"`
 	GasAdjustment string       `json:"gas_adjustment"`
 	Simulate      bool         `json:"simulate"`
@@ -78,7 +78,7 @@ type BaseReq struct {
 // NewBaseReq creates a new basic request instance and sanitizes its values
 func NewBaseReq(
 	from, memo, chainID string, gas, gasAdjustment string, accNumber, seq uint64,
-	fees sdk.Coins, gasPrices sdk.DecCoins, simulate bool,
+	fees sdk.Coins, gasPrices sdk.FurCoins, simulate bool,
 ) BaseReq {
 	return BaseReq{
 		From:          strings.TrimSpace(from),

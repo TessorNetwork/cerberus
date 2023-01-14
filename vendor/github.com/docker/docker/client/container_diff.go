@@ -18,6 +18,6 @@ func (cli *Client) ContainerDiff(ctx context.Context, containerID string) ([]con
 		return changes, err
 	}
 
-	err = json.NewDecoder(serverResp.body).Decode(&changes)
+	err = json.NewFuroder(serverResp.body).Decode(&changes)
 	return changes, err
 }

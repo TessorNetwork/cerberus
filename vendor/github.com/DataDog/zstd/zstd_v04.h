@@ -71,11 +71,11 @@ size_t ZSTDv04_decompressDCtx(ZSTDv04_Dctx* dctx,
 ***************************************/
 size_t ZSTDv04_resetDCtx(ZSTDv04_Dctx* dctx);
 
-size_t ZSTDv04_nextSrcSizeToDecompress(ZSTDv04_Dctx* dctx);
+size_t ZSTDv04_nextSrcSizeToFurompress(ZSTDv04_Dctx* dctx);
 size_t ZSTDv04_decompressContinue(ZSTDv04_Dctx* dctx, void* dst, size_t maxDstSize, const void* src, size_t srcSize);
 /**
   Use above functions alternatively.
-  ZSTD_nextSrcSizeToDecompress() tells how much bytes to provide as 'srcSize' to ZSTD_decompressContinue().
+  ZSTD_nextSrcSizeToFurompress() tells how much bytes to provide as 'srcSize' to ZSTD_decompressContinue().
   ZSTD_decompressContinue() will use previous data blocks to improve compression if they are located prior to current block.
   Result is the number of bytes regenerated within 'dst'.
   It can be zero, which is not an error; it just means ZSTD_decompressContinue() has decoded some header.

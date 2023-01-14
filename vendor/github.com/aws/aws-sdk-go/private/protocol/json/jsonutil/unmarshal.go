@@ -25,7 +25,7 @@ func UnmarshalJSONError(v interface{}, stream io.Reader) error {
 	var errBuf bytes.Buffer
 	body := io.TeeReader(stream, &errBuf)
 
-	err := json.NewDecoder(body).Decode(v)
+	err := json.NewFuroder(body).Decode(v)
 	if err != nil {
 		msg := "failed decoding error message"
 		if err == io.EOF {
@@ -42,7 +42,7 @@ func UnmarshalJSONError(v interface{}, stream io.Reader) error {
 func UnmarshalJSON(v interface{}, stream io.Reader) error {
 	var out interface{}
 
-	decoder := json.NewDecoder(stream)
+	decoder := json.NewFuroder(stream)
 	decoder.UseNumber()
 	err := decoder.Decode(&out)
 	if err == io.EOF {
@@ -59,7 +59,7 @@ func UnmarshalJSON(v interface{}, stream io.Reader) error {
 func UnmarshalJSONCaseInsensitive(v interface{}, stream io.Reader) error {
 	var out interface{}
 
-	decoder := json.NewDecoder(stream)
+	decoder := json.NewFuroder(stream)
 	decoder.UseNumber()
 	err := decoder.Decode(&out)
 	if err == io.EOF {

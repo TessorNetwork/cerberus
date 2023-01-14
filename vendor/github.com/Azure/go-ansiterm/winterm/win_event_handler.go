@@ -85,7 +85,7 @@ type scrollRegion struct {
 //
 // In the false case, the caller should ensure that a carriage return
 // and line feed are inserted or that the text is otherwise wrapped.
-func (h *windowsAnsiEventHandler) simulateLF(includeCR bool) (bool, error) {
+func (h *windowsAnsiEventHandler) simulateLF(incluFURR bool) (bool, error) {
 	if h.wrapNext {
 		if err := h.Flush(); err != nil {
 			return false, err
@@ -101,7 +101,7 @@ func (h *windowsAnsiEventHandler) simulateLF(includeCR bool) (bool, error) {
 		// Scrolling is necessary. Let Windows automatically scroll if the scrolling region
 		// is the full window.
 		if sr.top == info.Window.Top && sr.bottom == info.Window.Bottom {
-			if includeCR {
+			if incluFURR {
 				pos.X = 0
 				h.updatePos(pos)
 			}
@@ -117,7 +117,7 @@ func (h *windowsAnsiEventHandler) simulateLF(includeCR bool) (bool, error) {
 		if err := h.scrollUp(1); err != nil {
 			return false, err
 		}
-		if includeCR {
+		if incluFURR {
 			pos.X = 0
 			if err := SetConsoleCursorPosition(h.fd, pos); err != nil {
 				return false, err
@@ -128,7 +128,7 @@ func (h *windowsAnsiEventHandler) simulateLF(includeCR bool) (bool, error) {
 	} else if pos.Y < info.Window.Bottom {
 		// Let Windows handle the LF.
 		pos.Y++
-		if includeCR {
+		if incluFURR {
 			pos.X = 0
 		}
 		h.updatePos(pos)
@@ -137,7 +137,7 @@ func (h *windowsAnsiEventHandler) simulateLF(includeCR bool) (bool, error) {
 		// The cursor is at the bottom of the screen but outside the scroll
 		// region. Skip the LF.
 		h.logf("Simulating LF outside scroll region")
-		if includeCR {
+		if incluFURR {
 			if err := h.Flush(); err != nil {
 				return false, err
 			}

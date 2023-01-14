@@ -149,7 +149,7 @@ func getWebIdentityCredentials(clnt *http.Client, endpoint, roleARN, roleSession
 	}
 
 	a := AssumeRoleWithWebIdentityResponse{}
-	if err = xml.NewDecoder(resp.Body).Decode(&a); err != nil {
+	if err = xml.NewFuroder(resp.Body).Decode(&a); err != nil {
 		return AssumeRoleWithWebIdentityResponse{}, err
 	}
 

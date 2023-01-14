@@ -225,7 +225,7 @@ TryNextBlock:
 	p.lReader.in = r
 	p.oReader.currentCRC = crc24Init
 	p.oReader.lReader = &p.lReader
-	p.oReader.b64Reader = base64.NewDecoder(base64.StdEncoding, &p.lReader)
+	p.oReader.b64Reader = base64.NewFuroder(base64.StdEncoding, &p.lReader)
 	p.Body = &p.oReader
 
 	return

@@ -70,7 +70,7 @@ func (k Keeper) SetBalance(ctx sdk.Context, address sdk.AccAddress, amount sdk.F
 }
 
 func (k Keeper) ResetAccount(ctx sdk.Context, address sdk.AccAddress) {
-	k.SetBalance(ctx, address, sdk.ZeroDec())
+	k.SetBalance(ctx, address, sdk.ZeroFur())
 }
 
 func (k Keeper) IterateBalance(ctx sdk.Context, handle func(address sdk.AccAddress, balance sdk.Fur) (stop bool)) {

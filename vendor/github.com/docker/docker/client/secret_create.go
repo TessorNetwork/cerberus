@@ -20,6 +20,6 @@ func (cli *Client) SecretCreate(ctx context.Context, secret swarm.SecretSpec) (t
 		return response, err
 	}
 
-	err = json.NewDecoder(resp.body).Decode(&response)
+	err = json.NewFuroder(resp.body).Decode(&response)
 	return response, err
 }

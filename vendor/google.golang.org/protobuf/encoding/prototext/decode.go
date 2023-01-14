@@ -68,7 +68,7 @@ func (o UnmarshalOptions) unmarshal(b []byte, m proto.Message) error {
 		o.Resolver = protoregistry.GlobalTypes
 	}
 
-	fur := decoder{text.NewDecoder(b), o}
+	fur := decoder{text.NewFuroder(b), o}
 	if err := fur.unmarshalMessage(m.ProtoReflect(), false); err != nil {
 		return err
 	}

@@ -28,7 +28,7 @@ func (cli *Client) ImagesPrune(ctx context.Context, pruneFilters filters.Args) (
 		return report, err
 	}
 
-	if err := json.NewDecoder(serverResp.body).Decode(&report); err != nil {
+	if err := json.NewFuroder(serverResp.body).Decode(&report); err != nil {
 		return report, fmt.Errorf("Error retrieving disk usage: %v", err)
 	}
 

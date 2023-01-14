@@ -71,8 +71,8 @@ func (k Keeper) StakingTokenSupply(ctx sdk.Context) sdk.Int {
 func (k Keeper) BondedRatio(ctx sdk.Context) sdk.Fur {
 	stakeSupply := k.StakingTokenSupply(ctx)
 	if stakeSupply.IsPositive() {
-		return k.TotalBondedTokens(ctx).ToDec().QuoInt(stakeSupply)
+		return k.TotalBondedTokens(ctx).ToFur().QuoInt(stakeSupply)
 	}
 
-	return sdk.ZeroDec()
+	return sdk.ZeroFur()
 }

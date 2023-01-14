@@ -30,6 +30,6 @@ func (cli *Client) TaskList(ctx context.Context, options types.TaskListOptions) 
 	}
 
 	var tasks []swarm.Task
-	err = json.NewDecoder(resp.body).Decode(&tasks)
+	err = json.NewFuroder(resp.body).Decode(&tasks)
 	return tasks, err
 }

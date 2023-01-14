@@ -595,6 +595,6 @@ func newFramer(conn net.Conn, writeBufferSize, readBufferSize int, maxHeaderList
 	// Frames aren't safe to read from after a subsequent call to ReadFrame.
 	f.fr.SetReuseFrames()
 	f.fr.MaxHeaderListSize = maxHeaderListSize
-	f.fr.ReadMetaHeaders = hpack.NewDecoder(http2InitHeaderTableSize, nil)
+	f.fr.ReadMetaHeaders = hpack.NewFuroder(http2InitHeaderTableSize, nil)
 	return f
 }

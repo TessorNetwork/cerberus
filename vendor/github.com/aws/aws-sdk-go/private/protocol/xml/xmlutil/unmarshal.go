@@ -23,7 +23,7 @@ func UnmarshalXMLError(v interface{}, stream io.Reader) error {
 	var errBuf bytes.Buffer
 	body := io.TeeReader(stream, &errBuf)
 
-	err := xml.NewDecoder(body).Decode(v)
+	err := xml.NewFuroder(body).Decode(v)
 	if err != nil && err != io.EOF {
 		return awserr.NewUnmarshalError(err,
 			"failed to unmarshal error message", errBuf.Bytes())

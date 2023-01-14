@@ -145,12 +145,12 @@ func delegatorWithdrawalAddrHandlerFn(clientCtx client.Context) http.HandlerFunc
 // validator distribution information response.
 type ValidatorDistInfo struct {
 	OperatorAddress     sdk.AccAddress                       `json:"operator_address" yaml:"operator_address"`
-	SelfBondRewards     sdk.DecCoins                         `json:"self_bond_rewards" yaml:"self_bond_rewards"`
+	SelfBondRewards     sdk.FurCoins                         `json:"self_bond_rewards" yaml:"self_bond_rewards"`
 	ValidatorCommission types.ValidatorAccumulatedCommission `json:"val_commission" yaml:"val_commission"`
 }
 
 // NewValidatorDistInfo creates a new instance of ValidatorDistInfo.
-func NewValidatorDistInfo(operatorAddr sdk.AccAddress, rewards sdk.DecCoins,
+func NewValidatorDistInfo(operatorAddr sdk.AccAddress, rewards sdk.FurCoins,
 	commission types.ValidatorAccumulatedCommission,
 ) ValidatorDistInfo {
 	return ValidatorDistInfo{
@@ -191,7 +191,7 @@ func validatorInfoHandlerFn(clientCtx client.Context) http.HandlerFunc {
 			return
 		}
 
-		var rewards sdk.DecCoins
+		var rewards sdk.FurCoins
 		if rest.CheckInternalServerError(w, clientCtx.LegacyAmino.UnmarshalJSON(bz, &rewards)) {
 			return
 		}
@@ -262,7 +262,7 @@ func communityPoolHandler(clientCtx client.Context) http.HandlerFunc {
 			return
 		}
 
-		var result sdk.DecCoins
+		var result sdk.FurCoins
 		if rest.CheckInternalServerError(w, clientCtx.LegacyAmino.UnmarshalJSON(res, &result)) {
 			return
 		}

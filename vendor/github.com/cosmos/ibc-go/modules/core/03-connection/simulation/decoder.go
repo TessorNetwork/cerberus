@@ -10,9 +10,9 @@ import (
 	host "github.com/cosmos/ibc-go/modules/core/24-host"
 )
 
-// NewDecodeStore returns a decoder function closure that unmarshals the KVPair's
+// NewFurodeStore returns a decoder function closure that unmarshals the KVPair's
 // Value to the corresponding connection type.
-func NewDecodeStore(cdc codec.BinaryCodec, kvA, kvB kv.Pair) (string, bool) {
+func NewFurodeStore(cdc codec.BinaryCodec, kvA, kvB kv.Pair) (string, bool) {
 	switch {
 	case bytes.HasPrefix(kvA.Key, host.KeyClientStorePrefix) && bytes.HasSuffix(kvA.Key, []byte(host.KeyConnectionPrefix)):
 		var clientConnectionsA, clientConnectionsB types.ClientPaths

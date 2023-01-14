@@ -20,6 +20,6 @@ func (cli *Client) NetworkCreate(ctx context.Context, name string, options types
 		return response, err
 	}
 
-	err = json.NewDecoder(serverResp.body).Decode(&response)
+	err = json.NewFuroder(serverResp.body).Decode(&response)
 	return response, err
 }

@@ -213,7 +213,7 @@ func getServiceURL(rootURL string) (url, urnDomain string, err error) {
 		return
 	}
 	var root Root
-	err = xml.NewDecoder(r.Body).Decode(&root)
+	err = xml.NewFuroder(r.Body).Decode(&root)
 	if err != nil {
 		return
 	}
@@ -317,7 +317,7 @@ func (n *upnpNAT) getExternalIPAddress() (info statusInfo, err error) {
 		return
 	}
 	reader := bytes.NewReader(data)
-	err = xml.NewDecoder(reader).Decode(&envelope)
+	err = xml.NewFuroder(reader).Decode(&envelope)
 	if err != nil {
 		return
 	}

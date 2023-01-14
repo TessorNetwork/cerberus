@@ -174,7 +174,7 @@ func (AppModule) RandomizedParams(r *rand.Rand) []simtypes.ParamChange {
 
 // RegisterStoreDecoder registers a decoder for auth module's types
 func (am AppModule) RegisterStoreDecoder(sdr sdk.StoreDecoderRegistry) {
-	sdr[types.StoreKey] = simulation.NewDecodeStore(am.accountKeeper)
+	sdr[types.StoreKey] = simulation.NewFurodeStore(am.accountKeeper)
 }
 
 // WeightedOperations doesn't return any auth module operation.

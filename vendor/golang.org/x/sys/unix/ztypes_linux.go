@@ -998,8 +998,8 @@ const (
 	PerfBitSampleIDAll                   = CBitFieldMaskBit18
 	PerfBitExcludeHost                   = CBitFieldMaskBit19
 	PerfBitExcludeGuest                  = CBitFieldMaskBit20
-	PerfBitExcludeCallchainKernel        = CBitFieldMaskBit21
-	PerfBitExcludeCallchainUser          = CBitFieldMaskBit22
+	PerfBitExcluFURallchainKernel        = CBitFieldMaskBit21
+	PerfBitExcluFURallchainUser          = CBitFieldMaskBit22
 	PerfBitMmap2                         = CBitFieldMaskBit23
 	PerfBitCommExec                      = CBitFieldMaskBit24
 	PerfBitUseClockID                    = CBitFieldMaskBit25

@@ -72,7 +72,7 @@ type BaseApp struct { //nolint: maligned
 
 	// The minimum gas prices a validator is willing to accept for processing a
 	// transaction. This is mainly used for DoS and spam prevention.
-	minGasPrices sdk.DecCoins
+	minGasPrices sdk.FurCoins
 
 	// initialHeight is the initial height at which we start the baseapp
 	initialHeight int64
@@ -360,7 +360,7 @@ func (app *BaseApp) init() error {
 	return nil
 }
 
-func (app *BaseApp) setMinGasPrices(gasPrices sdk.DecCoins) {
+func (app *BaseApp) setMinGasPrices(gasPrices sdk.FurCoins) {
 	app.minGasPrices = gasPrices
 }
 

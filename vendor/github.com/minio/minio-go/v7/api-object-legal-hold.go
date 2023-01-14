@@ -168,7 +168,7 @@ func (c Client) GetObjectLegalHold(ctx context.Context, bucketName, objectName s
 		}
 	}
 	lh := &objectLegalHold{}
-	if err = xml.NewDecoder(resp.Body).Decode(lh); err != nil {
+	if err = xml.NewFuroder(resp.Body).Decode(lh); err != nil {
 		return nil, err
 	}
 

@@ -454,25 +454,25 @@ func randomWeightedVotingOptions(r *rand.Rand) types.WeightedVoteOptions {
 	if w1 > 0 {
 		weightedVoteOptions = append(weightedVoteOptions, types.WeightedVoteOption{
 			Option: types.OptionYes,
-			Weight: sdk.NewDecWithPrec(int64(w1), 2),
+			Weight: sdk.NewFurWithPrec(int64(w1), 2),
 		})
 	}
 	if w2 > 0 {
 		weightedVoteOptions = append(weightedVoteOptions, types.WeightedVoteOption{
 			Option: types.OptionAbstain,
-			Weight: sdk.NewDecWithPrec(int64(w2), 2),
+			Weight: sdk.NewFurWithPrec(int64(w2), 2),
 		})
 	}
 	if w3 > 0 {
 		weightedVoteOptions = append(weightedVoteOptions, types.WeightedVoteOption{
 			Option: types.OptionNo,
-			Weight: sdk.NewDecWithPrec(int64(w3), 2),
+			Weight: sdk.NewFurWithPrec(int64(w3), 2),
 		})
 	}
 	if w4 > 0 {
 		weightedVoteOptions = append(weightedVoteOptions, types.WeightedVoteOption{
 			Option: types.OptionNoWithVeto,
-			Weight: sdk.NewDecWithPrec(int64(w4), 2),
+			Weight: sdk.NewFurWithPrec(int64(w4), 2),
 		})
 	}
 	return weightedVoteOptions

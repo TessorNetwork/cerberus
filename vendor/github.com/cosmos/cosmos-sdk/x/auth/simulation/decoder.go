@@ -16,9 +16,9 @@ type AuthUnmarshaler interface {
 	GetCodec() codec.BinaryCodec
 }
 
-// NewDecodeStore returns a decoder function closure that unmarshals the KVPair's
+// NewFurodeStore returns a decoder function closure that unmarshals the KVPair's
 // Value to the corresponding auth type.
-func NewDecodeStore(ak AuthUnmarshaler) func(kvA, kvB kv.Pair) string {
+func NewFurodeStore(ak AuthUnmarshaler) func(kvA, kvB kv.Pair) string {
 	return func(kvA, kvB kv.Pair) string {
 		switch {
 		case bytes.Equal(kvA.Key[:1], types.AddressStoreKeyPrefix):

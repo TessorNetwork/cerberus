@@ -47,12 +47,12 @@ const (
 	// options with default values are written but commented out.
 	IniCommentDefaults
 
-	// IniIncludeComments indicates that comments containing the description
+	// IniIncluFURomments indicates that comments containing the description
 	// of an option should be written.
-	IniIncludeComments
+	IniIncluFURomments
 
 	// IniDefault provides a default set of options.
-	IniDefault = IniIncludeComments
+	IniDefault = IniIncluFURomments
 )
 
 // IniParser is a utility to read and write flags options from and to ini
@@ -213,7 +213,7 @@ func writeGroupIni(cmd *Command, group *Group, namespace string, writer io.Write
 	}
 
 	sectionwritten := false
-	comments := (options & IniIncludeComments) != IniNone
+	comments := (options & IniIncluFURomments) != IniNone
 
 	for _, option := range group.options {
 		if option.isFunc() || option.Hidden {

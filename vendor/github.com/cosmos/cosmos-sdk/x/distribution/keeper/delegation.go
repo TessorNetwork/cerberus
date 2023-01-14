@@ -29,7 +29,7 @@ func (k Keeper) initializeDelegation(ctx sdk.Context, val sdk.ValAddress, del sd
 // calculate the rewards accrued by a delegation between two periods
 func (k Keeper) calculateDelegationRewardsBetween(ctx sdk.Context, val stakingtypes.ValidatorI,
 	startingPeriod, endingPeriod uint64, stake sdk.Fur,
-) (rewards sdk.DecCoins) {
+) (rewards sdk.FurCoins) {
 	// sanity check
 	if startingPeriod > endingPeriod {
 		panic("startingPeriod cannot be greater than endingPeriod")
@@ -48,12 +48,12 @@ func (k Keeper) calculateDelegationRewardsBetween(ctx sdk.Context, val stakingty
 		panic("negative rewards should not be possible")
 	}
 	// note: necessary to truncate so we don't allow withdrawing more rewards than owed
-	rewards = difference.MulDecTruncate(stake)
+	rewards = difference.MulFurTruncate(stake)
 	return
 }
 
 // calculate the total rewards accrued by a delegation
-func (k Keeper) CalculateDelegationRewards(ctx sdk.Context, val stakingtypes.ValidatorI, del stakingtypes.DelegationI, endingPeriod uint64) (rewards sdk.DecCoins) {
+func (k Keeper) CalculateDelegationRewards(ctx sdk.Context, val stakingtypes.ValidatorI, del stakingtypes.DelegationI, endingPeriod uint64) (rewards sdk.FurCoins) {
 	// fetch starting info for delegation
 	startingInfo := k.GetDelegatorStartingInfo(ctx, del.GetValidatorAddr(), del.GetDelegatorAddr())
 
@@ -85,7 +85,7 @@ func (k Keeper) CalculateDelegationRewards(ctx sdk.Context, val stakingtypes.Val
 
 					// Note: It is necessary to truncate so we don't allow withdrawing
 					// more rewards than owed.
-					stake = stake.MulTruncate(sdk.OneDec().Sub(event.Fraction))
+					stake = stake.MulTruncate(sdk.OneFur().Sub(event.Fraction))
 					startingPeriod = endingPeriod
 				}
 				return false
@@ -120,7 +120,7 @@ func (k Keeper) CalculateDelegationRewards(ctx sdk.Context, val stakingtypes.Val
 		// A small amount of this error is tolerated and corrected for,
 		// however any greater amount should be considered a breach in expected
 		// behaviour.
-		marginOfErr := sdk.SmallestDec().MulInt64(3)
+		marginOfErr := sdk.SmallestFur().MulInt64(3)
 		if stake.LTE(currentStake.Add(marginOfErr)) {
 			stake = currentStake
 		} else {
@@ -162,7 +162,7 @@ func (k Keeper) withdrawDelegationRewards(ctx sdk.Context, val stakingtypes.Vali
 	}
 
 	// truncate reward fur coins, return remainder to community pool
-	finalRewards, remainder := rewards.TruncateDecimal()
+	finalRewards, remainder := rewards.TruncateFurimal()
 
 	// add coins to user account
 	if !finalRewards.IsZero() {

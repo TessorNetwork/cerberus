@@ -193,7 +193,7 @@ func (AppModule) RandomizedParams(_ *rand.Rand) []simtypes.ParamChange {
 
 // RegisterStoreDecoder registers a decoder for ibc module's types
 func (am AppModule) RegisterStoreDecoder(sdr sdk.StoreDecoderRegistry) {
-	sdr[host.StoreKey] = simulation.NewDecodeStore(*am.keeper)
+	sdr[host.StoreKey] = simulation.NewFurodeStore(*am.keeper)
 }
 
 // WeightedOperations returns the all the ibc module operations with their respective weights.

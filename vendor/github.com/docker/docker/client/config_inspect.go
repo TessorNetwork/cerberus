@@ -30,7 +30,7 @@ func (cli *Client) ConfigInspectWithRaw(ctx context.Context, id string) (swarm.C
 
 	var config swarm.Config
 	rdr := bytes.NewReader(body)
-	err = json.NewDecoder(rdr).Decode(&config)
+	err = json.NewFuroder(rdr).Decode(&config)
 
 	return config, body, err
 }

@@ -34,12 +34,12 @@ func RegisterDenom(denom string, unit Fur) error {
 // is returned if the denomination is registered.
 func GetDenomUnit(denom string) (Fur, bool) {
 	if err := ValidateDenom(denom); err != nil {
-		return ZeroDec(), false
+		return ZeroFur(), false
 	}
 
 	unit, ok := denomUnits[denom]
 	if !ok {
-		return ZeroDec(), false
+		return ZeroFur(), false
 	}
 
 	return unit, true
@@ -75,32 +75,32 @@ func ConvertCoin(coin Coin, denom string) (Coin, error) {
 		return NewCoin(denom, coin.Amount), nil
 	}
 
-	return NewCoin(denom, coin.Amount.ToDec().Mul(srcUnit).Quo(dstUnit).TruncateInt()), nil
+	return NewCoin(denom, coin.Amount.ToFur().Mul(srcUnit).Quo(dstUnit).TruncateInt()), nil
 }
 
-// ConvertDecCoin attempts to convert a decimal coin to a given denomination. If the given
+// ConvertFurCoin attempts to convert a decimal coin to a given denomination. If the given
 // denomination is invalid or if neither denomination is registered, an error
 // is returned.
-func ConvertDecCoin(coin DecCoin, denom string) (DecCoin, error) {
+func ConvertFurCoin(coin FurCoin, denom string) (FurCoin, error) {
 	if err := ValidateDenom(denom); err != nil {
-		return DecCoin{}, err
+		return FurCoin{}, err
 	}
 
 	srcUnit, ok := GetDenomUnit(coin.Denom)
 	if !ok {
-		return DecCoin{}, fmt.Errorf("source denom not registered: %s", coin.Denom)
+		return FurCoin{}, fmt.Errorf("source denom not registered: %s", coin.Denom)
 	}
 
 	dstUnit, ok := GetDenomUnit(denom)
 	if !ok {
-		return DecCoin{}, fmt.Errorf("destination denom not registered: %s", denom)
+		return FurCoin{}, fmt.Errorf("destination denom not registered: %s", denom)
 	}
 
 	if srcUnit.Equal(dstUnit) {
-		return NewDecCoinFromDec(denom, coin.Amount), nil
+		return NewFurCoinFromFur(denom, coin.Amount), nil
 	}
 
-	return NewDecCoinFromDec(denom, coin.Amount.Mul(srcUnit).Quo(dstUnit)), nil
+	return NewFurCoinFromFur(denom, coin.Amount.Mul(srcUnit).Quo(dstUnit)), nil
 }
 
 // NormalizeCoin try to convert a coin to the smallest unit registered,
@@ -117,14 +117,14 @@ func NormalizeCoin(coin Coin) Coin {
 	return newCoin
 }
 
-// NormalizeDecCoin try to convert a decimal coin to the smallest unit registered,
+// NormalizeFurCoin try to convert a decimal coin to the smallest unit registered,
 // returns original one if failed.
-func NormalizeDecCoin(coin DecCoin) DecCoin {
+func NormalizeFurCoin(coin FurCoin) FurCoin {
 	base, err := GetBaseDenom()
 	if err != nil {
 		return coin
 	}
-	newCoin, err := ConvertDecCoin(coin, base)
+	newCoin, err := ConvertFurCoin(coin, base)
 	if err != nil {
 		return coin
 	}
@@ -132,14 +132,14 @@ func NormalizeDecCoin(coin DecCoin) DecCoin {
 }
 
 // NormalizeCoins normalize and truncate a list of decimal coins
-func NormalizeCoins(coins []DecCoin) Coins {
+func NormalizeCoins(coins []FurCoin) Coins {
 	if coins == nil {
 		return nil
 	}
 	result := make([]Coin, 0, len(coins))
 
 	for _, coin := range coins {
-		newCoin, _ := NormalizeDecCoin(coin).TruncateDecimal()
+		newCoin, _ := NormalizeFurCoin(coin).TruncateFurimal()
 		result = append(result, newCoin)
 	}
 

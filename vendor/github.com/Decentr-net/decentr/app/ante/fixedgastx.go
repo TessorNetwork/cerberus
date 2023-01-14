@@ -66,8 +66,8 @@ func (fgm FixedGasTxDecorator) AnteHandle(
 			if consumed == 0 {
 				// special case: consumed gas is zero, what could be for DistributeRewards trx
 				// set min gas price to zero, otherwise sdkerrors.ErrInsufficientFee occurs
-				zeroDecCoins := sdk.NewDecCoins()
-				return next(ctx.WithMinGasPrices(zeroDecCoins), tx, simulate)
+				zeroFurCoins := sdk.NewFurCoins()
+				return next(ctx.WithMinGasPrices(zeroFurCoins), tx, simulate)
 			}
 
 			return next(ctx, tx, simulate)

@@ -37,7 +37,7 @@ func (cli *Client) BuildCachePrune(ctx context.Context, opts types.BuildCachePru
 		return nil, err
 	}
 
-	if err := json.NewDecoder(serverResp.body).Decode(&report); err != nil {
+	if err := json.NewFuroder(serverResp.body).Decode(&report); err != nil {
 		return nil, fmt.Errorf("Error retrieving disk usage: %v", err)
 	}
 

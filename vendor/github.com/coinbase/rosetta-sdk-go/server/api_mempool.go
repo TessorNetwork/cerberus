@@ -64,7 +64,7 @@ func (c *MempoolAPIController) Routes() Routes {
 // Mempool - Get All Mempool Transactions
 func (c *MempoolAPIController) Mempool(w http.ResponseWriter, r *http.Request) {
 	networkRequest := &types.NetworkRequest{}
-	if err := json.NewDecoder(r.Body).Decode(&networkRequest); err != nil {
+	if err := json.NewFuroder(r.Body).Decode(&networkRequest); err != nil {
 		EncodeJSONResponse(&types.Error{
 			Message: err.Error(),
 		}, http.StatusInternalServerError, w)
@@ -94,7 +94,7 @@ func (c *MempoolAPIController) Mempool(w http.ResponseWriter, r *http.Request) {
 // MempoolTransaction - Get a Mempool Transaction
 func (c *MempoolAPIController) MempoolTransaction(w http.ResponseWriter, r *http.Request) {
 	mempoolTransactionRequest := &types.MempoolTransactionRequest{}
-	if err := json.NewDecoder(r.Body).Decode(&mempoolTransactionRequest); err != nil {
+	if err := json.NewFuroder(r.Body).Decode(&mempoolTransactionRequest); err != nil {
 		EncodeJSONResponse(&types.Error{
 			Message: err.Error(),
 		}, http.StatusInternalServerError, w)

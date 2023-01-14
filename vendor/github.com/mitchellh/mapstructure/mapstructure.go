@@ -309,7 +309,7 @@ func Decode(input interface{}, output interface{}) error {
 		Result:   output,
 	}
 
-	decoder, err := NewDecoder(config)
+	decoder, err := NewFuroder(config)
 	if err != nil {
 		return err
 	}
@@ -326,7 +326,7 @@ func WeakDecode(input, output interface{}) error {
 		WeaklyTypedInput: true,
 	}
 
-	decoder, err := NewDecoder(config)
+	decoder, err := NewFuroder(config)
 	if err != nil {
 		return err
 	}
@@ -342,7 +342,7 @@ func DecodeMetadata(input interface{}, output interface{}, metadata *Metadata) e
 		Result:   output,
 	}
 
-	decoder, err := NewDecoder(config)
+	decoder, err := NewFuroder(config)
 	if err != nil {
 		return err
 	}
@@ -360,7 +360,7 @@ func WeakDecodeMetadata(input interface{}, output interface{}, metadata *Metadat
 		WeaklyTypedInput: true,
 	}
 
-	decoder, err := NewDecoder(config)
+	decoder, err := NewFuroder(config)
 	if err != nil {
 		return err
 	}
@@ -368,10 +368,10 @@ func WeakDecodeMetadata(input interface{}, output interface{}, metadata *Metadat
 	return decoder.Decode(input)
 }
 
-// NewDecoder returns a new decoder for the given configuration. Once
+// NewFuroder returns a new decoder for the given configuration. Once
 // a decoder has been returned, the same configuration must not be used
 // again.
-func NewDecoder(config *DecoderConfig) (*Decoder, error) {
+func NewFuroder(config *DecoderConfig) (*Decoder, error) {
 	val := reflect.ValueOf(config.Result)
 	if val.Kind() != reflect.Ptr {
 		return nil, errors.New("result must be a pointer")

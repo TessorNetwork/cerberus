@@ -143,7 +143,7 @@ func (c *EC2Metadata) GetInstanceIdentityDocumentWithContext(ctx aws.Context) (E
 	}
 
 	doc := EC2InstanceIdentityDocument{}
-	if err := json.NewDecoder(strings.NewReader(resp)).Decode(&doc); err != nil {
+	if err := json.NewFuroder(strings.NewReader(resp)).Decode(&doc); err != nil {
 		return EC2InstanceIdentityDocument{},
 			awserr.New(request.ErrCodeSerialization,
 				"failed to decode EC2 instance identity document", err)
@@ -167,7 +167,7 @@ func (c *EC2Metadata) IAMInfoWithContext(ctx aws.Context) (EC2IAMInfo, error) {
 	}
 
 	info := EC2IAMInfo{}
-	if err := json.NewDecoder(strings.NewReader(resp)).Decode(&info); err != nil {
+	if err := json.NewFuroder(strings.NewReader(resp)).Decode(&info); err != nil {
 		return EC2IAMInfo{},
 			awserr.New(request.ErrCodeSerialization,
 				"failed to decode EC2 IAM info", err)

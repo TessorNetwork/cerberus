@@ -45,7 +45,7 @@ func (cli *Client) ContainerWait(ctx context.Context, containerID string, condit
 	go func() {
 		defer ensureReaderClosed(resp)
 		var res container.ContainerWaitOKBody
-		if err := json.NewDecoder(resp.body).Decode(&res); err != nil {
+		if err := json.NewFuroder(resp.body).Decode(&res); err != nil {
 			errC <- err
 			return
 		}
@@ -71,7 +71,7 @@ func (cli *Client) legacyContainerWait(ctx context.Context, containerID string) 
 		defer ensureReaderClosed(resp)
 
 		var res container.ContainerWaitOKBody
-		if err := json.NewDecoder(resp.body).Decode(&res); err != nil {
+		if err := json.NewFuroder(resp.body).Decode(&res); err != nil {
 			errC <- err
 			return
 		}

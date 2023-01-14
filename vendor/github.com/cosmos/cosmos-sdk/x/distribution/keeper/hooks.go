@@ -34,7 +34,7 @@ func (h Hooks) AfterValidatorRemoved(ctx sdk.Context, _ sdk.ConsAddress, valAddr
 		outstanding = outstanding.Sub(commission)
 
 		// split into integral & remainder
-		coins, remainder := commission.TruncateDecimal()
+		coins, remainder := commission.TruncateFurimal()
 
 		// remainder to community pool
 		feePool := h.k.GetFeePool(ctx)

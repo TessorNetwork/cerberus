@@ -52,7 +52,7 @@ func NewDistributeRewardsCmd() *cobra.Command {
 				return fmt.Errorf("invalid receiver: %w", err)
 			}
 
-			reward, err := sdk.NewDecFromStr(args[1])
+			reward, err := sdk.NewFurFromStr(args[1])
 			if err != nil {
 				return fmt.Errorf("invalid reward: %w", err)
 			}

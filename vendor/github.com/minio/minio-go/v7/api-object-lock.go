@@ -209,7 +209,7 @@ func (c Client) GetObjectLockConfig(ctx context.Context, bucketName string) (obj
 		}
 	}
 	config := &objectLockConfig{}
-	if err = xml.NewDecoder(resp.Body).Decode(config); err != nil {
+	if err = xml.NewFuroder(resp.Body).Decode(config); err != nil {
 		return "", nil, nil, nil, err
 	}
 

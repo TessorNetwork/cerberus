@@ -41,17 +41,17 @@ func GenVotingParamsVotingPeriod(r *rand.Rand) time.Duration {
 
 // GenTallyParamsQuorum randomized TallyParamsQuorum
 func GenTallyParamsQuorum(r *rand.Rand) sdk.Fur {
-	return sdk.NewDecWithPrec(int64(simulation.RandIntBetween(r, 334, 500)), 3)
+	return sdk.NewFurWithPrec(int64(simulation.RandIntBetween(r, 334, 500)), 3)
 }
 
 // GenTallyParamsThreshold randomized TallyParamsThreshold
 func GenTallyParamsThreshold(r *rand.Rand) sdk.Fur {
-	return sdk.NewDecWithPrec(int64(simulation.RandIntBetween(r, 450, 550)), 3)
+	return sdk.NewFurWithPrec(int64(simulation.RandIntBetween(r, 450, 550)), 3)
 }
 
 // GenTallyParamsVeto randomized TallyParamsVeto
 func GenTallyParamsVeto(r *rand.Rand) sdk.Fur {
-	return sdk.NewDecWithPrec(int64(simulation.RandIntBetween(r, 250, 334)), 3)
+	return sdk.NewFurWithPrec(int64(simulation.RandIntBetween(r, 250, 334)), 3)
 }
 
 // RandomizedGenState generates a random GenesisState for gov

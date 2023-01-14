@@ -85,7 +85,7 @@ func (m *Params) GetWithdrawAddrEnabled() bool {
 //  read that record)
 //  + one per validator for the zeroeth period, set on initialization
 type ValidatorHistoricalRewards struct {
-	CumulativeRewardRatio github_com_cosmos_cosmos_sdk_types.DecCoins `protobuf:"bytes,1,rep,name=cumulative_reward_ratio,json=cumulativeRewardRatio,proto3,castrepeated=github.com/cosmos/cosmos-sdk/types.DecCoins" json:"cumulative_reward_ratio" yaml:"cumulative_reward_ratio"`
+	CumulativeRewardRatio github_com_cosmos_cosmos_sdk_types.FurCoins `protobuf:"bytes,1,rep,name=cumulative_reward_ratio,json=cumulativeRewardRatio,proto3,castrepeated=github.com/cosmos/cosmos-sdk/types.FurCoins" json:"cumulative_reward_ratio" yaml:"cumulative_reward_ratio"`
 	ReferenceCount        uint32                                      `protobuf:"varint,2,opt,name=reference_count,json=referenceCount,proto3" json:"reference_count,omitempty" yaml:"reference_count"`
 }
 
@@ -122,7 +122,7 @@ func (m *ValidatorHistoricalRewards) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_ValidatorHistoricalRewards proto.InternalMessageInfo
 
-func (m *ValidatorHistoricalRewards) GetCumulativeRewardRatio() github_com_cosmos_cosmos_sdk_types.DecCoins {
+func (m *ValidatorHistoricalRewards) GetCumulativeRewardRatio() github_com_cosmos_cosmos_sdk_types.FurCoins {
 	if m != nil {
 		return m.CumulativeRewardRatio
 	}
@@ -140,7 +140,7 @@ func (m *ValidatorHistoricalRewards) GetReferenceCount() uint32 {
 // period for a validator kept as a running counter and incremented
 // each block as long as the validator's tokens remain constant.
 type ValidatorCurrentRewards struct {
-	Rewards github_com_cosmos_cosmos_sdk_types.DecCoins `protobuf:"bytes,1,rep,name=rewards,proto3,castrepeated=github.com/cosmos/cosmos-sdk/types.DecCoins" json:"rewards"`
+	Rewards github_com_cosmos_cosmos_sdk_types.FurCoins `protobuf:"bytes,1,rep,name=rewards,proto3,castrepeated=github.com/cosmos/cosmos-sdk/types.FurCoins" json:"rewards"`
 	Period  uint64                                      `protobuf:"varint,2,opt,name=period,proto3" json:"period,omitempty"`
 }
 
@@ -177,7 +177,7 @@ func (m *ValidatorCurrentRewards) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_ValidatorCurrentRewards proto.InternalMessageInfo
 
-func (m *ValidatorCurrentRewards) GetRewards() github_com_cosmos_cosmos_sdk_types.DecCoins {
+func (m *ValidatorCurrentRewards) GetRewards() github_com_cosmos_cosmos_sdk_types.FurCoins {
 	if m != nil {
 		return m.Rewards
 	}
@@ -194,7 +194,7 @@ func (m *ValidatorCurrentRewards) GetPeriod() uint64 {
 // ValidatorAccumulatedCommission represents accumulated commission
 // for a validator kept as a running counter, can be withdrawn at any time.
 type ValidatorAccumulatedCommission struct {
-	Commission github_com_cosmos_cosmos_sdk_types.DecCoins `protobuf:"bytes,1,rep,name=commission,proto3,castrepeated=github.com/cosmos/cosmos-sdk/types.DecCoins" json:"commission"`
+	Commission github_com_cosmos_cosmos_sdk_types.FurCoins `protobuf:"bytes,1,rep,name=commission,proto3,castrepeated=github.com/cosmos/cosmos-sdk/types.FurCoins" json:"commission"`
 }
 
 func (m *ValidatorAccumulatedCommission) Reset()         { *m = ValidatorAccumulatedCommission{} }
@@ -230,7 +230,7 @@ func (m *ValidatorAccumulatedCommission) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_ValidatorAccumulatedCommission proto.InternalMessageInfo
 
-func (m *ValidatorAccumulatedCommission) GetCommission() github_com_cosmos_cosmos_sdk_types.DecCoins {
+func (m *ValidatorAccumulatedCommission) GetCommission() github_com_cosmos_cosmos_sdk_types.FurCoins {
 	if m != nil {
 		return m.Commission
 	}
@@ -240,7 +240,7 @@ func (m *ValidatorAccumulatedCommission) GetCommission() github_com_cosmos_cosmo
 // ValidatorOutstandingRewards represents outstanding (un-withdrawn) rewards
 // for a validator inexpensive to track, allows simple sanity checks.
 type ValidatorOutstandingRewards struct {
-	Rewards github_com_cosmos_cosmos_sdk_types.DecCoins `protobuf:"bytes,1,rep,name=rewards,proto3,castrepeated=github.com/cosmos/cosmos-sdk/types.DecCoins" json:"rewards" yaml:"rewards"`
+	Rewards github_com_cosmos_cosmos_sdk_types.FurCoins `protobuf:"bytes,1,rep,name=rewards,proto3,castrepeated=github.com/cosmos/cosmos-sdk/types.FurCoins" json:"rewards" yaml:"rewards"`
 }
 
 func (m *ValidatorOutstandingRewards) Reset()         { *m = ValidatorOutstandingRewards{} }
@@ -276,7 +276,7 @@ func (m *ValidatorOutstandingRewards) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_ValidatorOutstandingRewards proto.InternalMessageInfo
 
-func (m *ValidatorOutstandingRewards) GetRewards() github_com_cosmos_cosmos_sdk_types.DecCoins {
+func (m *ValidatorOutstandingRewards) GetRewards() github_com_cosmos_cosmos_sdk_types.FurCoins {
 	if m != nil {
 		return m.Rewards
 	}
@@ -378,7 +378,7 @@ func (m *ValidatorSlashEvents) GetValidatorSlashEvents() []ValidatorSlashEvent {
 
 // FeePool is the global fee pool for distribution.
 type FeePool struct {
-	CommunityPool github_com_cosmos_cosmos_sdk_types.DecCoins `protobuf:"bytes,1,rep,name=community_pool,json=communityPool,proto3,castrepeated=github.com/cosmos/cosmos-sdk/types.DecCoins" json:"community_pool" yaml:"community_pool"`
+	CommunityPool github_com_cosmos_cosmos_sdk_types.FurCoins `protobuf:"bytes,1,rep,name=community_pool,json=communityPool,proto3,castrepeated=github.com/cosmos/cosmos-sdk/types.FurCoins" json:"community_pool" yaml:"community_pool"`
 }
 
 func (m *FeePool) Reset()         { *m = FeePool{} }
@@ -414,7 +414,7 @@ func (m *FeePool) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_FeePool proto.InternalMessageInfo
 
-func (m *FeePool) GetCommunityPool() github_com_cosmos_cosmos_sdk_types.DecCoins {
+func (m *FeePool) GetCommunityPool() github_com_cosmos_cosmos_sdk_types.FurCoins {
 	if m != nil {
 		return m.CommunityPool
 	}
@@ -526,7 +526,7 @@ func (m *DelegatorStartingInfo) GetHeight() uint64 {
 // of a delegator's delegation reward.
 type DelegationDelegatorReward struct {
 	ValidatorAddress string                                      `protobuf:"bytes,1,opt,name=validator_address,json=validatorAddress,proto3" json:"validator_address,omitempty" yaml:"validator_address"`
-	Reward           github_com_cosmos_cosmos_sdk_types.DecCoins `protobuf:"bytes,2,rep,name=reward,proto3,castrepeated=github.com/cosmos/cosmos-sdk/types.DecCoins" json:"reward"`
+	Reward           github_com_cosmos_cosmos_sdk_types.FurCoins `protobuf:"bytes,2,rep,name=reward,proto3,castrepeated=github.com/cosmos/cosmos-sdk/types.FurCoins" json:"reward"`
 }
 
 func (m *DelegationDelegatorReward) Reset()         { *m = DelegationDelegatorReward{} }
@@ -2038,7 +2038,7 @@ func (m *ValidatorHistoricalRewards) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.CumulativeRewardRatio = append(m.CumulativeRewardRatio, types.DecCoin{})
+			m.CumulativeRewardRatio = append(m.CumulativeRewardRatio, types.FurCoin{})
 			if err := m.CumulativeRewardRatio[len(m.CumulativeRewardRatio)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
@@ -2141,7 +2141,7 @@ func (m *ValidatorCurrentRewards) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Rewards = append(m.Rewards, types.DecCoin{})
+			m.Rewards = append(m.Rewards, types.FurCoin{})
 			if err := m.Rewards[len(m.Rewards)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
@@ -2244,7 +2244,7 @@ func (m *ValidatorAccumulatedCommission) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Commission = append(m.Commission, types.DecCoin{})
+			m.Commission = append(m.Commission, types.FurCoin{})
 			if err := m.Commission[len(m.Commission)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
@@ -2328,7 +2328,7 @@ func (m *ValidatorOutstandingRewards) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Rewards = append(m.Rewards, types.DecCoin{})
+			m.Rewards = append(m.Rewards, types.FurCoin{})
 			if err := m.Rewards[len(m.Rewards)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
@@ -2599,7 +2599,7 @@ func (m *FeePool) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.CommunityPool = append(m.CommunityPool, types.DecCoin{})
+			m.CommunityPool = append(m.CommunityPool, types.FurCoin{})
 			if err := m.CommunityPool[len(m.CommunityPool)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
@@ -3017,7 +3017,7 @@ func (m *DelegationDelegatorReward) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Reward = append(m.Reward, types.DecCoin{})
+			m.Reward = append(m.Reward, types.FurCoin{})
 			if err := m.Reward[len(m.Reward)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}

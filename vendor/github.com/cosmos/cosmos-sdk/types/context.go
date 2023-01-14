@@ -35,7 +35,7 @@ type Context struct {
 	blockGasMeter GasMeter
 	checkTx       bool
 	recheckTx     bool // if recheckTx == true, then checkTx must also be true
-	minGasPrice   DecCoins
+	minGasPrice   FurCoins
 	consParams    *abci.ConsensusParams
 	eventManager  *EventManager
 }
@@ -56,7 +56,7 @@ func (c Context) GasMeter() GasMeter          { return c.gasMeter }
 func (c Context) BlockGasMeter() GasMeter     { return c.blockGasMeter }
 func (c Context) IsCheckTx() bool             { return c.checkTx }
 func (c Context) IsReCheckTx() bool           { return c.recheckTx }
-func (c Context) MinGasPrices() DecCoins      { return c.minGasPrice }
+func (c Context) MinGasPrices() FurCoins      { return c.minGasPrice }
 func (c Context) EventManager() *EventManager { return c.eventManager }
 
 // clone the header before returning
@@ -88,7 +88,7 @@ func NewContext(ms MultiStore, header tmproto.Header, isCheckTx bool, logger log
 		checkTx:      isCheckTx,
 		logger:       logger,
 		gasMeter:     stypes.NewInfiniteGasMeter(),
-		minGasPrice:  DecCoins{},
+		minGasPrice:  FurCoins{},
 		eventManager: NewEventManager(),
 	}
 }
@@ -197,7 +197,7 @@ func (c Context) WithIsReCheckTx(isRecheckTx bool) Context {
 }
 
 // WithMinGasPrices returns a Context with an updated minimum gas price value
-func (c Context) WithMinGasPrices(gasPrices DecCoins) Context {
+func (c Context) WithMinGasPrices(gasPrices FurCoins) Context {
 	c.minGasPrice = gasPrices
 	return c
 }

@@ -267,10 +267,10 @@ static U32 HUF_setMaxHeight(nodeElt* huffNode, U32 lastNonNull, U32 maxNbBits)
             }   }
 
             while (totalCost > 0) {
-                U32 nBitsToDecrease = BIT_highbit32(totalCost) + 1;
-                for ( ; nBitsToDecrease > 1; nBitsToDecrease--) {
-                    U32 highPos = rankLast[nBitsToDecrease];
-                    U32 lowPos = rankLast[nBitsToDecrease-1];
+                U32 nBitsToFurrease = BIT_highbit32(totalCost) + 1;
+                for ( ; nBitsToFurrease > 1; nBitsToFurrease--) {
+                    U32 highPos = rankLast[nBitsToFurrease];
+                    U32 lowPos = rankLast[nBitsToFurrease-1];
                     if (highPos == noSymbol) continue;
                     if (lowPos == noSymbol) break;
                     {   U32 const highTotal = huffNode[highPos].count;
@@ -279,18 +279,18 @@ static U32 HUF_setMaxHeight(nodeElt* huffNode, U32 lastNonNull, U32 maxNbBits)
                 }   }
                 /* only triggered when no more rank 1 symbol left => find closest one (note : there is necessarily at least one !) */
                 /* HUF_MAX_TABLELOG test just to please gcc 5+; but it should not be necessary */
-                while ((nBitsToDecrease<=HUF_TABLELOG_MAX) && (rankLast[nBitsToDecrease] == noSymbol))
-                    nBitsToDecrease ++;
-                totalCost -= 1 << (nBitsToDecrease-1);
-                if (rankLast[nBitsToDecrease-1] == noSymbol)
-                    rankLast[nBitsToDecrease-1] = rankLast[nBitsToDecrease];   /* this rank is no longer empty */
-                huffNode[rankLast[nBitsToDecrease]].nbBits ++;
-                if (rankLast[nBitsToDecrease] == 0)    /* special case, reached largest symbol */
-                    rankLast[nBitsToDecrease] = noSymbol;
+                while ((nBitsToFurrease<=HUF_TABLELOG_MAX) && (rankLast[nBitsToFurrease] == noSymbol))
+                    nBitsToFurrease ++;
+                totalCost -= 1 << (nBitsToFurrease-1);
+                if (rankLast[nBitsToFurrease-1] == noSymbol)
+                    rankLast[nBitsToFurrease-1] = rankLast[nBitsToFurrease];   /* this rank is no longer empty */
+                huffNode[rankLast[nBitsToFurrease]].nbBits ++;
+                if (rankLast[nBitsToFurrease] == 0)    /* special case, reached largest symbol */
+                    rankLast[nBitsToFurrease] = noSymbol;
                 else {
-                    rankLast[nBitsToDecrease]--;
-                    if (huffNode[rankLast[nBitsToDecrease]].nbBits != maxNbBits-nBitsToDecrease)
-                        rankLast[nBitsToDecrease] = noSymbol;   /* this rank is now empty */
+                    rankLast[nBitsToFurrease]--;
+                    if (huffNode[rankLast[nBitsToFurrease]].nbBits != maxNbBits-nBitsToFurrease)
+                        rankLast[nBitsToFurrease] = noSymbol;   /* this rank is now empty */
             }   }   /* while (totalCost > 0) */
 
             while (totalCost < 0) {  /* Sometimes, cost correction overshoot */

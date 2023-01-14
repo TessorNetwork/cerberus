@@ -13,9 +13,9 @@ type EvidenceUnmarshaler interface {
 	UnmarshalEvidence([]byte) (exported.Evidence, error)
 }
 
-// NewDecodeStore returns a decoder function closure that unmarshals the KVPair's
+// NewFurodeStore returns a decoder function closure that unmarshals the KVPair's
 // Value to the corresponding evidence type.
-func NewDecodeStore(cdc EvidenceUnmarshaler) func(kvA, kvB kv.Pair) string {
+func NewFurodeStore(cdc EvidenceUnmarshaler) func(kvA, kvB kv.Pair) string {
 	return func(kvA, kvB kv.Pair) string {
 		switch {
 		case bytes.Equal(kvA.Key[:1], types.KeyPrefixEvidence):

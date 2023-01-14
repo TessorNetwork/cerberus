@@ -26,6 +26,6 @@ func (cli *Client) ImageRemove(ctx context.Context, imageID string, options type
 		return dels, wrapResponseError(err, resp, "image", imageID)
 	}
 
-	err = json.NewDecoder(resp.body).Decode(&dels)
+	err = json.NewFuroder(resp.body).Decode(&dels)
 	return dels, err
 }

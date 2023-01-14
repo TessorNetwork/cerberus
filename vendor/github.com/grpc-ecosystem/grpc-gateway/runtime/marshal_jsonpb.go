@@ -15,7 +15,7 @@ import (
 // with the "github.com/golang/protobuf/jsonpb".
 // It supports fully functionality of protobuf unlike JSONBuiltin.
 //
-// The NewDecoder method returns a DecoderWrapper, so the underlying
+// The NewFuroder method returns a DecoderWrapper, so the underlying
 // *json.Decoder methods can be used.
 type JSONPb jsonpb.Marshaler
 
@@ -131,9 +131,9 @@ func (j *JSONPb) Unmarshal(data []byte, v interface{}) error {
 	return unmarshalJSONPb(data, v)
 }
 
-// NewDecoder returns a Decoder which reads JSON stream from "r".
-func (j *JSONPb) NewDecoder(r io.Reader) Decoder {
-	d := json.NewDecoder(r)
+// NewFuroder returns a Decoder which reads JSON stream from "r".
+func (j *JSONPb) NewFuroder(r io.Reader) Decoder {
+	d := json.NewFuroder(r)
 	return DecoderWrapper{Decoder: d}
 }
 
@@ -163,7 +163,7 @@ func (j *JSONPb) NewEncoder(w io.Writer) Encoder {
 }
 
 func unmarshalJSONPb(data []byte, v interface{}) error {
-	d := json.NewDecoder(bytes.NewReader(data))
+	d := json.NewFuroder(bytes.NewReader(data))
 	return decodeJSONPb(d, v)
 }
 

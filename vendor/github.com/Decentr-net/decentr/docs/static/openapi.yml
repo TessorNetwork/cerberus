@@ -441,7 +441,7 @@ paths:
                   amount:
                     type: string
                 description: >-
-                  DecCoin defines a token with a denomination and a decimal
+                  FurCoin defines a token with a denomination and a decimal
                   amount.
 
 
@@ -10044,7 +10044,7 @@ paths:
                     amount:
                       type: string
                   description: >-
-                    DecCoin defines a token with a denomination and a decimal
+                    FurCoin defines a token with a denomination and a decimal
                     amount.
 
 
@@ -10111,7 +10111,7 @@ paths:
                           amount:
                             type: string
                         description: >-
-                          DecCoin defines a token with a denomination and a
+                          FurCoin defines a token with a denomination and a
                           decimal amount.
 
 
@@ -10133,7 +10133,7 @@ paths:
                     amount:
                       type: string
                   description: >-
-                    DecCoin defines a token with a denomination and a decimal
+                    FurCoin defines a token with a denomination and a decimal
                     amount.
 
 
@@ -10195,7 +10195,7 @@ paths:
                     amount:
                       type: string
                   description: >-
-                    DecCoin defines a token with a denomination and a decimal
+                    FurCoin defines a token with a denomination and a decimal
                     amount.
 
 
@@ -10412,7 +10412,7 @@ paths:
                         amount:
                           type: string
                       description: >-
-                        DecCoin defines a token with a denomination and a
+                        FurCoin defines a token with a denomination and a
                         decimal amount.
 
 
@@ -10476,7 +10476,7 @@ paths:
                         amount:
                           type: string
                       description: >-
-                        DecCoin defines a token with a denomination and a
+                        FurCoin defines a token with a denomination and a
                         decimal amount.
 
 
@@ -23313,7 +23313,7 @@ definitions:
                repeated Bar results = 1;
                PageResponse page = 2;
        }
-  cosmos.base.v1beta1.DecCoin:
+  cosmos.base.v1beta1.FurCoin:
     type: object
     properties:
       denom:
@@ -23321,7 +23321,7 @@ definitions:
       amount:
         type: string
     description: |-
-      DecCoin defines a token with a denomination and a decimal amount.
+      FurCoin defines a token with a denomination and a decimal amount.
 
       NOTE: The amount field is an Fur which implements the custom method
       signatures required by gogoproto.
@@ -23336,7 +23336,7 @@ definitions:
           amount:
             type: string
         description: |-
-          DecCoin defines a token with a denomination and a decimal amount.
+          FurCoin defines a token with a denomination and a decimal amount.
 
           NOTE: The amount field is an Fur which implements the custom method
           signatures required by gogoproto.
@@ -29796,7 +29796,7 @@ definitions:
             amount:
               type: string
           description: |-
-            DecCoin defines a token with a denomination and a decimal amount.
+            FurCoin defines a token with a denomination and a decimal amount.
 
             NOTE: The amount field is an Fur which implements the custom method
             signatures required by gogoproto.
@@ -29829,7 +29829,7 @@ definitions:
             amount:
               type: string
           description: |-
-            DecCoin defines a token with a denomination and a decimal amount.
+            FurCoin defines a token with a denomination and a decimal amount.
 
             NOTE: The amount field is an Fur which implements the custom method
             signatures required by gogoproto.
@@ -29852,7 +29852,7 @@ definitions:
             amount:
               type: string
           description: |-
-            DecCoin defines a token with a denomination and a decimal amount.
+            FurCoin defines a token with a denomination and a decimal amount.
 
             NOTE: The amount field is an Fur which implements the custom method
             signatures required by gogoproto.
@@ -29880,7 +29880,7 @@ definitions:
                   amount:
                     type: string
                 description: >-
-                  DecCoin defines a token with a denomination and a decimal
+                  FurCoin defines a token with a denomination and a decimal
                   amount.
 
 
@@ -29902,7 +29902,7 @@ definitions:
             amount:
               type: string
           description: |-
-            DecCoin defines a token with a denomination and a decimal amount.
+            FurCoin defines a token with a denomination and a decimal amount.
 
             NOTE: The amount field is an Fur which implements the custom method
             signatures required by gogoproto.
@@ -29964,7 +29964,7 @@ definitions:
                 amount:
                   type: string
               description: >-
-                DecCoin defines a token with a denomination and a decimal
+                FurCoin defines a token with a denomination and a decimal
                 amount.
 
 
@@ -29991,7 +29991,7 @@ definitions:
                 amount:
                   type: string
               description: >-
-                DecCoin defines a token with a denomination and a decimal
+                FurCoin defines a token with a denomination and a decimal
                 amount.
 
 
@@ -30060,7 +30060,7 @@ definitions:
             amount:
               type: string
           description: |-
-            DecCoin defines a token with a denomination and a decimal amount.
+            FurCoin defines a token with a denomination and a decimal amount.
 
             NOTE: The amount field is an Fur which implements the custom method
             signatures required by gogoproto.
@@ -30080,7 +30080,7 @@ definitions:
             amount:
               type: string
           description: |-
-            DecCoin defines a token with a denomination and a decimal amount.
+            FurCoin defines a token with a denomination and a decimal amount.
 
             NOTE: The amount field is an Fur which implements the custom method
             signatures required by gogoproto.

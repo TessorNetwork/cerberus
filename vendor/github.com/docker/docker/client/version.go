@@ -16,6 +16,6 @@ func (cli *Client) ServerVersion(ctx context.Context) (types.Version, error) {
 	}
 
 	var server types.Version
-	err = json.NewDecoder(resp.body).Decode(&server)
+	err = json.NewFuroder(resp.body).Decode(&server)
 	return server, err
 }

@@ -26,6 +26,6 @@ func (cli *Client) PluginInspectWithRaw(ctx context.Context, name string) (*type
 	}
 	var p types.Plugin
 	rdr := bytes.NewReader(body)
-	err = json.NewDecoder(rdr).Decode(&p)
+	err = json.NewFuroder(rdr).Decode(&p)
 	return &p, body, err
 }

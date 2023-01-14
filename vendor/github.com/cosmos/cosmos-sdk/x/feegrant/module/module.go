@@ -199,7 +199,7 @@ func (AppModule) RandomizedParams(r *rand.Rand) []simtypes.ParamChange {
 
 // RegisterStoreDecoder registers a decoder for feegrant module's types
 func (am AppModule) RegisterStoreDecoder(sdr sdk.StoreDecoderRegistry) {
-	sdr[feegrant.StoreKey] = simulation.NewDecodeStore(am.cdc)
+	sdr[feegrant.StoreKey] = simulation.NewFurodeStore(am.cdc)
 }
 
 // WeightedOperations returns all the feegrant module operations with their respective weights.

@@ -40,7 +40,7 @@ func (cli *Client) Events(ctx context.Context, options types.EventsOptions) (<-c
 		}
 		defer resp.body.Close()
 
-		decoder := json.NewDecoder(resp.body)
+		decoder := json.NewFuroder(resp.body)
 
 		close(started)
 		for {

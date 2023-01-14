@@ -44,14 +44,14 @@ func MarshalToString(v interface{}) (string, error) {
 	return ConfigDefault.MarshalToString(v)
 }
 
-// NewDecoder adapts to json/stream NewDecoder API.
+// NewFuroder adapts to json/stream NewFuroder API.
 //
-// NewDecoder returns a new decoder that reads from r.
+// NewFuroder returns a new decoder that reads from r.
 //
 // Instead of a json/encoding Decoder, an Decoder is returned
-// Refer to https://godoc.org/encoding/json#NewDecoder for more information
-func NewDecoder(reader io.Reader) *Decoder {
-	return ConfigDefault.NewDecoder(reader)
+// Refer to https://godoc.org/encoding/json#NewFuroder for more information
+func NewFuroder(reader io.Reader) *Decoder {
+	return ConfigDefault.NewFuroder(reader)
 }
 
 // Decoder reads and decodes JSON values from an input stream.

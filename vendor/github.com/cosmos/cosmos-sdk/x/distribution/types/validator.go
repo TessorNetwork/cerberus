@@ -8,7 +8,7 @@ import (
 )
 
 // create a new ValidatorHistoricalRewards
-func NewValidatorHistoricalRewards(cumulativeRewardRatio sdk.DecCoins, referenceCount uint32) ValidatorHistoricalRewards {
+func NewValidatorHistoricalRewards(cumulativeRewardRatio sdk.FurCoins, referenceCount uint32) ValidatorHistoricalRewards {
 	return ValidatorHistoricalRewards{
 		CumulativeRewardRatio: cumulativeRewardRatio,
 		ReferenceCount:        referenceCount,
@@ -16,7 +16,7 @@ func NewValidatorHistoricalRewards(cumulativeRewardRatio sdk.DecCoins, reference
 }
 
 // create a new ValidatorCurrentRewards
-func NewValidatorCurrentRewards(rewards sdk.DecCoins, period uint64) ValidatorCurrentRewards {
+func NewValidatorCurrentRewards(rewards sdk.FurCoins, period uint64) ValidatorCurrentRewards {
 	return ValidatorCurrentRewards{
 		Rewards: rewards,
 		Period:  period,

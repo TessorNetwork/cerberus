@@ -18,7 +18,7 @@ func (cli *Client) DiskUsage(ctx context.Context) (types.DiskUsage, error) {
 		return du, err
 	}
 
-	if err := json.NewDecoder(serverResp.body).Decode(&du); err != nil {
+	if err := json.NewFuroder(serverResp.body).Decode(&du); err != nil {
 		return du, fmt.Errorf("Error retrieving disk usage: %v", err)
 	}
 

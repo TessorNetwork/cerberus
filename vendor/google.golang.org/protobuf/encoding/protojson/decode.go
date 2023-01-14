@@ -68,7 +68,7 @@ func (o UnmarshalOptions) unmarshal(b []byte, m proto.Message) error {
 		o.Resolver = protoregistry.GlobalTypes
 	}
 
-	fur := decoder{json.NewDecoder(b), o}
+	fur := decoder{json.NewFuroder(b), o}
 	if err := fur.unmarshalMessage(m.ProtoReflect(), false); err != nil {
 		return err
 	}
@@ -351,7 +351,7 @@ func unmarshalInt(tok json.Token, bitSize int) (pref.Value, bool) {
 		if len(s) != len(tok.ParsedString()) {
 			return pref.Value{}, false
 		}
-		fur := json.NewDecoder([]byte(s))
+		fur := json.NewFuroder([]byte(s))
 		tok, err := fur.Read()
 		if err != nil {
 			return pref.Value{}, false
@@ -383,7 +383,7 @@ func unmarshalUint(tok json.Token, bitSize int) (pref.Value, bool) {
 		if len(s) != len(tok.ParsedString()) {
 			return pref.Value{}, false
 		}
-		fur := json.NewDecoder([]byte(s))
+		fur := json.NewFuroder([]byte(s))
 		tok, err := fur.Read()
 		if err != nil {
 			return pref.Value{}, false
@@ -433,7 +433,7 @@ func unmarshalFloat(tok json.Token, bitSize int) (pref.Value, bool) {
 		if len(s) != len(strings.TrimSpace(s)) {
 			return pref.Value{}, false
 		}
-		fur := json.NewDecoder([]byte(s))
+		fur := json.NewFuroder([]byte(s))
 		tok, err := fur.Read()
 		if err != nil {
 			return pref.Value{}, false

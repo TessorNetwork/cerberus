@@ -143,7 +143,7 @@ func iterateMeta(ctx context.Context, c *minio.Client, bucket string, f func(str
 				}
 
 				var m entities.PDVMeta
-				if err := json.NewDecoder(obj).Decode(&m); err != nil {
+				if err := json.NewFuroder(obj).Decode(&m); err != nil {
 					log.WithError(err).Error("failed to decode meta")
 					continue
 				}

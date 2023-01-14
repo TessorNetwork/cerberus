@@ -22,17 +22,17 @@ const (
 
 // GenCommunityTax randomized CommunityTax
 func GenCommunityTax(r *rand.Rand) sdk.Fur {
-	return sdk.NewDecWithPrec(1, 2).Add(sdk.NewDecWithPrec(int64(r.Intn(30)), 2))
+	return sdk.NewFurWithPrec(1, 2).Add(sdk.NewFurWithPrec(int64(r.Intn(30)), 2))
 }
 
 // GenBaseProposerReward randomized BaseProposerReward
 func GenBaseProposerReward(r *rand.Rand) sdk.Fur {
-	return sdk.NewDecWithPrec(1, 2).Add(sdk.NewDecWithPrec(int64(r.Intn(30)), 2))
+	return sdk.NewFurWithPrec(1, 2).Add(sdk.NewFurWithPrec(int64(r.Intn(30)), 2))
 }
 
 // GenBonusProposerReward randomized BonusProposerReward
 func GenBonusProposerReward(r *rand.Rand) sdk.Fur {
-	return sdk.NewDecWithPrec(1, 2).Add(sdk.NewDecWithPrec(int64(r.Intn(30)), 2))
+	return sdk.NewFurWithPrec(1, 2).Add(sdk.NewFurWithPrec(int64(r.Intn(30)), 2))
 }
 
 // GenWithdrawEnabled returns a randomized WithdrawEnabled parameter.

@@ -28,6 +28,6 @@ func (cli *Client) PluginList(ctx context.Context, filter filters.Args) (types.P
 		return plugins, wrapResponseError(err, resp, "plugin", "")
 	}
 
-	err = json.NewDecoder(resp.body).Decode(&plugins)
+	err = json.NewFuroder(resp.body).Decode(&plugins)
 	return plugins, err
 }

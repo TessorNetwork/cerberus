@@ -156,6 +156,6 @@ func indexNeedEscapeInBytes(b []byte) int { return indexNeedEscapeInString(strs.
 // String value needs to contain single or double quotes. This is only used by
 // internal/encoding/defval package for unmarshaling bytes.
 func UnmarshalString(s string) (string, error) {
-	d := NewDecoder([]byte(s))
+	d := NewFuroder([]byte(s))
 	return d.parseString()
 }

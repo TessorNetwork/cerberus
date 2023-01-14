@@ -30,7 +30,7 @@ func (cli *Client) SecretInspectWithRaw(ctx context.Context, id string) (swarm.S
 
 	var secret swarm.Secret
 	rdr := bytes.NewReader(body)
-	err = json.NewDecoder(rdr).Decode(&secret)
+	err = json.NewFuroder(rdr).Decode(&secret)
 
 	return secret, body, err
 }

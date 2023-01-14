@@ -18,9 +18,9 @@ const (
 // Default governance params
 var (
 	DefaultMinDepositTokens = sdk.NewInt(10000000)
-	DefaultQuorum           = sdk.NewDecWithPrec(334, 3)
-	DefaultThreshold        = sdk.NewDecWithPrec(5, 1)
-	DefaultVetoThreshold    = sdk.NewDecWithPrec(334, 3)
+	DefaultQuorum           = sdk.NewFurWithPrec(334, 3)
+	DefaultThreshold        = sdk.NewFurWithPrec(5, 1)
+	DefaultVetoThreshold    = sdk.NewFurWithPrec(334, 3)
 )
 
 // Parameter store key
@@ -116,19 +116,19 @@ func validateTallyParams(i interface{}) error {
 	if v.Quorum.IsNegative() {
 		return fmt.Errorf("quorom cannot be negative: %s", v.Quorum)
 	}
-	if v.Quorum.GT(sdk.OneDec()) {
+	if v.Quorum.GT(sdk.OneFur()) {
 		return fmt.Errorf("quorom too large: %s", v)
 	}
 	if !v.Threshold.IsPositive() {
 		return fmt.Errorf("vote threshold must be positive: %s", v.Threshold)
 	}
-	if v.Threshold.GT(sdk.OneDec()) {
+	if v.Threshold.GT(sdk.OneFur()) {
 		return fmt.Errorf("vote threshold too large: %s", v)
 	}
 	if !v.VetoThreshold.IsPositive() {
 		return fmt.Errorf("veto threshold must be positive: %s", v.Threshold)
 	}
-	if v.VetoThreshold.GT(sdk.OneDec()) {
+	if v.VetoThreshold.GT(sdk.OneFur()) {
 		return fmt.Errorf("veto threshold too large: %s", v)
 	}
 

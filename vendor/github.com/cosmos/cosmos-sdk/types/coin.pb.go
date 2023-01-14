@@ -71,26 +71,26 @@ func (m *Coin) GetDenom() string {
 	return ""
 }
 
-// DecCoin defines a token with a denomination and a decimal amount.
+// FurCoin defines a token with a denomination and a decimal amount.
 //
 // NOTE: The amount field is an Fur which implements the custom method
 // signatures required by gogoproto.
-type DecCoin struct {
+type FurCoin struct {
 	Denom  string `protobuf:"bytes,1,opt,name=denom,proto3" json:"denom,omitempty"`
 	Amount Fur    `protobuf:"bytes,2,opt,name=amount,proto3,customtype=Fur" json:"amount"`
 }
 
-func (m *DecCoin) Reset()      { *m = DecCoin{} }
-func (*DecCoin) ProtoMessage() {}
-func (*DecCoin) Descriptor() ([]byte, []int) {
+func (m *FurCoin) Reset()      { *m = FurCoin{} }
+func (*FurCoin) ProtoMessage() {}
+func (*FurCoin) Descriptor() ([]byte, []int) {
 	return fileDescriptor_189a96714eafc2df, []int{1}
 }
-func (m *DecCoin) XXX_Unmarshal(b []byte) error {
+func (m *FurCoin) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *DecCoin) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *FurCoin) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_DecCoin.Marshal(b, m, deterministic)
+		return xxx_messageInfo_FurCoin.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -100,19 +100,19 @@ func (m *DecCoin) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
-func (m *DecCoin) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DecCoin.Merge(m, src)
+func (m *FurCoin) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FurCoin.Merge(m, src)
 }
-func (m *DecCoin) XXX_Size() int {
+func (m *FurCoin) XXX_Size() int {
 	return m.Size()
 }
-func (m *DecCoin) XXX_DiscardUnknown() {
-	xxx_messageInfo_DecCoin.DiscardUnknown(m)
+func (m *FurCoin) XXX_DiscardUnknown() {
+	xxx_messageInfo_FurCoin.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_DecCoin proto.InternalMessageInfo
+var xxx_messageInfo_FurCoin proto.InternalMessageInfo
 
-func (m *DecCoin) GetDenom() string {
+func (m *FurCoin) GetDenom() string {
 	if m != nil {
 		return m.Denom
 	}
@@ -195,7 +195,7 @@ var xxx_messageInfo_DecProto proto.InternalMessageInfo
 
 func init() {
 	proto.RegisterType((*Coin)(nil), "cosmos.base.v1beta1.Coin")
-	proto.RegisterType((*DecCoin)(nil), "cosmos.base.v1beta1.DecCoin")
+	proto.RegisterType((*FurCoin)(nil), "cosmos.base.v1beta1.FurCoin")
 	proto.RegisterType((*IntProto)(nil), "cosmos.base.v1beta1.IntProto")
 	proto.RegisterType((*FurProto)(nil), "cosmos.base.v1beta1.FurProto")
 }
@@ -250,14 +250,14 @@ func (this *Coin) Equal(that interface{}) bool {
 	}
 	return true
 }
-func (this *DecCoin) Equal(that interface{}) bool {
+func (this *FurCoin) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
 	}
 
-	that1, ok := that.(*DecCoin)
+	that1, ok := that.(*FurCoin)
 	if !ok {
-		that2, ok := that.(DecCoin)
+		that2, ok := that.(FurCoin)
 		if ok {
 			that1 = &that2
 		} else {
@@ -317,7 +317,7 @@ func (m *Coin) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *DecCoin) Marshal() (dAtA []byte, err error) {
+func (m *FurCoin) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -327,12 +327,12 @@ func (m *DecCoin) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *DecCoin) MarshalTo(dAtA []byte) (int, error) {
+func (m *FurCoin) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *DecCoin) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *FurCoin) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -449,7 +449,7 @@ func (m *Coin) Size() (n int) {
 	return n
 }
 
-func (m *DecCoin) Size() (n int) {
+func (m *FurCoin) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -608,7 +608,7 @@ func (m *Coin) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *DecCoin) Unmarshal(dAtA []byte) error {
+func (m *FurCoin) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -631,10 +631,10 @@ func (m *DecCoin) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: DecCoin: wiretype end group for non-group")
+			return fmt.Errorf("proto: FurCoin: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: DecCoin: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: FurCoin: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:

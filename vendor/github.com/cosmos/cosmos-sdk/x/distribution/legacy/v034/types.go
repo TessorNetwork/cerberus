@@ -17,7 +17,7 @@ const (
 )
 
 type (
-	ValidatorAccumulatedCommission = sdk.DecCoins
+	ValidatorAccumulatedCommission = sdk.FurCoins
 
 	DelegatorStartingInfo struct {
 		PreviousPeriod uint64  `json:"previous_period"`
@@ -32,7 +32,7 @@ type (
 
 	ValidatorOutstandingRewardsRecord struct {
 		ValidatorAddress   sdk.ValAddress `json:"validator_address"`
-		OutstandingRewards sdk.DecCoins   `json:"outstanding_rewards"`
+		OutstandingRewards sdk.FurCoins   `json:"outstanding_rewards"`
 	}
 
 	ValidatorAccumulatedCommissionRecord struct {
@@ -47,12 +47,12 @@ type (
 	}
 
 	ValidatorHistoricalRewards struct {
-		CumulativeRewardRatio sdk.DecCoins `json:"cumulative_reward_ratio"`
+		CumulativeRewardRatio sdk.FurCoins `json:"cumulative_reward_ratio"`
 		ReferenceCount        uint16       `json:"reference_count"`
 	}
 
 	ValidatorCurrentRewards struct {
-		Rewards sdk.DecCoins `json:"rewards"`
+		Rewards sdk.FurCoins `json:"rewards"`
 		Period  uint64       `json:"period"`
 	}
 
@@ -74,7 +74,7 @@ type (
 	}
 
 	FeePool struct {
-		CommunityPool sdk.DecCoins `json:"community_pool"`
+		CommunityPool sdk.FurCoins `json:"community_pool"`
 	}
 
 	ValidatorSlashEvent struct {

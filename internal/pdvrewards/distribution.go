@@ -25,7 +25,7 @@ type reward struct {
 	reward  int64
 }
 
-// Distributor responsible for distributing PDV rewards in uDEC.
+// Distributor responsible for distributing PDV rewards in uFUR.
 type Distributor struct {
 	rewardsPoolSize int64
 
@@ -126,7 +126,7 @@ func (d *Distributor) distributeRewardsIfExist() {
 		time.Sleep(6 * time.Second)
 
 		for _, item := range chunk {
-			log.Infof("%s got %d uDEC", item.Address, item.Reward)
+			log.Infof("%s got %d uFUR", item.Address, item.Reward)
 		}
 	}
 

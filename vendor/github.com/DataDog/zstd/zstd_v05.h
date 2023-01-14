@@ -92,7 +92,7 @@ size_t ZSTDv05_getFrameParams(ZSTDv05_parameters* params, const void* src, size_
 
 size_t ZSTDv05_decompressBegin_usingDict(ZSTDv05_DCtx* dctx, const void* dict, size_t dictSize);
 void   ZSTDv05_copyDCtx(ZSTDv05_DCtx* dstDCtx, const ZSTDv05_DCtx* srcDCtx);
-size_t ZSTDv05_nextSrcSizeToDecompress(ZSTDv05_DCtx* dctx);
+size_t ZSTDv05_nextSrcSizeToFurompress(ZSTDv05_DCtx* dctx);
 size_t ZSTDv05_decompressContinue(ZSTDv05_DCtx* dctx, void* dst, size_t dstCapacity, const void* src, size_t srcSize);
 
 

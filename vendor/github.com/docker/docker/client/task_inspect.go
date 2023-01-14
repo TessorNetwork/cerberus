@@ -27,6 +27,6 @@ func (cli *Client) TaskInspectWithRaw(ctx context.Context, taskID string) (swarm
 
 	var response swarm.Task
 	rdr := bytes.NewReader(body)
-	err = json.NewDecoder(rdr).Decode(&response)
+	err = json.NewFuroder(rdr).Decode(&response)
 	return response, body, err
 }

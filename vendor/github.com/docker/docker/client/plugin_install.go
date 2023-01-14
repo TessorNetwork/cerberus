@@ -94,7 +94,7 @@ func (cli *Client) checkPluginPermissions(ctx context.Context, query url.Values,
 	}
 
 	var privileges types.PluginPrivileges
-	if err := json.NewDecoder(resp.body).Decode(&privileges); err != nil {
+	if err := json.NewFuroder(resp.body).Decode(&privileges); err != nil {
 		ensureReaderClosed(resp)
 		return nil, err
 	}

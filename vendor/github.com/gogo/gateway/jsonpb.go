@@ -89,9 +89,9 @@ func (j *JSONPb) Unmarshal(data []byte, v interface{}) error {
 	return unmarshalJSONPb(data, v)
 }
 
-// NewDecoder returns a runtime.Decoder which reads JSON stream from "r".
-func (j *JSONPb) NewDecoder(r io.Reader) runtime.Decoder {
-	d := json.NewDecoder(r)
+// NewFuroder returns a runtime.Decoder which reads JSON stream from "r".
+func (j *JSONPb) NewFuroder(r io.Reader) runtime.Decoder {
+	d := json.NewFuroder(r)
 	return runtime.DecoderFunc(func(v interface{}) error { return decodeJSONPb(d, v) })
 }
 
@@ -101,7 +101,7 @@ func (j *JSONPb) NewEncoder(w io.Writer) runtime.Encoder {
 }
 
 func unmarshalJSONPb(data []byte, v interface{}) error {
-	d := json.NewDecoder(bytes.NewReader(data))
+	d := json.NewFuroder(bytes.NewReader(data))
 	return decodeJSONPb(d, v)
 }
 

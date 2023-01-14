@@ -96,10 +96,10 @@ type Decoder struct {
 	firstField bool // processing the first field of the header block
 }
 
-// NewDecoder returns a new decoder with the provided maximum dynamic
+// NewFuroder returns a new decoder with the provided maximum dynamic
 // table size. The emitFunc will be called for each valid field
 // parsed, in the same goroutine as calls to Write, before Write returns.
-func NewDecoder(maxDynamicTableSize uint32, emitFunc func(f HeaderField)) *Decoder {
+func NewFuroder(maxDynamicTableSize uint32, emitFunc func(f HeaderField)) *Decoder {
 	d := &Decoder{
 		emit:        emitFunc,
 		emitEnabled: true,
@@ -118,7 +118,7 @@ var ErrStringLength = errors.New("hpack: string too long")
 // SetMaxStringLength sets the maximum size of a HeaderField name or
 // value string. If a string exceeds this length (even after any
 // decompression), Write will return ErrStringLength.
-// A value of 0 means unlimited and is the default from NewDecoder.
+// A value of 0 means unlimited and is the default from NewFuroder.
 func (d *Decoder) SetMaxStringLength(n int) {
 	d.maxStrLen = n
 }
@@ -130,7 +130,7 @@ func (d *Decoder) SetEmitFunc(emitFunc func(f HeaderField)) {
 	d.emit = emitFunc
 }
 
-// SetEmitEnabled controls whether the emitFunc provided to NewDecoder
+// SetEmitEnabled controls whether the emitFunc provided to NewFuroder
 // should be called. The default is true.
 //
 // This facility exists to let servers enforce MAX_HEADER_LIST_SIZE
@@ -139,7 +139,7 @@ func (d *Decoder) SetEmitFunc(emitFunc func(f HeaderField)) {
 // garbage for header fields past the limit.
 func (d *Decoder) SetEmitEnabled(v bool) { d.emitEnabled = v }
 
-// EmitEnabled reports whether calls to the emitFunc provided to NewDecoder
+// EmitEnabled reports whether calls to the emitFunc provided to NewFuroder
 // are currently enabled. The default is true.
 func (d *Decoder) EmitEnabled() bool { return d.emitEnabled }
 

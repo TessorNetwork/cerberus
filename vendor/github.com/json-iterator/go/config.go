@@ -39,7 +39,7 @@ type API interface {
 	Unmarshal(data []byte, v interface{}) error
 	Get(data []byte, path ...interface{}) Any
 	NewEncoder(writer io.Writer) *Encoder
-	NewDecoder(reader io.Reader) *Decoder
+	NewFuroder(reader io.Reader) *Decoder
 	Valid(data []byte) bool
 	RegisterExtension(extension Extension)
 	DecoderOf(typ reflect2.Type) ValDecoder
@@ -362,7 +362,7 @@ func (cfg *frozenConfig) NewEncoder(writer io.Writer) *Encoder {
 	return &Encoder{stream}
 }
 
-func (cfg *frozenConfig) NewDecoder(reader io.Reader) *Decoder {
+func (cfg *frozenConfig) NewFuroder(reader io.Reader) *Decoder {
 	iter := Parse(cfg, reader, 512)
 	return &Decoder{iter}
 }

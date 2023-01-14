@@ -51,7 +51,7 @@ func (c *Conn) ReadJSON(v interface{}) error {
 	if err != nil {
 		return err
 	}
-	err = json.NewDecoder(r).Decode(v)
+	err = json.NewFuroder(r).Decode(v)
 	if err == io.EOF {
 		// One value is expected in the message.
 		err = io.ErrUnexpectedEOF

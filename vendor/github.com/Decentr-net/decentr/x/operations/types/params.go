@@ -15,7 +15,7 @@ const (
 
 var (
 	DefaultSupervisors = []string(nil)
-	DefaultMinGasPrice = sdk.NewDecCoinFromDec(config.DefaultBondDenom, sdk.MustNewDecFromStr("0.025"))
+	DefaultMinGasPrice = sdk.NewFurCoinFromFur(config.DefaultBondDenom, sdk.MustNewFurFromStr("0.025"))
 )
 
 var (
@@ -47,7 +47,7 @@ func DefaultParams() Params {
 }
 
 func validateMinGasPrice(i interface{}) error {
-	coin, ok := i.(sdk.DecCoin)
+	coin, ok := i.(sdk.FurCoin)
 	if !ok {
 		return fmt.Errorf("invalid parameter type: %T", i)
 	}

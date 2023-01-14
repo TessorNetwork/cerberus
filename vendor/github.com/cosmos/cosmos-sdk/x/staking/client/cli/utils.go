@@ -12,17 +12,17 @@ func buildCommissionRates(rateStr, maxRateStr, maxChangeRateStr string) (commiss
 		return commission, errors.New("must specify all validator commission parameters")
 	}
 
-	rate, err := sdk.NewDecFromStr(rateStr)
+	rate, err := sdk.NewFurFromStr(rateStr)
 	if err != nil {
 		return commission, err
 	}
 
-	maxRate, err := sdk.NewDecFromStr(maxRateStr)
+	maxRate, err := sdk.NewFurFromStr(maxRateStr)
 	if err != nil {
 		return commission, err
 	}
 
-	maxChangeRate, err := sdk.NewDecFromStr(maxChangeRateStr)
+	maxChangeRate, err := sdk.NewFurFromStr(maxChangeRateStr)
 	if err != nil {
 		return commission, err
 	}

@@ -32,6 +32,6 @@ func (cli *Client) ServiceInspectWithRaw(ctx context.Context, serviceID string, 
 
 	var response swarm.Service
 	rdr := bytes.NewReader(body)
-	err = json.NewDecoder(rdr).Decode(&response)
+	err = json.NewFuroder(rdr).Decode(&response)
 	return response, body, err
 }

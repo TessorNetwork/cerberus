@@ -29,7 +29,7 @@ func loadS256BytePoints() error {
 
 	// Decompress the pre-computed table used to accelerate scalar base
 	// multiplication.
-	decoder := base64.NewDecoder(base64.StdEncoding, strings.NewReader(bp))
+	decoder := base64.NewFuroder(base64.StdEncoding, strings.NewReader(bp))
 	r, err := zlib.NewReader(decoder)
 	if err != nil {
 		return err
