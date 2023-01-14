@@ -15,7 +15,7 @@ If you discover a mistake in the process, the best thing to do is to seek advice
 
 ### Recovery
 
-Prior to the upgrading procedure, validators are encouraged to take a full data snapshot at the export height before proceeding. Snap-shotting depends heavily on infrastructure, but generally this can be done by backing up the .furyad and .furyacli directories.
+Prior to the upgrading procedure, validators are encouraged to take a full data snapshot at the export height before proceeding. Snap-shotting depends heavily on infrastructure, but generally this can be done by backing up the .furya and .furyacli directories.
 
 In the event that the upgrade does not succeed, validators and operators must restore their nodes from backup with v1.5.8 of the furya software. Before starting the node validators should add `--unsafe-skip-upgrades <height template>` to as furya node start parameter.
 
@@ -29,7 +29,7 @@ Furya has submitted a SoftwareUpgradeProposal that specifies block height <heigh
 
 The furya chain is expected to halt at block height <height template>, at approximately <date template>, and restart with new software after an hour at <date template + hour>. Do not stop your node and begin the upgrade before <date template>, or you may go offline and be unable to recover until after the upgrade!
 
-Make sure the furyad process is stopped before proceeding and that you have backed up your validator. Failure to backup your validator could make it impossible to restart your node if the upgrade fails.
+Make sure the furya process is stopped before proceeding and that you have backed up your validator. Failure to backup your validator could make it impossible to restart your node if the upgrade fails.
 
 #### Guide
 
@@ -38,9 +38,9 @@ Make sure the furyad process is stopped before proceeding and that you have back
 sudo systemctl stop furya_node
 ```
 
-2. Backup .furyad and .furyacli
+2. Backup .furya and .furyacli
 ```shell
-cp -rf $HOME/.furyad $HOME/.furyad.bak
+cp -rf $HOME/.furya $HOME/.furya.bak
 cp -rf $HOME/.furyacli $HOME/.furyacli.bak
 ```
 
@@ -63,7 +63,7 @@ make install
 and check version
   
 ```shell
-furyad version
+furya version
 ```
 It has to be `1.6.0`
 
